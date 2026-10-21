@@ -1,6 +1,7 @@
 import { Component, inject, signal } from '@angular/core';
 import { ActivatedRoute, Router, RouterOutlet } from '@angular/router';
 import { MenuToggle } from '../menu-toggle/menu-toggle';
+import { WorkspaceHeader } from '../workspace-header/workspace-header';
 
 /**
  * Workspace frame after login (Figma `06-Slack Clone Desktop general view`, spec 2.4):
@@ -11,7 +12,7 @@ import { MenuToggle } from '../menu-toggle/menu-toggle';
  */
 @Component({
   selector: 'app-workspace-layout',
-  imports: [RouterOutlet, MenuToggle],
+  imports: [RouterOutlet, MenuToggle, WorkspaceHeader],
   templateUrl: './workspace-layout.html',
   styleUrl: './workspace-layout.scss',
   host: {

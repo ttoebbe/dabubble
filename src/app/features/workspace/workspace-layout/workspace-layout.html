@@ -1,3 +1,8 @@
+<app-workspace-header
+  class="workspace__header"
+  [showBack]="chatOpen() || threadOpen()"
+  (back)="goBack()"
+/>
 <nav
   class="workspace__menu"
   aria-label="Workspace-Menü"

@@ -1,0 +1,24 @@
+@if (showBack()) {
+  <button type="button" class="header__back" aria-label="Zurück" (click)="back.emit()">
+    <span class="header__back-icon" aria-hidden="true"></span>
+  </button>
+}
+<a class="header__brand" routerLink="/workspace">
+  <img
+    class="header__logo"
+    ngSrc="img/logos/logo-mark.svg"
+    alt=""
+    width="70"
+    height="70"
+    priority
+  />
+  <img
+    class="header__name"
+    ngSrc="img/logos/logo-name-black.svg"
+    alt="DABubble"
+    width="156"
+    height="24"
+  />
+</a>
+<div class="header__search"></div>
+<div class="header__profile"></div>
