@@ -84,6 +84,12 @@
   }
 }
 
+@include bp.tablet {
+  .profile-menu__name {
+    display: none;
+  }
+}
+
 @include bp.mobile {
   .profile-menu__trigger {
     gap: 0;
