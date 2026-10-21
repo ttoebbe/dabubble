@@ -769,3 +769,13 @@ variants: own profile without, other people with the "Nachricht" button (`65.` `
 45 px as in `65.`; the own profile in Figma has 38 px, padding 45/40 and radius 30/0/30/30.
 Not yet built: "Bearbeiten" / "Dein Profil bearbeiten" (waits for the forms decision) and the
 actual log-out (waits for `AuthService`), both in `docs/todo.md`.
+
+### 8.7 Channel members dialog
+
+`src/app/features/channels/channel-members-dialog/` as `43. Members` (415 px wide, rows 58 px with
+13 px gap, "Mitglieder hinzufügen" as `42.` with hover `#535AF1` / icon `#797EF3`), built on the
+shared dialog (centred; Figma radius 30/0/30/30 hints at a dropdown under the members button of
+the channel header). The channel header of area B opens it; it reports the chosen person and the
+add request. The text variant "Mitglieder hinzufüngen" (`392:2836`) is a typo; the instance in
+`388:2847` says "Mitglieder hinzufügen". Not built yet: "Channel erstellen" (`37.`) and
+"Leute hinzufügen" (`38.`, `41.`), both are forms and wait for the forms decision (`docs/todo.md`).

@@ -25,6 +25,7 @@ Offene Aufgaben außerhalb der Arbeitspakete. Erledigtes abhaken, nicht löschen
 - [ ] Profil: „Log out“ an `AuthService` anbinden, Beispielprofil (`profile/profile-details.ts`) durch den angemeldeten Nutzer ersetzen – A, sobald Auth steht
 - [ ] Profil bearbeiten („Bearbeiten“, Dialog „Dein Profil bearbeiten“) – A, nach der Formular-Entscheidung
 - [ ] Avatar-Komponente fluide machen (bei 320 px mit Scrollbalken wird das 200-px-Bild im Profil-Dialog gestaucht) – A, Absprache mit B (`shared/`)
+- [ ] Dialoge „Channel erstellen“ (`37.`) und „Leute hinzufügen“ (`38.`, `41.`) – A, nach der Formular-Entscheidung; „Mitglieder“-Dialog steht (`channels/channel-members-dialog/`), B bindet ihn im Channel-Kopf ein
 - [ ] Layout-Check: privates Repo `ttoebbe/dabubble-layout-check` aus `ttoebbe/join-layout-check` ableiten, an Angular anpassen, Workflow `layout-check.yml` (nur `workflow_dispatch`, Secret `LAYOUT_CHECK_TOKEN`) – A, sobald die ersten Screens stehen
 
 ## Im Team klären

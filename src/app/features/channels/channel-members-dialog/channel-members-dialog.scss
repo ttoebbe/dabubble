@@ -1,0 +1,83 @@
+.members {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  width: 335px;
+  max-width: 100%;
+}
+
+.members__list {
+  display: flex;
+  flex-direction: column;
+  gap: 13px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.members__item {
+  display: flex;
+}
+
+.members__entry,
+.members__add {
+  display: inline-flex;
+  align-items: center;
+  gap: 15px;
+  max-width: 100%;
+  border-radius: var(--radius-pill);
+  text-align: left;
+  transition:
+    background-color var(--duration-hover) var(--easing-hover),
+    color var(--duration-hover) var(--easing-hover);
+
+  &:hover {
+    background-color: var(--color-bg);
+  }
+}
+
+.members__entry {
+  min-height: 58px;
+  padding: 4px 20px;
+}
+
+.members__add {
+  align-self: flex-start;
+  min-height: 56px;
+  padding: 12px 29px;
+
+  &:hover {
+    color: var(--color-accent);
+  }
+
+  &:active {
+    color: var(--color-black);
+  }
+}
+
+.members__add-icon {
+  display: grid;
+  flex: none;
+  place-items: center;
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  background-color: var(--color-bg);
+
+  &::before {
+    content: '';
+    width: 24px;
+    height: 24px;
+    background-color: var(--color-black);
+    mask: url('/img/icons/person-add.svg') center / contain no-repeat;
+    transition: background-color var(--duration-hover) var(--easing-hover);
+  }
+}
+
+.members__add:hover .members__add-icon::before {
+  background-color: var(--color-primary-hover);
+}
+
+.members__add:active .members__add-icon::before {
+  background-color: var(--color-black);
+}
