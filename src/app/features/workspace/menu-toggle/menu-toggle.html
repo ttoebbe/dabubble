@@ -1,0 +1,12 @@
+<button
+  type="button"
+  class="menu-toggle__button"
+  [attr.aria-controls]="controls()"
+  [attr.aria-expanded]="!collapsed()"
+  (click)="toggled.emit()"
+>
+  <span class="menu-toggle__icon" aria-hidden="true"></span>
+  <span class="menu-toggle__label">
+    {{ collapsed() ? 'Workspace-Menü öffnen' : 'Workspace-Menü schließen' }}
+  </span>
+</button>

@@ -1,0 +1,22 @@
+<nav
+  class="workspace__menu"
+  aria-label="Workspace-Menü"
+  [id]="menuId"
+  [inert]="menuCollapsed()"
+></nav>
+<main class="workspace__chat">
+  <router-outlet (activate)="chatOpen.set(true)" (deactivate)="chatOpen.set(false)" />
+</main>
+<aside class="workspace__thread" aria-label="Thread">
+  <router-outlet
+    name="thread"
+    (activate)="threadOpen.set(true)"
+    (deactivate)="threadOpen.set(false)"
+  />
+</aside>
+<app-menu-toggle
+  class="workspace__toggle"
+  [collapsed]="menuCollapsed()"
+  [controls]="menuId"
+  (toggled)="toggleMenu()"
+/>
