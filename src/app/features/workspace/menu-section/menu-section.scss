@@ -1,0 +1,116 @@
+@use 'breakpoints' as bp;
+
+:host {
+  display: flex;
+  flex-direction: column;
+  gap: 25px;
+}
+
+.menu-section__head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  min-height: 46px;
+}
+
+.menu-section__heading {
+  font-size: var(--font-size-subtitle);
+  font-weight: var(--font-weight-bold);
+}
+
+.menu-section__toggle {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  min-height: var(--touch-target-min);
+  padding-right: 10px;
+  border-radius: var(--radius-item);
+  font-weight: inherit;
+  transition: color var(--duration-hover) var(--easing-hover);
+
+  &:hover {
+    color: var(--color-accent);
+  }
+
+  &:active {
+    color: var(--color-black);
+  }
+}
+
+.menu-section__arrow,
+.menu-section__icon,
+.menu-section__add-icon {
+  flex: none;
+  width: 24px;
+  height: 24px;
+  background-color: currentColor;
+  mask: var(--icon) center / contain no-repeat;
+}
+
+.menu-section__arrow {
+  --icon: url('/img/icons/arrow-drop-down.svg');
+
+  margin: 0 8px 0 3px;
+  transition: rotate var(--duration-hover) var(--easing-hover);
+}
+
+.menu-section__toggle[aria-expanded='false'] .menu-section__arrow {
+  rotate: -90deg;
+}
+
+.menu-section__toggle:active .menu-section__arrow,
+.menu-section__toggle:active .menu-section__icon {
+  background-color: var(--color-accent);
+}
+
+.menu-section__add {
+  display: grid;
+  place-items: center;
+  width: var(--touch-target-min);
+  height: var(--touch-target-min);
+  margin-right: -7px;
+
+  &::before {
+    content: '';
+    grid-area: 1 / 1;
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    transition: background-color var(--duration-hover) var(--easing-hover);
+  }
+
+  &:hover::before {
+    background-color: var(--color-bg);
+  }
+
+  &:hover {
+    color: var(--color-accent);
+  }
+}
+
+.menu-section__add-icon {
+  --icon: url('/img/icons/add.svg');
+
+  grid-area: 1 / 1;
+}
+
+.menu-section__body {
+  display: flex;
+  flex-direction: column;
+  gap: 25px;
+
+  &[hidden] {
+    display: none;
+  }
+}
+
+@include bp.mobile {
+  :host,
+  .menu-section__body {
+    gap: 30px;
+  }
+
+  .menu-section__add {
+    color: var(--color-accent);
+  }
+}

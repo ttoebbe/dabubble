@@ -3,12 +3,15 @@
   [showBack]="chatOpen() || threadOpen()"
   (back)="goBack()"
 />
-<nav
-  class="workspace__menu"
-  aria-label="Workspace-Menü"
-  [id]="menuId"
-  [inert]="menuCollapsed()"
-></nav>
+<nav class="workspace__menu" aria-label="Workspace-Menü" [id]="menuId" [inert]="menuCollapsed()">
+  <app-workspace-menu
+    [channels]="channels"
+    [contacts]="contacts"
+    [activeId]="activeEntryId()"
+    (channelSelected)="activeEntryId.set($event)"
+    (contactSelected)="activeEntryId.set($event)"
+  />
+</nav>
 <main class="workspace__chat">
   <router-outlet (activate)="chatOpen.set(true)" (deactivate)="chatOpen.set(false)" />
 </main>

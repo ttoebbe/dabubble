@@ -741,3 +741,16 @@ The two Figma frames place the logo differently (desktop: mark centred at the st
 `128:765`; mobile: whole logo centred at the end, `609:17310`); the implementation does both.
 Mobile uses the desktop logo scaled by 263 / 696 as in `609:17311`. With reduced motion the
 logo stands still in its end position.
+
+### 8.5 Workspace menu
+
+`src/app/features/workspace/workspace-menu/` and `menu-section/` (checked at 1920, 430 and 320 px):
+Devspace head, "Channels" and "Direktnachrichten" as collapsible sections, entries with the
+hover and click variants of `17.`, `18.`, `20.`, `23.`, `25.`–`29.`. Positions at 1920 px match
+`210:1203` (first channel pill y 303, "Channel hinzufügen" y 361, first person y 490). Rows that
+are 30–40 px high in Figma get a 44 px hit area; the visible pill keeps the Figma size and
+negative block margins keep the Figma rhythm. Mobile (`678:15602`): no Devspace head, gaps 30,
+"+" and "Channel hinzufügen" in `#535AF1`, "Neue Nachricht" as round button `16B. edit_square`
+(60 px, `#444DF2`, bottom right). Mobile texts are 17 px in Figma; the implementation keeps the
+18 px body size. Until the services exist the menu shows the Figma sample entries
+(`menu-entries.ts`); the search field "Gehe zu..." of the mobile menu is part of the search (area B).

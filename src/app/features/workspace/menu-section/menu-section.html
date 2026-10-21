@@ -1,0 +1,28 @@
+<div class="menu-section__head">
+  <h2 class="menu-section__heading">
+    <button
+      class="menu-section__toggle"
+      type="button"
+      [attr.aria-expanded]="expanded()"
+      [attr.aria-controls]="bodyId"
+      (click)="toggle()"
+    >
+      <span class="menu-section__arrow"></span>
+      <span class="menu-section__icon" [style.--icon]="iconMask()"></span>
+      {{ heading() }}
+    </button>
+  </h2>
+  @if (addLabel(); as label) {
+    <button
+      class="menu-section__add"
+      type="button"
+      [attr.aria-label]="label"
+      (click)="added.emit()"
+    >
+      <span class="menu-section__add-icon"></span>
+    </button>
+  }
+</div>
+<div class="menu-section__body" [id]="bodyId" [hidden]="!expanded()">
+  <ng-content />
+</div>

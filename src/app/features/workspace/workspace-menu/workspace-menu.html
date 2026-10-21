@@ -1,0 +1,77 @@
+<div class="menu__head">
+  <div class="menu__workspace">
+    <img
+      class="menu__workspace-logo"
+      ngSrc="img/workspace-logo.png"
+      alt=""
+      width="60"
+      height="60"
+    />
+    <p class="menu__workspace-name">Devspace</p>
+  </div>
+  <button
+    class="menu__new-message"
+    type="button"
+    aria-label="Neue Nachricht"
+    (click)="newMessage.emit()"
+  >
+    <span class="menu__new-message-icon"></span>
+  </button>
+</div>
+
+<app-menu-section
+  heading="Channels"
+  icon="img/icons/workspaces.svg"
+  addLabel="Channel hinzufügen"
+  (added)="addChannel.emit()"
+>
+  <ul class="menu__list">
+    @for (channel of channels(); track channel.id) {
+      <li>
+        <button
+          class="menu__entry"
+          type="button"
+          [class.menu__entry--active]="channel.id === activeId()"
+          [attr.aria-current]="channel.id === activeId() ? 'page' : null"
+          (click)="channelSelected.emit(channel.id)"
+        >
+          <span class="menu__pill">
+            <span class="menu__entry-icon"></span>
+            {{ channel.name }}
+          </span>
+        </button>
+      </li>
+    }
+  </ul>
+  <button class="menu__entry menu__entry--add" type="button" (click)="addChannel.emit()">
+    <span class="menu__pill">
+      <span class="menu__entry-icon"></span>
+      Channel hinzufügen
+    </span>
+  </button>
+</app-menu-section>
+
+<app-menu-section heading="Direktnachrichten" icon="img/icons/account-circle.svg">
+  <ul class="menu__list">
+    @for (contact of contacts(); track contact.id) {
+      <li>
+        <button
+          class="menu__entry menu__entry--contact"
+          type="button"
+          [class.menu__entry--active]="contact.id === activeId()"
+          [attr.aria-current]="contact.id === activeId() ? 'page' : null"
+          (click)="contactSelected.emit(contact.id)"
+        >
+          <span class="menu__pill">
+            <app-avatar [src]="contact.avatarUrl" [status]="contact.status" />
+            {{ contact.name }}{{ contact.isSelf ? ' (Du)' : '' }}
+          </span>
+        </button>
+      </li>
+    }
+  </ul>
+</app-menu-section>
+
+<button class="menu__fab" type="button" aria-label="Neue Nachricht" (click)="newMessage.emit()">
+  <span class="menu__new-message-icon"></span>
+</button>
