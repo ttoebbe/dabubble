@@ -26,7 +26,9 @@ Offene Aufgaben außerhalb der Arbeitspakete. Erledigtes abhaken, nicht löschen
 - [ ] Profil bearbeiten („Bearbeiten“, Dialog „Dein Profil bearbeiten“) – A, nach der Formular-Entscheidung
 - [ ] Avatar-Komponente fluide machen (bei 320 px mit Scrollbalken wird das 200-px-Bild im Profil-Dialog gestaucht) – A, Absprache mit B (`shared/`)
 - [ ] Dialoge „Channel erstellen“ (`37.`) und „Leute hinzufügen“ (`38.`, `41.`) – A, nach der Formular-Entscheidung; „Mitglieder“-Dialog steht (`channels/channel-members-dialog/`), B bindet ihn im Channel-Kopf ein
-- [ ] Layout-Check: privates Repo `ttoebbe/dabubble-layout-check` aus `ttoebbe/join-layout-check` ableiten, an Angular anpassen, Workflow `layout-check.yml` (nur `workflow_dispatch`, Secret `LAYOUT_CHECK_TOKEN`) – A, sobald die ersten Screens stehen
+- [x] Layout-Check: privates Repo `ttoebbe/dabubble-layout-check` (aus `ttoebbe/join-layout-check`, an den Angular-Build angepasst, 5 Seiten und Zustände × 6 Viewports), lokal grün – A
+- [ ] Layout-Check in Actions: `workflow/layout-check.yml` aus dem Checker-Repo nach `.github/workflows/` übernehmen (gemeinsame Datei, Absprache mit B), Secret `LAYOUT_CHECK_TOKEN` anlegen (Thomas), danach in `CLAUDE.md` „geplant“ streichen – A
+- [ ] Build-Warnung „Unable to locate stylesheet fonts/fonts.css“ (beasties) und Konsolen-Warnung zum Nunito-Preload klären – A
 
 ## Im Team klären
 
