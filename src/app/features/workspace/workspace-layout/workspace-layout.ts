@@ -1,5 +1,6 @@
 import { Component, inject, signal } from '@angular/core';
 import { ActivatedRoute, Router, RouterOutlet } from '@angular/router';
+import { SAMPLE_OWN_PROFILE } from '../../profile/profile-details';
 import { MenuToggle } from '../menu-toggle/menu-toggle';
 import { WorkspaceHeader } from '../workspace-header/workspace-header';
 import { SAMPLE_CHANNELS, SAMPLE_CONTACTS } from '../workspace-menu/menu-entries';
@@ -28,6 +29,7 @@ export class WorkspaceLayout {
   readonly menuCollapsed = signal(false);
   readonly chatOpen = signal(false);
   readonly threadOpen = signal(false);
+  readonly currentUser = SAMPLE_OWN_PROFILE;
   readonly channels = SAMPLE_CHANNELS;
   readonly contacts = SAMPLE_CONTACTS;
   readonly activeEntryId = signal<string | null>(null);

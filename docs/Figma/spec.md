@@ -603,6 +603,7 @@ Requirements source: `docs/DA_Checkliste/DaBubble Checkliste.md` (DA checklist, 
 | 10 | Many radii | 24 distinct values (section 1.6) |
 | 11 | Toast text | the third success toast says "Anmelden" (`182:547`), not a success message |
 | 12 | Hidden components | set `15. Hide/Show menu` `432:2906` and `31. Workspaces menú` `324:2281` are hidden, their instances are visible |
+| 13 | Status text | own profile "Aktive" (`163:228`, `609:17349`) vs. "Aktiv" in the profiles of others (`I463:7263;761:13242`); the implementation uses "Aktiv" |
 
 ### 6.5 Collision design directive ↔ project rule
 
@@ -674,6 +675,7 @@ listed here, not as a comment in the stylesheet.
 | `--color-label` | `#42526E` | style menu color (`5538:20926`), privacy checkbox label |
 | `--color-mail-link` | `#1381FF` | e-mail link in profile views (`163:235`) |
 | `--color-icon` | `#1C1B1F` | Material Symbols instances (`more_vert`, `edit`) |
+| `--color-handle` | `#D9D9D9` | grab handle of the mobile sheets (`734:11516` in `64b.`) |
 | `--color-primary`, `--color-primary-hover`, `--color-accent`, `--color-disabled` | aliases | `10. Button primary` Default / Hover, input focus stroke, `Disable` variant (section 4.1, 4.2) |
 | `--color-own-bubble`, `--color-other-bubble` | aliases | `481:5501`, `463:3849` (section 4.4) |
 | `--gradient-intro` | `linear-gradient(0deg, #313AE5 0%, #797EF3 100%)` | fill of `128:765`; handles run from bottom (0.49, 1.0) to top (0.5, 0.0) |
@@ -754,3 +756,16 @@ negative block margins keep the Figma rhythm. Mobile (`678:15602`): no Devspace 
 (60 px, `#444DF2`, bottom right). Mobile texts are 17 px in Figma; the implementation keeps the
 18 px body size. Until the services exist the menu shows the Figma sample entries
 (`menu-entries.ts`); the search field "Gehe zu..." of the mobile menu is part of the search (area B).
+
+### 8.6 Profile menu and profile dialog
+
+`src/app/features/profile/` (checked at 1920, 430 and 320 px). Header corner as `65. Profile menu`
+(x 1544, 342 x 70 at 1920 px; hover name and arrow `#797EF3`); on mobile only the 50 px avatar as in
+`69. head mobile`. The menu "Profil" / "Log out" is a native popover: desktop below the header,
+right edge on the profile corner (radius 30/0/30/30, `64.`), mobile a bottom sheet with handle
+and icons (`64b.`). Figma places neither overlay in a screen, so the position is an implementation
+decision. The profile dialog uses the shared dialog (centred, padding 40, all corners 30) for both
+variants: own profile without, other people with the "Nachricht" button (`65.` `463:7263`). Gaps
+45 px as in `65.`; the own profile in Figma has 38 px, padding 45/40 and radius 30/0/30/30.
+Not yet built: "Bearbeiten" / "Dein Profil bearbeiten" (waits for the forms decision) and the
+actual log-out (waits for `AuthService`), both in `docs/todo.md`.

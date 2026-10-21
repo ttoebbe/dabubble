@@ -1,0 +1,159 @@
+@use 'breakpoints' as bp;
+
+:host {
+  display: block;
+}
+
+.profile-menu__trigger {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  border-radius: var(--radius-panel);
+  transition: color var(--duration-hover) var(--easing-hover);
+
+  &:hover {
+    color: var(--color-primary-hover);
+  }
+}
+
+.profile-menu__name {
+  font-size: var(--font-size-display-mobile);
+  font-weight: var(--font-weight-bold);
+  white-space: nowrap;
+}
+
+.profile-menu__avatar {
+  --avatar-ring: var(--color-bg);
+}
+
+.profile-menu__avatar--small {
+  display: none;
+}
+
+.profile-menu__arrow {
+  width: 30px;
+  height: 30px;
+  background-color: currentColor;
+  mask: url('/img/icons/keyboard-arrow-down.svg') center / contain no-repeat;
+}
+
+.profile-menu__popover {
+  inset: auto;
+  top: calc(var(--shell-header-top) + var(--shell-header-height));
+  right: calc(var(--shell-gutter) + 14px);
+  width: 282px;
+  margin: 0;
+  padding: 30px;
+  border: none;
+  border-radius: var(--radius-panel) 0 var(--radius-panel) var(--radius-panel);
+  color: inherit;
+  background-color: var(--color-white);
+  box-shadow: var(--shadow-overlay);
+
+  &:popover-open {
+    display: flex;
+    flex-direction: column;
+    gap: 25px;
+  }
+}
+
+.profile-menu__handle {
+  display: none;
+}
+
+.profile-menu__items {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.profile-menu__item {
+  min-height: 53px;
+  padding: 10px 20px;
+  border-radius: var(--radius-pill);
+  font-size: var(--font-size-title);
+  font-weight: var(--font-weight-semibold);
+  transition:
+    background-color var(--duration-hover) var(--easing-hover),
+    color var(--duration-hover) var(--easing-hover);
+
+  &:hover {
+    background-color: var(--color-bg);
+    color: var(--color-accent);
+    font-weight: var(--font-weight-bold);
+  }
+}
+
+@include bp.mobile {
+  .profile-menu__trigger {
+    gap: 0;
+    border-radius: 50%;
+  }
+
+  .profile-menu__name,
+  .profile-menu__arrow {
+    display: none;
+  }
+
+  .profile-menu__avatar--large {
+    display: none;
+  }
+
+  .profile-menu__avatar--small {
+    display: inline-block;
+  }
+
+  .profile-menu__popover {
+    top: auto;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    padding: 30px 26px;
+    border-radius: var(--radius-sheet);
+    box-shadow: var(--shadow-sheet);
+  }
+
+  .profile-menu__items {
+    align-items: flex-start;
+  }
+
+  .profile-menu__handle {
+    display: block;
+    align-self: center;
+    width: 62px;
+    height: 6px;
+    border-radius: 23px;
+    background-color: var(--color-handle);
+  }
+
+  .profile-menu__item {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    min-height: 50px;
+    padding: 10px 30px;
+    font-size: var(--font-size-subtitle);
+
+    &::before {
+      content: '';
+      width: 30px;
+      height: 30px;
+      background-color: currentColor;
+      mask: var(--icon) center / contain no-repeat;
+    }
+
+    &:hover {
+      color: inherit;
+      font-weight: var(--font-weight-semibold);
+    }
+  }
+
+  .profile-menu__item--profile {
+    --icon: url('/img/icons/account-circle.svg');
+  }
+
+  .profile-menu__item--logout {
+    --icon: url('/img/icons/logout.svg');
+  }
+}

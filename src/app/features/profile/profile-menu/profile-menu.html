@@ -1,0 +1,44 @@
+<button
+  #trigger
+  class="profile-menu__trigger"
+  type="button"
+  popovertarget="profile-menu-popover"
+  [attr.aria-label]="'Profilmenü ' + profile().name"
+>
+  <span class="profile-menu__name">{{ profile().name }}</span>
+  <app-avatar
+    class="profile-menu__avatar profile-menu__avatar--large"
+    [src]="profile().avatarUrl"
+    [size]="70"
+    [status]="profile().status"
+  />
+  <app-avatar
+    class="profile-menu__avatar profile-menu__avatar--small"
+    [src]="profile().avatarUrl"
+    [status]="profile().status"
+  />
+  <span class="profile-menu__arrow"></span>
+</button>
+
+<div #menu id="profile-menu-popover" class="profile-menu__popover" popover>
+  <span class="profile-menu__handle"></span>
+  <div class="profile-menu__items">
+    <button
+      class="profile-menu__item profile-menu__item--profile"
+      type="button"
+      (click)="openProfile()"
+    >
+      Profil
+    </button>
+    <button class="profile-menu__item profile-menu__item--logout" type="button" (click)="logOut()">
+      Log out
+    </button>
+  </div>
+</div>
+
+<app-profile-dialog
+  [open]="profileOpen()"
+  [profile]="profile()"
+  [isOwn]="true"
+  (closed)="closeProfile()"
+/>

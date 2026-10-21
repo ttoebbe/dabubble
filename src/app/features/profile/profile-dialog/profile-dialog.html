@@ -1,0 +1,21 @@
+<app-dialog heading="Profil" [open]="open()" (closed)="closed.emit()">
+  <div class="profile">
+    <app-avatar class="profile__avatar" [src]="profile().avatarUrl" [size]="200" />
+    <div class="profile__identity">
+      <p class="profile__name">{{ profile().name }}</p>
+      <p class="profile__status" [class.profile__status--away]="profile().status === 'away'">
+        {{ statusLabel() }}
+      </p>
+    </div>
+    <div class="profile__contact">
+      <p class="profile__label">E-Mail-Adresse</p>
+      <a class="profile__email" [href]="'mailto:' + profile().email">{{ profile().email }}</a>
+    </div>
+    @if (!isOwn()) {
+      <app-button class="profile__message" (click)="messageRequested.emit()">
+        <span class="profile__message-icon"></span>
+        Nachricht
+      </app-button>
+    }
+  </div>
+</app-dialog>

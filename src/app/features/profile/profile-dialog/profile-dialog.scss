@@ -1,0 +1,85 @@
+.profile {
+  display: flex;
+  flex-direction: column;
+  gap: 45px;
+  width: 420px;
+  max-width: 100%;
+  margin-top: 25px;
+}
+
+.profile__avatar {
+  align-self: center;
+  max-width: 100%;
+}
+
+.profile__identity,
+.profile__contact {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.profile__name {
+  font-size: var(--font-size-display-mobile);
+  font-weight: var(--font-weight-bold);
+  overflow-wrap: anywhere;
+}
+
+.profile__status {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  font-size: var(--font-size-subtitle);
+  color: var(--color-online);
+
+  &::before {
+    content: '';
+    width: 16px;
+    height: 16px;
+    border-radius: 50%;
+    background-color: currentColor;
+  }
+}
+
+.profile__status--away {
+  color: var(--color-text-gray);
+}
+
+.profile__label {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  font-size: var(--font-size-subtitle);
+  font-weight: var(--font-weight-bold);
+
+  &::before {
+    content: '';
+    flex: none;
+    width: 30px;
+    height: 30px;
+    background-color: var(--color-black);
+    mask: url('/img/icons/mail.svg') center / contain no-repeat;
+  }
+}
+
+.profile__email {
+  padding-left: 50px;
+  color: var(--color-mail-link);
+  text-decoration: none;
+  overflow-wrap: anywhere;
+
+  &:hover {
+    text-decoration: underline;
+  }
+}
+
+.profile__message {
+  align-self: center;
+}
+
+.profile__message-icon {
+  width: 24px;
+  height: 24px;
+  background-color: currentColor;
+  mask: url('/img/icons/mode-comment.svg') center / contain no-repeat;
+}
