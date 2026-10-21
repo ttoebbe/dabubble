@@ -1,0 +1,178 @@
+# The deploy button. Checks and builds the chosen commit of main and mirrors the
+# build output into the target folder on the Developer Akademie web space, over
+# SFTP or FTPS. Only the build folder goes online — a positive list, not an
+# exclude list.
+#
+# Repository secrets: DEPLOY_HOST, DEPLOY_USER, DEPLOY_PASSWORD, DEPLOY_REMOTE_DIR.
+# Repository variable: DEPLOY_PROTOCOL = sftp (default) or ftps.
+
+name: Deploy
+
+# Manual only: a deployment is a decision, not a side effect of a push.
+on:
+  workflow_dispatch:
+    inputs:
+      commit:
+        description: Commit of main as hash, empty for the newest (to go back, the older one)
+        required: false
+        default: ''
+
+permissions:
+  contents: read
+
+# Two uploads into the same folder would interleave, so they queue.
+concurrency:
+  group: deploy
+  cancel-in-progress: false
+
+env:
+  DIST_DIR: dist/dabubble/browser
+
+jobs:
+  deploy:
+    name: Check, build and upload
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+
+    steps:
+      - name: Only from main
+        if: github.ref != 'refs/heads/main'
+        run: |
+          echo "::error::Deploy runs from main only, not from $GITHUB_REF."
+          exit 1
+
+      # Every missing name is printed at once, so one trip to the settings page is enough.
+      - name: Check the required secrets
+        env:
+          DEPLOY_HOST: ${{ secrets.DEPLOY_HOST }}
+          DEPLOY_USER: ${{ secrets.DEPLOY_USER }}
+          DEPLOY_PASSWORD: ${{ secrets.DEPLOY_PASSWORD }}
+          DEPLOY_REMOTE_DIR: ${{ secrets.DEPLOY_REMOTE_DIR }}
+          DEPLOY_PROTOCOL: ${{ vars.DEPLOY_PROTOCOL }}
+        run: |
+          set -euo pipefail
+          missing=0
+          for name in DEPLOY_HOST DEPLOY_USER DEPLOY_PASSWORD DEPLOY_REMOTE_DIR; do
+            if [ -z "${!name:-}" ]; then
+              echo "::error::$name is not set. Add it under Settings > Secrets and variables > Actions as a repository secret."
+              missing=1
+            fi
+          done
+          case "${DEPLOY_PROTOCOL:-sftp}" in
+            sftp|ftps) ;;
+            *) echo "::error::The variable DEPLOY_PROTOCOL has to be sftp or ftps, not $DEPLOY_PROTOCOL."; missing=1 ;;
+          esac
+          [ "$missing" -eq 0 ] || exit 1
+
+      - name: Check out the repository
+        uses: actions/checkout@v5
+        with:
+          fetch-depth: 0
+          persist-credentials: false
+
+      # Only a hash reaches the shell, and only a commit that is part of main
+      # can go live — the way back included.
+      - name: Resolve the commit
+        env:
+          WANTED: ${{ inputs.commit }}
+        run: |
+          set -euo pipefail
+          if [ -n "$WANTED" ] && ! [[ "$WANTED" =~ ^[0-9a-f]{7,40}$ ]]; then
+            echo "::error::commit has to be a hash, for example a6906dc."
+            exit 1
+          fi
+          if ! sha="$(git rev-parse --verify --quiet "${WANTED:-origin/main}^{commit}")"; then
+            echo "::error::$WANTED is not a commit of this repository."
+            exit 1
+          fi
+          if ! git merge-base --is-ancestor "$sha" origin/main; then
+            echo "::error::$sha is not part of main."
+            exit 1
+          fi
+          git checkout --quiet "$sha"
+          echo "SHA=$sha" >> "$GITHUB_ENV"
+          echo "Commit: \`$sha\`" >> "$GITHUB_STEP_SUMMARY"
+
+      - name: Set up Node
+        uses: actions/setup-node@v5
+        with:
+          node-version: '24'
+          cache: npm
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Lint
+        run: npm run lint
+
+      - name: Build
+        run: npm run build
+
+      - name: Check the build
+        run: |
+          set -euo pipefail
+          for required in index.html favicon.ico; do
+            if [ ! -f "$DIST_DIR/$required" ]; then
+              echo "::error::$required is missing from $DIST_DIR — aborting instead of uploading a broken site."
+              exit 1
+            fi
+          done
+          echo "Built $(find "$DIST_DIR" -type f | wc -l) files." >> "$GITHUB_STEP_SUMMARY"
+
+      - name: Install lftp and sshpass
+        run: |
+          sudo apt-get update -qq
+          sudo apt-get install -y -qq lftp sshpass
+
+      - name: Upload the build
+        env:
+          DEPLOY_HOST: ${{ secrets.DEPLOY_HOST }}
+          DEPLOY_USER: ${{ secrets.DEPLOY_USER }}
+          DEPLOY_REMOTE_DIR: ${{ secrets.DEPLOY_REMOTE_DIR }}
+          DEPLOY_PROTOCOL: ${{ vars.DEPLOY_PROTOCOL }}
+          # sshpass -e and lftp --env-password read the password from the
+          # environment, so it never appears in the process list.
+          SSHPASS: ${{ secrets.DEPLOY_PASSWORD }}
+          LFTP_PASSWORD: ${{ secrets.DEPLOY_PASSWORD }}
+        run: |
+          set -euo pipefail
+
+          REMOTE_DIR="$DEPLOY_REMOTE_DIR"
+          if [ "${REMOTE_DIR#/}" = "$REMOTE_DIR" ]; then
+            echo "::error::DEPLOY_REMOTE_DIR must be an absolute path, for example / or /dabubble."
+            exit 1
+          fi
+
+          # --delete removes everything in the target that is not in the build.
+          # In the account root that could wipe unrelated files, so files are
+          # only deleted below a named folder.
+          DELETE="--delete"
+          if [ -z "$(printf '%s' "$REMOTE_DIR" | tr -d '/')" ]; then
+            DELETE=""
+            echo "Target is the account root: nothing is deleted, old files stay." >> "$GITHUB_STEP_SUMMARY"
+          fi
+
+          if [ "${DEPLOY_PROTOCOL:-sftp}" = "sftp" ]; then
+            OPEN="set sftp:auto-confirm yes;
+              set sftp:connect-program \"sshpass -e ssh -a -x -o PubkeyAuthentication=no -o StrictHostKeyChecking=accept-new\";
+              open -u \"$DEPLOY_USER\",unused-by-sftp sftp://$DEPLOY_HOST"
+          else
+            OPEN="set ftp:ssl-force true;
+              set ftp:ssl-protect-data true;
+              open --env-password -u \"$DEPLOY_USER\" ftp://$DEPLOY_HOST"
+          fi
+
+          run_lftp() {
+            lftp -c "set cmd:fail-exit yes; set net:max-retries 2; set net:timeout 20; $OPEN; $1"
+          }
+
+          run_lftp "mirror --reverse $DELETE --verbose --parallel=2 \"$DIST_DIR\" \"$REMOTE_DIR\";"
+
+          # Prove the entry page actually arrived instead of trusting the mirror.
+          REMOTE_INDEX="$(run_lftp "cls -1 \"${REMOTE_DIR%/}/index.html\";" || true)"
+          if [ -z "$(printf '%s' "$REMOTE_INDEX" | tr -d '[:space:]')" ]; then
+            echo "::error::index.html is not in the target folder after the upload — the site would not load."
+            exit 1
+          fi
+
+          echo "Uploaded \`$SHA\` to $REMOTE_DIR over ${DEPLOY_PROTOCOL:-sftp}, index.html confirmed." >> "$GITHUB_STEP_SUMMARY"

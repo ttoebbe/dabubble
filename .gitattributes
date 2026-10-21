@@ -1,0 +1,9 @@
+# Line endings: LF everywhere, as Prettier expects; Windows checkouts keep LF too.
+* text=auto eol=lf
+
+# Binary assets
+*.png binary
+*.jpg binary
+*.ico binary
+*.woff2 binary
+*.pdf binary
