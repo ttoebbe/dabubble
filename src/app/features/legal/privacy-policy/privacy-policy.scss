@@ -1,0 +1,45 @@
+@use 'breakpoints' as bp;
+
+.privacy {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  width: 100%;
+  max-width: 1312px;
+  margin: 23px auto 0;
+}
+
+.privacy__sections {
+  display: flex;
+  flex-direction: column;
+  gap: 35px;
+}
+
+.privacy__section {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.privacy__title {
+  font-size: var(--font-size-display);
+  font-weight: var(--font-weight-bold);
+  line-height: var(--line-height-tight);
+  color: var(--color-primary);
+}
+
+.privacy__subtitle {
+  font-size: var(--font-size-title);
+  font-weight: var(--font-weight-bold);
+  color: var(--color-primary);
+}
+
+.privacy__text {
+  font-size: var(--font-size-subtitle);
+}
+
+@include bp.mobile {
+  .privacy {
+    margin-top: 42px;
+  }
+}

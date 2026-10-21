@@ -83,6 +83,7 @@ Bis eine Schnittstelle steht, arbeitet die andere Person gegen einen Platzhalter
 | `src/app/features/workspace/` (Layout, Header, Sidebar)                                       | A         |                                                                                                  |
 | `src/app/features/profile/`                                                                   | A         |                                                                                                  |
 | `src/app/features/channels/`                                                                  | A         |                                                                                                  |
+| `src/app/features/legal/`                                                                     | A         |                                                                                                  |
 | `src/app/features/chat/` (Channel- und DM-Ansicht, Eingabe, Reaktionen)                       | B         |                                                                                                  |
 | `src/app/features/thread/`                                                                    | B         |                                                                                                  |
 | `src/app/features/new-message/`                                                               | B         |                                                                                                  |

@@ -721,3 +721,11 @@ no horizontal scroll):
 | Mobile menu | x 16, y 92, 398 × 820 (`678:15602`) | identical |
 | Navigation tab | `77.` at y 581–600 of 1080 | anchored 156 px above the bottom edge, so it stays inside the menu on lower screens |
 | Mobile header in chat and thread | back arrow + "Devspace" (`15B. Channel name`) | back arrow + DABubble logo until the Devspace logo is exported (`docs/todo.md`) |
+
+### 8.3 Legal pages
+
+`src/app/features/legal/`, routes `/impressum` and `/datenschutz` (no login needed). Texts are the
+placeholders of Figma (`5538:17437`, `5538:17487`, `165983:17011` …) until the team supplies real
+content. Desktop: card centred in the window as in `5538:17434`, privacy title at y 138 as in
+`165983:17007`; mobile: content at x 15 / y 122 as in `156062:17294`, `165983:20669`. The empty
+lines Figma keeps after the text blocks (trailing line breaks) are not reproduced.

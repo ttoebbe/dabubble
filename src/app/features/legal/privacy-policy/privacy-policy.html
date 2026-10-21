@@ -1,0 +1,11 @@
+<article class="privacy">
+  <h1 class="privacy__title">Datenschutz</h1>
+  <div class="privacy__sections">
+    @for (section of sections; track $index) {
+      <section class="privacy__section">
+        <h2 class="privacy__subtitle">{{ section.title }}</h2>
+        <p class="privacy__text">{{ section.text }}</p>
+      </section>
+    }
+  </div>
+</article>
