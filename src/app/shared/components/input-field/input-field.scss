@@ -1,0 +1,61 @@
+.input-field {
+  display: block;
+
+  &__box {
+    display: flex;
+    align-items: center;
+    gap: 30px;
+    min-height: 60px;
+    padding: 17px 31px;
+    border: 1px solid transparent;
+    border-radius: var(--radius-pill);
+    background-color: var(--color-bg);
+    cursor: text;
+    transition: border-color var(--duration-hover) var(--easing-hover);
+
+    &:hover {
+      border-color: var(--color-text-gray);
+    }
+
+    &:focus-within {
+      border-color: var(--color-accent);
+    }
+  }
+
+  &__icon {
+    flex: none;
+    width: 24px;
+    height: 24px;
+    background-color: var(--color-text-gray);
+    mask: var(--icon) center / contain no-repeat;
+  }
+
+  &__control {
+    flex: 1;
+    min-width: 0;
+    font-weight: var(--font-weight-medium);
+    line-height: var(--line-height-tight);
+    outline: none;
+
+    &::placeholder {
+      color: var(--color-text-gray);
+      opacity: 1;
+    }
+  }
+
+  &__error {
+    min-height: calc(var(--font-size-small) * var(--line-height-auto));
+    margin-top: 6px;
+    font-size: var(--font-size-small);
+    color: var(--color-error);
+  }
+}
+
+.input-field__box:focus-within .input-field__icon,
+.input-field__box:has(.input-field__control:not(:placeholder-shown)) .input-field__icon {
+  background-color: var(--color-black);
+}
+
+.input-field--error .input-field__box {
+  border-color: var(--color-accent);
+}

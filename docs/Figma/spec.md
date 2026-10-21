@@ -688,3 +688,14 @@ listed here, not as a comment in the stylesheet.
 
 Not from Figma (implementation decisions): the global focus outline (2 px `--color-accent`, section 6.6
 lists no focus states) and the reset of default borders on inputs and buttons (DA checklist).
+
+### 8.1 Shared components
+
+`src/app/shared/components/`. Values come from section 4; deviations are listed with their reason.
+
+| Component | Figma source | Deviation from Figma |
+|---|---|---|
+| `app-button` (`variant` primary / secondary) | `10. Button primary` `157:371`, `11. Button secondary` `157:381`, states Hover, Click, Disable / Variant4 | none; the 1 px border is drawn inside the 12/25 padding (11/24 + 1), so the height stays 49 px |
+| `app-input-field` (`icon`, `error`) | `2. Email` `662:13108`–`662:13141` (same build as `3. Password`, `4. Name`) | the error line (14 px, 6 px gap) is always reserved, so the field is 85 px high in every state instead of 60 → 85 px only on error (no layout shift) |
+| `app-avatar` (`size`, `status`) | `00c.Charaters`, presence dot `I740:11440;388:2756;298:846;281:383` (14 px on 50 px), `I1823:16460;379:2277` (17 px from 70 px) | none; away = `#686868` dot as in `I894:18251;894:16994` |
+| `app-dialog` (`heading`, `open`) | `37. Add channel` `332:2317`, `38. Add Members` `578:8542`, `45. Close` `453:12978` | close button 44 × 44 px instead of 40 × 40 (touch-target rule); backdrop transparent because the prototype sets no overlay background |

@@ -1,0 +1,7 @@
+<label class="input-field__box" [for]="controlId">
+  @if (icon()) {
+    <span class="input-field__icon" aria-hidden="true" [style.--icon]="iconMask()"></span>
+  }
+  <ng-content />
+</label>
+<p class="input-field__error" [id]="errorId" aria-live="polite">{{ error() }}</p>

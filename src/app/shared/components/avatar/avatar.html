@@ -1,0 +1,18 @@
+<img
+  class="avatar__image"
+  [ngSrc]="src()"
+  [alt]="alt()"
+  [width]="size()"
+  [height]="size()"
+  [priority]="priority()"
+/>
+@if (status()) {
+  <span
+    class="avatar__status"
+    role="img"
+    [class.avatar__status--away]="status() === 'away'"
+    [attr.aria-label]="statusLabel()"
+    [style.width.px]="dotSize()"
+    [style.height.px]="dotSize()"
+  ></span>
+}

@@ -1,0 +1,58 @@
+.dialog {
+  max-width: calc(100vw - 2 * var(--shell-gutter));
+  max-height: calc(100dvh - 2 * var(--shell-gutter));
+  padding: 40px;
+  border: none;
+  border-radius: var(--radius-panel);
+  color: inherit;
+  background-color: var(--color-white);
+  box-shadow: var(--shadow-overlay);
+
+  &[open] {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+  }
+
+  &::backdrop {
+    background-color: transparent;
+  }
+}
+
+.dialog__header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 20px;
+}
+
+.dialog__heading {
+  font-size: var(--font-size-title);
+  font-weight: var(--font-weight-bold);
+}
+
+.dialog__close {
+  display: grid;
+  flex: none;
+  place-items: center;
+  width: var(--touch-target-min);
+  height: var(--touch-target-min);
+  border-radius: 50%;
+  transition: background-color var(--duration-hover) var(--easing-hover);
+
+  &:hover {
+    background-color: var(--color-bg);
+  }
+}
+
+.dialog__close-icon {
+  width: 24px;
+  height: 24px;
+  background-color: var(--color-black);
+  mask: url('/img/icons/close.svg') center / contain no-repeat;
+  transition: background-color var(--duration-hover) var(--easing-hover);
+}
+
+.dialog__close:hover .dialog__close-icon {
+  background-color: var(--color-accent);
+}
