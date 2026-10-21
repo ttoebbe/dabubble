@@ -22,22 +22,23 @@ Welche Ordner und Dateien zu welchem Bereich gehören, steht in `docs/arbeitstei
 
 ## Quellen
 
-| Was                | Wo                                                                                                                                             |
-| ------------------ | ---------------------------------------------------------------------------------------------------------------------------------------------- |
-| Anforderungen (DA) | `docs/DA_Checkliste/DaBubble Checkliste.md`                                                                                                    |
-| Design (SOLL)      | `docs/Figma/spec.md`, `docs/Figma/components.md`, Assets laut `docs/Figma/MANIFEST.md` in `public/`, Referenzbilder in `docs/Figma/reference/` |
-| Arbeitsteilung     | `docs/arbeitsteilung.md`                                                                                                                       |
-| Offene Aufgaben    | `docs/todo.md`                                                                                                                                 |
+| Was                  | Wo                                                                                                                                             |
+| -------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------- |
+| Anforderungen (DA)   | `docs/DA_Checkliste/DaBubble Checkliste.md`                                                                                                    |
+| Design (SOLL)        | `docs/Figma/spec.md`, `docs/Figma/components.md`, Assets laut `docs/Figma/MANIFEST.md` in `public/`, Referenzbilder in `docs/Figma/reference/` |
+| Arbeitsteilung       | `docs/arbeitsteilung.md`                                                                                                                       |
+| Offene Aufgaben      | `docs/todo.md`                                                                                                                                 |
+| Einstieg ins Projekt | `docs/einstieg.md`                                                                                                                             |
 
 ## Harte Regeln
 
 1. **Nur im eigenen Bereich ändern.** Wird etwas im fremden Bereich gebraucht: GitHub-Issue mit Label `bereich-a` oder `bereich-b` anlegen, nicht selbst ändern.
-2. **Gemeinsame Dateien** (`core/models/`, `shared/`, `app.routes.ts`, `app.config.ts`, `package.json`, `angular.json`, `eslint.config.js`, `.github/`, `CLAUDE.md`, `README.md`, `docs/arbeitsteilung.md`) nur in einem eigenen kleinen PR ändern und das im PR-Text ankündigen. Label `shared`.
+2. **Gemeinsame Dateien** (`core/models/`, `shared/`, `app.routes.ts`, `app.config.ts`, `package.json`, `angular.json`, `eslint.config.js`, `.github/`, `CLAUDE.md`, `README.md`, `docs/arbeitsteilung.md`) nur nach kurzer Absprache mit der anderen Person ändern, als eigener Commit, der die Datei in der Message nennt.
 3. **Keine Anforderungen erfinden.** Was weder in der Checkliste noch in der Spec steht: nachfragen.
 4. **Design-Werte nur aus `docs/Figma/spec.md`** bzw. `src/styles/`. Nichts aus Screenshots schätzen. Figma nicht selbst abfragen, der Zugang ist begrenzt. Fehlt etwas in der Spec, Thomas fragen.
 5. **Schrift mindestens 16 px, Kleingedrucktes (Zeitstempel, Fehlermeldungen) 14 px, Touch-Targets mindestens 44 × 44 px.** Diese Regel schlägt Figma, wo das Design kleiner ist (Spec 6.5). Abweichungen vom Design im Commit begründen.
-6. **Datenmodell nur nach Absprache.** Änderungen an `core/models/` oder an Firestore-Collections erst im PR vorschlagen, Review der anderen Person abwarten.
-7. **Nie direkt auf `main` committen oder pushen.** Feature-Branch mit Bereichskürzel (`feature/a-login`, `feature/b-threads`), Merge nur per PR mit Review der anderen Person. Nie ungefragt pushen.
+6. **Datenmodell nur nach Absprache.** Änderungen an `core/models/` oder an Firestore-Collections erst mit der anderen Person absprechen (Issue mit Label `shared`), dann umsetzen.
+7. **Gemeinsam auf `main`.** Beide arbeiten gleichberechtigt direkt auf `main`. Vor Arbeitsbeginn und vor jedem Push `git pull --rebase`, nie Force-Push. Kleine Commits, oft pushen. Größere Umbauten dürfen auf einen Branch mit Bereichskürzel (`feature/a-login`, `feature/b-threads`) und per PR zurück. Claude pusht nur auf Ansage der Person, die arbeitet.
 8. **Keine `alert()`**, keine HTML5-Standard-Fehlermeldungen. Fehler direkt am Feld anzeigen.
 9. **JSDoc für jede Funktion, Klasse und Datei-Export** (Englisch).
 
@@ -109,7 +110,7 @@ Vor der Abgabe zusätzlich der Skill `final-check` und alle offenen Punkte aus `
 
 ## CI, Deploy, Layout-Check
 
-- **CI** (`.github/workflows/ci.yml`) läuft bei jedem Push und PR: Format-Check, Lint, Build. Ein PR wird nur mit grüner CI gemergt.
+- **CI** (`.github/workflows/ci.yml`) läuft bei jedem Push und PR: Format-Check, Lint, Build. Wird `main` rot, behebt das sofort, wer den Commit gepusht hat.
 - **Deploy** (`.github/workflows/deploy.yml`) nur von Hand (`workflow_dispatch`), nur von `main`, nur nach Absprache im Team – ein Deploy ist eine Entscheidung, keine Nebenwirkung eines Pushes. Er baut den gewählten Commit und spiegelt nur `dist/dabubble/browser/` per SFTP oder FTPS auf den DA-Webspace. Secrets: `DEPLOY_HOST`, `DEPLOY_USER`, `DEPLOY_PASSWORD`, `DEPLOY_REMOTE_DIR`; Variable `DEPLOY_PROTOCOL` (`sftp` oder `ftps`).
 - **Layout-Check** (geplant, `docs/todo.md`): Checker im privaten Repo `ttoebbe/dabubble-layout-check`, lokal nach `tools/layout-check/` geklont (gitignored), im Repo nur der Workflow mit `workflow_dispatch`. Start nur von Hand, ein roter Check blockiert nichts.
 
@@ -122,8 +123,8 @@ Vor der Abgabe zusätzlich der Skill `final-check` und alle offenen Punkte aus `
 ## Ablauf je Aufgabe
 
 1. Person und Bereich feststellen (siehe oben), `docs/arbeitsteilung.md` lesen.
-2. `main` holen, Branch `feature/<a|b>-<thema>` anlegen.
+2. `main` aktualisieren: `git pull --rebase`.
 3. Nur Dateien des eigenen Bereichs ändern.
 4. Qualitäts-Check (oben) durchgehen.
-5. Commit nach den Commit-Regeln. PR gegen `main` mit der PR-Vorlage, Review durch die andere Person.
+5. Commit nach den Commit-Regeln, noch einmal `git pull --rebase`, dann auf `main` pushen. Bei größeren Umbauten stattdessen Branch und PR mit der PR-Vorlage.
 6. Kurz zusammenfassen: was geändert, welche Dateien, was offen ist.

@@ -10,8 +10,8 @@ Offene Aufgaben außerhalb der Arbeitspakete. Erledigtes abhaken, nicht löschen
 
 ## Einrichtung (Phase 0)
 
-- [ ] Branch-Schutz für `main` nach dem ersten Push: Merge nur per PR, ein Review, CI grün – A
-- [ ] Deploy-Secrets setzen: `DEPLOY_HOST`, `DEPLOY_USER`, `DEPLOY_REMOTE_DIR`, Variable `DEPLOY_PROTOCOL`; `DEPLOY_PASSWORD` setzt Thomas selbst – A
+- [x] Branch-Schutz für `main`: nur Force-Push und Löschen gesperrt, beide pushen direkt – A
+- [x] Deploy-Secrets setzen: `DEPLOY_HOST`, `DEPLOY_USER`, `DEPLOY_REMOTE_DIR`, Variable `DEPLOY_PROTOCOL`; `DEPLOY_PASSWORD` setzt Thomas selbst – A
 - [ ] Erster Deploy: prüfen, ob der DA-Webspace SFTP annimmt, sonst `DEPLOY_PROTOCOL=ftps` – A
 - [ ] `.htaccess` für das Angular-Routing auf dem Webspace (Direktaufruf von Unterseiten) – A
 - [ ] Favicon: Angular-Logo durch das DABubble-Logo ersetzen (DA-Checkliste) – A

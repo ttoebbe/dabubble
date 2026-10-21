@@ -42,5 +42,6 @@ Danach im Browser `http://localhost:4200/` öffnen.
 | `docs/DA_Checkliste/DaBubble Checkliste.md` | Anforderungen und Abnahmekriterien der DA                     |
 | `docs/Figma/spec.md`                        | Design-Spec aus Figma, dazu `components.md` und `MANIFEST.md` |
 | `docs/arbeitsteilung.md`                    | Wer macht was, Datei-Besitz, Schnittstellen, Git-Regeln       |
+| `docs/einstieg.md`                          | Einstieg ins Projekt: Stand, Aufteilung, Zusammenarbeit       |
 | `docs/todo.md`                              | Offene Aufgaben außerhalb der Arbeitspakete                   |
 | `CLAUDE.md`                                 | Regeln für Claude Code, für beide gleich                      |
