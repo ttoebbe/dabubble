@@ -750,8 +750,8 @@ logo stands still in its end position.
 Devspace head, "Channels" and "Direktnachrichten" as collapsible sections, entries with the
 hover and click variants of `17.`, `18.`, `20.`, `23.`, `25.`–`29.`. Positions at 1920 px match
 `210:1203` (first channel pill y 303, "Channel hinzufügen" y 361, first person y 490). Rows that
-are 30–40 px high in Figma get a 44 px hit area; the visible pill keeps the Figma size and
-negative block margins keep the Figma rhythm. Mobile (`678:15602`): no Devspace head, gaps 30,
+are 30–40 px high in Figma get a 44 px hit area through a transparent pseudo-element; the
+visible element keeps the Figma size, so the layout keeps the Figma rhythm. Mobile (`678:15602`): no Devspace head, gaps 30,
 "+" and "Channel hinzufügen" in `#535AF1`, "Neue Nachricht" as round button `16B. edit_square`
 (60 px, `#444DF2`, bottom right). Mobile texts are 17 px in Figma; the implementation keeps the
 18 px body size. Until the services exist the menu shows the Figma sample entries
@@ -761,7 +761,8 @@ negative block margins keep the Figma rhythm. Mobile (`678:15602`): no Devspace 
 
 `src/app/features/profile/` (checked at 1920, 430 and 320 px). Header corner as `65. Profile menu`
 (x 1544, 342 x 70 at 1920 px; hover name and arrow `#797EF3`); on mobile only the 50 px avatar as in
-`69. head mobile`. The menu "Profil" / "Log out" is a native popover: desktop below the header,
+`69. head mobile`. From 768 to 1439 px (no artboard) only avatar and arrow, because the name
+pushed the header 14 px past the window at 768 px. The menu "Profil" / "Log out" is a native popover: desktop below the header,
 right edge on the profile corner (radius 30/0/30/30, `64.`), mobile a bottom sheet with handle
 and icons (`64b.`). Figma places neither overlay in a screen, so the position is an implementation
 decision. The profile dialog uses the shared dialog (centred, padding 40, all corners 30) for both

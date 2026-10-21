@@ -35,11 +35,17 @@
   display: grid;
   flex: none;
   place-items: center;
-  width: var(--touch-target-min);
-  height: var(--touch-target-min);
-  margin-right: -2px;
+  position: relative;
+  width: 40px;
+  height: 40px;
   border-radius: 50%;
   transition: background-color var(--duration-hover) var(--easing-hover);
+
+  &::after {
+    content: '';
+    position: absolute;
+    inset: calc((40px - var(--touch-target-min)) / 2);
+  }
 
   &:hover {
     background-color: var(--color-bg);
@@ -74,13 +80,19 @@
 }
 
 .menu__entry {
+  position: relative;
   display: flex;
   align-items: center;
   width: 100%;
-  min-height: var(--touch-target-min);
-  margin-block: calc((33px - var(--touch-target-min)) / 2);
+  min-height: 33px;
   padding-left: 25px;
   text-align: left;
+
+  &::after {
+    content: '';
+    position: absolute;
+    inset: calc((33px - var(--touch-target-min)) / 2) 0;
+  }
 }
 
 .menu__pill {
@@ -139,7 +151,6 @@
 
 .menu__entry--contact {
   min-height: 58px;
-  margin-block: 0;
 
   .menu__pill {
     gap: 15px;
