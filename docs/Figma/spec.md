@@ -699,3 +699,25 @@ lists no focus states) and the reset of default borders on inputs and buttons (D
 | `app-input-field` (`icon`, `error`) | `2. Email` `662:13108`–`662:13141` (same build as `3. Password`, `4. Name`) | the error line (14 px, 6 px gap) is always reserved, so the field is 85 px high in every state instead of 60 → 85 px only on error (no layout shift) |
 | `app-avatar` (`size`, `status`) | `00c.Charaters`, presence dot `I740:11440;388:2756;298:846;281:383` (14 px on 50 px), `I1823:16460;379:2277` (17 px from 70 px) | none; away = `#686868` dot as in `I894:18251;894:16994` |
 | `app-dialog` (`heading`, `open`) | `37. Add channel` `332:2317`, `38. Add Members` `578:8542`, `45. Close` `453:12978` | close button 44 × 44 px instead of 40 × 40 (touch-target rule); backdrop transparent because the prototype sets no overlay background |
+
+### 8.2 Breakpoints and workspace frame
+
+Breakpoints are an implementation decision (section 2.3), agreed in the team on 2026-10-21.
+Mixins in `src/styles/_breakpoints.scss`.
+
+| Range | Name | Behaviour |
+|---|---|---|
+| ≥ 1440 px | `wide` | menu, chat and thread side by side (366 / fill / 485 px, gutters 20 px), as `210:750` |
+| 768–1439 px | `tablet` | at most two panels: menu + chat; an open thread replaces the menu (chat + thread, thread at most 485 px or half the width), as the "hidden menu" frames `516:7084`, `516:9116` |
+| < 768 px | `mobile` | one panel at a time: menu → chat → thread, header 80 px, back arrow, as `678:15601`, `609:17393`, `742:12168` |
+
+Frame `src/app/features/workspace/` (checked in the browser at 1920, 1440, 1024, 768, 430, 320 px,
+no horizontal scroll):
+
+| Element | Figma | Implementation |
+|---|---|---|
+| Panels at 1920 px | menu x 20 / 366, chat x 406 / 989, thread x 1415 / 485 | identical |
+| Menu collapsed | chat x 20 / 1375 (`516:7084`) | identical; no width animation (Figma: Smart animate) |
+| Mobile menu | x 16, y 92, 398 × 820 (`678:15602`) | identical |
+| Navigation tab | `77.` at y 581–600 of 1080 | anchored 156 px above the bottom edge, so it stays inside the menu on lower screens |
+| Mobile header in chat and thread | back arrow + "Devspace" (`15B. Channel name`) | back arrow + DABubble logo until the Devspace logo is exported (`docs/todo.md`) |

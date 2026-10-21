@@ -113,6 +113,12 @@ Bis eine Schnittstelle steht, arbeitet die andere Person gegen einen Platzhalter
 | B → A    | Route zur DM mit einer Person (Button im Profil)              | Phase 1      |
 | B → A    | Such-Komponente für den Header                                | Phase 2      |
 
+**Routen (Stand 21.10.2026, Vorschlag von A, Bestätigung durch B offen):** `CHAT_ROUTES` aus `features/chat/chat.routes.ts`
+hängen als Kinder unter `/workspace`. Chat-Ansichten (Channel, DM, „Neue Nachricht“) nutzen das
+primäre Outlet, Threads das Outlet `thread`, z. B. `{ path: 'thread/:messageId', outlet: 'thread', … }`.
+Der Rahmen erkennt daran selbst, welche Ansicht offen ist; auf dem Handy führt sein Zurück-Pfeil
+Thread → Chat → Menü.
+
 Signaturen stehen als JSDoc an der jeweiligen Methode. Ändert sich eine Signatur, gilt das wie eine Änderung an `core/models/`.
 
 ## Git und Zusammenarbeit

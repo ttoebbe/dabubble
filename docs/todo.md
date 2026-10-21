@@ -18,6 +18,8 @@ Offene Aufgaben außerhalb der Arbeitspakete. Erledigtes abhaken, nicht löschen
 - [x] Design-Tokens aus `docs/Figma/spec.md` nach `src/styles/`, `public/fonts/fonts.css` einbinden – A
 - [x] Shared-UI: Button, Input-Feld mit Fehleranzeige, Avatar, Dialog-Rahmen – A
 - [ ] Firebase-Projekt, Vorlage `src/environments/environment.example.ts`, Datenmodell in `core/models/` – B
+- [ ] Devspace-Logo exportieren (Node `237:497` mit Vektor `237:499`, das PNG ist nur der Hintergrund) – A
+- [ ] Startseite: Weiterleitung `''` → `/workspace` durch Intro und Login ersetzen, sobald Auth steht – A
 - [ ] Layout-Check: privates Repo `ttoebbe/dabubble-layout-check` aus `ttoebbe/join-layout-check` ableiten, an Angular anpassen, Workflow `layout-check.yml` (nur `workflow_dispatch`, Secret `LAYOUT_CHECK_TOKEN`) – A, sobald die ersten Screens stehen
 
 ## Im Team klären
