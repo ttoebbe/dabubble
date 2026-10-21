@@ -1,0 +1,33 @@
+@use 'breakpoints' as bp;
+
+:host {
+  display: inline-flex;
+}
+
+.brand {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  border-radius: var(--radius-item);
+}
+
+.brand__mark {
+  width: 70px;
+  height: 70px;
+}
+
+@include bp.mobile {
+  .brand {
+    gap: 11px;
+  }
+
+  .brand__mark {
+    width: 45px;
+    height: 45px;
+  }
+
+  .brand__name {
+    width: 106px;
+    height: auto;
+  }
+}

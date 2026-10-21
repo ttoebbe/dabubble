@@ -1,6 +1,5 @@
-import { NgOptimizedImage } from '@angular/common';
 import { Component, input, output } from '@angular/core';
-import { RouterLink } from '@angular/router';
+import { Brand } from '../../../shared/components/brand/brand';
 
 /**
  * Top bar of the workspace: DABubble logo, a place for the search (area B) and a place
@@ -8,7 +7,7 @@ import { RouterLink } from '@angular/router';
  */
 @Component({
   selector: 'app-workspace-header',
-  imports: [NgOptimizedImage, RouterLink],
+  imports: [Brand],
   templateUrl: './workspace-header.html',
   styleUrl: './workspace-header.scss',
 })

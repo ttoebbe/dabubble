@@ -6,11 +6,7 @@
 }
 
 .header__brand {
-  display: flex;
-  align-items: center;
-  gap: 16px;
   justify-self: start;
-  border-radius: var(--radius-item);
 }
 
 .header__back {
@@ -25,11 +21,6 @@
 
   .header__brand {
     padding-left: 25px;
-  }
-
-  .header__logo {
-    width: 70px;
-    height: 70px;
   }
 
   .header__search {
@@ -54,20 +45,6 @@
     gap: 2px;
     padding: 15px 16px;
     background-color: var(--color-bg);
-  }
-
-  .header__brand {
-    gap: 11px;
-  }
-
-  .header__logo {
-    width: 45px;
-    height: 45px;
-  }
-
-  .header__name {
-    width: 106px;
-    height: auto;
   }
 
   .header__search {
