@@ -654,3 +654,37 @@ API calls in this run: 3 × `GET /v1/files` (two access tests with `depth`, one 
 1 × `GET /v1/files/:key/images`, 6 × `GET /v1/images` successful (3 SVG, 3 PNG), at least 2 × `GET /v1/images`
 rejected with 429, plus 1 call rejected with the expired old token. Follow-up questions about values need no
 API call: everything is in the cache.
+
+## 8. Tokens in the implementation
+
+`src/styles/_tokens.scss` holds the foundations as CSS custom properties. The origin of every value is
+listed here, not as a comment in the stylesheet.
+
+| Token | Value | Source |
+|---|---|---|
+| `--color-purple-1` | `#444DF2` | style Purple 1 (`84:1049`) |
+| `--color-purple-2` | `#797EF3` | style Purple 2 (`72:694`) |
+| `--color-purple-3` | `#535AF1` | style Purple 3 (`75:779`) |
+| `--color-bg` | `#ECEEFE` | style Bg color (`20:22`) |
+| `--color-lines` | `#ADB0D9` | style Ligth purple (Lines) (`60:132`) |
+| `--color-text-gray` | `#686868` | style Text gray (`61:325`) |
+| `--color-black`, `--color-white` | `#000000`, `#FFFFFF` | styles Black (`60:259`), White (`20:21`) |
+| `--color-error` | `#ED1E79` | style Rosa error (`145:167`) |
+| `--color-online` | `#92C83E` | style online green (`92:2448`) |
+| `--color-label` | `#42526E` | style menu color (`5538:20926`), privacy checkbox label |
+| `--color-mail-link` | `#1381FF` | e-mail link in profile views (`163:235`) |
+| `--color-icon` | `#1C1B1F` | Material Symbols instances (`more_vert`, `edit`) |
+| `--color-primary`, `--color-primary-hover`, `--color-accent`, `--color-disabled` | aliases | `10. Button primary` Default / Hover, input focus stroke, `Disable` variant (section 4.1, 4.2) |
+| `--color-own-bubble`, `--color-other-bubble` | aliases | `481:5501`, `463:3849` (section 4.4) |
+| `--gradient-intro` | `linear-gradient(0deg, #313AE5 0%, #797EF3 100%)` | fill of `128:765`; handles run from bottom (0.49, 1.0) to top (0.5, 0.0) |
+| `--font-main`, `--font-link`, `--font-label` | Nunito, Figtree, Open Sans | section 1.3 |
+| `--font-size-display` … `--font-size-small` | 46, 36, 32, 24, 20, 18, 16, 14 px | text styles and roles in section 1.2; sizes below 14 px are raised to 14 px (project rule, section 6.5) |
+| `--line-height-auto`, `--line-height-tight` | 1.364, 1.2 | Nunito "auto" (24.6 / 18, 32.7 / 24) and the 120 % of the text styles |
+| `--radius-*` | see file | section 1.6 |
+| `--shadow-header`, `--shadow-overlay`, `--shadow-nav-tab`, `--shadow-sheet` | see file | section 1.5 |
+| `--shell-*` | 20, 25, 70, 80, 366, 485 px | app shell, section 2.4 |
+| `--touch-target-min` | 44 px | project rule, not from Figma (section 6.5) |
+| `--duration-hover`, `--easing-hover` | 100 ms, ease-in | prototype transitions, section 5 |
+
+Not from Figma (implementation decisions): the global focus outline (2 px `--color-accent`, section 6.6
+lists no focus states) and the reset of default borders on inputs and buttons (DA checklist).
