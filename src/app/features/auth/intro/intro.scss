@@ -1,0 +1,118 @@
+@use 'breakpoints' as bp;
+
+:host {
+  --intro-scale: 1;
+  --intro-exit-scale: 0.3804;
+  --intro-exit-x: 75px;
+  --intro-exit-y: 75px;
+
+  position: fixed;
+  inset: 0;
+  display: block;
+}
+
+.intro {
+  position: relative;
+  container-type: size;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  background-color: var(--color-bg);
+
+  &::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: var(--gradient-intro);
+    animation: intro-fade-out 500ms ease-out 2500ms forwards;
+  }
+}
+
+.intro__logo {
+  position: absolute;
+  top: 0;
+  left: 0;
+  display: flex;
+  align-items: flex-start;
+  gap: 37px;
+  width: 696px;
+  height: 184px;
+  transform-origin: 0 0;
+  translate: calc(50cqw - 348px * var(--intro-scale)) calc(50cqh - 92px * var(--intro-scale));
+  scale: var(--intro-scale);
+  animation: intro-logo-exit 500ms ease-out 2500ms forwards;
+}
+
+.intro__mark {
+  flex-shrink: 0;
+  width: 187px;
+  height: 184px;
+  animation: intro-mark-slide 300ms ease-out 500ms both;
+}
+
+.intro__name-window {
+  display: block;
+  width: 472px;
+  height: 72px;
+  margin-top: 62px;
+  overflow: hidden;
+}
+
+.intro__name {
+  display: block;
+  width: 472px;
+  height: 72px;
+  filter: invert(1);
+  animation:
+    intro-name-reveal 500ms ease-out 801ms both,
+    intro-name-darken 500ms ease-out 2500ms forwards;
+}
+
+@include bp.mobile {
+  :host {
+    --intro-scale: 0.378;
+    --intro-exit-scale: 0.3047;
+    --intro-exit-x: calc(50cqw - 348px * 0.3047);
+    --intro-exit-y: 72px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .intro::before,
+  .intro__logo,
+  .intro__mark,
+  .intro__name {
+    animation: none;
+  }
+}
+
+@keyframes intro-mark-slide {
+  from {
+    translate: 254.5px 0;
+  }
+}
+
+@keyframes intro-name-reveal {
+  from {
+    translate: -100% 0;
+  }
+}
+
+@keyframes intro-logo-exit {
+  to {
+    translate: var(--intro-exit-x) var(--intro-exit-y);
+    scale: var(--intro-exit-scale);
+  }
+}
+
+@keyframes intro-name-darken {
+  to {
+    filter: invert(0);
+  }
+}
+
+@keyframes intro-fade-out {
+  to {
+    opacity: 0;
+  }
+}

@@ -729,3 +729,15 @@ placeholders of Figma (`5538:17437`, `5538:17487`, `165983:17011` …) until the
 content. Desktop: card centred in the window as in `5538:17434`, privacy title at y 138 as in
 `165983:17007`; mobile: content at x 15 / y 122 as in `156062:17294`, `165983:20669`. The empty
 lines Figma keeps after the text blocks (trailing line breaks) are not reproduced.
+
+### 8.4 Intro
+
+`src/app/features/auth/intro/`, route `/intro` for now. Timing as in the prototype (section 5):
+mark slides left after 0.5 s (0.3 s ease-out), the name slides in from behind a clipping window
+after 0.8 s (0.5 s ease-out), at 2.5 s the gradient fades to `--color-bg`, the name turns black
+and the logo moves to the login logo position (desktop 75 / 75, mark 70 px as in `2119:22165`;
+mobile centred at y 72, mark 56 px as in `2119:22297`) within 0.5 s; then the app navigates on.
+The two Figma frames place the logo differently (desktop: mark centred at the start,
+`128:765`; mobile: whole logo centred at the end, `609:17310`); the implementation does both.
+Mobile uses the desktop logo scaled by 263 / 696 as in `609:17311`. With reduced motion the
+logo stands still in its end position.
