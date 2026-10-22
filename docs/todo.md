@@ -22,7 +22,7 @@ Offene Aufgaben außerhalb der Arbeitspakete. Erledigtes abhaken, nicht löschen
 - [ ] Devspace-Logo exportieren (Node `237:497` mit Vektor `237:499`, das PNG ist nur der Hintergrund) – A
 - [ ] Startseite: Weiterleitung `''` → `/workspace` in `app.routes.ts` auf `intro` umstellen (gemeinsame Datei, Absprache mit B); Intro führt schon zu `/login` – A
 - [ ] Anmeldung an Firebase Authentication anbinden (E-Mail/Passwort, Gast, Google), bis dahin führt der Login ohne Prüfung in den Workspace – A, sobald Firebase steht
-- [ ] „Passwort vergessen?“ und „Neu bei DABubble? / Konto erstellen“ samt Seiten (Registrierung, Avatar, Passwort zurücksetzen) – A
+- [ ] Registrierung, Avatar und Passwort-Reset an Firebase Authentication anbinden (Konto anlegen, Avatar im Nutzer speichern, Reset-Mail mit Link auf `/passwort-zuruecksetzen`, E-Mail-Vorlage nach Figma `1898:19353`) – A, sobald Firebase steht
 - [ ] Workspace-Menü: Beispiel-Einträge (`workspace-menu/menu-entries.ts`) durch `ChannelService.channels` und `UserService.users` ersetzen, Auswahl auf die Chat-Routen von B umstellen – A, sobald Firebase und Routen stehen
 - [ ] Profil: „Log out“ an `AuthService` anbinden, Beispielprofil (`profile/profile-details.ts`) durch den angemeldeten Nutzer ersetzen – A, sobald Auth steht
 - [ ] Profil: Avatar aus der vorgegebenen Auswahl ändern (DA-Checkliste Konto US4, im Figma-Bearbeiten-Dialog nicht vorhanden – Ort im Team klären), Namen in Firestore speichern – A

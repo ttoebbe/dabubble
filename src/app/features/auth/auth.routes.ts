@@ -22,6 +22,18 @@ export const AUTH_ROUTES: Routes = [
         title: 'Konto erstellen – DABubble',
         loadComponent: () => import('./sign-up/sign-up').then((module) => module.SignUp),
       },
+      {
+        path: 'passwort-vergessen',
+        title: 'Passwort vergessen – DABubble',
+        loadComponent: () =>
+          import('./forgot-password/forgot-password').then((module) => module.ForgotPassword),
+      },
+      {
+        path: 'passwort-zuruecksetzen',
+        title: 'Passwort zurücksetzen – DABubble',
+        loadComponent: () =>
+          import('./reset-password/reset-password').then((module) => module.ResetPassword),
+      },
     ],
   },
   ...LEGAL_ROUTES,

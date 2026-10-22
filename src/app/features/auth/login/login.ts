@@ -1,9 +1,10 @@
 import { NgOptimizedImage } from '@angular/common';
 import { Component, computed, inject, signal } from '@angular/core';
-import { FormField, FormRoot, email, form, required } from '@angular/forms/signals';
-import { Router } from '@angular/router';
+import { FormField, FormRoot, apply, form, required } from '@angular/forms/signals';
+import { Router, RouterLink } from '@angular/router';
 import { Button } from '../../../shared/components/button/button';
 import { InputField } from '../../../shared/components/input-field/input-field';
+import { AUTH_ERRORS, EMAIL_RULES } from '../auth-validation';
 import { visibleError } from '../visible-error';
 
 /** Values of the login form. */
@@ -11,9 +12,6 @@ interface LoginModel {
   email: string;
   password: string;
 }
-
-const EMAIL_ERROR = '*Diese E-Mail-Adresse ist leider ungültig.';
-const PASSWORD_ERROR = '*Bitte gib dein Passwort ein.';
 
 /** Page after a successful sign-in. */
 const WORKSPACE_URL = '/workspace';
@@ -25,7 +23,7 @@ const WORKSPACE_URL = '/workspace';
  */
 @Component({
   selector: 'app-login',
-  imports: [NgOptimizedImage, FormField, FormRoot, Button, InputField],
+  imports: [NgOptimizedImage, FormField, FormRoot, RouterLink, Button, InputField],
   templateUrl: './login.html',
   styleUrl: './login.scss',
 })
@@ -35,9 +33,8 @@ export class Login {
   readonly loginForm = form(
     this.model,
     (path) => {
-      required(path.email, { message: EMAIL_ERROR });
-      email(path.email, { message: EMAIL_ERROR });
-      required(path.password, { message: PASSWORD_ERROR });
+      apply(path.email, EMAIL_RULES);
+      required(path.password, { message: AUTH_ERRORS.passwordMissing });
     },
     { submission: { action: () => this.enterWorkspace() } },
   );

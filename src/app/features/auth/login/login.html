@@ -26,6 +26,7 @@
         />
       </app-input-field>
     </div>
+    <a class="login__forgot" routerLink="/passwort-vergessen">Passwort vergessen?</a>
     <div class="login__divider"><span class="login__divider-text">ODER</span></div>
     <button class="login__google" type="button" (click)="logInWithGoogle()">
       <img ngSrc="img/logos/google-g.svg" alt="" width="38" height="38" />
@@ -37,3 +38,7 @@
     </div>
   </form>
 </section>
+<div class="login__sign-up">
+  <p>Neu bei DABubble?</p>
+  <a class="login__sign-up-link" routerLink="/registrieren">Konto erstellen</a>
+</div>

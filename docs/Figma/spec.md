@@ -792,13 +792,14 @@ built with Signal Forms (team decision 2026-10-22). Desktop as `125:2`: logo 75 
 at y 156, fields at y 385 and 485, footer links at y 990; mobile as `609:17202`: logo 56 px centred
 at y 72, card 398 px at y 160. The intro now leads to `/login`; its last frame matches the logo.
 Errors appear under the field after leaving it or sending the form: "*Diese E-Mail-Adresse ist
-leider ungültig." for an empty or invalid address (Figma `662:13055`), "*Bitte gib dein Passwort
-ein." for an empty password (not defined in Figma, wording to confirm). "Falsches Passwort. Bitte
+leider ungültig." for an empty or invalid address (Figma `662:13055`), "Bitte geben Sie ein
+Passwort ein." for an empty password (Figma `662:13370`). "Falsches Passwort. Bitte
 noch einmal versuchen." (`I157:363;662:13526`) follows with Firebase Authentication.
-Deviations: fields stay 60 px on mobile (shared input, Figma 50 px); "Passwort vergessen?" and
-"Neu bei DABubble? / Konto erstellen" are left out until their pages exist, so the gap above
-"ODER" is 40 px instead of the link's slot; mobile texts use 18 px instead of 17 px. Until Firebase
-is set up, a valid form, "Gäste-Login" and "Anmelden mit Google" lead straight to `/workspace`.
+"Passwort vergessen?" (`9.`) leads to `/passwort-vergessen`, "Neu bei DABubble? / Konto erstellen"
+(`8.`, top right; on mobile below the card as secondary button) to `/registrieren`. Deviations:
+fields stay 60 px on mobile (shared input, Figma 50 px); mobile texts use 18 px instead of 17 px.
+Until Firebase is set up, a valid form, "Gäste-Login" and "Anmelden mit Google" lead straight to
+`/workspace`.
 
 ### 8.9 Create channel
 
@@ -822,3 +823,28 @@ somebody is chosen, Note 6). The channel header of area B opens it, also from "M
 hinzufügen" in the members dialog; the dialog reports the chosen person ids. In the search,
 Escape clears the text without closing the dialog and Backspace in an empty search removes the
 last chip. Checked at 1920 and 320 px.
+
+### 8.11 Sign-up, avatar, password reset
+
+`src/app/features/auth/`: `auth-card/` (white card, back arrow `13. Go back`, title), `toast/`
+(success messages `03B`/`04B`/`05B`: bottom right 56 px, mobile right 23 / bottom 70, slide in
+0.1 s, the page moves on after 1.3 s), `auth-validation.ts` (shared rules and error texts).
+Cards are centred vertically between logo and footer; Figma places each at a different height.
+
+- `/registrieren` (`02-Sign In` 171:66, `609:17276`): name, e-mail, password, privacy checkbox
+  (`79.`, link opens the privacy policy in a new tab so the form is kept). "Weiter" is grey until
+  everything is valid (Note 1). Figma error texts: "Bitte schreiben Sie einen Namen.",
+  "*Diese E-Mail-Adresse ist leider ungültig.", "Bitte geben Sie ein Passwort ein."; not in
+  Figma: "Das Passwort muss mindestens 6 Zeichen lang sein." (DA checklist asks for a message
+  on a weak password; 6 is the Firebase minimum).
+- Avatar step on the same page (`03-Choose avatar` 6179:15943, `6194:22230`): the six avatars as
+  radio group (hover ring `#E6E6E6`, selected ring `#ECEEFE`, 4 px), big preview 168 / 120 px.
+  "Weiter" works once one is chosen, then "Konto erfolgreich erstellt!" and the login (prototype
+  03 → 03B → 01). The back arrow returns to the form with the entries kept.
+- `/passwort-vergessen` (`04-Send email` 182:319, `609:17234`): "E-Mail senden" works with a valid
+  address (Note 2), then "E-Mail gesendet" and the login.
+- `/passwort-zuruecksetzen` (`05-Reset password` 182:372, `609:17257`): Firebase sends the link to
+  this page (Note 3). "Passwort ändern" works when both passwords match (Note 4, message "Ihre
+  Kennwörter stimmen nicht überein"), then the toast "Anmelden" (section 6.4 #11) and the login.
+
+Until Firebase Authentication is set up no account is created and no e-mail is sent.
