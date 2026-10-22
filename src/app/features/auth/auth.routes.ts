@@ -8,5 +8,16 @@ export const AUTH_ROUTES: Routes = [
     title: 'DABubble',
     loadComponent: () => import('./intro/intro').then((module) => module.Intro),
   },
+  {
+    path: '',
+    loadComponent: () => import('./auth-layout/auth-layout').then((module) => module.AuthLayout),
+    children: [
+      {
+        path: 'login',
+        title: 'Anmeldung – DABubble',
+        loadComponent: () => import('./login/login').then((module) => module.Login),
+      },
+    ],
+  },
   ...LEGAL_ROUTES,
 ];

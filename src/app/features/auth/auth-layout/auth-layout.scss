@@ -1,0 +1,87 @@
+@use 'breakpoints' as bp;
+
+:host {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  min-height: 100dvh;
+  padding: 0 var(--shell-gutter) 48px;
+}
+
+.auth__header {
+  align-self: stretch;
+  padding: 75px 0 11px 55px;
+}
+
+.auth__logo {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+.auth__logo-mark {
+  width: 70px;
+  height: 70px;
+}
+
+.auth__main {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+}
+
+.auth__footer {
+  display: flex;
+  gap: 16px;
+  margin-top: 65px;
+}
+
+.auth__link {
+  padding: 9px 14px;
+  border: 1px solid transparent;
+  border-radius: var(--radius-panel);
+  font-family: var(--font-link);
+  color: var(--color-primary-hover);
+  text-decoration: none;
+  transition:
+    border-color var(--duration-hover) var(--easing-hover),
+    font-weight var(--duration-hover) var(--easing-hover);
+
+  &:hover {
+    border-color: var(--color-lines);
+    font-weight: var(--font-weight-medium);
+  }
+}
+
+@include bp.mobile {
+  :host {
+    padding: 72px 16px 30px;
+  }
+
+  .auth__header {
+    display: flex;
+    justify-content: center;
+    padding: 0 0 32px;
+  }
+
+  .auth__logo {
+    gap: 13px;
+  }
+
+  .auth__logo-mark {
+    width: 56px;
+    height: 56px;
+  }
+
+  .auth__logo-name {
+    width: 135px;
+    height: auto;
+  }
+
+  .auth__footer {
+    margin-top: 32px;
+  }
+}

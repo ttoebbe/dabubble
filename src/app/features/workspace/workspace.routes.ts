@@ -8,6 +8,7 @@ import { CHAT_ROUTES } from '../chat/chat.routes';
 export const WORKSPACE_ROUTES: Routes = [
   {
     path: 'workspace',
+    title: 'DABubble',
     loadComponent: () =>
       import('./workspace-layout/workspace-layout').then((module) => module.WorkspaceLayout),
     children: CHAT_ROUTES,

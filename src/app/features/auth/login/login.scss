@@ -1,0 +1,142 @@
+@use 'breakpoints' as bp;
+
+:host {
+  display: block;
+  width: 606px;
+  max-width: 100%;
+}
+
+.login {
+  display: flex;
+  flex-direction: column;
+  gap: 46px;
+  padding: 50px 53px;
+  border-radius: var(--radius-panel);
+  background-color: var(--color-white);
+  box-shadow: var(--shadow-header);
+}
+
+.login__intro {
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
+  padding-inline: 7px;
+  text-align: center;
+}
+
+.login__title {
+  font-size: var(--font-size-display);
+  font-weight: var(--font-weight-bold);
+  line-height: var(--line-height-tight);
+  color: var(--color-primary);
+}
+
+.login__text {
+  font-size: var(--font-size-subtitle);
+  line-height: var(--line-height-tight);
+}
+
+.login__form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.login__fields {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  width: 100%;
+}
+
+.login__divider {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  width: 100%;
+  min-height: 30px;
+  margin-top: 40px;
+
+  &::before,
+  &::after {
+    content: '';
+    flex: 1;
+    border-top: 1px solid var(--color-lines);
+  }
+}
+
+.login__divider-text {
+  padding-inline: 15px;
+}
+
+.login__google {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 20px;
+  width: 100%;
+  min-height: 60px;
+  margin-top: 43px;
+  padding: 10px 31px;
+  border: 1px solid transparent;
+  border-radius: var(--radius-pill);
+  background-color: var(--color-bg);
+  color: var(--color-primary);
+  transition:
+    border-color var(--duration-hover) var(--easing-hover),
+    font-weight var(--duration-hover) var(--easing-hover);
+
+  &:hover {
+    border-color: var(--color-primary);
+    font-weight: var(--font-weight-bold);
+  }
+
+  &:active {
+    border-color: var(--color-text-gray);
+    font-weight: var(--font-weight-medium);
+  }
+}
+
+.login__actions {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 30px;
+  margin-top: 43px;
+}
+
+@include bp.mobile {
+  .login {
+    gap: 20px;
+    padding: 35px 20px;
+  }
+
+  .login__intro {
+    gap: 15px;
+    padding-inline: 0;
+  }
+
+  .login__title {
+    font-size: var(--font-size-display-mobile);
+  }
+
+  .login__text {
+    font-size: var(--font-size-body);
+  }
+
+  .login__divider,
+  .login__google,
+  .login__actions {
+    margin-top: 20px;
+  }
+
+  .login__google {
+    gap: 15px;
+    min-height: 50px;
+    padding: 5px 20px;
+  }
+
+  .login__actions {
+    gap: 20px;
+  }
+}

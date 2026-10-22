@@ -1,0 +1,39 @@
+<section class="login" aria-labelledby="login-heading">
+  <div class="login__intro">
+    <h1 id="login-heading" class="login__title">Anmeldung</h1>
+    <p class="login__text">
+      Wir empfehlen dir, die E-Mail-Adresse zu nutzen, die du bei der Arbeit verwendest.
+    </p>
+  </div>
+  <form class="login__form" [formRoot]="loginForm">
+    <div class="login__fields">
+      <app-input-field icon="mail" [error]="emailError()">
+        <input
+          #control
+          type="email"
+          placeholder="beispielname@email.com"
+          autocomplete="email"
+          [formField]="loginForm.email"
+        />
+      </app-input-field>
+      <app-input-field icon="lock" [error]="passwordError()">
+        <input
+          #control
+          type="password"
+          placeholder="Passwort"
+          autocomplete="current-password"
+          [formField]="loginForm.password"
+        />
+      </app-input-field>
+    </div>
+    <div class="login__divider"><span class="login__divider-text">ODER</span></div>
+    <button class="login__google" type="button" (click)="logInWithGoogle()">
+      <img ngSrc="img/logos/google-g.svg" alt="" width="38" height="38" />
+      Anmelden mit Google
+    </button>
+    <div class="login__actions">
+      <app-button type="submit">Anmelden</app-button>
+      <app-button variant="secondary" (click)="logInAsGuest()">Gäste-Login</app-button>
+    </div>
+  </form>
+</section>

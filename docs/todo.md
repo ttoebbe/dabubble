@@ -20,7 +20,9 @@ Offene Aufgaben außerhalb der Arbeitspakete. Erledigtes abhaken, nicht löschen
 - [x] Shared-UI: Button, Input-Feld mit Fehleranzeige, Avatar, Dialog-Rahmen – A
 - [ ] Firebase-Projekt, Vorlage `src/environments/environment.example.ts`, Datenmodell in `core/models/` – B
 - [ ] Devspace-Logo exportieren (Node `237:497` mit Vektor `237:499`, das PNG ist nur der Hintergrund) – A
-- [ ] Startseite: Weiterleitung `''` → `/workspace` durch das Intro ersetzen (Route `/intro` nach `''`) und Ziel des Intros (`INTRO_TARGET_URL`) auf den Login umstellen, sobald der Login steht – A
+- [ ] Startseite: Weiterleitung `''` → `/workspace` in `app.routes.ts` auf `intro` umstellen (gemeinsame Datei, Absprache mit B); Intro führt schon zu `/login` – A
+- [ ] Anmeldung an Firebase Authentication anbinden (E-Mail/Passwort, Gast, Google), bis dahin führt der Login ohne Prüfung in den Workspace – A, sobald Firebase steht
+- [ ] „Passwort vergessen?“ und „Neu bei DABubble? / Konto erstellen“ samt Seiten (Registrierung, Avatar, Passwort zurücksetzen) – A
 - [ ] Workspace-Menü: Beispiel-Einträge (`workspace-menu/menu-entries.ts`) durch `ChannelService.channels` und `UserService.users` ersetzen, Auswahl auf die Chat-Routen von B umstellen – A, sobald Firebase und Routen stehen
 - [ ] Profil: „Log out“ an `AuthService` anbinden, Beispielprofil (`profile/profile-details.ts`) durch den angemeldeten Nutzer ersetzen – A, sobald Auth steht
 - [ ] Profil bearbeiten („Bearbeiten“, Dialog „Dein Profil bearbeiten“) – A, nach der Formular-Entscheidung
@@ -33,4 +35,4 @@ Offene Aufgaben außerhalb der Arbeitspakete. Erledigtes abhaken, nicht löschen
 ## Im Team klären
 
 - [ ] Zuordnung „Nur in Figma, nicht in der Checkliste“ in `docs/arbeitsteilung.md` bestätigen – A, B
-- [ ] Formulare: Signal Forms (Angular-Vorgabe in `.claude/CLAUDE.md`) oder Reactive Forms (Skill `angular-forms`) – A, B
+- [x] Formulare: Signal Forms (Entscheidung 22.10.2026) – A, B

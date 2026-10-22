@@ -780,3 +780,18 @@ the channel header). The channel header of area B opens it; it reports the chose
 add request. The text variant "Mitglieder hinzufüngen" (`392:2836`) is a typo; the instance in
 `388:2847` says "Mitglieder hinzufügen". Not built yet: "Channel erstellen" (`37.`) and
 "Leute hinzufügen" (`38.`, `41.`), both are forms and wait for the forms decision (`docs/todo.md`).
+
+### 8.8 Login
+
+`src/app/features/auth/auth-layout/` (logo, page, footer links) and `auth/login/`, route `/login`,
+built with Signal Forms (team decision 2026-10-22). Desktop as `125:2`: logo 75 / 75, card 606 px
+at y 156, fields at y 385 and 485, footer links at y 990; mobile as `609:17202`: logo 56 px centred
+at y 72, card 398 px at y 160. The intro now leads to `/login`; its last frame matches the logo.
+Errors appear under the field after leaving it or sending the form: "*Diese E-Mail-Adresse ist
+leider ungültig." for an empty or invalid address (Figma `662:13055`), "*Bitte gib dein Passwort
+ein." for an empty password (not defined in Figma, wording to confirm). "Falsches Passwort. Bitte
+noch einmal versuchen." (`I157:363;662:13526`) follows with Firebase Authentication.
+Deviations: fields stay 60 px on mobile (shared input, Figma 50 px); "Passwort vergessen?" and
+"Neu bei DABubble? / Konto erstellen" are left out until their pages exist, so the gap above
+"ODER" is 40 px instead of the link's slot; mobile texts use 18 px instead of 17 px. Until Firebase
+is set up, a valid form, "Gäste-Login" and "Anmelden mit Google" lead straight to `/workspace`.

@@ -1,0 +1,26 @@
+<header class="auth__header">
+  <div class="auth__logo">
+    <img
+      class="auth__logo-mark"
+      ngSrc="img/logos/logo-mark.svg"
+      alt=""
+      width="70"
+      height="70"
+      priority
+    />
+    <img
+      class="auth__logo-name"
+      ngSrc="img/logos/logo-name-black.svg"
+      alt="DABubble"
+      width="156"
+      height="24"
+    />
+  </div>
+</header>
+<main class="auth__main">
+  <router-outlet />
+</main>
+<footer class="auth__footer">
+  <a class="auth__link" routerLink="/impressum">Impressum</a>
+  <a class="auth__link" routerLink="/datenschutz">Datenschutz</a>
+</footer>

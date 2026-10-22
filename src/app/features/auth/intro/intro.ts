@@ -5,8 +5,8 @@ import { Router } from '@angular/router';
 /** Length of the whole intro: logo animation, hold until 2.5 s, exit transition of 0.5 s. */
 const INTRO_DURATION_MS = 3000;
 
-/** Page shown after the intro. Becomes the login page as soon as it exists (docs/todo.md). */
-const INTRO_TARGET_URL = '/workspace';
+/** Page shown after the intro; its logo sits where the animation ends. */
+const INTRO_TARGET_URL = '/login';
 
 /**
  * Intro with the logo animation (Figma `00-Intro` 128:765 / 609:17310, `1. Logo animation`
