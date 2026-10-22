@@ -13,7 +13,8 @@ Offene Aufgaben außerhalb der Arbeitspakete. Erledigtes abhaken, nicht löschen
 
 - [x] Branch-Schutz für `main`: nur Force-Push und Löschen gesperrt, beide pushen direkt – A
 - [x] Deploy-Secrets setzen: `DEPLOY_HOST`, `DEPLOY_USER`, `DEPLOY_REMOTE_DIR`, Variable `DEPLOY_PROTOCOL`; `DEPLOY_PASSWORD` setzt Thomas selbst – A
-- [ ] Erster Deploy: prüfen, ob der DA-Webspace SFTP annimmt, sonst `DEPLOY_PROTOCOL=ftps` – A
+- [x] Erster Deploy (22.10.2026): SFTP lehnt die Anmeldung ab, also `DEPLOY_PROTOCOL=ftps`; `DEPLOY_HOST` ist der Servername `dd38226.kasserver.com`, weil das FTPS-Zertifikat auf `*.kasserver.com` lautet – A
+- [ ] Webspace: kein HTTPS-Zertifikat für `dabubble-3299.developerakademie.net` (nur http), und `.htaccess` wird nicht ausgewertet (Direktaufruf von `/login` usw. gibt 404; die Datei liegt nachweislich im Zielordner). Bei der DA klären oder auf Hash-URLs umstellen – A
 - [x] `.htaccess` für das Angular-Routing auf dem Webspace (Direktaufruf von Unterseiten) – A
 - [x] Favicon: Angular-Logo durch das DABubble-Logo ersetzen (DA-Checkliste) – A
 - [x] Design-Tokens aus `docs/Figma/spec.md` nach `src/styles/`, `public/fonts/fonts.css` einbinden – A
@@ -36,7 +37,8 @@ Offene Aufgaben außerhalb der Arbeitspakete. Erledigtes abhaken, nicht löschen
 - [ ] Profil einer Person aus Nachricht oder Erwähnung öffnen: `ProfileViewer.show(uid)` – B; Dialog steht (A, 22.10.2026)
 - [x] Channels in Firestore speichern: `ChannelService` statt der Liste im Workspace-Rahmen, Mitglieder des neuen Channels übernehmen – A, sobald Firebase und Datenmodell stehen
 - [x] Layout-Check: privates Repo `ttoebbe/dabubble-layout-check` (aus `ttoebbe/join-layout-check`, an den Angular-Build angepasst, 5 Seiten und Zustände × 6 Viewports), lokal grün – A
-- [ ] Layout-Check in Actions: `workflow/layout-check.yml` aus dem Checker-Repo nach `.github/workflows/` übernehmen (gemeinsame Datei, Absprache mit B), Secret `LAYOUT_CHECK_TOKEN` anlegen (Thomas), danach in `CLAUDE.md` „geplant“ streichen – A
+- [x] Layout-Check-Workflow nach `.github/workflows/layout-check.yml` übernommen (Freigabe Thomas 22.10.2026) – A
+- [ ] Secret `LAYOUT_CHECK_TOKEN` anlegen (Thomas), Workflow einmal starten, danach in `CLAUDE.md` „geplant“ streichen – A
 - [x] Layout-Check: Der Workspace verlangt jetzt eine Anmeldung; der Checker meldet sich einmal pro Lauf als Gast an und am Ende wieder ab (Entscheidung Thomas 22.10.2026; der Build braucht `environment.ts`, die Workflow-Vorlage schreibt sie aus `FIREBASE_CONFIG`) – A
 - [x] Build-Warnung: Initial-Bundle 850 kB über dem Budget von 500 kB (Firebase); Budget in `angular.json` auf Warnung 1 MB, Fehler 1,5 MB angehoben (Entscheidung Thomas 22.10.2026) – A
 - [x] Firebase-Projekt aufräumen: alte Konten, Realtime Database und App „ReuterSandUndKies“ aus dem Reuter-Projekt gelöscht (22.10.2026; Storage war nicht aktiv) – Thomas
