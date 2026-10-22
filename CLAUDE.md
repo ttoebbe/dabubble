@@ -111,8 +111,8 @@ Vor der Abgabe zusätzlich der Skill `final-check` und alle offenen Punkte aus `
 ## CI, Deploy, Layout-Check
 
 - **CI** (`.github/workflows/ci.yml`) läuft bei jedem Push und PR: Format-Check, Lint, Build. Wird `main` rot, behebt das sofort, wer den Commit gepusht hat.
-- **Deploy** (`.github/workflows/deploy.yml`) nur von Hand (`workflow_dispatch`), nur von `main`, nur nach Absprache im Team – ein Deploy ist eine Entscheidung, keine Nebenwirkung eines Pushes. Er baut den gewählten Commit und spiegelt nur `dist/dabubble/browser/` per SFTP oder FTPS auf den DA-Webspace. Secrets: `DEPLOY_HOST`, `DEPLOY_USER`, `DEPLOY_PASSWORD`, `DEPLOY_REMOTE_DIR`; Variable `DEPLOY_PROTOCOL` (`sftp` oder `ftps`).
-- **Layout-Check** (geplant, `docs/todo.md`): Checker im privaten Repo `ttoebbe/dabubble-layout-check`, lokal nach `tools/layout-check/` geklont (gitignored), im Repo nur der Workflow mit `workflow_dispatch`. Start nur von Hand, ein roter Check blockiert nichts.
+- **Deploy** (`.github/workflows/deploy.yml`) nur von Hand (`workflow_dispatch`), nur von `main`, nur nach Absprache im Team – ein Deploy ist eine Entscheidung, keine Nebenwirkung eines Pushes. Er baut den gewählten Commit und spiegelt nur `dist/dabubble/browser/` per SFTP oder FTPS auf den DA-Webspace. Secrets: `DEPLOY_HOST`, `DEPLOY_USER`, `DEPLOY_PASSWORD`, `DEPLOY_REMOTE_DIR`, `FIREBASE_CONFIG`; Variable `DEPLOY_PROTOCOL` (`sftp` oder `ftps`, derzeit `ftps`).
+- **Layout-Check** (`.github/workflows/layout-check.yml`): Checker im privaten Repo `ttoebbe/dabubble-layout-check`, lokal nach `tools/layout-check/` geklont (gitignored), im Repo nur der Workflow mit `workflow_dispatch`. Start nur von Hand, ein roter Check blockiert nichts. Er meldet sich für die Workspace-Seiten als Gast an und am Ende wieder ab; Secrets `LAYOUT_CHECK_TOKEN`, `FIREBASE_CONFIG`.
 
 ## Skills im Repo
 
