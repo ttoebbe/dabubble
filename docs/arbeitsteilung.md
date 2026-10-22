@@ -115,6 +115,8 @@ Bis eine Schnittstelle steht, arbeitet die andere Person gegen einen Platzhalter
 | B → A    | Route zur DM mit einer Person (Button im Profil)              | Phase 1      | offen                               |
 | B → A    | Such-Komponente für den Header                                | Phase 2      | offen                               |
 
+**Hash-URLs (seit 22.10.2026, `app.config.ts`):** Der DA-Webspace wertet `.htaccess` nicht aus, deshalb steht die Route hinter `#`, z. B. `/#/workspace`. In `routerLink` und `router.navigate` ändert sich nichts.
+
 **Routen (Stand 21.10.2026, Vorschlag von A, Bestätigung durch B offen):** `CHAT_ROUTES` aus `features/chat/chat.routes.ts`
 hängen als Kinder unter `/workspace`. Chat-Ansichten (Channel, DM, „Neue Nachricht“) nutzen das
 primäre Outlet, Threads das Outlet `thread`, z. B. `{ path: 'thread/:messageId', outlet: 'thread', … }`.
