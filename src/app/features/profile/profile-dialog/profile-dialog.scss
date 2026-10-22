@@ -58,19 +58,23 @@
   align-items: center;
   gap: 15px;
   font-size: var(--font-size-subtitle);
-  color: var(--color-online);
+  color: var(--color-online-text);
 
   &::before {
     content: '';
     width: 16px;
     height: 16px;
     border-radius: 50%;
-    background-color: currentColor;
+    background-color: var(--color-online);
   }
 }
 
 .profile__status--away {
   color: var(--color-text-gray);
+
+  &::before {
+    background-color: var(--color-text-gray);
+  }
 }
 
 .profile__label {
