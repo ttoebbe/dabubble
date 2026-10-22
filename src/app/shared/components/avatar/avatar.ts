@@ -12,14 +12,15 @@ const DOT_SIZE_LARGE = 17;
  * Round user picture with an optional presence dot at the bottom right
  * (Figma: 14 px dot on 50 px avatars, 17 px dot from 70 px, 2 px ring).
  * The ring colour follows `--avatar-ring`, white by default. Set `priority` when the avatar
- * is the largest image on the page (choose-avatar, profile).
+ * is the largest image on the page (choose-avatar, profile). `size` is the width it aims for;
+ * in a narrower container it shrinks and stays round.
  */
 @Component({
   selector: 'app-avatar',
   imports: [NgOptimizedImage],
   templateUrl: './avatar.html',
   styleUrl: './avatar.scss',
-  host: { '[style.width.px]': 'size()', '[style.height.px]': 'size()' },
+  host: { '[style.width.px]': 'size()' },
 })
 export class Avatar {
   readonly src = input.required<string>();
