@@ -11,7 +11,7 @@ import { ProfileMenu } from '../../profile/profile-menu/profile-menu';
 @Component({
   selector: 'app-workspace-header',
   imports: [NgOptimizedImage, Brand, ProfileMenu],
-  host: { '[class.header--in-chat]': 'showBack()' },
+  host: { role: 'banner', '[class.header--in-chat]': 'showBack()' },
   templateUrl: './workspace-header.html',
   styleUrl: './workspace-header.scss',
 })
