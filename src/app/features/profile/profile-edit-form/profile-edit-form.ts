@@ -25,6 +25,7 @@ interface ProfileEditModel {
   avatarUrl: string;
 }
 
+/** Error text for an empty name; Figma defines none. */
 const NAME_MISSING = '*Bitte gib deinen Namen ein.';
 
 /**

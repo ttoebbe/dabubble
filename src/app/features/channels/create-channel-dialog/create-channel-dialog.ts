@@ -27,7 +27,10 @@ interface MemberChoice {
   memberIds: string[];
 }
 
+/** Start value of the first step. */
 const EMPTY_DETAILS: ChannelDetails = { name: '', description: '' };
+
+/** Start value of the second step: everybody in the workspace. */
 const EMPTY_CHOICE: MemberChoice = { scope: 'all', memberIds: [] };
 
 /**

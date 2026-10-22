@@ -14,6 +14,7 @@ export class UserService {
   private readonly auth = inject(AuthService);
   readonly users = signal<AppUser[]>([]);
 
+  /** Listens to the profiles while somebody is signed in. */
   constructor() {
     effect((onCleanup) => {
       if (!this.auth.uid()) {

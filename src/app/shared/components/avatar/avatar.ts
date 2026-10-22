@@ -4,8 +4,13 @@ import { Component, computed, input } from '@angular/core';
 /** Presence states the design shows on avatars ("Aktiv" and "Abwesend"). */
 export type AvatarStatus = 'online' | 'away';
 
+/** From this size on the avatar gets the larger presence dot (Figma). */
 const LARGE_AVATAR_SIZE = 70;
+
+/** Presence dot on avatars below 70 px. */
 const DOT_SIZE_SMALL = 14;
+
+/** Presence dot on avatars from 70 px. */
 const DOT_SIZE_LARGE = 17;
 
 /**

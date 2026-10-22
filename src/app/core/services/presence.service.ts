@@ -14,6 +14,7 @@ export class PresenceService {
   private readonly firestore = inject(FIRESTORE);
   private readonly document = inject(DOCUMENT);
 
+  /** Updates the state on every sign-in and whenever the tab is shown or hidden. */
   constructor() {
     onAuthStateChanged(this.auth, () => this.showActivity());
     this.document.addEventListener('visibilitychange', () => this.showActivity());

@@ -11,6 +11,7 @@ interface AddMembersModel {
   memberIds: string[];
 }
 
+/** Start value: nobody chosen yet. */
 const NOBODY: AddMembersModel = { memberIds: [] };
 
 /**

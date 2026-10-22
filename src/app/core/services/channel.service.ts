@@ -41,6 +41,7 @@ export class ChannelService {
     return this.allChannels().filter((channel) => uid && channel.memberIds.includes(uid));
   });
 
+  /** Listens to the channels while somebody is signed in. */
   constructor() {
     effect((onCleanup) => {
       if (!this.auth.uid()) {

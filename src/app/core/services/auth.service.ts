@@ -28,8 +28,8 @@ const GUEST_NAME = 'Gast';
 
 /**
  * Where Firebase's own pages lead after the e-mail link was used (new password, confirmed
- * address): the start page, which opens the login after the intro. The web space does not
- * answer direct links to routes yet (docs/todo.md), so `/login` would end in a 404 there.
+ * address): the start page, which opens the login after the intro. It is the one address
+ * that needs no route, so it stays valid however the router builds its URLs.
  */
 const AFTER_EMAIL_LINK_PATH = '/';
 
@@ -60,6 +60,7 @@ export class AuthService {
   readonly currentUser = signal<AppUser | null>(null);
   readonly uid = computed(() => this.currentUser()?.uid ?? null);
 
+  /** Follows the profile of whoever is signed in. */
   constructor() {
     onAuthStateChanged(this.auth, (user) => this.followProfile(user));
   }
