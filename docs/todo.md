@@ -41,7 +41,7 @@ Offene Aufgaben außerhalb der Arbeitspakete. Erledigtes abhaken, nicht löschen
 - [ ] Firebase-Projekt aufräumen: Realtime Database, Storage und App „ReuterSandUndKies“ stammen aus dem alten Projekt – Thomas
 - [ ] Gast-Konten bleiben nach dem Abmelden bestehen (anonymes Konto und Profil); aufräumen oder so lassen – A, B
 - [x] Build-Warnung „Unable to locate stylesheet fonts/fonts.css“ (beasties): `data-beasties-skip` am Link – A
-- [ ] Konsolen-Warnung zum Nunito-Preload klären – A
+- [x] Konsolen-Warnung zum Nunito-Preload: das Intro lädt die Schrift schon während der Animation – A
 
 ## Im Team klären
 
