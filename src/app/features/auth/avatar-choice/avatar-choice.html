@@ -3,7 +3,8 @@
     <img class="avatar__preview" [ngSrc]="preview()" alt="" width="168" height="168" priority />
     <p class="avatar__name">{{ name() }}</p>
     <app-avatar-picker class="avatar__picker" [formField]="avatarForm.avatarUrl" />
-    <app-button class="avatar__submit" type="submit" [disabled]="avatarForm().invalid()">
+    <p class="avatar__error" aria-live="polite">{{ error() }}</p>
+    <app-button class="avatar__submit" type="submit" [disabled]="avatarForm().invalid() || busy()">
       Weiter
     </app-button>
   </form>

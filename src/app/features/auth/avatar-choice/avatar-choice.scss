@@ -1,4 +1,5 @@
 @use 'breakpoints' as bp;
+@use 'forms';
 
 .avatar {
   display: flex;
@@ -26,9 +27,15 @@
   margin-top: 8px;
 }
 
+.avatar__error {
+  @include forms.error-line;
+
+  text-align: center;
+}
+
 .avatar__submit {
   align-self: flex-end;
-  margin-top: 62px;
+  margin-top: 37px;
 }
 
 @include bp.mobile {

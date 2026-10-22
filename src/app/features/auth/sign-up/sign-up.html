@@ -1,7 +1,18 @@
 @if (step() === 'form') {
-  <app-sign-up-form [draft]="draft()" (back)="goToLogin()" (completed)="showAvatarStep($event)" />
+  <app-sign-up-form
+    [draft]="draft()"
+    [takenEmail]="takenEmail()"
+    (back)="goToLogin()"
+    (completed)="showAvatarStep($event)"
+  />
 } @else {
-  <app-avatar-choice [name]="draft().name" (back)="step.set('form')" (chosen)="finish()" />
+  <app-avatar-choice
+    [name]="draft().name"
+    [busy]="busy()"
+    [error]="error()"
+    (back)="step.set('form')"
+    (chosen)="finish($event)"
+  />
 }
 @if (created()) {
   <app-toast message="Konto erfolgreich erstellt!" />

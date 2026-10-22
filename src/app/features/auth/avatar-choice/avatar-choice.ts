@@ -23,6 +23,8 @@ interface AvatarModel {
 })
 export class AvatarChoice {
   readonly name = input.required<string>();
+  readonly busy = input(false);
+  readonly error = input<string | null>(null);
   readonly chosen = output<string>();
   readonly back = output<void>();
   readonly model = signal<AvatarModel>({ avatarUrl: '' });

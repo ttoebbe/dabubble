@@ -28,14 +28,19 @@
     </div>
     <a class="login__forgot" routerLink="/passwort-vergessen">Passwort vergessen?</a>
     <div class="login__divider"><span class="login__divider-text">ODER</span></div>
-    <button class="login__google" type="button" (click)="logInWithGoogle()">
+    <button class="login__google" type="button" [disabled]="busy()" (click)="logInWithGoogle()">
       <img ngSrc="img/logos/google-g.svg" alt="" width="38" height="38" />
       Anmelden mit Google
     </button>
     <div class="login__actions">
-      <app-button type="submit">Anmelden</app-button>
-      <app-button variant="secondary" (click)="logInAsGuest()">Gäste-Login</app-button>
+      <app-button type="submit" [disabled]="loginForm().submitting() || busy()">
+        Anmelden
+      </app-button>
+      <app-button variant="secondary" [disabled]="busy()" (click)="logInAsGuest()">
+        Gäste-Login
+      </app-button>
     </div>
+    <p class="login__error" aria-live="polite">{{ actionError() }}</p>
   </form>
 </section>
 <div class="login__sign-up">

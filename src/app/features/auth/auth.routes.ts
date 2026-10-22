@@ -1,4 +1,5 @@
 import { Routes } from '@angular/router';
+import { signedOutGuard } from '../../core/guards/auth.guards';
 import { LEGAL_ROUTES } from '../legal/legal.routes';
 
 /** Routes of area A (Thomas): intro, login, sign-up, avatar, password reset, legal pages. */
@@ -10,6 +11,7 @@ export const AUTH_ROUTES: Routes = [
   },
   {
     path: '',
+    canActivate: [signedOutGuard],
     loadComponent: () => import('./auth-layout/auth-layout').then((module) => module.AuthLayout),
     children: [
       {

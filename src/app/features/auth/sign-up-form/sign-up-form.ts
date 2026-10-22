@@ -36,6 +36,7 @@ export const EMPTY_SIGN_UP: SignUpDraft = {
 })
 export class SignUpForm implements OnInit {
   readonly draft = input.required<SignUpDraft>();
+  readonly takenEmail = input<string | null>(null);
   readonly completed = output<SignUpDraft>();
   readonly back = output<void>();
   readonly model = signal<SignUpDraft>(EMPTY_SIGN_UP);
@@ -47,6 +48,9 @@ export class SignUpForm implements OnInit {
         value().trim() ? null : { kind: 'blank', message: AUTH_ERRORS.nameMissing },
       );
       apply(path.email, EMAIL_RULES);
+      validate(path.email, ({ value }) =>
+        value() === this.takenEmail() ? { kind: 'taken', message: AUTH_ERRORS.emailTaken } : null,
+      );
       apply(path.password, NEW_PASSWORD_RULES);
       validate(path.privacyAccepted, ({ value }) => (value() ? null : { kind: 'privacy' }));
     },
@@ -56,9 +60,12 @@ export class SignUpForm implements OnInit {
   readonly emailError = computed(() => visibleError(this.signUpForm.email));
   readonly passwordError = computed(() => visibleError(this.signUpForm.password));
 
-  /** Restores what was typed before the user went back from the avatar step. */
+  /** Restores what was typed before; a taken e-mail shows its message at once. */
   ngOnInit(): void {
     this.model.set(this.draft());
+    if (this.takenEmail()) {
+      this.signUpForm.email().markAsTouched();
+    }
   }
 
   /** Hands the entries to the next step. */

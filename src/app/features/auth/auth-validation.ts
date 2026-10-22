@@ -3,7 +3,8 @@ import { email, minLength, required, schema } from '@angular/forms/signals';
 /**
  * Error texts of the account forms. Figma texts where the file has them (spec 4.2):
  * e-mail `662:13055`, name `662:13278`, password `662:13370`, mismatch `673:13802`.
- * `passwordTooShort` is not in Figma (DA checklist: specific message for a weak password).
+ * `loginFailed` is `I157:363;662:13526`. Not in Figma: `passwordTooShort` (DA checklist asks for a
+ * specific message on a weak password) and the messages for Firebase errors from `emailTaken` on.
  */
 export const AUTH_ERRORS = {
   email: '*Diese E-Mail-Adresse ist leider ungültig.',
@@ -11,6 +12,12 @@ export const AUTH_ERRORS = {
   passwordMissing: 'Bitte geben Sie ein Passwort ein.',
   passwordTooShort: 'Das Passwort muss mindestens 6 Zeichen lang sein.',
   passwordsDiffer: 'Ihre Kennwörter stimmen nicht überein',
+  loginFailed: 'Falsches Passwort. Bitte noch einmal versuchen.',
+  emailTaken: '*Diese E-Mail-Adresse wird bereits verwendet.',
+  tooManyAttempts: 'Zu viele Versuche. Bitte später noch einmal versuchen.',
+  offline: 'Keine Verbindung. Bitte später noch einmal versuchen.',
+  generic: 'Das hat nicht geklappt. Bitte noch einmal versuchen.',
+  linkExpired: 'Dieser Link ist ungültig oder abgelaufen.',
 } as const;
 
 /** Shortest password Firebase Authentication accepts. */
