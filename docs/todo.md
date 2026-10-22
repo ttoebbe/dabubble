@@ -37,9 +37,10 @@ Offene Aufgaben außerhalb der Arbeitspakete. Erledigtes abhaken, nicht löschen
 - [x] Layout-Check: privates Repo `ttoebbe/dabubble-layout-check` (aus `ttoebbe/join-layout-check`, an den Angular-Build angepasst, 5 Seiten und Zustände × 6 Viewports), lokal grün – A
 - [ ] Layout-Check in Actions: `workflow/layout-check.yml` aus dem Checker-Repo nach `.github/workflows/` übernehmen (gemeinsame Datei, Absprache mit B), Secret `LAYOUT_CHECK_TOKEN` anlegen (Thomas), danach in `CLAUDE.md` „geplant“ streichen – A
 - [ ] Layout-Check: Der Workspace verlangt jetzt eine Anmeldung; der Checker muss sich vorher anmelden (z. B. Gäste-Login) – A
-- [ ] Build-Warnung: Initial-Bundle 850 kB über dem Budget von 500 kB (Firebase); Budget in `angular.json` anheben oder Firebase nachladen – A, B (gemeinsame Datei)
+- [x] Build-Warnung: Initial-Bundle 850 kB über dem Budget von 500 kB (Firebase); Budget in `angular.json` auf Warnung 1 MB, Fehler 1,5 MB angehoben (Entscheidung Thomas 22.10.2026) – A
 - [x] Firebase-Projekt aufräumen: alte Konten, Realtime Database und App „ReuterSandUndKies“ aus dem Reuter-Projekt gelöscht (22.10.2026; Storage war nicht aktiv) – Thomas
-- [ ] Gast-Konten bleiben nach dem Abmelden bestehen (anonymes Konto und Profil); aufräumen oder so lassen – A, B
+- [x] Gast-Konten beim Log out löschen (anonymes Konto und Profil, Firestore-Regel `allow delete` für Gäste; Entscheidung Thomas 22.10.2026) – A
+- [ ] Nachrichten gelöschter Gäste anzeigen (Autor-`uid` ohne Profil) – B
 - [x] Build-Warnung „Unable to locate stylesheet fonts/fonts.css“ (beasties): `data-beasties-skip` am Link – A
 - [x] Konsolen-Warnung zum Nunito-Preload: das Intro lädt die Schrift schon während der Animation – A
 

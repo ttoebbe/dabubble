@@ -77,18 +77,10 @@ Routen für Channel-, DM- und Thread-Ansicht) stimmen wir bis Ende Phase 0 ab.
 
 Entschieden: Formulare mit Signal Forms (22.10.2026).
 
-## Was Bereich A bereitstellt (Stand 22.10.2026)
+## Was Bereich A schon bereitstellt
 
-| Was                                                 | Wo                                               |
-| --------------------------------------------------- | ------------------------------------------------ |
-| Angemeldete Person `currentUser`, `uid`             | `AuthService` in `core/services/auth.service.ts` |
-| Alle Personen `users` (Name, Avatar, Online-Status) | `UserService` in `core/services/user.service.ts` |
-| Eigene Channels `channels`, alle `allChannels`      | `ChannelService`                                 |
-| Profil einer Person öffnen                          | `ProfileViewer.show(uid)` in `features/profile/` |
-| Channel bearbeiten, Mitglieder, Leute hinzufügen    | `ChannelDialogs.open(channelId, kind)`           |
-| Workspace-Rahmen mit Outlets für Chat und `thread`  | `features/workspace/workspace.routes.ts`         |
-
-Datenmodell und Firestore-Regeln stehen als Vorschlag in ttoebbe/dabubble#1.
+Services, Dialoge, Workspace-Rahmen und die aktuell gültigen Firestore-Regeln stehen in
+`docs/arbeitsteilung.md` unter „Schnittstellen“. Die Datei liest Claude Code vor jeder Aufgabe.
 
 Das Repo liegt in Thomas' GitHub-Konto. Repo-Einstellungen (Secrets, Einladungen) kann dort nur
 der Besitzer ändern; brauchst du dort etwas, sag Thomas Bescheid.
