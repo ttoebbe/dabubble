@@ -1,17 +1,10 @@
 import { Component, computed, input, output, signal } from '@angular/core';
-import {
-  FormField,
-  FormRoot,
-  ValidationError,
-  form,
-  minLength,
-  required,
-  validate,
-} from '@angular/forms/signals';
+import { FormField, FormRoot, apply, form, minLength } from '@angular/forms/signals';
 import { Button } from '../../../shared/components/button/button';
 import { Dialog } from '../../../shared/components/dialog/dialog';
 import { visibleError } from '../../auth/visible-error';
 import { MenuContact, WORKSPACE_NAME } from '../../workspace/workspace-menu/menu-entries';
+import { channelNameRules } from '../channel-validation';
 import { MemberPicker } from '../member-picker/member-picker';
 
 /** Channel the user has just created, as the dialog reports it. */
@@ -35,8 +28,6 @@ interface MemberChoice {
 
 const EMPTY_DETAILS: ChannelDetails = { name: '', description: '' };
 const EMPTY_CHOICE: MemberChoice = { scope: 'all', memberIds: [] };
-const NAME_MISSING = '*Bitte gib einen Channel-Namen ein.';
-const NAME_TAKEN = '*Diesen Channel-Namen gibt es schon.';
 
 /**
  * Creates a channel in two steps (Figma `37. Add channel` 331:2174, then
@@ -62,8 +53,10 @@ export class CreateChannelDialog {
   readonly detailsForm = form(
     this.details,
     (path) => {
-      required(path.name, { message: NAME_MISSING });
-      validate(path.name, ({ value }) => this.checkName(value()));
+      apply(
+        path.name,
+        channelNameRules(() => this.takenNames()),
+      );
     },
     { submission: { action: () => this.showMembersStep() } },
   );
@@ -84,16 +77,6 @@ export class CreateChannelDialog {
   close(): void {
     this.resetForms();
     this.closed.emit();
-  }
-
-  /** Error for a blank or already used name, ignoring case and outer spaces. */
-  private checkName(name: string): ValidationError | null {
-    const wanted = name.trim().toLowerCase();
-    if (!wanted) {
-      return { kind: 'blank', message: NAME_MISSING };
-    }
-    const taken = this.takenNames().some((existing) => existing.toLowerCase() === wanted);
-    return taken ? { kind: 'taken', message: NAME_TAKEN } : null;
   }
 
   /** Moves on to choosing the people. */
