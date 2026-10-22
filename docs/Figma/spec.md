@@ -611,8 +611,8 @@ Requirements source: `docs/DA_Checkliste/DaBubble Checkliste.md` (DA checklist, 
 |---|---|---|---|
 | 1 | font sizes 10–15 px on 238 text nodes (timestamps, errors, "Letzte Antwort") | Thomas' global rule: at least 16 px (not in the project CLAUDE.md; DA requires design 1:1) | `48.` messages, input errors |
 | 2 | icon buttons 30, 34, 40 px | touch targets ≥ 44 px (WCAG 2.5.5 recommendation) | `19. add`, `59. add reaction`, `16. edit_square`, `45. Close`, reaction bar |
-| 3 | text `#797EF3` on white 3.45 : 1, on `#ECEEFE` 2.99 : 1 | contrast ≥ 4.5 : 1 for normal text | "Passwort vergessen?", "Konto erstellen", own bubble text white on `#797EF3` |
-| 4 | error text `#ED1E79` 14 px on white 4.15 : 1 | contrast ≥ 4.5 : 1 | input error messages |
+| 3 | text `#797EF3` on white 3.45 : 1, on `#ECEEFE` 2.99 : 1 | contrast ≥ 4.5 : 1 for normal text | "Passwort vergessen?", "Konto erstellen", own bubble text white on `#797EF3`. Resolved for area A (22.10.2026): links Purple 1, button hover Purple 3 (section 8); own bubble is area B |
+| 4 | error text `#ED1E79` 14 px on white 4.15 : 1 | contrast ≥ 4.5 : 1 | input error messages. Resolved (22.10.2026): `#E4126F`, 4.5 : 1 |
 | 5 | hover changes font weight and size of text links and the nav tab; error variant grows the field 60 → 85 px | no layout shifts | `8.`, `9.`, `50.`, `77.`, auth inputs |
 | 6 | no focus states | keyboard operability | all interactive components |
 | 7 | mobile artboard 430 px | DA: responsive down to 320 px | all mobile screens |
@@ -670,13 +670,14 @@ listed here, not as a comment in the stylesheet.
 | `--color-lines` | `#ADB0D9` | style Ligth purple (Lines) (`60:132`) |
 | `--color-text-gray` | `#686868` | style Text gray (`61:325`) |
 | `--color-black`, `--color-white` | `#000000`, `#FFFFFF` | styles Black (`60:259`), White (`20:21`) |
-| `--color-error` | `#ED1E79` | style Rosa error (`145:167`) |
+| `--color-error` | `#E4126F` | style Rosa error `#ED1E79` (`145:167`), darkened to 4.5 : 1 on white (section 6.5 #4, decision Thomas 22.10.2026) |
 | `--color-online` | `#92C83E` | style online green (`92:2448`) |
 | `--color-label` | `#42526E` | style menu color (`5538:20926`), privacy checkbox label |
 | `--color-mail-link` | `#1381FF` | e-mail link in profile views (`163:235`) |
 | `--color-icon` | `#1C1B1F` | Material Symbols instances (`more_vert`, `edit`) |
 | `--color-handle` | `#D9D9D9` | grab handle of the mobile sheets (`734:11516` in `64b.`) |
-| `--color-primary`, `--color-primary-hover`, `--color-accent`, `--color-disabled` | aliases | `10. Button primary` Default / Hover, input focus stroke, `Disable` variant (section 4.1, 4.2) |
+| `--color-primary`, `--color-primary-hover`, `--color-accent`, `--color-disabled` | aliases | `10. Button primary` Default / Hover, input focus stroke, `Disable` variant (section 4.1, 4.2); hover uses Purple 3 instead of Purple 2, so white text keeps 5.1 : 1 (section 6.5 #3) |
+| `--color-link` | alias Purple 1 | text links ("Passwort vergessen?", "Konto erstellen", footer, privacy link, channel name in "Leute hinzufügen") instead of Purple 2: 5.9 : 1 on white, 5.1 : 1 on `#ECEEFE` (section 6.5 #3) |
 | `--color-own-bubble`, `--color-other-bubble` | aliases | `481:5501`, `463:3849` (section 4.4) |
 | `--gradient-intro` | `linear-gradient(0deg, #313AE5 0%, #797EF3 100%)` | fill of `128:765`; handles run from bottom (0.49, 1.0) to top (0.5, 0.0) |
 | `--font-main`, `--font-link`, `--font-label` | Nunito, Figtree, Open Sans | section 1.3 |
