@@ -1,9 +1,11 @@
+:host {
+  display: block;
+}
+
 .members {
   display: flex;
   flex-direction: column;
   gap: 15px;
-  width: 335px;
-  max-width: 100%;
 }
 
 .members__list {

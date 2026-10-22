@@ -1,0 +1,51 @@
+<div class="setting" [class.setting--editing]="editing()">
+  <div class="setting__head">
+    <span class="setting__label" [id]="settingId + '-label'">{{ label() }}</span>
+    @if (editing()) {
+      <button
+        class="setting__action setting__action--save"
+        type="submit"
+        aria-label="Speichern"
+        [attr.form]="settingId"
+      >
+        <span class="setting__action-text">Speichern</span>
+      </button>
+    } @else {
+      <button
+        class="setting__action setting__action--edit"
+        type="button"
+        aria-label="Bearbeiten"
+        (click)="startEditing()"
+      >
+        <span class="setting__action-text">Bearbeiten</span>
+      </button>
+    }
+  </div>
+  @if (editing()) {
+    <form class="setting__form" [id]="settingId" [formRoot]="settingForm">
+      <div class="setting__box" [class.setting__box--tag]="withTag()">
+        @if (withTag()) {
+          <span class="setting__tag"></span>
+        }
+        <input
+          class="setting__input"
+          type="text"
+          autocomplete="off"
+          [placeholder]="placeholder()"
+          [attr.aria-labelledby]="settingId + '-label'"
+          [attr.aria-describedby]="settingId + '-error'"
+          [formField]="settingForm.value"
+        />
+      </div>
+      <p class="setting__error" aria-live="polite" [id]="settingId + '-error'">{{ error() }}</p>
+    </form>
+  } @else {
+    <p class="setting__value">
+      @if (withTag()) {
+        <span class="setting__tag"></span>
+      }
+      {{ value() }}
+    </p>
+  }
+  <ng-content />
+</div>

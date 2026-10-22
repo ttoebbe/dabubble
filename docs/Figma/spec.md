@@ -848,3 +848,16 @@ Cards are centred vertically between logo and footer; Figma places each at a dif
   Kennwörter stimmen nicht überein"), then the toast "Anmelden" (section 6.4 #11) and the login.
 
 Until Firebase Authentication is set up no account is created and no e-mail is sent.
+
+### 8.12 Channel settings
+
+`src/app/features/channels/channel-edit-dialog/` with `channel-setting/` (one block with
+"Bearbeiten" / "Speichern", on mobile pencil `70. edit` and check icon) as `Channel Edition`
+364:2288 (872 px): title "# name", "Channel-Name" (`71.`), "Beschreibung" with "Erstellt von"
+(`72.`), "Channel verlassen". Renaming uses the same rules as creating (`channel-validation.ts`:
+not empty, not the name of another channel; DA checklist Channels US4); the description may be
+empty. On mobile the members follow (`channel-member-list/`, shared with the members dialog) as in
+719:15164. Deviations: the title uses the character "#" instead of the `tag` icon (the shared
+dialog takes a text heading); on mobile it is the shared centred dialog, not a full-screen page.
+The channel header of area B opens it; the dialog reports renaming, the new description, leaving
+and the member actions.

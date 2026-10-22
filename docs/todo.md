@@ -27,7 +27,7 @@ Offene Aufgaben außerhalb der Arbeitspakete. Erledigtes abhaken, nicht löschen
 - [ ] Profil: „Log out“ an `AuthService` anbinden, Beispielprofil (`profile/profile-details.ts`) durch den angemeldeten Nutzer ersetzen – A, sobald Auth steht
 - [ ] Profil: Avatar aus der vorgegebenen Auswahl ändern (DA-Checkliste Konto US4, im Figma-Bearbeiten-Dialog nicht vorhanden – Ort im Team klären), Namen in Firestore speichern – A
 - [ ] Avatar-Komponente fluide machen (bei 320 px mit Scrollbalken wird das 200-px-Bild im Profil-Dialog gestaucht) – A, Absprache mit B (`shared/`)
-- [ ] Dialoge „Mitglieder“ und „Leute hinzufügen“ (`channels/`) im Channel-Kopf einbinden – B; Mitglieder speichern – A, sobald `ChannelService` steht
+- [ ] Dialoge „Channel bearbeiten“, „Mitglieder“ und „Leute hinzufügen“ (`channels/`) im Channel-Kopf einbinden – B; Mitglieder speichern – A, sobald `ChannelService` steht
 - [ ] Channels in Firestore speichern: `ChannelService` statt der Liste im Workspace-Rahmen, Mitglieder des neuen Channels übernehmen – A, sobald Firebase und Datenmodell stehen
 - [x] Layout-Check: privates Repo `ttoebbe/dabubble-layout-check` (aus `ttoebbe/join-layout-check`, an den Angular-Build angepasst, 5 Seiten und Zustände × 6 Viewports), lokal grün – A
 - [ ] Layout-Check in Actions: `workflow/layout-check.yml` aus dem Checker-Repo nach `.github/workflows/` übernehmen (gemeinsame Datei, Absprache mit B), Secret `LAYOUT_CHECK_TOKEN` anlegen (Thomas), danach in `CLAUDE.md` „geplant“ streichen – A

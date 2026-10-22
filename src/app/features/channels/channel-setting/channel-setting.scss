@@ -1,0 +1,131 @@
+@use 'breakpoints' as bp;
+@use 'forms';
+
+:host {
+  display: block;
+}
+
+.setting {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  padding: 19px;
+  border: 1px solid var(--color-lines);
+  border-radius: var(--radius-box);
+}
+
+.setting--editing {
+  padding: 0;
+  border-color: transparent;
+}
+
+.setting__head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 20px;
+  min-height: 25px;
+}
+
+.setting__label {
+  @include forms.label;
+}
+
+.setting--editing .setting__head {
+  padding-inline: 0 20px;
+}
+
+.setting__action {
+  position: relative;
+  flex: none;
+  font-weight: var(--font-weight-semibold);
+  color: var(--color-accent);
+  transition: color var(--duration-hover) var(--easing-hover);
+
+  &::after {
+    content: '';
+    position: absolute;
+    inset: -10px -8px;
+  }
+
+  &:hover {
+    font-weight: var(--font-weight-bold);
+    color: var(--color-primary);
+  }
+}
+
+.setting__value {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  overflow-wrap: anywhere;
+}
+
+.setting__tag {
+  flex: none;
+  width: 24px;
+  height: 24px;
+  background-color: var(--color-black);
+  mask: url('/img/icons/tag.svg') center / contain no-repeat;
+}
+
+.setting__box {
+  @include forms.text-box(var(--radius-panel));
+
+  min-height: 65px;
+}
+
+.setting__box--tag {
+  min-height: 60px;
+  border-radius: var(--radius-text-box);
+
+  .setting__tag {
+    background-color: var(--color-text-gray);
+  }
+}
+
+.setting__input {
+  @include forms.text-box-control;
+}
+
+.setting__error {
+  @include forms.error-line;
+}
+
+@include bp.mobile {
+  .setting__action {
+    display: grid;
+    place-items: center;
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+
+    &::before {
+      content: '';
+      width: 24px;
+      height: 24px;
+      background-color: var(--color-icon);
+      mask: url('/img/icons/edit.svg') center / contain no-repeat;
+    }
+
+    &::after {
+      inset: calc((30px - var(--touch-target-min)) / 2);
+    }
+
+    &:hover::before {
+      background-color: var(--color-accent);
+    }
+  }
+
+  .setting__action--edit {
+    background-color: var(--color-bg);
+  }
+
+  .setting__action--save::before {
+    mask-image: url('/img/icons/check-circle.svg');
+  }
+
+  .setting__action-text {
+    display: none;
+  }
+}

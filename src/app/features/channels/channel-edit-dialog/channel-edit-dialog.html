@@ -1,0 +1,32 @@
+<app-dialog [heading]="heading()" [open]="open()" (closed)="closed.emit()">
+  <div class="channel-edit">
+    <app-channel-setting
+      label="Channel-Name"
+      placeholder="z.B. Kooperationsprojekte"
+      [value]="channel().name"
+      [withTag]="true"
+      [takenNames]="otherChannelNames()"
+      (saved)="renamed.emit($event)"
+    />
+    <app-channel-setting
+      label="Beschreibung"
+      placeholder="Dein Text hier"
+      [value]="channel().description"
+      (saved)="descriptionChanged.emit($event)"
+    >
+      <div class="channel-edit__creator">
+        <p class="channel-edit__label">Erstellt von</p>
+        <p class="channel-edit__creator-name">{{ channel().creatorName }}</p>
+      </div>
+    </app-channel-setting>
+    <section class="channel-edit__members" aria-labelledby="channel-edit-members">
+      <h3 id="channel-edit-members" class="channel-edit__members-title">Mitglieder</h3>
+      <app-channel-member-list
+        [members]="members()"
+        (memberSelected)="memberSelected.emit($event)"
+        (addMembers)="addMembers.emit()"
+      />
+    </section>
+    <app-button class="channel-edit__leave" (click)="left.emit()">Channel verlassen</app-button>
+  </div>
+</app-dialog>

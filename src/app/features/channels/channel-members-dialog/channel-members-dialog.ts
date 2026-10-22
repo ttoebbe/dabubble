@@ -1,7 +1,7 @@
 import { Component, input, output } from '@angular/core';
-import { Avatar } from '../../../shared/components/avatar/avatar';
 import { Dialog } from '../../../shared/components/dialog/dialog';
 import { MenuContact } from '../../workspace/workspace-menu/menu-entries';
+import { ChannelMemberList } from '../channel-member-list/channel-member-list';
 
 /**
  * Member list of a channel (Figma `43. Members` 388:2470) with the entry
@@ -10,7 +10,7 @@ import { MenuContact } from '../../workspace/workspace-menu/menu-entries';
  */
 @Component({
   selector: 'app-channel-members-dialog',
-  imports: [Avatar, Dialog],
+  imports: [Dialog, ChannelMemberList],
   templateUrl: './channel-members-dialog.html',
   styleUrl: './channel-members-dialog.scss',
 })

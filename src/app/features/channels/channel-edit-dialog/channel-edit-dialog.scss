@@ -1,0 +1,58 @@
+@use 'breakpoints' as bp;
+
+.channel-edit {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  width: 792px;
+  max-width: 100%;
+}
+
+.channel-edit__creator {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  padding-top: 30px;
+  border-top: 1px solid var(--color-lines);
+}
+
+.channel-edit__label {
+  font-weight: var(--font-weight-bold);
+}
+
+.channel-edit__creator-name {
+  font-size: var(--font-size-title);
+  color: var(--color-accent);
+}
+
+.channel-edit__members {
+  display: none;
+}
+
+.channel-edit__leave {
+  align-self: flex-end;
+}
+
+@include bp.mobile {
+  .channel-edit {
+    gap: 25px;
+  }
+
+  .channel-edit__creator-name {
+    font-size: var(--font-size-subtitle);
+  }
+
+  .channel-edit__members {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    padding: 19px 15px;
+    border: 1px solid var(--color-lines);
+    border-radius: var(--radius-box);
+  }
+
+  .channel-edit__members-title {
+    font-size: var(--font-size-title);
+    font-weight: var(--font-weight-bold);
+  }
+}

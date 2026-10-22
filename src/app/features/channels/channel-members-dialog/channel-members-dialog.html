@@ -1,18 +1,8 @@
 <app-dialog heading="Mitglieder" [open]="open()" (closed)="closed.emit()">
-  <div class="members">
-    <ul class="members__list">
-      @for (member of members(); track member.id) {
-        <li class="members__item">
-          <button class="members__entry" type="button" (click)="memberSelected.emit(member.id)">
-            <app-avatar [src]="member.avatarUrl" [status]="member.status" />
-            {{ member.name }}{{ member.isSelf ? ' (Du)' : '' }}
-          </button>
-        </li>
-      }
-    </ul>
-    <button class="members__add" type="button" (click)="addMembers.emit()">
-      <span class="members__add-icon"></span>
-      Mitglieder hinzufügen
-    </button>
-  </div>
+  <app-channel-member-list
+    class="members-dialog__list"
+    [members]="members()"
+    (memberSelected)="memberSelected.emit($event)"
+    (addMembers)="addMembers.emit()"
+  />
 </app-dialog>
