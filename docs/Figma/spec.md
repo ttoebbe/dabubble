@@ -772,8 +772,10 @@ Edit mode (`profile-edit-form/`, Signal Forms): "Bearbeiten" (`40.`, 18/600 `#53
 `#444DF2`; on mobile the round pencil `70. edit`) switches the dialog to "Dein Profil bearbeiten" as
 `1808:16192` with "Vollständiger Name", "Abbrechen" and "Speichern". An empty name shows "*Bitte gib
 deinen Namen ein." (not defined in Figma). The saved name appears at once in the dialog, the header
-and as "(Du)" entry in the menu. Not built yet: the actual log-out (waits for `AuthService`) and
-changing the avatar (DA checklist Konto US4; the Figma edit dialog has no avatar choice).
+and as "(Du)" entry in the menu. The edit mode also offers the six avatars (DA checklist Konto US4;
+the Figma edit dialog has none, placed under the big picture as in the sign-up, decision Thomas
+2026-10-22, `auth/avatar-picker/` in a compact 56 px variant). Not built yet: the actual log-out
+(waits for `AuthService`).
 
 ### 8.7 Channel members dialog
 

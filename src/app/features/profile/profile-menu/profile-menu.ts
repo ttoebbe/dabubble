@@ -2,6 +2,7 @@ import { Component, ElementRef, model, signal, viewChild } from '@angular/core';
 import { Avatar } from '../../../shared/components/avatar/avatar';
 import { ProfileDetails } from '../profile-details';
 import { ProfileDialog } from '../profile-dialog/profile-dialog';
+import { ProfileChanges } from '../profile-edit-form/profile-edit-form';
 
 /**
  * Profile corner of the workspace header (Figma `65. Profile menu` 379:2282): name, avatar and
@@ -32,9 +33,9 @@ export class ProfileMenu {
     this.trigger().nativeElement.focus();
   }
 
-  /** Takes over the name saved in the profile dialog. */
-  renameProfile(name: string): void {
-    this.profile.update((profile) => ({ ...profile, name }));
+  /** Takes over the name and picture saved in the profile dialog. */
+  updateProfile(changes: ProfileChanges): void {
+    this.profile.update((profile) => ({ ...profile, ...changes }));
   }
 
   /** Signs the user out. Until `AuthService` exists (docs/todo.md) it only closes the menu. */

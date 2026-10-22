@@ -25,7 +25,7 @@ Offene Aufgaben außerhalb der Arbeitspakete. Erledigtes abhaken, nicht löschen
 - [ ] Registrierung, Avatar und Passwort-Reset an Firebase Authentication anbinden (Konto anlegen, Avatar im Nutzer speichern, Reset-Mail mit Link auf `/passwort-zuruecksetzen`, E-Mail-Vorlage nach Figma `1898:19353`) – A, sobald Firebase steht
 - [ ] Workspace-Menü: Beispiel-Einträge (`workspace-menu/menu-entries.ts`) durch `ChannelService.channels` und `UserService.users` ersetzen, Auswahl auf die Chat-Routen von B umstellen – A, sobald Firebase und Routen stehen
 - [ ] Profil: „Log out“ an `AuthService` anbinden, Beispielprofil (`profile/profile-details.ts`) durch den angemeldeten Nutzer ersetzen – A, sobald Auth steht
-- [ ] Profil: Avatar aus der vorgegebenen Auswahl ändern (DA-Checkliste Konto US4, im Figma-Bearbeiten-Dialog nicht vorhanden – Ort im Team klären), Namen in Firestore speichern – A
+- [ ] Profil: Name und Avatar in Firestore speichern (Auswahl im Bearbeiten-Dialog steht) – A, sobald Firebase steht
 - [ ] Avatar-Komponente fluide machen (bei 320 px mit Scrollbalken wird das 200-px-Bild im Profil-Dialog gestaucht) – A, Absprache mit B (`shared/`)
 - [ ] Dialoge „Channel bearbeiten“, „Mitglieder“ und „Leute hinzufügen“ (`channels/`) im Channel-Kopf einbinden – B; Mitglieder speichern – A, sobald `ChannelService` steht
 - [ ] Channels in Firestore speichern: `ChannelService` statt der Liste im Workspace-Rahmen, Mitglieder des neuen Channels übernehmen – A, sobald Firebase und Datenmodell stehen

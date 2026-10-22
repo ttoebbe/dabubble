@@ -1,0 +1,17 @@
+<fieldset class="picker" [class.picker--compact]="compact()">
+  <legend class="picker__legend">Aus der Liste wählen</legend>
+  @for (option of options; track option; let index = $index) {
+    <label class="picker__option">
+      <input
+        class="picker__radio"
+        type="radio"
+        [name]="groupName"
+        [value]="option"
+        [checked]="value() === option"
+        [attr.aria-label]="'Avatar ' + (index + 1)"
+        (change)="value.set(option)"
+      />
+      <img class="picker__image" [ngSrc]="option" alt="" width="64" height="64" />
+    </label>
+  }
+</fieldset>

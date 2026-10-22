@@ -38,7 +38,9 @@ export class WorkspaceLayout {
   readonly channelNames = computed(() => this.channels().map((channel) => channel.name));
   readonly contacts = computed(() =>
     SAMPLE_CONTACTS.map((contact) =>
-      contact.isSelf ? { ...contact, name: this.currentUser().name } : contact,
+      contact.isSelf
+        ? { ...contact, name: this.currentUser().name, avatarUrl: this.currentUser().avatarUrl }
+        : contact,
     ),
   );
   readonly people = SAMPLE_CONTACTS.filter((contact) => !contact.isSelf);

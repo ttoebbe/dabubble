@@ -1,4 +1,6 @@
 <form class="edit" [formRoot]="profileForm">
+  <app-avatar class="edit__avatar" [src]="model().avatarUrl" [size]="200" />
+  <app-avatar-picker [compact]="true" [formField]="profileForm.avatarUrl" />
   <div class="edit__field">
     <label class="edit__label" for="profile-name">Vollständiger Name</label>
     <div class="edit__box" [class.edit__box--error]="nameError()">
