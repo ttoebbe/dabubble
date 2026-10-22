@@ -65,11 +65,19 @@ export class ResetPassword implements OnInit {
 
   /** Checks the code of the e-mail link before the form is shown. */
   async ngOnInit(): Promise<void> {
+    this.linkState.set((await this.isCodeValid()) ? 'ready' : 'invalid');
+  }
+
+  /** Whether Firebase still accepts the code; without a code no request is sent. */
+  private async isCodeValid(): Promise<boolean> {
+    if (!this.code) {
+      return false;
+    }
     try {
       await this.auth.checkResetCode(this.code);
-      this.linkState.set('ready');
+      return true;
     } catch {
-      this.linkState.set('invalid');
+      return false;
     }
   }
 
