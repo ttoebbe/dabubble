@@ -184,4 +184,12 @@ jobs:
             exit 1
           fi
 
+          # Direct links to routes (/login, /workspace) need .htaccess next to index.html.
+          REMOTE_HTACCESS="$(run_lftp "cls -1 -a \"${REMOTE_DIR%/}/.htaccess\";" || true)"
+          if [ -z "$(printf '%s' "$REMOTE_HTACCESS" | tr -d '[:space:]')" ]; then
+            echo "::warning::.htaccess is not in the target folder; direct links to routes return 404."
+          else
+            echo ".htaccess confirmed in the target folder." >> "$GITHUB_STEP_SUMMARY"
+          fi
+
           echo "Uploaded \`$SHA\` to $REMOTE_DIR over ${DEPLOY_PROTOCOL:-sftp}, index.html confirmed." >> "$GITHUB_STEP_SUMMARY"
