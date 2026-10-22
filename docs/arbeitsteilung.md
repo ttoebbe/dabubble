@@ -103,16 +103,17 @@ Bis eine Schnittstelle steht, arbeitet die andere Person gegen einen Platzhalter
 
 ## Schnittstellen
 
-| Von → An | Was                                                           | Bis          |
-| -------- | ------------------------------------------------------------- | ------------ |
-| A → B    | `AuthService.currentUser` als Signal                          | Ende Phase 0 |
-| A → B    | `UserService.users` als Signal (Namen, Avatare)               | Ende Phase 0 |
-| A → B    | `ChannelService.channels` als Signal (eigene Channels)        | Ende Phase 0 |
-| B → A    | Routen für Channel-, DM- und Thread-Ansicht                   | Ende Phase 0 |
-| A → B    | Workspace-Layout mit Platz für Chat, Thread und Suchfeld      | Phase 1      |
-| A → B    | Profil-Dialog per `uid` öffnen (Klick auf Autor oder Mention) | Phase 1      |
-| B → A    | Route zur DM mit einer Person (Button im Profil)              | Phase 1      |
-| B → A    | Such-Komponente für den Header                                | Phase 2      |
+| Von → An | Was                                                           | Bis          | Stand 22.10.2026                    |
+| -------- | ------------------------------------------------------------- | ------------ | ----------------------------------- |
+| A → B    | `AuthService.currentUser` als Signal                          | Ende Phase 0 | steht                               |
+| A → B    | `UserService.users` als Signal (Namen, Avatare)               | Ende Phase 0 | steht                               |
+| A → B    | `ChannelService.channels` als Signal (eigene Channels)        | Ende Phase 0 | steht                               |
+| B → A    | Routen für Channel-, DM- und Thread-Ansicht                   | Ende Phase 0 | offen (`CHAT_ROUTES` ist noch leer) |
+| A → B    | Workspace-Layout mit Platz für Chat, Thread und Suchfeld      | Phase 1      | steht                               |
+| A → B    | Profil-Dialog per `uid` öffnen (Klick auf Autor oder Mention) | Phase 1      | steht: `ProfileViewer.show(uid)`    |
+| A → B    | Channel-Dialoge aus dem Channel-Kopf öffnen                   | Phase 1      | steht: `ChannelDialogs.open(…)`     |
+| B → A    | Route zur DM mit einer Person (Button im Profil)              | Phase 1      | offen                               |
+| B → A    | Such-Komponente für den Header                                | Phase 2      | offen                               |
 
 **Routen (Stand 21.10.2026, Vorschlag von A, Bestätigung durch B offen):** `CHAT_ROUTES` aus `features/chat/chat.routes.ts`
 hängen als Kinder unter `/workspace`. Chat-Ansichten (Channel, DM, „Neue Nachricht“) nutzen das
@@ -121,6 +122,53 @@ Der Rahmen erkennt daran selbst, welche Ansicht offen ist; auf dem Handy führt 
 Thread → Chat → Menü.
 
 Signaturen stehen als JSDoc an der jeweiligen Methode. Ändert sich eine Signatur, gilt das wie eine Änderung an `core/models/`.
+
+### Was Bereich A bereitstellt (Stand 22.10.2026)
+
+Alles liegt auf `main`; die Signaturen stehen als JSDoc an den Klassen.
+
+| Was                                              | Wo                                       | Nutzung                                                                                                                                       |
+| ------------------------------------------------ | ---------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------- |
+| Angemeldete Person                               | `core/services/auth.service.ts`          | `AuthService.currentUser()` (`AppUser` oder `null`), `uid()`                                                                                  |
+| Alle Personen, live                              | `core/services/user.service.ts`          | `UserService.users()`: Name, Avatar, `presence` (`online`, `away`, `offline`), `isGuest`                                                      |
+| Channels, live                                   | `core/services/channel.service.ts`       | `channels()` (eigene, älteste zuerst), `allChannels()`; `create`, `update`, `addMembers`, `leave`                                             |
+| Online-Status                                    | `core/services/presence.service.ts`      | läuft von selbst: sichtbarer Tab `online`, verborgener `away`, Log out `offline`                                                              |
+| Profil einer Person                              | `features/profile/profile-viewer.ts`     | `inject(ProfileViewer).show(uid)`; der Workspace-Rahmen zeigt den Dialog, „Nachricht“ wählt die Person im Menü                                |
+| Channel bearbeiten, Mitglieder, Leute hinzufügen | `features/channels/channel-dialogs.ts`   | `inject(ChannelDialogs).open(channelId, 'settings' \| 'members' \| 'add-members')`; Speichern, Verlassen und Profil-Klick erledigt der Rahmen |
+| Workspace-Rahmen                                 | `features/workspace/workspace.routes.ts` | `/workspace` nur angemeldet (`signedInGuard`); `CHAT_ROUTES` als Kinder, Threads im Outlet `thread`                                           |
+| Datenmodell                                      | `core/models/app-user.ts`, `channel.ts`  | Vorschlag ttoebbe/dabubble#1, Bestätigung durch B offen                                                                                       |
+
+Gäste: Beim Log out löscht die App das anonyme Konto und sein Profil. Nachrichten eines Gastes zeigen danach
+auf eine `uid` ohne Profil; wie die Ansicht das darstellt, entscheidet B.
+
+**Firestore-Regeln, live in der Konsole (Stand 22.10.2026).** `firestore.rules` gehört B; bis die Datei im Repo
+steht und um Nachrichten erweitert ist, gilt dieser Stand:
+
+```
+rules_version = '2';
+
+service cloud.firestore {
+  match /databases/{database}/documents {
+    function signedIn() {
+      return request.auth != null;
+    }
+
+    match /users/{uid} {
+      allow read: if signedIn();
+      allow create, update: if signedIn() && request.auth.uid == uid;
+      allow delete: if signedIn() && request.auth.uid == uid && resource.data.isGuest == true;
+    }
+
+    match /channels/{channelId} {
+      allow read: if signedIn();
+      allow create: if signedIn() && request.resource.data.creatorId == request.auth.uid;
+      allow update: if signedIn() && request.auth.uid in resource.data.memberIds;
+    }
+  }
+}
+```
+
+Lokal braucht jede Person `src/environments/environment.ts` mit der Firebase-Konfiguration (`docs/einstieg.md`).
 
 ## Git und Zusammenarbeit
 
