@@ -1,5 +1,6 @@
-import { Component, computed, input, output, signal } from '@angular/core';
-import { FormField, FormRoot, applyWhen, form } from '@angular/forms/signals';
+import { Component, computed, input, signal } from '@angular/core';
+import { FormField, FormRoot, TreeValidationResult, applyWhen, form } from '@angular/forms/signals';
+import { AUTH_ERRORS } from '../../auth/auth-validation';
 import { visibleError } from '../../auth/visible-error';
 import { channelNameRules } from '../channel-validation';
 
@@ -14,7 +15,8 @@ let nextSettingId = 0;
  * One editable block of the channel settings (Figma `71. Channel name`, `72. Description`):
  * label with "Bearbeiten" / "Speichern" (on mobile pencil and check icons), the value or its
  * input. With `takenNames` the value is a channel name and must be filled in and unique.
- * Projected content (e.g. "Erstellt von") follows the value.
+ * Projected content (e.g. "Erstellt von") follows the value. `store` saves the value; if it
+ * fails, the input stays open with a message (DA checklist Channels US4).
  */
 @Component({
   selector: 'app-channel-setting',
@@ -28,7 +30,7 @@ export class ChannelSetting {
   readonly placeholder = input('');
   readonly withTag = input(false);
   readonly takenNames = input<readonly string[] | null>(null);
-  readonly saved = output<string>();
+  readonly store = input.required<(value: string) => Promise<void>>();
   readonly editing = signal(false);
   readonly settingId = `channel-setting-${nextSettingId++}`;
   readonly model = signal<SettingModel>({ value: '' });
@@ -51,9 +53,13 @@ export class ChannelSetting {
     this.editing.set(true);
   }
 
-  /** Reports the trimmed value and shows it again. */
-  private async save(): Promise<undefined> {
-    this.saved.emit(this.model().value.trim());
+  /** Stores the trimmed value and shows it again; a failure keeps the input open. */
+  private async save(): Promise<TreeValidationResult> {
+    try {
+      await this.store()(this.model().value.trim());
+    } catch {
+      return { fieldTree: this.settingForm.value, kind: 'save', message: AUTH_ERRORS.generic };
+    }
     this.editing.set(false);
     return undefined;
   }

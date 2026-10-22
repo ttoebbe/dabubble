@@ -42,9 +42,8 @@ export class ProfileMenu {
   }
 
   /** Stores the name and picture saved in the profile dialog. */
-  updateProfile(changes: ProfileChanges): Promise<void> {
-    return this.auth.updateProfile(changes);
-  }
+  readonly updateProfile = (changes: ProfileChanges): Promise<void> =>
+    this.auth.updateProfile(changes);
 
   /** Signs the user out and opens the login. */
   async logOut(): Promise<void> {

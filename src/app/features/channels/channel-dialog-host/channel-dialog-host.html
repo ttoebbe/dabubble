@@ -4,9 +4,9 @@
   [otherChannelNames]="otherChannelNames()"
   [members]="members()"
   (closed)="dialogs.close()"
-  (renamed)="rename($event)"
-  (descriptionChanged)="describe($event)"
-  (left)="leave()"
+  [rename]="rename"
+  [describe]="describe"
+  [leave]="leave"
   (memberSelected)="showMember($event)"
   (addMembers)="openAddMembers()"
 />
@@ -22,5 +22,5 @@
   [channelName]="info().name"
   [people]="outsiders()"
   (closed)="dialogs.close()"
-  (added)="addMembers($event)"
+  [add]="addMembers"
 />

@@ -1,3 +1,5 @@
+@use 'forms';
+
 .add-members {
   display: flex;
   flex-direction: column;
@@ -22,6 +24,18 @@
   mask: url('/img/icons/tag.svg') center / contain no-repeat;
 }
 
-.add-members__submit {
-  align-self: flex-end;
+.add-members__footer {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 10px 20px;
+}
+
+.add-members__error {
+  @include forms.error-line;
+
+  flex: 1 1 200px;
+  margin-top: 0;
+  text-align: right;
 }

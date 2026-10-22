@@ -34,7 +34,7 @@
   [takenNames]="channelNames()"
   [people]="people()"
   (closed)="createChannelOpen.set(false)"
-  (created)="addChannel($event)"
+  [create]="addChannel"
 />
 <app-channel-dialog-host (left)="forgetChannel($event)" />
 <app-person-profile (messageRequested)="openDirectMessage($event)" />

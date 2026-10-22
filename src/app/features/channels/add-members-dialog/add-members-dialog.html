@@ -5,8 +5,11 @@
       {{ channelName() }}
     </p>
     <app-member-picker [formField]="membersForm.memberIds" [people]="people()" />
-    <app-button class="add-members__submit" type="submit" [disabled]="membersForm().invalid()">
-      Hinzufügen
-    </app-button>
+    <div class="add-members__footer">
+      <p class="add-members__error" aria-live="polite">{{ saveError() }}</p>
+      <app-button type="submit" [disabled]="membersForm().invalid() || membersForm().submitting()">
+        Hinzufügen
+      </app-button>
+    </div>
   </form>
 </app-dialog>

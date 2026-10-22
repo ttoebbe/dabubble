@@ -61,9 +61,12 @@
       @if (choice().scope === 'selected') {
         <app-member-picker [formField]="choiceForm.memberIds" [people]="people()" />
       }
-      <app-button class="create__submit" type="submit" [disabled]="choiceForm().invalid()">
-        Erstellen
-      </app-button>
+      <div class="create__footer">
+        <p class="create__save-error" aria-live="polite">{{ saveError() }}</p>
+        <app-button type="submit" [disabled]="choiceForm().invalid() || choiceForm().submitting()">
+          Erstellen
+        </app-button>
+      </div>
     </form>
   }
 </app-dialog>

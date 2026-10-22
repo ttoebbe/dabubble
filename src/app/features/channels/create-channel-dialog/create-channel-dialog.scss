@@ -68,6 +68,22 @@
   align-self: flex-end;
 }
 
+.create__footer {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 10px 20px;
+}
+
+.create__save-error {
+  @include forms.error-line;
+
+  flex: 1 1 200px;
+  margin-top: 0;
+  text-align: right;
+}
+
 .create__choices {
   display: flex;
   flex-direction: column;

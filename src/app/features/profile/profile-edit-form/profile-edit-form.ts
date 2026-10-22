@@ -1,7 +1,15 @@
 import { Component, OnInit, computed, input, output, signal } from '@angular/core';
-import { FormField, FormRoot, form, required, validate } from '@angular/forms/signals';
+import {
+  FormField,
+  FormRoot,
+  TreeValidationResult,
+  form,
+  required,
+  validate,
+} from '@angular/forms/signals';
 import { Avatar } from '../../../shared/components/avatar/avatar';
 import { Button } from '../../../shared/components/button/button';
+import { AUTH_ERRORS } from '../../auth/auth-validation';
 import { AvatarPicker } from '../../auth/avatar-picker/avatar-picker';
 import { visibleError } from '../../auth/visible-error';
 
@@ -23,7 +31,7 @@ const NAME_MISSING = '*Bitte gib deinen Namen ein.';
  * Edit mode of the own profile (Figma `65. Profile view other users` variant "Dein Profil
  * bearbeiten" 1808:16192, DA checklist Konto US4): avatar from the given choice (not in
  * Figma, placed as in the sign-up), full name, "Abbrechen" and "Speichern".
- * The parent stores the changes.
+ * `store` saves the changes; a failure shows a message under the name.
  */
 @Component({
   selector: 'app-profile-edit-form',
@@ -34,7 +42,7 @@ const NAME_MISSING = '*Bitte gib deinen Namen ein.';
 export class ProfileEditForm implements OnInit {
   readonly name = input.required<string>();
   readonly avatarUrl = input.required<string>();
-  readonly saved = output<ProfileChanges>();
+  readonly store = input.required<(changes: ProfileChanges) => Promise<void>>();
   readonly cancelled = output<void>();
   readonly model = signal<ProfileEditModel>({ name: '', avatarUrl: '' });
   readonly profileForm = form(
@@ -54,9 +62,14 @@ export class ProfileEditForm implements OnInit {
     this.model.set({ name: this.name(), avatarUrl: this.avatarUrl() });
   }
 
-  /** Reports the trimmed name and the chosen picture. */
-  private async save(): Promise<undefined> {
-    this.saved.emit({ name: this.model().name.trim(), avatarUrl: this.model().avatarUrl });
+  /** Stores the trimmed name and the chosen picture. */
+  private async save(): Promise<TreeValidationResult> {
+    const changes = { name: this.model().name.trim(), avatarUrl: this.model().avatarUrl };
+    try {
+      await this.store()(changes);
+    } catch {
+      return { fieldTree: this.profileForm.name, kind: 'save', message: AUTH_ERRORS.generic };
+    }
     return undefined;
   }
 }

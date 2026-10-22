@@ -20,7 +20,7 @@ import { ProfileViewer } from '../profile-viewer';
       [isOwn]="isOwn()"
       (closed)="viewer.close()"
       (messageRequested)="requestMessage()"
-      (profileChanged)="updateProfile($event)"
+      [store]="updateProfile"
     />
   `,
 })
@@ -46,7 +46,6 @@ export class PersonProfile {
   }
 
   /** Stores the new name and picture of the own profile. */
-  updateProfile(changes: ProfileChanges): Promise<void> {
-    return this.auth.updateProfile(changes);
-  }
+  readonly updateProfile = (changes: ProfileChanges): Promise<void> =>
+    this.auth.updateProfile(changes);
 }

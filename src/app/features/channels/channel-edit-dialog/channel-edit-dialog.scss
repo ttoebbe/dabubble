@@ -1,4 +1,5 @@
 @use 'breakpoints' as bp;
+@use 'forms';
 
 .channel-edit {
   display: flex;
@@ -29,8 +30,20 @@
   display: none;
 }
 
-.channel-edit__leave {
-  align-self: flex-end;
+.channel-edit__footer {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 10px 20px;
+}
+
+.channel-edit__error {
+  @include forms.error-line;
+
+  flex: 1 1 200px;
+  margin-top: 0;
+  text-align: right;
 }
 
 @include bp.mobile {

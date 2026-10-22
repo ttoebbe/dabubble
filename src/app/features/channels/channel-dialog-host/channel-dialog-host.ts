@@ -15,8 +15,8 @@ const NO_CHANNEL: ChannelInfo = { id: '', name: '', description: '', creatorName
 
 /**
  * Settings, members and "Leute hinzufügen" of the channel chosen through `ChannelDialogs`
- * (DA checklist Channels US2–US4). Changes go straight to `ChannelService`; a click on a
- * member opens the profile.
+ * (DA checklist Channels US2–US4). Changes go straight to `ChannelService`; the dialogs show
+ * a message when one fails. A click on a member opens the profile.
  */
 @Component({
   selector: 'app-channel-dialog-host',
@@ -52,33 +52,30 @@ export class ChannelDialogHost {
   );
 
   /** Renames the channel. */
-  rename(name: string): Promise<void> {
-    return this.channelService.update(this.info().id, { name });
-  }
+  readonly rename = (name: string): Promise<void> =>
+    this.channelService.update(this.info().id, { name });
 
   /** Changes the description. */
-  describe(description: string): Promise<void> {
-    return this.channelService.update(this.info().id, { description });
-  }
+  readonly describe = (description: string): Promise<void> =>
+    this.channelService.update(this.info().id, { description });
 
   /** Leaves the channel, closes the dialog and tells the workspace frame. */
-  async leave(): Promise<void> {
+  readonly leave = async (): Promise<void> => {
     const id = this.info().id;
-    this.dialogs.close();
     await this.channelService.leave(id);
+    this.dialogs.close();
     this.left.emit(id);
-  }
+  };
+
+  /** Adds the chosen people and closes the dialog. */
+  readonly addMembers = async (memberIds: readonly string[]): Promise<void> => {
+    await this.channelService.addMembers(this.info().id, memberIds);
+    this.dialogs.close();
+  };
 
   /** Switches to "Leute hinzufügen". */
   openAddMembers(): void {
     this.dialogs.open(this.info().id, 'add-members');
-  }
-
-  /** Adds the chosen people and closes the dialog. */
-  async addMembers(memberIds: readonly string[]): Promise<void> {
-    const id = this.info().id;
-    this.dialogs.close();
-    await this.channelService.addMembers(id, memberIds);
   }
 
   /** Opens the profile of a member. */

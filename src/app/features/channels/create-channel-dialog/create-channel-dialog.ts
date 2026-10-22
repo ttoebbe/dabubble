@@ -2,6 +2,7 @@ import { Component, computed, input, output, signal } from '@angular/core';
 import { FormField, FormRoot, apply, form, minLength } from '@angular/forms/signals';
 import { Button } from '../../../shared/components/button/button';
 import { Dialog } from '../../../shared/components/dialog/dialog';
+import { AUTH_ERRORS } from '../../auth/auth-validation';
 import { visibleError } from '../../auth/visible-error';
 import { MenuContact, WORKSPACE_NAME } from '../../workspace/workspace-menu/menu-entries';
 import { channelNameRules } from '../channel-validation';
@@ -33,7 +34,8 @@ const EMPTY_CHOICE: MemberChoice = { scope: 'all', memberIds: [] };
  * Creates a channel in two steps (Figma `37. Add channel` 331:2174, then
  * `38. Add Members after add channel` 578:8272). The name must not be empty or taken
  * (DA checklist, Channels US1); "Erstellen" in the second step only works once people
- * are chosen (Figma Note 6). The parent stores the channel.
+ * are chosen (Figma Note 6). `create` stores the channel; a failure keeps the dialog open
+ * with a message.
  */
 @Component({
   selector: 'app-create-channel-dialog',
@@ -46,7 +48,8 @@ export class CreateChannelDialog {
   readonly takenNames = input<readonly string[]>([]);
   readonly people = input.required<readonly MenuContact[]>();
   readonly closed = output<void>();
-  readonly created = output<NewChannel>();
+  readonly create = input.required<(channel: NewChannel) => Promise<void>>();
+  readonly saveError = signal('');
   readonly workspaceName = WORKSPACE_NAME;
   readonly step = signal<'details' | 'members'>('details');
   readonly details = signal<ChannelDetails>(EMPTY_DETAILS);
@@ -85,22 +88,33 @@ export class CreateChannelDialog {
     return undefined;
   }
 
-  /** Reports the new channel and starts over. */
+  /** Stores the new channel and starts over; a failure keeps both steps. */
   private async finish(): Promise<undefined> {
+    this.saveError.set('');
+    try {
+      await this.create()(this.toNewChannel());
+      this.resetForms();
+    } catch {
+      this.saveError.set(AUTH_ERRORS.generic);
+    }
+    return undefined;
+  }
+
+  /** The channel as entered in both steps. */
+  private toNewChannel(): NewChannel {
     const { scope, memberIds } = this.choice();
-    this.created.emit({
+    return {
       name: this.details().name.trim(),
       description: this.details().description.trim(),
       memberIds: scope === 'all' ? 'all' : memberIds,
-    });
-    this.resetForms();
-    return undefined;
+    };
   }
 
   /** Empties both steps and returns to the first one. */
   private resetForms(): void {
     this.detailsForm().reset(EMPTY_DETAILS);
     this.choiceForm().reset(EMPTY_CHOICE);
+    this.saveError.set('');
     this.step.set('details');
   }
 }

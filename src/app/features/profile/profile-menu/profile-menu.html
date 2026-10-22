@@ -41,5 +41,5 @@
   [profile]="profile()"
   [isOwn]="true"
   (closed)="closeProfile()"
-  (profileChanged)="updateProfile($event)"
+  [store]="updateProfile"
 />

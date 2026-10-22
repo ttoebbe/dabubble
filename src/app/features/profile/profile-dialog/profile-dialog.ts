@@ -5,11 +5,16 @@ import { Dialog } from '../../../shared/components/dialog/dialog';
 import { ProfileDetails } from '../profile-details';
 import { ProfileChanges, ProfileEditForm } from '../profile-edit-form/profile-edit-form';
 
+/** Default for profiles that cannot be edited. */
+async function storeNothing(): Promise<void> {
+  return undefined;
+}
+
 /**
  * Profile view (Figma `Profile view main` 163:188 for the own profile,
  * `65. Profile view other users` 463:7263 for others). Other people get the
  * "Nachricht" button; the parent decides where it leads (direct message of area B).
- * The own profile can switch to edit mode and reports the new name and picture.
+ * The own profile can switch to edit mode; `store` saves the new name and picture.
  */
 @Component({
   selector: 'app-profile-dialog',
@@ -23,7 +28,7 @@ export class ProfileDialog {
   readonly isOwn = input(false);
   readonly closed = output<void>();
   readonly messageRequested = output<void>();
-  readonly profileChanged = output<ProfileChanges>();
+  readonly store = input<(changes: ProfileChanges) => Promise<void>>(storeNothing);
   readonly editing = signal(false);
   readonly heading = computed(() => (this.editing() ? 'Dein Profil bearbeiten' : 'Profil'));
   readonly statusLabel = computed(() =>
@@ -36,9 +41,9 @@ export class ProfileDialog {
     this.closed.emit();
   }
 
-  /** Reports the new name and picture and returns to the view mode. */
-  saveChanges(changes: ProfileChanges): void {
-    this.profileChanged.emit(changes);
+  /** Stores the new name and picture, then returns to the view mode; errors stay in the form. */
+  readonly saveChanges = async (changes: ProfileChanges): Promise<void> => {
+    await this.store()(changes);
     this.editing.set(false);
-  }
+  };
 }

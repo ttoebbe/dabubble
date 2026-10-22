@@ -1,4 +1,4 @@
-<app-dialog [heading]="heading()" [open]="open()" (closed)="closed.emit()">
+<app-dialog [heading]="heading()" [open]="open()" (closed)="close()">
   <div class="channel-edit">
     <app-channel-setting
       label="Channel-Name"
@@ -6,13 +6,13 @@
       [value]="channel().name"
       [withTag]="true"
       [takenNames]="otherChannelNames()"
-      (saved)="renamed.emit($event)"
+      [store]="rename()"
     />
     <app-channel-setting
       label="Beschreibung"
       placeholder="Dein Text hier"
       [value]="channel().description"
-      (saved)="descriptionChanged.emit($event)"
+      [store]="describe()"
     >
       <div class="channel-edit__creator">
         <p class="channel-edit__label">Erstellt von</p>
@@ -27,6 +27,9 @@
         (addMembers)="addMembers.emit()"
       />
     </section>
-    <app-button class="channel-edit__leave" (click)="left.emit()">Channel verlassen</app-button>
+    <div class="channel-edit__footer">
+      <p class="channel-edit__error" aria-live="polite">{{ leaveError() }}</p>
+      <app-button (click)="leaveChannel()">Channel verlassen</app-button>
+    </div>
   </div>
 </app-dialog>
