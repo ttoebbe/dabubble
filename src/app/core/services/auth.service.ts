@@ -23,8 +23,12 @@ export const AVATAR_PLACEHOLDER = 'img/avatars/avatar-placeholder.svg';
 /** Name of a guest account; Figma shows none. */
 const GUEST_NAME = 'Gast';
 
-/** Page the e-mail link for a new password opens (Figma `05-Reset password`). */
-const RESET_PASSWORD_PATH = '/passwort-zuruecksetzen';
+/**
+ * Where Firebase's own reset page leads after the new password is set. The project cannot
+ * point the e-mail link at `/passwort-zuruecksetzen` yet (docs/todo.md); once it can, that
+ * page handles the link and this path is no longer used.
+ */
+const AFTER_RESET_PATH = '/login';
 
 /** What the sign-up collects before the account is created. */
 export interface SignUpData {
@@ -93,9 +97,9 @@ export class AuthService {
     }
   }
 
-  /** Sends the e-mail with the link to `/passwort-zuruecksetzen`. */
+  /** Sends the e-mail with the link for a new password. */
   async sendPasswordReset(email: string): Promise<void> {
-    const url = `${window.location.origin}${RESET_PASSWORD_PATH}`;
+    const url = `${window.location.origin}${AFTER_RESET_PATH}`;
     await sendPasswordResetEmail(this.auth, email, { url });
   }
 
