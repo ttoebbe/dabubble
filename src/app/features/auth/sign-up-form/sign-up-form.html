@@ -1,0 +1,47 @@
+<app-auth-card heading="Konto erstellen" (back)="back.emit()">
+  <form class="sign-up" [formRoot]="signUpForm">
+    <p class="sign-up__text">
+      Mit deinem Namen und deiner E-Mail-Adresse hast du dein neues DABubble-Konto.
+    </p>
+    <div class="sign-up__fields">
+      <app-input-field icon="person" [error]="nameError()">
+        <input
+          #control
+          type="text"
+          placeholder="Name und Nachname"
+          autocomplete="name"
+          [formField]="signUpForm.name"
+        />
+      </app-input-field>
+      <app-input-field icon="mail" [error]="emailError()">
+        <input
+          #control
+          type="email"
+          placeholder="beispielname@email.com"
+          autocomplete="email"
+          [formField]="signUpForm.email"
+        />
+      </app-input-field>
+      <app-input-field icon="lock" [error]="passwordError()">
+        <input
+          #control
+          type="password"
+          placeholder="Passwort"
+          autocomplete="new-password"
+          [formField]="signUpForm.password"
+        />
+      </app-input-field>
+    </div>
+    <label class="sign-up__privacy">
+      <input class="sign-up__checkbox" type="checkbox" [formField]="signUpForm.privacyAccepted" />
+      <span>
+        Ich stimme der
+        <a class="sign-up__link" routerLink="/datenschutz" target="_blank">Datenschutzerklärung</a>
+        zu.
+      </span>
+    </label>
+    <app-button class="sign-up__submit" type="submit" [disabled]="signUpForm().invalid()">
+      Weiter
+    </app-button>
+  </form>
+</app-auth-card>

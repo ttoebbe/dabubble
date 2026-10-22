@@ -1,0 +1,108 @@
+@use 'breakpoints' as bp;
+
+.sign-up {
+  display: flex;
+  flex-direction: column;
+}
+
+.sign-up__text {
+  padding-inline: 14px 0;
+  font-size: var(--font-size-subtitle);
+  line-height: var(--line-height-tight);
+  text-align: center;
+}
+
+.sign-up__fields {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  margin-top: 41px;
+}
+
+.sign-up__privacy {
+  position: relative;
+  isolation: isolate;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-top: 7px;
+  font-family: var(--font-label);
+  font-size: var(--font-size-label);
+  color: var(--color-label);
+  cursor: pointer;
+
+  &::after {
+    content: '';
+    position: absolute;
+    z-index: -1;
+    inset: -6px 0;
+  }
+}
+
+.sign-up__checkbox {
+  display: grid;
+  flex: none;
+  place-items: center;
+  width: 24px;
+  height: 24px;
+  margin: 0;
+  border-radius: 50%;
+  appearance: none;
+  cursor: pointer;
+  transition: background-color var(--duration-hover) var(--easing-hover);
+
+  &::before {
+    content: '';
+    width: 24px;
+    height: 24px;
+    background-color: var(--color-purple-2);
+    mask: url('/img/icons/checkbox-default.svg') center / contain no-repeat;
+  }
+
+  &:checked::before {
+    mask-image: url('/img/icons/checkbox-checked.svg');
+  }
+}
+
+.sign-up__privacy:hover .sign-up__checkbox {
+  background-color: var(--color-bg);
+
+  &::before {
+    background-color: var(--color-primary);
+  }
+}
+
+.sign-up__link {
+  padding: 5px 4px;
+  border-radius: var(--radius-panel);
+  font-family: var(--font-link);
+  font-size: var(--font-size-body);
+  color: var(--color-purple-2);
+  text-decoration: none;
+  transition: background-color var(--duration-hover) var(--easing-hover);
+
+  &:hover {
+    background-color: var(--color-bg);
+    font-weight: var(--font-weight-medium);
+  }
+}
+
+.sign-up__submit {
+  align-self: flex-end;
+  margin-top: 40px;
+}
+
+@include bp.mobile {
+  .sign-up__text {
+    padding-inline: 0;
+    font-size: var(--font-size-body);
+  }
+
+  .sign-up__fields {
+    margin-top: 20px;
+  }
+
+  .sign-up__submit {
+    margin-top: 15px;
+  }
+}

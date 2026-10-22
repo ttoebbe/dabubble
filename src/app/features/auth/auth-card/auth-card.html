@@ -1,0 +1,12 @@
+<section class="auth-card" [attr.aria-labelledby]="headingId">
+  @if (showBack()) {
+    <button
+      class="auth-card__back"
+      type="button"
+      aria-label="Zurück"
+      (click)="back.emit()"
+    ></button>
+  }
+  <h1 class="auth-card__title" [id]="headingId">{{ heading() }}</h1>
+  <ng-content />
+</section>

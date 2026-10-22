@@ -1,0 +1,76 @@
+@use 'breakpoints' as bp;
+
+:host {
+  display: block;
+  width: 606px;
+  max-width: 100%;
+  margin-inline: auto;
+}
+
+.auth-card {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: 32px;
+  padding: 40px 53px;
+  border-radius: var(--radius-panel);
+  background-color: var(--color-white);
+  box-shadow: var(--shadow-header);
+}
+
+.auth-card__back {
+  position: absolute;
+  top: 47px;
+  left: 32px;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  transition: background-color var(--duration-hover) var(--easing-hover);
+
+  &::before {
+    content: '';
+    position: absolute;
+    inset: 8px;
+    background-color: var(--color-black);
+    mask: url('/img/icons/arrow-back.svg') center / contain no-repeat;
+  }
+
+  &::after {
+    content: '';
+    position: absolute;
+    inset: calc((40px - var(--touch-target-min)) / 2);
+  }
+
+  &:hover {
+    background-color: var(--color-bg);
+  }
+
+  &:hover::before {
+    background-color: var(--color-accent);
+  }
+}
+
+.auth-card__title {
+  font-size: var(--font-size-display);
+  font-weight: var(--font-weight-bold);
+  line-height: var(--line-height-tight);
+  text-align: center;
+  color: var(--color-primary);
+}
+
+@include bp.mobile {
+  .auth-card {
+    gap: 20px;
+    padding: 20px;
+  }
+
+  .auth-card__back {
+    top: 20px;
+    left: 22px;
+  }
+
+  .auth-card__title {
+    padding-inline: 44px;
+    font-size: var(--font-size-display-mobile);
+  }
+}

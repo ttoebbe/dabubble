@@ -17,6 +17,11 @@ export const AUTH_ROUTES: Routes = [
         title: 'Anmeldung – DABubble',
         loadComponent: () => import('./login/login').then((module) => module.Login),
       },
+      {
+        path: 'registrieren',
+        title: 'Konto erstellen – DABubble',
+        loadComponent: () => import('./sign-up/sign-up').then((module) => module.SignUp),
+      },
     ],
   },
   ...LEGAL_ROUTES,
