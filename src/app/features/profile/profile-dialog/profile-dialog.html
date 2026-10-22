@@ -27,10 +27,12 @@
           {{ statusLabel() }}
         </p>
       </div>
-      <div class="profile__contact">
-        <p class="profile__label">E-Mail-Adresse</p>
-        <a class="profile__email" [href]="'mailto:' + profile().email">{{ profile().email }}</a>
-      </div>
+      @if (profile().email) {
+        <div class="profile__contact">
+          <p class="profile__label">E-Mail-Adresse</p>
+          <a class="profile__email" [href]="'mailto:' + profile().email">{{ profile().email }}</a>
+        </div>
+      }
       @if (!isOwn()) {
         <app-button class="profile__message" (click)="messageRequested.emit()">
           <span class="profile__message-icon"></span>
