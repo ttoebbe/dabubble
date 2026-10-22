@@ -32,9 +32,14 @@ export function toMenuContact(user: AppUser, selfUid: string | null): MenuContac
   };
 }
 
-/** People for the menu: the signed-in person first, then everybody else by name. */
+/**
+ * People for menus, pickers and member lists: the signed-in person first, then everybody else
+ * by name. Other guests stay hidden, so guests who only closed the tab do not pile up
+ * (decision Thomas 22.10.2026); a guest still sees themselves.
+ */
 export function toMenuContacts(users: readonly AppUser[], selfUid: string | null): MenuContact[] {
   return users
+    .filter((user) => !user.isGuest || user.uid === selfUid)
     .map((user) => toMenuContact(user, selfUid))
     .sort(
       (first, second) =>

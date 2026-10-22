@@ -68,12 +68,14 @@ export class WorkspaceLayout {
 
   /**
    * Stores a new channel; it appears at the bottom of the channel list (Figma Note 7)
-   * and is selected. "Alle Mitglieder" means everybody in the workspace. A failure is
-   * shown by the dialog.
+   * and is selected. "Alle Mitglieder" means everybody in the menu, so no hidden guests. A
+   * failure is shown by the dialog.
    */
   readonly addChannel = async (channel: NewChannel): Promise<void> => {
     const memberIds =
-      channel.memberIds === 'all' ? this.users.users().map((user) => user.uid) : channel.memberIds;
+      channel.memberIds === 'all'
+        ? this.contacts().map((contact) => contact.id)
+        : channel.memberIds;
     const id = await this.channelService.create({ ...channel, memberIds });
     this.activeEntryId.set(id);
     this.createChannelOpen.set(false);
