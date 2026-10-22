@@ -18,19 +18,28 @@ Offene Aufgaben außerhalb der Arbeitspakete. Erledigtes abhaken, nicht löschen
 - [x] Favicon: Angular-Logo durch das DABubble-Logo ersetzen (DA-Checkliste) – A
 - [x] Design-Tokens aus `docs/Figma/spec.md` nach `src/styles/`, `public/fonts/fonts.css` einbinden – A
 - [x] Shared-UI: Button, Input-Feld mit Fehleranzeige, Avatar, Dialog-Rahmen – A
-- [ ] Firebase-Projekt, Vorlage `src/environments/environment.example.ts`, Datenmodell in `core/models/` – B
+- [x] Firebase-Projekt, Vorlage `src/environments/environment.example.ts`, Datenmodell in `core/models/` – B, von A übernommen (22.10.2026: Projekt „DABubble“ `reuter-8ac51`, Firestore europe-west3, Anmeldung per E-Mail, Google und Gast; Datenmodell und Regeln ttoebbe/dabubble#1)
+- [ ] Firebase-Konfiguration lokal in `src/environments/environment.ts` und als GitHub-Secret `FIREBASE_CONFIG` (Web-Konfiguration aus der Firebase-Konsole) – Thomas; Yannic bekommt sie von Thomas
+- [ ] Datenmodell und Regeln aus ttoebbe/dabubble#1 bestätigen, `firestore.rules` ins Repo (die Regeln stehen bisher nur in der Konsole) – B
 - [x] Devspace-Logo exportiert (`public/img/logos/workspace-logo.svg`, Figma `237:497` über die UI) – A
 - [x] Startseite: `''` → `/intro` → `/login` (`app.routes.ts`, Freigabe Thomas 22.10.2026, Yannic informiert Thomas) – A
-- [ ] Anmeldung an Firebase Authentication anbinden (E-Mail/Passwort, Gast, Google), bis dahin führt der Login ohne Prüfung in den Workspace – A, sobald Firebase steht
-- [ ] Registrierung, Avatar und Passwort-Reset an Firebase Authentication anbinden (Konto anlegen, Avatar im Nutzer speichern, Reset-Mail mit Link auf `/passwort-zuruecksetzen`, E-Mail-Vorlage nach Figma `1898:19353`) – A, sobald Firebase steht
-- [ ] Workspace-Menü: Beispiel-Einträge (`workspace-menu/menu-entries.ts`) durch `ChannelService.channels` und `UserService.users` ersetzen, Auswahl auf die Chat-Routen von B umstellen – A, sobald Firebase und Routen stehen
-- [ ] Profil: „Log out“ an `AuthService` anbinden, Beispielprofil (`profile/profile-details.ts`) durch den angemeldeten Nutzer ersetzen – A, sobald Auth steht
-- [ ] Profil: Name und Avatar in Firestore speichern (Auswahl im Bearbeiten-Dialog steht) – A, sobald Firebase steht
+- [x] Anmeldung an Firebase Authentication anbinden (E-Mail/Passwort, Gast, Google), bis dahin führt der Login ohne Prüfung in den Workspace – A, sobald Firebase steht
+- [x] Registrierung, Avatar und Passwort-Reset an Firebase Authentication anbinden (Konto anlegen, Avatar im Nutzer speichern, Reset-Mail) – A
+- [ ] Reset-Mail: Aktions-URL in der Firebase-Konsole auf `/passwort-zuruecksetzen` umstellen (Speichern schlug am 22.10.2026 fehl; bis dahin setzt die Firebase-Seite das Passwort), E-Mail-Vorlage nach Figma `1898:19353` – A
+- [x] Workspace-Menü: Beispiel-Einträge (`workspace-menu/menu-entries.ts`) durch `ChannelService.channels` und `UserService.users` ersetzen – A
+- [ ] Workspace-Menü: Auswahl (und „Nachricht“ im Profil) auf die Chat-Routen von B umstellen – A, sobald B die Routen hat
+- [x] Profil: „Log out“ an `AuthService` anbinden, Beispielprofil (`profile/profile-details.ts`) durch den angemeldeten Nutzer ersetzen – A, sobald Auth steht
+- [x] Profil: Name und Avatar in Firestore speichern (Auswahl im Bearbeiten-Dialog steht) – A, sobald Firebase steht
 - [ ] Avatar-Komponente fluide machen (bei 320 px mit Scrollbalken wird das 200-px-Bild im Profil-Dialog gestaucht) – A, Absprache mit B (`shared/`)
-- [ ] Dialoge „Channel bearbeiten“, „Mitglieder“ und „Leute hinzufügen“ (`channels/`) im Channel-Kopf einbinden – B; Mitglieder speichern – A, sobald `ChannelService` steht
-- [ ] Channels in Firestore speichern: `ChannelService` statt der Liste im Workspace-Rahmen, Mitglieder des neuen Channels übernehmen – A, sobald Firebase und Datenmodell stehen
+- [ ] Dialoge „Channel bearbeiten“, „Mitglieder“ und „Leute hinzufügen“ aus dem Channel-Kopf öffnen: `ChannelDialogs.open(channelId, 'settings' | 'members' | 'add-members')` – B; Anzeige und Speichern stehen (A, 22.10.2026)
+- [ ] Profil einer Person aus Nachricht oder Erwähnung öffnen: `ProfileViewer.show(uid)` – B; Dialog steht (A, 22.10.2026)
+- [x] Channels in Firestore speichern: `ChannelService` statt der Liste im Workspace-Rahmen, Mitglieder des neuen Channels übernehmen – A, sobald Firebase und Datenmodell stehen
 - [x] Layout-Check: privates Repo `ttoebbe/dabubble-layout-check` (aus `ttoebbe/join-layout-check`, an den Angular-Build angepasst, 5 Seiten und Zustände × 6 Viewports), lokal grün – A
 - [ ] Layout-Check in Actions: `workflow/layout-check.yml` aus dem Checker-Repo nach `.github/workflows/` übernehmen (gemeinsame Datei, Absprache mit B), Secret `LAYOUT_CHECK_TOKEN` anlegen (Thomas), danach in `CLAUDE.md` „geplant“ streichen – A
+- [ ] Layout-Check: Der Workspace verlangt jetzt eine Anmeldung; der Checker muss sich vorher anmelden (z. B. Gäste-Login) – A
+- [ ] Build-Warnung: Initial-Bundle 850 kB über dem Budget von 500 kB (Firebase); Budget in `angular.json` anheben oder Firebase nachladen – A, B (gemeinsame Datei)
+- [ ] Firebase-Projekt aufräumen: Realtime Database, Storage und App „ReuterSandUndKies“ stammen aus dem alten Projekt – Thomas
+- [ ] Gast-Konten bleiben nach dem Abmelden bestehen (anonymes Konto und Profil); aufräumen oder so lassen – A, B
 - [ ] Build-Warnung „Unable to locate stylesheet fonts/fonts.css“ (beasties) und Konsolen-Warnung zum Nunito-Preload klären – A
 
 ## Im Team klären

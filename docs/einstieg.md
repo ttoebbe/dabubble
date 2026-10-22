@@ -46,10 +46,14 @@ Routen für Channel-, DM- und Thread-Ansicht) stimmen wir bis Ende Phase 0 ab.
    `git clone https://github.com/ttoebbe/dabubble.git`, dann im Ordner `npm install`.
 3. Prüfen, dass `git config user.name` den Namen **Yannic** enthält. Daran erkennt Claude Code
    deinen Bereich; sonst fragt es erst nach.
-4. `npm start` und im Browser `http://localhost:4200/` öffnen.
-5. Claude Code im Projektordner starten. Fragt es nach dem MCP-Server `angular-cli`
+4. Firebase-Konfiguration anlegen: `src/environments/environment.example.ts` nach
+   `src/environments/environment.ts` kopieren und die Web-Konfiguration eintragen, die du von
+   Thomas bekommst. Die Datei ist in `.gitignore` und kommt nie ins Repo; die CI baut mit dem
+   Secret `FIREBASE_CONFIG`.
+5. `npm start` und im Browser `http://localhost:4200/` öffnen.
+6. Claude Code im Projektordner starten. Fragt es nach dem MCP-Server `angular-cli`
    (`.mcp.json`), kannst du ihn erlauben – er liefert die Angular-Doku.
-6. Lesen: `CLAUDE.md`, `docs/arbeitsteilung.md`, `docs/todo.md` und Abschnitt 6 der Spec.
+7. Lesen: `CLAUDE.md`, `docs/arbeitsteilung.md`, `docs/todo.md` und Abschnitt 6 der Spec.
 
 ## So arbeiten wir zusammen
 
@@ -70,7 +74,21 @@ Routen für Channel-, DM- und Thread-Ansicht) stimmen wir bis Ende Phase 0 ab.
 ## Gemeinsam zu entscheiden
 
 - Zuordnung der Punkte, die nur in Figma stehen (`docs/arbeitsteilung.md`).
-- Formulare mit Signal Forms oder Reactive Forms (`docs/todo.md`).
+
+Entschieden: Formulare mit Signal Forms (22.10.2026).
+
+## Was Bereich A bereitstellt (Stand 22.10.2026)
+
+| Was                                                 | Wo                                               |
+| --------------------------------------------------- | ------------------------------------------------ |
+| Angemeldete Person `currentUser`, `uid`             | `AuthService` in `core/services/auth.service.ts` |
+| Alle Personen `users` (Name, Avatar, Online-Status) | `UserService` in `core/services/user.service.ts` |
+| Eigene Channels `channels`, alle `allChannels`      | `ChannelService`                                 |
+| Profil einer Person öffnen                          | `ProfileViewer.show(uid)` in `features/profile/` |
+| Channel bearbeiten, Mitglieder, Leute hinzufügen    | `ChannelDialogs.open(channelId, kind)`           |
+| Workspace-Rahmen mit Outlets für Chat und `thread`  | `features/workspace/workspace.routes.ts`         |
+
+Datenmodell und Firestore-Regeln stehen als Vorschlag in ttoebbe/dabubble#1.
 
 Das Repo liegt in Thomas' GitHub-Konto. Repo-Einstellungen (Secrets, Einladungen) kann dort nur
 der Besitzer ändern; brauchst du dort etwas, sag Thomas Bescheid.
