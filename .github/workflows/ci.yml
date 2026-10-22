@@ -40,6 +40,18 @@ jobs:
       - name: Format check
         run: npm run format:check
 
+      # environment.ts stays out of the repository. The secret FIREBASE_CONFIG holds the web
+      # config of the Firebase project as JSON; without it (forks) the empty template is used.
+      - name: Write the Firebase config
+        env:
+          FIREBASE_CONFIG: ${{ secrets.FIREBASE_CONFIG }}
+        run: |
+          if [ -n "${FIREBASE_CONFIG:-}" ]; then
+            printf 'export const environment = { firebase: %s };\n' "$FIREBASE_CONFIG" > src/environments/environment.ts
+          else
+            cp src/environments/environment.example.ts src/environments/environment.ts
+          fi
+
       - name: Lint
         run: npm run lint
 

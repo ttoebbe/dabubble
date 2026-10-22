@@ -3,7 +3,8 @@
 # SFTP or FTPS. Only the build folder goes online — a positive list, not an
 # exclude list.
 #
-# Repository secrets: DEPLOY_HOST, DEPLOY_USER, DEPLOY_PASSWORD, DEPLOY_REMOTE_DIR.
+# Repository secrets: DEPLOY_HOST, DEPLOY_USER, DEPLOY_PASSWORD, DEPLOY_REMOTE_DIR,
+# FIREBASE_CONFIG (web config of the Firebase project as JSON).
 # Repository variable: DEPLOY_PROTOCOL = sftp (default) or ftps.
 
 name: Deploy
@@ -49,10 +50,11 @@ jobs:
           DEPLOY_PASSWORD: ${{ secrets.DEPLOY_PASSWORD }}
           DEPLOY_REMOTE_DIR: ${{ secrets.DEPLOY_REMOTE_DIR }}
           DEPLOY_PROTOCOL: ${{ vars.DEPLOY_PROTOCOL }}
+          FIREBASE_CONFIG: ${{ secrets.FIREBASE_CONFIG }}
         run: |
           set -euo pipefail
           missing=0
-          for name in DEPLOY_HOST DEPLOY_USER DEPLOY_PASSWORD DEPLOY_REMOTE_DIR; do
+          for name in DEPLOY_HOST DEPLOY_USER DEPLOY_PASSWORD DEPLOY_REMOTE_DIR FIREBASE_CONFIG; do
             if [ -z "${!name:-}" ]; then
               echo "::error::$name is not set. Add it under Settings > Secrets and variables > Actions as a repository secret."
               missing=1
@@ -101,6 +103,12 @@ jobs:
 
       - name: Install dependencies
         run: npm ci
+
+      # environment.ts stays out of the repository; the live build needs the real config.
+      - name: Write the Firebase config
+        env:
+          FIREBASE_CONFIG: ${{ secrets.FIREBASE_CONFIG }}
+        run: printf 'export const environment = { firebase: %s };\n' "$FIREBASE_CONFIG" > src/environments/environment.ts
 
       - name: Lint
         run: npm run lint
