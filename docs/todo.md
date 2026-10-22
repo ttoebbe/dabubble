@@ -14,7 +14,7 @@ Offene Aufgaben außerhalb der Arbeitspakete. Erledigtes abhaken, nicht löschen
 - [x] Branch-Schutz für `main`: nur Force-Push und Löschen gesperrt, beide pushen direkt – A
 - [x] Deploy-Secrets setzen: `DEPLOY_HOST`, `DEPLOY_USER`, `DEPLOY_REMOTE_DIR`, Variable `DEPLOY_PROTOCOL`; `DEPLOY_PASSWORD` setzt Thomas selbst – A
 - [ ] Erster Deploy: prüfen, ob der DA-Webspace SFTP annimmt, sonst `DEPLOY_PROTOCOL=ftps` – A
-- [ ] `.htaccess` für das Angular-Routing auf dem Webspace (Direktaufruf von Unterseiten) – A
+- [x] `.htaccess` für das Angular-Routing auf dem Webspace (Direktaufruf von Unterseiten) – A
 - [x] Favicon: Angular-Logo durch das DABubble-Logo ersetzen (DA-Checkliste) – A
 - [x] Design-Tokens aus `docs/Figma/spec.md` nach `src/styles/`, `public/fonts/fonts.css` einbinden – A
 - [x] Shared-UI: Button, Input-Feld mit Fehleranzeige, Avatar, Dialog-Rahmen – A
@@ -40,7 +40,8 @@ Offene Aufgaben außerhalb der Arbeitspakete. Erledigtes abhaken, nicht löschen
 - [ ] Build-Warnung: Initial-Bundle 850 kB über dem Budget von 500 kB (Firebase); Budget in `angular.json` anheben oder Firebase nachladen – A, B (gemeinsame Datei)
 - [ ] Firebase-Projekt aufräumen: Realtime Database, Storage und App „ReuterSandUndKies“ stammen aus dem alten Projekt – Thomas
 - [ ] Gast-Konten bleiben nach dem Abmelden bestehen (anonymes Konto und Profil); aufräumen oder so lassen – A, B
-- [ ] Build-Warnung „Unable to locate stylesheet fonts/fonts.css“ (beasties) und Konsolen-Warnung zum Nunito-Preload klären – A
+- [x] Build-Warnung „Unable to locate stylesheet fonts/fonts.css“ (beasties): `data-beasties-skip` am Link – A
+- [ ] Konsolen-Warnung zum Nunito-Preload klären – A
 
 ## Im Team klären
 
