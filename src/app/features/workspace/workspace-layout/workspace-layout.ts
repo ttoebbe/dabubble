@@ -4,6 +4,7 @@ import { AuthService } from '../../../core/services/auth.service';
 import { ChannelService } from '../../../core/services/channel.service';
 import { UserService } from '../../../core/services/user.service';
 import { ChannelDialogHost } from '../../channels/channel-dialog-host/channel-dialog-host';
+import { ChannelDialogs } from '../../channels/channel-dialogs';
 import {
   CreateChannelDialog,
   NewChannel,
@@ -46,6 +47,7 @@ export class WorkspaceLayout {
   private readonly auth = inject(AuthService);
   private readonly users = inject(UserService);
   private readonly channelService = inject(ChannelService);
+  private readonly channelDialogs = inject(ChannelDialogs);
   readonly menuId = 'workspace-menu';
   readonly menuCollapsed = signal(false);
   readonly chatOpen = signal(false);
@@ -74,6 +76,12 @@ export class WorkspaceLayout {
     const id = await this.channelService.create({ ...channel, memberIds });
     this.activeEntryId.set(id);
     this.createChannelOpen.set(false);
+  }
+
+  /** Selects the person for a direct message and closes a channel dialog still open behind. */
+  openDirectMessage(uid: string): void {
+    this.channelDialogs.close();
+    this.activeEntryId.set(uid);
   }
 
   /** Deselects a channel the person has just left. */
