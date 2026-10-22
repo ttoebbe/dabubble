@@ -6,6 +6,7 @@ import {
   createUserWithEmailAndPassword,
   deleteUser,
   onAuthStateChanged,
+  sendEmailVerification,
   sendPasswordResetEmail,
   signInAnonymously,
   signInWithEmailAndPassword,
@@ -25,11 +26,11 @@ export const AVATAR_PLACEHOLDER = 'img/avatars/avatar-placeholder.svg';
 const GUEST_NAME = 'Gast';
 
 /**
- * Where Firebase's own reset page leads after the new password is set. The project cannot
- * point the e-mail link at `/passwort-zuruecksetzen` yet (docs/todo.md); once it can, that
- * page handles the link and this path is no longer used.
+ * Where Firebase's own pages lead after the e-mail link was used (new password, confirmed
+ * address). The project cannot point the reset link at `/passwort-zuruecksetzen` yet
+ * (docs/todo.md); once it can, that page handles the reset link itself.
  */
-const AFTER_RESET_PATH = '/login';
+const AFTER_EMAIL_LINK_PATH = '/login';
 
 /** What the sign-up collects before the account is created. */
 export interface SignUpData {
@@ -83,10 +84,15 @@ export class AuthService {
     }
   }
 
-  /** Creates the account with its profile and signs out again, so the login follows (Figma). */
+  /**
+   * Creates the account with its profile, sends the confirmation e-mail (DA checklist Konto
+   * US1, optional) and signs out again, so the login follows (Figma). The e-mail is best
+   * effort: the account exists even if Firebase does not send it.
+   */
   async signUp(data: SignUpData): Promise<void> {
     const { user } = await createUserWithEmailAndPassword(this.auth, data.email, data.password);
     await this.createProfile(user, data.name, data.avatarUrl, false);
+    await sendEmailVerification(user, { url: this.loginUrl() }).catch(() => undefined);
     await this.logOut();
   }
 
@@ -100,8 +106,7 @@ export class AuthService {
 
   /** Sends the e-mail with the link for a new password. */
   async sendPasswordReset(email: string): Promise<void> {
-    const url = `${window.location.origin}${AFTER_RESET_PATH}`;
-    await sendPasswordResetEmail(this.auth, email, { url });
+    await sendPasswordResetEmail(this.auth, email, { url: this.loginUrl() });
   }
 
   /** Throws when the code of the e-mail link is invalid or expired. */
@@ -139,6 +144,11 @@ export class AuthService {
     } catch {
       return false;
     }
+  }
+
+  /** Absolute address of the login, for the "continue" button on Firebase's pages. */
+  private loginUrl(): string {
+    return `${window.location.origin}${AFTER_EMAIL_LINK_PATH}`;
   }
 
   /** Writes the profile of a new account. */
