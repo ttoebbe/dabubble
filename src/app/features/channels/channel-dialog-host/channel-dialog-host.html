@@ -1,0 +1,26 @@
+<app-channel-edit-dialog
+  [open]="dialogs.kind() === 'settings'"
+  [channel]="info()"
+  [otherChannelNames]="otherChannelNames()"
+  [members]="members()"
+  (closed)="dialogs.close()"
+  (renamed)="rename($event)"
+  (descriptionChanged)="describe($event)"
+  (left)="leave()"
+  (memberSelected)="showMember($event)"
+  (addMembers)="openAddMembers()"
+/>
+<app-channel-members-dialog
+  [open]="dialogs.kind() === 'members'"
+  [members]="members()"
+  (closed)="dialogs.close()"
+  (memberSelected)="showMember($event)"
+  (addMembers)="openAddMembers()"
+/>
+<app-add-members-dialog
+  [open]="dialogs.kind() === 'add-members'"
+  [channelName]="info().name"
+  [people]="outsiders()"
+  (closed)="dialogs.close()"
+  (added)="addMembers($event)"
+/>

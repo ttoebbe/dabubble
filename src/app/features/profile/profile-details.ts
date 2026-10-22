@@ -10,6 +10,14 @@ export interface ProfileDetails {
   readonly status: AvatarStatus;
 }
 
+/** Shown while no profile is loaded, e.g. right after the page has opened. */
+export const EMPTY_PROFILE: ProfileDetails = {
+  name: '',
+  email: '',
+  avatarUrl: AVATAR_PLACEHOLDER,
+  status: 'away',
+};
+
 /** Dot on the avatar: green when online, grey when away or offline (Figma "Aktiv" / "Abwesend"). */
 export function toAvatarStatus(presence: Presence): AvatarStatus {
   return presence === 'online' ? 'online' : 'away';

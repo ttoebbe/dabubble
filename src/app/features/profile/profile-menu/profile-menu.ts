@@ -1,18 +1,10 @@
 import { Component, ElementRef, computed, inject, signal, viewChild } from '@angular/core';
 import { Router } from '@angular/router';
-import { AVATAR_PLACEHOLDER, AuthService } from '../../../core/services/auth.service';
+import { AuthService } from '../../../core/services/auth.service';
 import { Avatar } from '../../../shared/components/avatar/avatar';
-import { ProfileDetails, toProfileDetails } from '../profile-details';
+import { EMPTY_PROFILE, toProfileDetails } from '../profile-details';
 import { ProfileDialog } from '../profile-dialog/profile-dialog';
 import { ProfileChanges } from '../profile-edit-form/profile-edit-form';
-
-/** Shown for the moment until the profile of the signed-in person has loaded. */
-const LOADING_PROFILE: ProfileDetails = {
-  name: '',
-  email: '',
-  avatarUrl: AVATAR_PLACEHOLDER,
-  status: 'away',
-};
 
 /**
  * Profile corner of the workspace header (Figma `65. Profile menu` 379:2282): name, avatar and
@@ -31,7 +23,7 @@ export class ProfileMenu {
   private readonly router = inject(Router);
   readonly profile = computed(() => {
     const user = this.auth.currentUser();
-    return user ? toProfileDetails(user) : LOADING_PROFILE;
+    return user ? toProfileDetails(user) : EMPTY_PROFILE;
   });
   readonly profileOpen = signal(false);
   private readonly trigger = viewChild.required<ElementRef<HTMLButtonElement>>('trigger');

@@ -36,3 +36,5 @@
   (closed)="createChannelOpen.set(false)"
   (created)="addChannel($event)"
 />
+<app-channel-dialog-host (left)="forgetChannel($event)" />
+<app-person-profile (messageRequested)="activeEntryId.set($event)" />

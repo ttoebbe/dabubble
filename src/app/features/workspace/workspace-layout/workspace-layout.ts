@@ -3,10 +3,12 @@ import { ActivatedRoute, Router, RouterOutlet } from '@angular/router';
 import { AuthService } from '../../../core/services/auth.service';
 import { ChannelService } from '../../../core/services/channel.service';
 import { UserService } from '../../../core/services/user.service';
+import { ChannelDialogHost } from '../../channels/channel-dialog-host/channel-dialog-host';
 import {
   CreateChannelDialog,
   NewChannel,
 } from '../../channels/create-channel-dialog/create-channel-dialog';
+import { PersonProfile } from '../../profile/person-profile/person-profile';
 import { MenuToggle } from '../menu-toggle/menu-toggle';
 import { WorkspaceHeader } from '../workspace-header/workspace-header';
 import { toMenuContacts } from '../workspace-menu/menu-entries';
@@ -21,7 +23,15 @@ import { WorkspaceMenu } from '../workspace-menu/workspace-menu';
  */
 @Component({
   selector: 'app-workspace-layout',
-  imports: [RouterOutlet, MenuToggle, WorkspaceHeader, WorkspaceMenu, CreateChannelDialog],
+  imports: [
+    RouterOutlet,
+    MenuToggle,
+    WorkspaceHeader,
+    WorkspaceMenu,
+    CreateChannelDialog,
+    ChannelDialogHost,
+    PersonProfile,
+  ],
   templateUrl: './workspace-layout.html',
   styleUrl: './workspace-layout.scss',
   host: {
@@ -64,6 +74,13 @@ export class WorkspaceLayout {
     const id = await this.channelService.create({ ...channel, memberIds });
     this.activeEntryId.set(id);
     this.createChannelOpen.set(false);
+  }
+
+  /** Deselects a channel the person has just left. */
+  forgetChannel(id: string): void {
+    if (this.activeEntryId() === id) {
+      this.activeEntryId.set(null);
+    }
   }
 
   /** One step back in the mobile view order: thread → chat → menu. */
