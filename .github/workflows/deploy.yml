@@ -108,7 +108,8 @@ jobs:
       - name: Write the Firebase config
         env:
           FIREBASE_CONFIG: ${{ secrets.FIREBASE_CONFIG }}
-        run: printf 'export const environment = { firebase: %s };\n' "$FIREBASE_CONFIG" > src/environments/environment.ts
+        run: |
+          printf 'export const environment = { firebase: %s };\n' "$FIREBASE_CONFIG" > src/environments/environment.ts
 
       - name: Lint
         run: npm run lint
