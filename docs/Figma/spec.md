@@ -890,6 +890,14 @@ ttoebbe/dabubble#1.
   otherwise; Figma has no third state.
 - "Nachricht" in the profile of another person selects that person in the workspace menu, the
   same as a click on the direct message there.
+- Start channel (decision Thomas 22.10.2026, not in the checklist): every new account and every
+  guest joins "Entwicklerteam" (`channels/entwicklerteam`), so the workspace is not empty. Its
+  description replaces the Figma sample "#dfsdf" with the channel name.
+- Failed saves (channel name, description, members, leaving, new channel, profile): "Das hat
+  nicht geklappt. Bitte noch einmal versuchen." at the field or next to the button; the dialog
+  stays open (DA checklist Channels US4). Not in Figma.
+- After sign-up Firebase sends its German confirmation e-mail (DA checklist Konto US1,
+  optional); logging in does not wait for the confirmation.
 - Profiles of other people (`ProfileViewer.show(uid)`) and the channel dialogs
   (`ChannelDialogs.open(id, kind)`) are shown by the workspace frame, so area B only calls the
   service.
