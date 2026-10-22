@@ -10,10 +10,17 @@ export const FIREBASE_APP = new InjectionToken<FirebaseApp>('FIREBASE_APP', {
   factory: () => initializeApp(environment.firebase),
 });
 
-/** Firebase Authentication of the app. */
+/**
+ * Firebase Authentication of the app. Its e-mails (password reset) use the German default
+ * texts, because the templates of the project cannot be edited (docs/todo.md).
+ */
 export const FIREBASE_AUTH = new InjectionToken<Auth>('FIREBASE_AUTH', {
   providedIn: 'root',
-  factory: () => getAuth(inject(FIREBASE_APP)),
+  factory: () => {
+    const auth = getAuth(inject(FIREBASE_APP));
+    auth.languageCode = 'de';
+    return auth;
+  },
 });
 
 /** Cloud Firestore of the app. */
