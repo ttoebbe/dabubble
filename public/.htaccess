@@ -1,8 +1,13 @@
 # Angular routing on the DA webspace: unknown paths load index.html, so /login, /workspace
-# and the other routes also work when opened directly or reloaded.
-RewriteEngine On
-RewriteBase /
-RewriteRule ^index\.html$ - [L]
-RewriteCond %{REQUEST_FILENAME} !-f
-RewriteCond %{REQUEST_FILENAME} !-d
-RewriteRule . /index.html [L]
+# and the other routes also work when opened directly or reloaded. ErrorDocument is the
+# fallback for servers that do not run the rewrite rules.
+ErrorDocument 404 /index.html
+
+<IfModule mod_rewrite.c>
+  RewriteEngine On
+  RewriteBase /
+  RewriteRule ^index\.html$ - [L]
+  RewriteCond %{REQUEST_FILENAME} !-f
+  RewriteCond %{REQUEST_FILENAME} !-d
+  RewriteRule . /index.html [L]
+</IfModule>
