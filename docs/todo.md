@@ -5,7 +5,7 @@ Offene Aufgaben außerhalb der Arbeitspakete. Erledigtes abhaken, nicht löschen
 ## Vor der Abgabe
 
 - [ ] `docs/DA_Checkliste/` aus dem Repo entfernen und in `.gitignore` eintragen (Material der DA) – A
-- [ ] Impressum und Datenschutz mit echten Inhalten füllen: Namen, Anschrift, E-Mail, Datenschutztext (Figma hat nur Platzhalter; `features/legal/`) – A, B
+- [ ] Impressum mit echten Daten füllen: Namen, Anschrift, E-Mail von Thomas und Yannic (`features/legal/imprint/`); den Datenschutz-Entwurf (22.10.2026, `features/legal/privacy-policy/`) gemeinsam prüfen – A, B
 - [ ] `.claude/skills/` aus dem Repo entfernen und in `.gitignore` eintragen – A
 - [ ] Beide Teammitglieder forken das Repo (DA-Checkliste) – A, B
 
