@@ -28,10 +28,10 @@ const GUEST_NAME = 'Gast';
 
 /**
  * Where Firebase's own pages lead after the e-mail link was used (new password, confirmed
- * address). The project cannot point the reset link at `/passwort-zuruecksetzen` yet
- * (docs/todo.md); once it can, that page handles the reset link itself.
+ * address): the start page, which opens the login after the intro. The web space does not
+ * answer direct links to routes yet (docs/todo.md), so `/login` would end in a 404 there.
  */
-const AFTER_EMAIL_LINK_PATH = '/login';
+const AFTER_EMAIL_LINK_PATH = '/';
 
 /** What the sign-up collects before the account is created. */
 export interface SignUpData {
@@ -101,7 +101,7 @@ export class AuthService {
   async signUp(data: SignUpData): Promise<void> {
     const { user } = await createUserWithEmailAndPassword(this.auth, data.email, data.password);
     await this.createProfile(user, data.name, data.avatarUrl, false);
-    await sendEmailVerification(user, { url: this.loginUrl() }).catch(() => undefined);
+    await sendEmailVerification(user, { url: this.continueUrl() }).catch(() => undefined);
     await this.logOut();
   }
 
@@ -115,7 +115,7 @@ export class AuthService {
 
   /** Sends the e-mail with the link for a new password. */
   async sendPasswordReset(email: string): Promise<void> {
-    await sendPasswordResetEmail(this.auth, email, { url: this.loginUrl() });
+    await sendPasswordResetEmail(this.auth, email, { url: this.continueUrl() });
   }
 
   /** Throws when the code of the e-mail link is invalid or expired. */
@@ -156,8 +156,8 @@ export class AuthService {
     }
   }
 
-  /** Absolute address of the login, for the "continue" button on Firebase's pages. */
-  private loginUrl(): string {
+  /** Absolute address of the start page, for the "continue" button on Firebase's pages. */
+  private continueUrl(): string {
     return `${window.location.origin}${AFTER_EMAIL_LINK_PATH}`;
   }
 
