@@ -1,0 +1,41 @@
+@mixin label {
+  font-weight: var(--font-weight-bold);
+}
+
+@mixin text-box($radius: var(--radius-text-box)) {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  padding: 17px 19px;
+  border: 1px solid var(--color-lines);
+  border-radius: $radius;
+  background-color: var(--color-white);
+  cursor: text;
+  transition: border-color var(--duration-hover) var(--easing-hover);
+
+  &:hover {
+    border-color: var(--color-primary-hover);
+  }
+
+  &:focus-within {
+    border-color: var(--color-accent);
+  }
+}
+
+@mixin text-box-control {
+  flex: 1;
+  min-width: 0;
+  outline: none;
+
+  &::placeholder {
+    color: var(--color-text-gray);
+    opacity: 1;
+  }
+}
+
+@mixin error-line {
+  min-height: calc(var(--font-size-small) * var(--line-height-auto));
+  margin-top: 6px;
+  font-size: var(--font-size-small);
+  color: var(--color-error);
+}

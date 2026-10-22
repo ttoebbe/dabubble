@@ -1,0 +1,90 @@
+@use 'forms';
+
+:host {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.picker__box {
+  @include forms.text-box(var(--radius-panel));
+
+  flex-wrap: wrap;
+  gap: 10px;
+  min-height: 55px;
+  padding: 6px 19px;
+}
+
+.picker__chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 15px;
+  min-height: 40px;
+  padding: 3px 5px 3px 20px;
+  border-radius: var(--radius-pill);
+  background-color: var(--color-bg);
+}
+
+.picker__remove {
+  position: relative;
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  background-color: var(--color-black);
+  mask: url('/img/icons/close.svg') center / 24px no-repeat;
+  transition: background-color var(--duration-hover) var(--easing-hover);
+
+  &::after {
+    content: '';
+    position: absolute;
+    inset: calc((30px - var(--touch-target-min)) / 2);
+  }
+
+  &:hover {
+    background-color: var(--color-accent);
+  }
+}
+
+.picker__input {
+  @include forms.text-box-control;
+
+  min-width: 120px;
+  min-height: 25px;
+}
+
+.picker__list {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  max-width: 335px;
+  margin: 0;
+  padding: 20px 21px;
+  border: 1px solid var(--color-lines);
+  border-radius: var(--radius-dropdown);
+  background-color: var(--color-white);
+  box-shadow: var(--shadow-header);
+  list-style: none;
+
+  &[hidden] {
+    display: none;
+  }
+}
+
+.picker__item {
+  display: flex;
+}
+
+.picker__option {
+  display: inline-flex;
+  align-items: center;
+  gap: 15px;
+  min-height: 58px;
+  padding: 4px 20px;
+  border-radius: var(--radius-pill);
+  text-align: left;
+  transition: background-color var(--duration-hover) var(--easing-hover);
+
+  &:hover {
+    background-color: var(--color-bg);
+  }
+}

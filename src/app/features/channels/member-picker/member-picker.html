@@ -1,0 +1,37 @@
+<div class="picker__box">
+  @for (person of chosen(); track person.id) {
+    <span class="picker__chip">
+      <app-avatar [src]="person.avatarUrl" [size]="34" />
+      {{ person.name }}
+      <button
+        class="picker__remove"
+        type="button"
+        [attr.aria-label]="person.name + ' entfernen'"
+        (click)="remove(person.id)"
+      ></button>
+    </span>
+  }
+  <input
+    #search
+    class="picker__input"
+    type="text"
+    placeholder="Name eingeben"
+    aria-label="Name eingeben"
+    autocomplete="off"
+    [attr.aria-controls]="listId"
+    [attr.aria-expanded]="suggestions().length > 0"
+    [value]="query()"
+    (input)="updateQuery($event)"
+    (keydown)="handleKey($event)"
+  />
+</div>
+<ul class="picker__list" [id]="listId" [hidden]="!suggestions().length">
+  @for (person of suggestions(); track person.id) {
+    <li class="picker__item">
+      <button class="picker__option" type="button" (click)="add(person.id)">
+        <app-avatar [src]="person.avatarUrl" [status]="person.status" />
+        {{ person.name }}
+      </button>
+    </li>
+  }
+</ul>

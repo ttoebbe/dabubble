@@ -795,3 +795,17 @@ Deviations: fields stay 60 px on mobile (shared input, Figma 50 px); "Passwort v
 "Neu bei DABubble? / Konto erstellen" are left out until their pages exist, so the gap above
 "ODER" is 40 px instead of the link's slot; mobile texts use 18 px instead of 17 px. Until Firebase
 is set up, a valid form, "Gäste-Login" and "Anmelden mit Google" lead straight to `/workspace`.
+
+### 8.9 Create channel
+
+`src/app/features/channels/create-channel-dialog/` with `member-picker/`, opened by "Channel
+hinzufügen" and "+" in the workspace menu. Step 1 as `37. Add channel` (872 px wide), step 2 as
+`38. Add Members after add channel` (710 px). The name is required and must not repeat an existing
+channel name, ignoring case and outer spaces (DA checklist, Channels US1). Messages, not defined in
+Figma: "*Bitte gib einen Channel-Namen ein.", "*Diesen Channel-Namen gibt es schon." (14 px pink
+under the field, space reserved). Step 2: "Alle Mitglieder von Devspace hinzufügen" (Figma names
+"OfficeTeam" / "Entwicklerteam", section 6.4 #7; the implementation reads it as the workspace) or
+"Bestimmte Leute hinzufügen" with the person search; "Erstellen" stays grey until somebody is chosen
+(Note 6). The new channel appears at the bottom of the channel list and is selected (Note 7). The
+search results open below the field in the flow instead of overlapping the dialog edge, so they are
+never cut off by the dialog. Field styles come from `src/styles/_forms.scss`.

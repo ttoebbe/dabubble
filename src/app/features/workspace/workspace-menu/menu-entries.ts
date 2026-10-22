@@ -1,5 +1,8 @@
 import { AvatarStatus } from '../../../shared/components/avatar/avatar';
 
+/** Name of the workspace (Figma `15. Channel name`). */
+export const WORKSPACE_NAME = 'Devspace';
+
 /** Channel as the workspace menu lists it. */
 export interface MenuChannel {
   readonly id: string;

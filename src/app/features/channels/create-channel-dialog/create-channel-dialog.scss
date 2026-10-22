@@ -1,0 +1,120 @@
+@use 'forms';
+
+.create {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  width: 792px;
+  max-width: 100%;
+}
+
+.create--members {
+  width: 630px;
+}
+
+.create__field {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.create__label {
+  @include forms.label;
+}
+
+.create__optional {
+  font-weight: var(--font-weight-regular);
+  color: var(--color-text-gray);
+}
+
+.create__box {
+  @include forms.text-box(var(--radius-panel));
+
+  min-height: 65px;
+}
+
+.create__box--name {
+  border-radius: var(--radius-text-box);
+  min-height: 60px;
+}
+
+.create__box--error {
+  border-color: var(--color-accent);
+}
+
+.create__tag {
+  flex: none;
+  width: 24px;
+  height: 24px;
+  background-color: var(--color-text-gray);
+  mask: url('/img/icons/tag.svg') center / contain no-repeat;
+}
+
+.create__box:focus-within .create__tag {
+  background-color: var(--color-black);
+}
+
+.create__input {
+  @include forms.text-box-control;
+}
+
+.create__error {
+  @include forms.error-line;
+
+  margin-top: -14px;
+}
+
+.create__submit {
+  align-self: flex-end;
+}
+
+.create__choices {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.create__choice {
+  position: relative;
+  isolation: isolate;
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  cursor: pointer;
+
+  &::after {
+    content: '';
+    position: absolute;
+    z-index: -1;
+    inset: calc((25px - var(--touch-target-min)) / 2) 0;
+  }
+}
+
+.create__radio {
+  display: grid;
+  flex: none;
+  place-items: center;
+  width: 20px;
+  height: 20px;
+  margin: 0;
+  border: 1px solid var(--color-lines);
+  border-radius: 50%;
+  background-color: var(--color-white);
+  appearance: none;
+  cursor: pointer;
+
+  &::before {
+    content: '';
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+  }
+
+  &:checked::before {
+    background-color: var(--color-primary);
+  }
+}
+
+.create__workspace {
+  color: var(--color-accent);
+}

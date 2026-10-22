@@ -6,11 +6,12 @@
 />
 <nav class="workspace__menu" aria-label="Workspace-Menü" [id]="menuId" [inert]="menuCollapsed()">
   <app-workspace-menu
-    [channels]="channels"
+    [channels]="channels()"
     [contacts]="contacts"
     [activeId]="activeEntryId()"
     (channelSelected)="activeEntryId.set($event)"
     (contactSelected)="activeEntryId.set($event)"
+    (addChannel)="createChannelOpen.set(true)"
   />
 </nav>
 <main class="workspace__chat">
@@ -28,4 +29,11 @@
   [collapsed]="menuCollapsed()"
   [controls]="menuId"
   (toggled)="toggleMenu()"
+/>
+<app-create-channel-dialog
+  [open]="createChannelOpen()"
+  [takenNames]="channelNames()"
+  [people]="people"
+  (closed)="createChannelOpen.set(false)"
+  (created)="addChannel($event)"
 />

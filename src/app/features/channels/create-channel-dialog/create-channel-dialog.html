@@ -1,0 +1,69 @@
+<app-dialog [heading]="heading()" [open]="open()" (closed)="close()">
+  @if (step() === 'details') {
+    <form class="create" [formRoot]="detailsForm">
+      <p>
+        Channels dienen deinem Team zur Kommunikation. Am besten sollten sie themenbezogen sein
+        #marketing zum Beispiel.
+      </p>
+      <div class="create__field">
+        <label class="create__label" for="channel-name">Channel-Name</label>
+        <div class="create__box create__box--name" [class.create__box--error]="nameError()">
+          <span class="create__tag"></span>
+          <input
+            id="channel-name"
+            class="create__input"
+            type="text"
+            placeholder="z.B. Kooperationsprojekte"
+            autocomplete="off"
+            aria-describedby="channel-name-error"
+            [formField]="detailsForm.name"
+          />
+        </div>
+        <p id="channel-name-error" class="create__error" aria-live="polite">{{ nameError() }}</p>
+      </div>
+      <div class="create__field">
+        <label class="create__label" for="channel-description">
+          Beschreibung <span class="create__optional">(optional)</span>
+        </label>
+        <div class="create__box">
+          <input
+            id="channel-description"
+            class="create__input"
+            type="text"
+            placeholder="Dein Text hier"
+            autocomplete="off"
+            [formField]="detailsForm.description"
+          />
+        </div>
+      </div>
+      <app-button class="create__submit" type="submit">Erstellen</app-button>
+    </form>
+  } @else {
+    <form class="create create--members" [formRoot]="choiceForm">
+      <div class="create__choices" role="radiogroup" [attr.aria-label]="heading()">
+        <label class="create__choice">
+          <input class="create__radio" type="radio" value="all" [formField]="choiceForm.scope" />
+          <span>
+            Alle Mitglieder von <span class="create__workspace">{{ workspaceName }}</span>
+            hinzufügen
+          </span>
+        </label>
+        <label class="create__choice">
+          <input
+            class="create__radio"
+            type="radio"
+            value="selected"
+            [formField]="choiceForm.scope"
+          />
+          Bestimmte Leute hinzufügen
+        </label>
+      </div>
+      @if (choice().scope === 'selected') {
+        <app-member-picker [formField]="choiceForm.memberIds" [people]="people()" />
+      }
+      <app-button class="create__submit" type="submit" [disabled]="choiceForm().invalid()">
+        Erstellen
+      </app-button>
+    </form>
+  }
+</app-dialog>
