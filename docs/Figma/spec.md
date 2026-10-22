@@ -671,9 +671,10 @@ listed here, not as a comment in the stylesheet.
 | `--color-text-gray` | `#686868` | style Text gray (`61:325`) |
 | `--color-black`, `--color-white` | `#000000`, `#FFFFFF` | styles Black (`60:259`), White (`20:21`) |
 | `--color-error` | `#E4126F` | style Rosa error `#ED1E79` (`145:167`), darkened to 4.5 : 1 on white (section 6.5 #4, decision Thomas 22.10.2026) |
-| `--color-online` | `#92C83E` | style online green (`92:2448`) |
+| `--color-online` | `#92C83E` | style online green (`92:2448`), dots only |
+| `--color-online-text` | `#5D8125` | text "Aktiv" in the profile: online green darkened to 4.5 : 1 on white; the dot keeps `#92C83E` (decision Thomas 22.10.2026) |
 | `--color-label` | `#42526E` | style menu color (`5538:20926`), privacy checkbox label |
-| `--color-mail-link` | `#1381FF` | e-mail link in profile views (`163:235`) |
+| `--color-mail-link` | `#0071F3` | e-mail link in profile views (`163:235`, Figma `#1381FF`), darkened to 4.5 : 1 on white (decision Thomas 22.10.2026) |
 | `--color-icon` | `#1C1B1F` | Material Symbols instances (`more_vert`, `edit`) |
 | `--color-handle` | `#D9D9D9` | grab handle of the mobile sheets (`734:11516` in `64b.`) |
 | `--color-primary`, `--color-primary-hover`, `--color-accent`, `--color-disabled` | aliases | `10. Button primary` Default / Hover, input focus stroke, `Disable` variant (section 4.1, 4.2); hover uses Purple 3 instead of Purple 2, so white text keeps 5.1 : 1 (section 6.5 #3) |
