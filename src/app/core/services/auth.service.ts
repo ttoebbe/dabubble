@@ -16,6 +16,7 @@ import {
 } from 'firebase/auth';
 import { deleteDoc, doc, getDoc, onSnapshot, setDoc, updateDoc } from 'firebase/firestore';
 import { AppUser } from '../models/app-user';
+import { leaveAllChannels, prepareStartChannel } from './channel-membership';
 import { FIREBASE_AUTH, FIRESTORE } from './firebase';
 import { PresenceService } from './presence.service';
 
@@ -38,6 +39,11 @@ export interface SignUpData {
   readonly email: string;
   readonly password: string;
   readonly avatarUrl: string;
+}
+
+/** Profile of a new account; it starts online. */
+function toProfile(user: User, name: string, avatarUrl: string, isGuest: boolean): AppUser {
+  return { uid: user.uid, name, email: user.email ?? '', avatarUrl, isGuest, presence: 'online' };
 }
 
 /**
@@ -66,7 +72,8 @@ export class AuthService {
 
   /** Signs in with e-mail and password. */
   async logIn(email: string, password: string): Promise<void> {
-    await signInWithEmailAndPassword(this.auth, email, password);
+    const { user } = await signInWithEmailAndPassword(this.auth, email, password);
+    await this.prepareChannel(user.uid, false);
   }
 
   /** Signs in as guest with a fresh anonymous account. */
@@ -79,7 +86,9 @@ export class AuthService {
   async logInWithGoogle(): Promise<void> {
     const { user } = await signInWithPopup(this.auth, new GoogleAuthProvider());
     const existing = await getDoc(this.profileRef(user.uid));
-    if (!existing.exists()) {
+    if (existing.exists()) {
+      await this.prepareChannel(user.uid, false);
+    } else {
       await this.createProfile(user, user.displayName ?? GUEST_NAME, AVATAR_PLACEHOLDER, false);
     }
   }
@@ -138,6 +147,7 @@ export class AuthService {
    */
   private async removeGuest(user: User): Promise<boolean> {
     try {
+      await leaveAllChannels(this.firestore, user.uid).catch(() => undefined);
       await deleteDoc(this.profileRef(user.uid));
       await deleteUser(user);
       return true;
@@ -151,22 +161,23 @@ export class AuthService {
     return `${window.location.origin}${AFTER_EMAIL_LINK_PATH}`;
   }
 
-  /** Writes the profile of a new account. */
+  /**
+   * Creates the start channel if it is missing and lets a new account join it. Best effort:
+   * signing in must not fail because of the channel.
+   */
+  private prepareChannel(uid: string, join: boolean): Promise<void> {
+    return prepareStartChannel(this.firestore, uid, join).catch(() => undefined);
+  }
+
+  /** Writes the profile of a new account and adds it to the start channel. */
   private async createProfile(
     user: User,
     name: string,
     avatarUrl: string,
     isGuest: boolean,
   ): Promise<void> {
-    const profile: AppUser = {
-      uid: user.uid,
-      name,
-      email: user.email ?? '',
-      avatarUrl,
-      isGuest,
-      presence: 'online',
-    };
-    await setDoc(this.profileRef(user.uid), profile);
+    await setDoc(this.profileRef(user.uid), toProfile(user, name, avatarUrl, isGuest));
+    await this.prepareChannel(user.uid, true);
   }
 
   /** Keeps `currentUser` in sync with the profile of whoever is signed in. */
