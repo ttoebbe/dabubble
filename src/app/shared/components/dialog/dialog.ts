@@ -19,6 +19,7 @@ export class Dialog {
   readonly headingId = `dialog-heading-${++nextDialogId}`;
   private readonly dialog = viewChild.required<ElementRef<HTMLDialogElement>>('dialog');
 
+  /** Keeps the native dialog in line with the `open` input. */
   constructor() {
     effect(() => this.syncOpenState());
   }

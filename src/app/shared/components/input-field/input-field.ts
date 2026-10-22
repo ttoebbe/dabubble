@@ -34,6 +34,7 @@ export class InputField {
   private readonly control = contentChild.required('control', { read: ElementRef });
   private readonly renderer = inject(Renderer2);
 
+  /** Links the projected input once it is there. */
   constructor() {
     effect(() => this.linkControl());
   }
