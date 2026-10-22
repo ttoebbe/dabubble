@@ -1,3 +1,5 @@
+import { AppUser, Presence } from '../../core/models/app-user';
+import { AVATAR_PLACEHOLDER } from '../../core/services/auth.service';
 import { AvatarStatus } from '../../shared/components/avatar/avatar';
 
 /** What the profile menu and the profile dialog show about a person. */
@@ -8,10 +10,17 @@ export interface ProfileDetails {
   readonly status: AvatarStatus;
 }
 
-/** Signed-in sample person from Figma (`163:188`) until `AuthService` exists (docs/todo.md). */
-export const SAMPLE_OWN_PROFILE: ProfileDetails = {
-  name: 'Frederik Beck',
-  email: 'fred.beck@email.com',
-  avatarUrl: 'img/avatars/frederik-beck.svg',
-  status: 'online',
-};
+/** Dot on the avatar: green when online, grey when away or offline (Figma "Aktiv" / "Abwesend"). */
+export function toAvatarStatus(presence: Presence): AvatarStatus {
+  return presence === 'online' ? 'online' : 'away';
+}
+
+/** Profile view of a stored person. */
+export function toProfileDetails(user: AppUser): ProfileDetails {
+  return {
+    name: user.name,
+    email: user.email,
+    avatarUrl: user.avatarUrl || AVATAR_PLACEHOLDER,
+    status: toAvatarStatus(user.presence),
+  };
+}

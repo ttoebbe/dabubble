@@ -1,6 +1,5 @@
 <app-workspace-header
   class="workspace__header"
-  [(profile)]="currentUser"
   [showBack]="chatOpen() || threadOpen()"
   (back)="goBack()"
 />
@@ -33,7 +32,7 @@
 <app-create-channel-dialog
   [open]="createChannelOpen()"
   [takenNames]="channelNames()"
-  [people]="people"
+  [people]="people()"
   (closed)="createChannelOpen.set(false)"
   (created)="addChannel($event)"
 />

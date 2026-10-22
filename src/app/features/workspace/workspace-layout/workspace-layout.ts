@@ -1,13 +1,15 @@
 import { Component, computed, inject, signal } from '@angular/core';
 import { ActivatedRoute, Router, RouterOutlet } from '@angular/router';
+import { AuthService } from '../../../core/services/auth.service';
+import { ChannelService } from '../../../core/services/channel.service';
+import { UserService } from '../../../core/services/user.service';
 import {
   CreateChannelDialog,
   NewChannel,
 } from '../../channels/create-channel-dialog/create-channel-dialog';
-import { SAMPLE_OWN_PROFILE } from '../../profile/profile-details';
 import { MenuToggle } from '../menu-toggle/menu-toggle';
 import { WorkspaceHeader } from '../workspace-header/workspace-header';
-import { MenuChannel, SAMPLE_CHANNELS, SAMPLE_CONTACTS } from '../workspace-menu/menu-entries';
+import { toMenuContacts } from '../workspace-menu/menu-entries';
 import { WorkspaceMenu } from '../workspace-menu/workspace-menu';
 
 /**
@@ -29,25 +31,23 @@ import { WorkspaceMenu } from '../workspace-menu/workspace-menu';
   },
 })
 export class WorkspaceLayout {
+  private readonly router = inject(Router);
+  private readonly route = inject(ActivatedRoute);
+  private readonly auth = inject(AuthService);
+  private readonly users = inject(UserService);
+  private readonly channelService = inject(ChannelService);
   readonly menuId = 'workspace-menu';
   readonly menuCollapsed = signal(false);
   readonly chatOpen = signal(false);
   readonly threadOpen = signal(false);
-  readonly currentUser = signal(SAMPLE_OWN_PROFILE);
-  readonly channels = signal<readonly MenuChannel[]>(SAMPLE_CHANNELS);
-  readonly channelNames = computed(() => this.channels().map((channel) => channel.name));
-  readonly contacts = computed(() =>
-    SAMPLE_CONTACTS.map((contact) =>
-      contact.isSelf
-        ? { ...contact, name: this.currentUser().name, avatarUrl: this.currentUser().avatarUrl }
-        : contact,
-    ),
+  readonly channels = computed(() =>
+    this.channelService.channels().map(({ id, name }) => ({ id, name })),
   );
-  readonly people = SAMPLE_CONTACTS.filter((contact) => !contact.isSelf);
+  readonly channelNames = computed(() => this.channelService.allChannels().map((c) => c.name));
+  readonly contacts = computed(() => toMenuContacts(this.users.users(), this.auth.uid()));
+  readonly people = computed(() => this.contacts().filter((contact) => !contact.isSelf));
   readonly activeEntryId = signal<string | null>(null);
   readonly createChannelOpen = signal(false);
-  private readonly router = inject(Router);
-  private readonly route = inject(ActivatedRoute);
 
   /** Collapses or expands the workspace menu. */
   toggleMenu(): void {
@@ -55,12 +55,13 @@ export class WorkspaceLayout {
   }
 
   /**
-   * Adds a new channel at the bottom of the channel list (Figma Note 7) and selects it.
-   * Kept in this frame until `ChannelService` stores channels in Firestore (docs/todo.md).
+   * Stores a new channel; it appears at the bottom of the channel list (Figma Note 7)
+   * and is selected. "Alle Mitglieder" means everybody in the workspace.
    */
-  addChannel(channel: NewChannel): void {
-    const id = crypto.randomUUID();
-    this.channels.update((channels) => [...channels, { id, name: channel.name }]);
+  async addChannel(channel: NewChannel): Promise<void> {
+    const memberIds =
+      channel.memberIds === 'all' ? this.users.users().map((user) => user.uid) : channel.memberIds;
+    const id = await this.channelService.create({ ...channel, memberIds });
     this.activeEntryId.set(id);
     this.createChannelOpen.set(false);
   }
