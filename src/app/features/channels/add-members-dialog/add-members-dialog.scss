@@ -1,0 +1,27 @@
+.add-members {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  width: 434px;
+  max-width: 100%;
+}
+
+.add-members__channel {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  margin-top: -15px;
+  color: var(--color-purple-2);
+}
+
+.add-members__tag {
+  flex: none;
+  width: 24px;
+  height: 24px;
+  background-color: currentColor;
+  mask: url('/img/icons/tag.svg') center / contain no-repeat;
+}
+
+.add-members__submit {
+  align-self: flex-end;
+}

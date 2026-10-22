@@ -1,0 +1,12 @@
+<app-dialog heading="Leute hinzufügen" [open]="open()" (closed)="close()">
+  <form class="add-members" [formRoot]="membersForm">
+    <p class="add-members__channel">
+      <span class="add-members__tag"></span>
+      {{ channelName() }}
+    </p>
+    <app-member-picker [formField]="membersForm.memberIds" [people]="people()" />
+    <app-button class="add-members__submit" type="submit" [disabled]="membersForm().invalid()">
+      Hinzufügen
+    </app-button>
+  </form>
+</app-dialog>

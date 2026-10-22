@@ -809,3 +809,12 @@ under the field, space reserved). Step 2: "Alle Mitglieder von Devspace hinzufü
 (Note 6). The new channel appears at the bottom of the channel list and is selected (Note 7). The
 search results open below the field in the flow instead of overlapping the dialog edge, so they are
 never cut off by the dialog. Field styles come from `src/styles/_forms.scss`.
+
+### 8.10 Add members
+
+`src/app/features/channels/add-members-dialog/` as `41. Add members R corner` (514 px wide, channel
+name with `#` in `#797EF3` under the title, person search with chips, "Hinzufügen" grey until
+somebody is chosen, Note 6). The channel header of area B opens it, also from "Mitglieder
+hinzufügen" in the members dialog; the dialog reports the chosen person ids. In the search,
+Escape clears the text without closing the dialog and Backspace in an empty search removes the
+last chip. Checked at 1920 and 320 px.
