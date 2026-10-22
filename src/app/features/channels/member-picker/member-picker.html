@@ -15,8 +15,10 @@
     #search
     class="picker__input"
     type="text"
+    role="combobox"
     placeholder="Name eingeben"
     aria-label="Name eingeben"
+    aria-autocomplete="list"
     autocomplete="off"
     [attr.aria-controls]="listId"
     [attr.aria-expanded]="suggestions().length > 0"
