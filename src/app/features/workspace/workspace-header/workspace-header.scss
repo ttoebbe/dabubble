@@ -9,7 +9,8 @@
   justify-self: start;
 }
 
-.header__back {
+.header__back,
+.header__workspace {
   display: none;
 }
 
@@ -61,6 +62,22 @@
     width: var(--touch-target-min);
     height: var(--touch-target-min);
     margin-left: -10px;
+    border-radius: 50%;
+  }
+
+  :host(.header--in-chat) .header__brand {
+    display: none;
+  }
+
+  :host(.header--in-chat) .header__workspace {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-size: var(--font-size-subtitle);
+    font-weight: var(--font-weight-bold);
+  }
+
+  .header__workspace-logo {
     border-radius: 50%;
   }
 }

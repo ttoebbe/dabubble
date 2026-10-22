@@ -722,7 +722,7 @@ no horizontal scroll):
 | Menu collapsed | chat x 20 / 1375 (`516:7084`) | identical; no width animation (Figma: Smart animate) |
 | Mobile menu | x 16, y 92, 398 × 820 (`678:15602`) | identical |
 | Navigation tab | `77.` at y 581–600 of 1080 | anchored 156 px above the bottom edge, so it stays inside the menu on lower screens |
-| Mobile header in chat and thread | back arrow + "Devspace" (`15B. Channel name`) | back arrow + DABubble logo until the Devspace logo is exported (`docs/todo.md`) |
+| Mobile header in chat and thread | back arrow + "Devspace" (`15B. Channel name`) | identical: workspace logo 50 px + "Devspace" 20/700 (logo exported 2026-10-22) |
 
 ### 8.3 Legal pages
 

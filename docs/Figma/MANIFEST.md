@@ -72,7 +72,7 @@ Base URL: `https://raw.githubusercontent.com/google/material-design-icons/master
 
 | File | Source node(s) | imageRef | Original size | Display size | Format | Note |
 |---|---|---|---|---|---|---|
-| `img/workspace-logo.png` | `237:498` (Workspace logo in `15. Channel name`) and its instances | `e5c12f2d3133e14c4587218c1ddb2c9be6823a07` | 500 x 500 | 60 x 60 (desktop), 50 x 50 | png | — |
+| `img/logos/workspace-logo.svg` | `237:497` (Workspace logo in `15. Channel name`: background `237:498` + vector `237:499`) | — | 60 x 60 | 60 x 60 (desktop), 50 x 50 | svg (background embedded as PNG) | UI export in Chrome 2026-10-22, export setting removed afterwards |
 
 Not exported: the three images on page TN (`3341:19503`, `3341:19507`, `3341:19564`) belong to the
 portfolio thumbnail, not to the app. `image-fills.json` lists 47 imageRefs in total; the other 43 are
