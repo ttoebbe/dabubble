@@ -849,7 +849,7 @@ Cards are centred vertically between logo and footer; Figma places each at a dif
   this page (Note 3). "Passwort ändern" works when both passwords match (Note 4, message "Ihre
   Kennwörter stimmen nicht überein"), then the toast "Anmelden" (section 6.4 #11) and the login.
 
-Until Firebase Authentication is set up no account is created and no e-mail is sent.
+Accounts, e-mails and new passwords go through Firebase Authentication (section 8.13).
 
 ### 8.12 Channel settings
 
@@ -863,3 +863,29 @@ empty. On mobile the members follow (`channel-member-list/`, shared with the mem
 dialog takes a text heading); on mobile it is the shared centred dialog, not a full-screen page.
 The channel header of area B opens it; the dialog reports renaming, the new description, leaving
 and the member actions.
+
+### 8.13 Firebase and texts not in Figma
+
+`src/app/core/services/`: `AuthService` (sign-in, sign-up, reset, `currentUser`), `UserService`
+(`users`), `ChannelService` (`allChannels`, own `channels`), `PresenceService`. Guards keep the
+workspace for signed-in people and send them past the account pages. Data model and rules:
+ttoebbe/dabubble#1.
+
+- Login error under the buttons: "Falsches Passwort. Bitte noch einmal versuchen." (Figma `01`
+  error state). Not in Figma, written for the Firebase errors: "*Diese E-Mail-Adresse wird bereits
+  verwendet." (sign-up, at the e-mail field), "Zu viele Versuche. Bitte später noch einmal
+  versuchen.", "Keine Verbindung. Bitte später noch einmal versuchen.", "Das hat nicht
+  geklappt. Bitte noch einmal versuchen." (texts in `auth-validation.ts`).
+- `/passwort-zuruecksetzen` checks the link first: "Link wird geprüft …", for an invalid or used
+  link "Dieser Link ist ungültig oder abgelaufen." with the link "Neue E-Mail anfordern" to
+  `/passwort-vergessen`. Not in Figma.
+- Guest login creates an anonymous account named "Gast" with the placeholder avatar; Figma names
+  no guest. Google login takes the Google name and the placeholder avatar.
+- Presence (DA checklist Konto US6): online while the tab is visible, away while it is hidden,
+  offline after "Log out". The avatar dot shows green "Aktiv" for online, grey "Abwesend"
+  otherwise; Figma has no third state.
+- "Nachricht" in the profile of another person selects that person in the workspace menu, the
+  same as a click on the direct message there.
+- Profiles of other people (`ProfileViewer.show(uid)`) and the channel dialogs
+  (`ChannelDialogs.open(id, kind)`) are shown by the workspace frame, so area B only calls the
+  service.
