@@ -876,6 +876,10 @@ ttoebbe/dabubble#1.
   verwendet." (sign-up, at the e-mail field), "Zu viele Versuche. Bitte später noch einmal
   versuchen.", "Keine Verbindung. Bitte später noch einmal versuchen.", "Das hat nicht
   geklappt. Bitte noch einmal versuchen." (texts in `auth-validation.ts`).
+- Reset e-mail: Firebase blocks template changes for this project for now, so the German default
+  e-mail goes out and its link opens Firebase's own page, which returns to `/login`.
+  `/passwort-zuruecksetzen` is ready for the custom action URL (sender, subject and text of
+  `1898:19353` in docs/todo.md).
 - `/passwort-zuruecksetzen` checks the link first: "Link wird geprüft …", for an invalid or used
   link "Dieser Link ist ungültig oder abgelaufen." with the link "Neue E-Mail anfordern" to
   `/passwort-vergessen`. Not in Figma.
