@@ -20,7 +20,7 @@ Offene Aufgaben außerhalb der Arbeitspakete. Erledigtes abhaken, nicht löschen
 - [x] Shared-UI: Button, Input-Feld mit Fehleranzeige, Avatar, Dialog-Rahmen – A
 - [ ] Firebase-Projekt, Vorlage `src/environments/environment.example.ts`, Datenmodell in `core/models/` – B
 - [ ] Devspace-Logo exportieren (Node `237:497` mit Vektor `237:499`, das PNG ist nur der Hintergrund) – A
-- [ ] Startseite: Weiterleitung `''` → `/workspace` in `app.routes.ts` auf `intro` umstellen (gemeinsame Datei, Absprache mit B); Intro führt schon zu `/login` – A
+- [x] Startseite: `''` → `/intro` → `/login` (`app.routes.ts`, Freigabe Thomas 22.10.2026, Yannic informiert Thomas) – A
 - [ ] Anmeldung an Firebase Authentication anbinden (E-Mail/Passwort, Gast, Google), bis dahin führt der Login ohne Prüfung in den Workspace – A, sobald Firebase steht
 - [ ] Registrierung, Avatar und Passwort-Reset an Firebase Authentication anbinden (Konto anlegen, Avatar im Nutzer speichern, Reset-Mail mit Link auf `/passwort-zuruecksetzen`, E-Mail-Vorlage nach Figma `1898:19353`) – A, sobald Firebase steht
 - [ ] Workspace-Menü: Beispiel-Einträge (`workspace-menu/menu-entries.ts`) durch `ChannelService.channels` und `UserService.users` ersetzen, Auswahl auf die Chat-Routen von B umstellen – A, sobald Firebase und Routen stehen

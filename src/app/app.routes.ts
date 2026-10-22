@@ -5,10 +5,10 @@ import { WORKSPACE_ROUTES } from './features/workspace/workspace.routes';
 /**
  * Root routes. This file only combines the route lists of the two areas; each area adds
  * its own routes in its own file (docs/arbeitsteilung.md). The routes of area B are
- * mounted inside the workspace frame. Until login exists, the start page is the workspace.
+ * mounted inside the workspace frame. The app starts with the intro, which leads to the login.
  */
 export const routes: Routes = [
-  { path: '', pathMatch: 'full', redirectTo: 'workspace' },
+  { path: '', pathMatch: 'full', redirectTo: 'intro' },
   ...AUTH_ROUTES,
   ...WORKSPACE_ROUTES,
 ];
