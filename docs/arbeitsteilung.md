@@ -138,7 +138,10 @@ Alles liegt auf `main`; die Signaturen stehen als JSDoc an den Klassen.
 | Workspace-Rahmen                                 | `features/workspace/workspace.routes.ts` | `/workspace` nur angemeldet (`signedInGuard`); `CHAT_ROUTES` als Kinder, Threads im Outlet `thread`                                           |
 | Datenmodell                                      | `core/models/app-user.ts`, `channel.ts`  | Vorschlag ttoebbe/dabubble#1, Bestätigung durch B offen                                                                                       |
 
-Gäste: Beim Log out löscht die App das anonyme Konto und sein Profil. Nachrichten eines Gastes zeigen danach
+Start-Channel: `channels/entwicklerteam` („Entwicklerteam“) legt die erste Person an, die sich anmeldet; jedes
+neue Konto und jeder Gast tritt ihm automatisch bei (`core/services/channel-membership.ts`).
+
+Gäste: Beim Log out entfernt die App den Gast aus allen Channels und löscht das anonyme Konto und sein Profil. Nachrichten eines Gastes zeigen danach
 auf eine `uid` ohne Profil; wie die Ansicht das darstellt, entscheidet B.
 
 **Firestore-Regeln, live in der Konsole (Stand 22.10.2026).** `firestore.rules` gehört B; bis die Datei im Repo
@@ -153,6 +156,13 @@ service cloud.firestore {
       return request.auth != null;
     }
 
+    function joinsStartChannel(channelId) {
+      return channelId == 'entwicklerteam'
+        && request.resource.data.diff(resource.data).affectedKeys().hasOnly(['memberIds'])
+        && request.resource.data.memberIds.toSet()
+          == resource.data.memberIds.toSet().union([request.auth.uid].toSet());
+    }
+
     match /users/{uid} {
       allow read: if signedIn();
       allow create, update: if signedIn() && request.auth.uid == uid;
@@ -162,7 +172,8 @@ service cloud.firestore {
     match /channels/{channelId} {
       allow read: if signedIn();
       allow create: if signedIn() && request.resource.data.creatorId == request.auth.uid;
-      allow update: if signedIn() && request.auth.uid in resource.data.memberIds;
+      allow update: if signedIn()
+        && (request.auth.uid in resource.data.memberIds || joinsStartChannel(channelId));
     }
   }
 }
