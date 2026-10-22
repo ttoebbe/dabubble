@@ -1,13 +1,13 @@
 <app-workspace-header
   class="workspace__header"
-  [profile]="currentUser"
+  [(profile)]="currentUser"
   [showBack]="chatOpen() || threadOpen()"
   (back)="goBack()"
 />
 <nav class="workspace__menu" aria-label="Workspace-Menü" [id]="menuId" [inert]="menuCollapsed()">
   <app-workspace-menu
     [channels]="channels()"
-    [contacts]="contacts"
+    [contacts]="contacts()"
     [activeId]="activeEntryId()"
     (channelSelected)="activeEntryId.set($event)"
     (contactSelected)="activeEntryId.set($event)"

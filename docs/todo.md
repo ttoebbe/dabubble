@@ -25,7 +25,7 @@ Offene Aufgaben außerhalb der Arbeitspakete. Erledigtes abhaken, nicht löschen
 - [ ] „Passwort vergessen?“ und „Neu bei DABubble? / Konto erstellen“ samt Seiten (Registrierung, Avatar, Passwort zurücksetzen) – A
 - [ ] Workspace-Menü: Beispiel-Einträge (`workspace-menu/menu-entries.ts`) durch `ChannelService.channels` und `UserService.users` ersetzen, Auswahl auf die Chat-Routen von B umstellen – A, sobald Firebase und Routen stehen
 - [ ] Profil: „Log out“ an `AuthService` anbinden, Beispielprofil (`profile/profile-details.ts`) durch den angemeldeten Nutzer ersetzen – A, sobald Auth steht
-- [ ] Profil bearbeiten („Bearbeiten“, Dialog „Dein Profil bearbeiten“) – A, nach der Formular-Entscheidung
+- [ ] Profil: Avatar aus der vorgegebenen Auswahl ändern (DA-Checkliste Konto US4, im Figma-Bearbeiten-Dialog nicht vorhanden – Ort im Team klären), Namen in Firestore speichern – A
 - [ ] Avatar-Komponente fluide machen (bei 320 px mit Scrollbalken wird das 200-px-Bild im Profil-Dialog gestaucht) – A, Absprache mit B (`shared/`)
 - [ ] Dialoge „Mitglieder“ und „Leute hinzufügen“ (`channels/`) im Channel-Kopf einbinden – B; Mitglieder speichern – A, sobald `ChannelService` steht
 - [ ] Channels in Firestore speichern: `ChannelService` statt der Liste im Workspace-Rahmen, Mitglieder des neuen Channels übernehmen – A, sobald Firebase und Datenmodell stehen

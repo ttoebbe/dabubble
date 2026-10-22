@@ -1,3 +1,5 @@
+@use 'breakpoints' as bp;
+
 .profile {
   display: flex;
   flex-direction: column;
@@ -23,6 +25,32 @@
   font-size: var(--font-size-display-mobile);
   font-weight: var(--font-weight-bold);
   overflow-wrap: anywhere;
+}
+
+.profile__name-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 20px;
+}
+
+.profile__edit {
+  position: relative;
+  flex: none;
+  font-weight: var(--font-weight-semibold);
+  color: var(--color-accent);
+  transition: color var(--duration-hover) var(--easing-hover);
+
+  &::after {
+    content: '';
+    position: absolute;
+    inset: -10px -8px;
+  }
+
+  &:hover {
+    font-weight: var(--font-weight-bold);
+    color: var(--color-primary);
+  }
 }
 
 .profile__status {
@@ -82,4 +110,35 @@
   height: 24px;
   background-color: currentColor;
   mask: url('/img/icons/mode-comment.svg') center / contain no-repeat;
+}
+
+@include bp.mobile {
+  .profile__edit {
+    display: grid;
+    place-items: center;
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    background-color: var(--color-bg);
+
+    &::before {
+      content: '';
+      width: 24px;
+      height: 24px;
+      background-color: var(--color-icon);
+      mask: url('/img/icons/edit.svg') center / contain no-repeat;
+    }
+
+    &::after {
+      inset: calc((30px - var(--touch-target-min)) / 2);
+    }
+
+    &:hover::before {
+      background-color: var(--color-accent);
+    }
+  }
+
+  .profile__edit-text {
+    display: none;
+  }
 }

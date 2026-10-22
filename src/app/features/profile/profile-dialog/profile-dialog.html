@@ -1,21 +1,41 @@
-<app-dialog heading="Profil" [open]="open()" (closed)="closed.emit()">
+<app-dialog [heading]="heading()" [open]="open()" (closed)="close()">
   <div class="profile">
     <app-avatar class="profile__avatar" [src]="profile().avatarUrl" [size]="200" />
-    <div class="profile__identity">
-      <p class="profile__name">{{ profile().name }}</p>
-      <p class="profile__status" [class.profile__status--away]="profile().status === 'away'">
-        {{ statusLabel() }}
-      </p>
-    </div>
-    <div class="profile__contact">
-      <p class="profile__label">E-Mail-Adresse</p>
-      <a class="profile__email" [href]="'mailto:' + profile().email">{{ profile().email }}</a>
-    </div>
-    @if (!isOwn()) {
-      <app-button class="profile__message" (click)="messageRequested.emit()">
-        <span class="profile__message-icon"></span>
-        Nachricht
-      </app-button>
+    @if (editing()) {
+      <app-profile-edit-form
+        [name]="profile().name"
+        (saved)="saveName($event)"
+        (cancelled)="editing.set(false)"
+      />
+    } @else {
+      <div class="profile__identity">
+        <div class="profile__name-row">
+          <p class="profile__name">{{ profile().name }}</p>
+          @if (isOwn()) {
+            <button
+              class="profile__edit"
+              type="button"
+              aria-label="Bearbeiten"
+              (click)="editing.set(true)"
+            >
+              <span class="profile__edit-text">Bearbeiten</span>
+            </button>
+          }
+        </div>
+        <p class="profile__status" [class.profile__status--away]="profile().status === 'away'">
+          {{ statusLabel() }}
+        </p>
+      </div>
+      <div class="profile__contact">
+        <p class="profile__label">E-Mail-Adresse</p>
+        <a class="profile__email" [href]="'mailto:' + profile().email">{{ profile().email }}</a>
+      </div>
+      @if (!isOwn()) {
+        <app-button class="profile__message" (click)="messageRequested.emit()">
+          <span class="profile__message-icon"></span>
+          Nachricht
+        </app-button>
+      }
     }
   </div>
 </app-dialog>

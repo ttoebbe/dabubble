@@ -768,8 +768,12 @@ and icons (`64b.`). Figma places neither overlay in a screen, so the position is
 decision. The profile dialog uses the shared dialog (centred, padding 40, all corners 30) for both
 variants: own profile without, other people with the "Nachricht" button (`65.` `463:7263`). Gaps
 45 px as in `65.`; the own profile in Figma has 38 px, padding 45/40 and radius 30/0/30/30.
-Not yet built: "Bearbeiten" / "Dein Profil bearbeiten" (waits for the forms decision) and the
-actual log-out (waits for `AuthService`), both in `docs/todo.md`.
+Edit mode (`profile-edit-form/`, Signal Forms): "Bearbeiten" (`40.`, 18/600 `#535AF1`, hover 700
+`#444DF2`; on mobile the round pencil `70. edit`) switches the dialog to "Dein Profil bearbeiten" as
+`1808:16192` with "Vollständiger Name", "Abbrechen" and "Speichern". An empty name shows "*Bitte gib
+deinen Namen ein." (not defined in Figma). The saved name appears at once in the dialog, the header
+and as "(Du)" entry in the menu. Not built yet: the actual log-out (waits for `AuthService`) and
+changing the avatar (DA checklist Konto US4; the Figma edit dialog has no avatar choice).
 
 ### 8.7 Channel members dialog
 

@@ -1,0 +1,20 @@
+<form class="edit" [formRoot]="profileForm">
+  <div class="edit__field">
+    <label class="edit__label" for="profile-name">Vollständiger Name</label>
+    <div class="edit__box" [class.edit__box--error]="nameError()">
+      <input
+        id="profile-name"
+        class="edit__input"
+        type="text"
+        autocomplete="name"
+        aria-describedby="profile-name-error"
+        [formField]="profileForm.name"
+      />
+    </div>
+    <p id="profile-name-error" class="edit__error" aria-live="polite">{{ nameError() }}</p>
+  </div>
+  <div class="edit__actions">
+    <app-button variant="secondary" (click)="cancelled.emit()">Abbrechen</app-button>
+    <app-button type="submit">Speichern</app-button>
+  </div>
+</form>

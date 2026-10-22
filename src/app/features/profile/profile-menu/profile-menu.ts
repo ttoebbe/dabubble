@@ -1,4 +1,4 @@
-import { Component, ElementRef, input, signal, viewChild } from '@angular/core';
+import { Component, ElementRef, model, signal, viewChild } from '@angular/core';
 import { Avatar } from '../../../shared/components/avatar/avatar';
 import { ProfileDetails } from '../profile-details';
 import { ProfileDialog } from '../profile-dialog/profile-dialog';
@@ -15,7 +15,7 @@ import { ProfileDialog } from '../profile-dialog/profile-dialog';
   styleUrl: './profile-menu.scss',
 })
 export class ProfileMenu {
-  readonly profile = input.required<ProfileDetails>();
+  readonly profile = model.required<ProfileDetails>();
   readonly profileOpen = signal(false);
   private readonly trigger = viewChild.required<ElementRef<HTMLButtonElement>>('trigger');
   private readonly menu = viewChild.required<ElementRef<HTMLElement>>('menu');
@@ -30,6 +30,11 @@ export class ProfileMenu {
   closeProfile(): void {
     this.profileOpen.set(false);
     this.trigger().nativeElement.focus();
+  }
+
+  /** Takes over the name saved in the profile dialog. */
+  renameProfile(name: string): void {
+    this.profile.update((profile) => ({ ...profile, name }));
   }
 
   /** Signs the user out. Until `AuthService` exists (docs/todo.md) it only closes the menu. */

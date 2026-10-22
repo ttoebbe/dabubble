@@ -33,10 +33,14 @@ export class WorkspaceLayout {
   readonly menuCollapsed = signal(false);
   readonly chatOpen = signal(false);
   readonly threadOpen = signal(false);
-  readonly currentUser = SAMPLE_OWN_PROFILE;
+  readonly currentUser = signal(SAMPLE_OWN_PROFILE);
   readonly channels = signal<readonly MenuChannel[]>(SAMPLE_CHANNELS);
   readonly channelNames = computed(() => this.channels().map((channel) => channel.name));
-  readonly contacts = SAMPLE_CONTACTS;
+  readonly contacts = computed(() =>
+    SAMPLE_CONTACTS.map((contact) =>
+      contact.isSelf ? { ...contact, name: this.currentUser().name } : contact,
+    ),
+  );
   readonly people = SAMPLE_CONTACTS.filter((contact) => !contact.isSelf);
   readonly activeEntryId = signal<string | null>(null);
   readonly createChannelOpen = signal(false);

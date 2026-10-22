@@ -1,4 +1,4 @@
-import { Component, input, output } from '@angular/core';
+import { Component, input, model, output } from '@angular/core';
 import { Brand } from '../../../shared/components/brand/brand';
 import { ProfileDetails } from '../../profile/profile-details';
 import { ProfileMenu } from '../../profile/profile-menu/profile-menu';
@@ -14,7 +14,7 @@ import { ProfileMenu } from '../../profile/profile-menu/profile-menu';
   styleUrl: './workspace-header.scss',
 })
 export class WorkspaceHeader {
-  readonly profile = input.required<ProfileDetails>();
+  readonly profile = model.required<ProfileDetails>();
   readonly showBack = input(false);
   readonly back = output<void>();
 }

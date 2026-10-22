@@ -1,0 +1,61 @@
+@use 'forms';
+
+.edit {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.edit__field {
+  display: flex;
+  flex-direction: column;
+  gap: 7px;
+}
+
+.edit__label {
+  @include forms.label;
+
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  font-size: var(--font-size-subtitle);
+
+  &::before {
+    content: '';
+    flex: none;
+    width: 30px;
+    height: 30px;
+    background-color: var(--color-black);
+    mask: url('/img/icons/account-circle.svg') center / contain no-repeat;
+  }
+}
+
+.edit__box {
+  @include forms.text-box(var(--radius-panel));
+
+  min-height: 55px;
+  padding: 14px 19px;
+}
+
+.edit__box--error {
+  border-color: var(--color-accent);
+}
+
+.edit__input {
+  @include forms.text-box-control;
+
+  font-weight: var(--font-weight-medium);
+}
+
+.edit__error {
+  @include forms.error-line;
+
+  margin-top: -1px;
+}
+
+.edit__actions {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 32px;
+}
