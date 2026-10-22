@@ -38,7 +38,7 @@ Offene Aufgaben außerhalb der Arbeitspakete. Erledigtes abhaken, nicht löschen
 - [ ] Layout-Check in Actions: `workflow/layout-check.yml` aus dem Checker-Repo nach `.github/workflows/` übernehmen (gemeinsame Datei, Absprache mit B), Secret `LAYOUT_CHECK_TOKEN` anlegen (Thomas), danach in `CLAUDE.md` „geplant“ streichen – A
 - [ ] Layout-Check: Der Workspace verlangt jetzt eine Anmeldung; der Checker muss sich vorher anmelden (z. B. Gäste-Login) – A
 - [ ] Build-Warnung: Initial-Bundle 850 kB über dem Budget von 500 kB (Firebase); Budget in `angular.json` anheben oder Firebase nachladen – A, B (gemeinsame Datei)
-- [ ] Firebase-Projekt aufräumen: Realtime Database, Storage und App „ReuterSandUndKies“ stammen aus dem alten Projekt – Thomas
+- [x] Firebase-Projekt aufräumen: alte Konten, Realtime Database und App „ReuterSandUndKies“ aus dem Reuter-Projekt gelöscht (22.10.2026; Storage war nicht aktiv) – Thomas
 - [ ] Gast-Konten bleiben nach dem Abmelden bestehen (anonymes Konto und Profil); aufräumen oder so lassen – A, B
 - [x] Build-Warnung „Unable to locate stylesheet fonts/fonts.css“ (beasties): `data-beasties-skip` am Link – A
 - [x] Konsolen-Warnung zum Nunito-Preload: das Intro lädt die Schrift schon während der Animation – A
