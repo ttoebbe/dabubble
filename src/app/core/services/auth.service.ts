@@ -4,6 +4,7 @@ import {
   User,
   confirmPasswordReset,
   createUserWithEmailAndPassword,
+  deleteUser,
   onAuthStateChanged,
   sendPasswordResetEmail,
   signInAnonymously,
@@ -12,7 +13,7 @@ import {
   signOut,
   verifyPasswordResetCode,
 } from 'firebase/auth';
-import { doc, getDoc, onSnapshot, setDoc, updateDoc } from 'firebase/firestore';
+import { deleteDoc, doc, getDoc, onSnapshot, setDoc, updateDoc } from 'firebase/firestore';
 import { AppUser } from '../models/app-user';
 import { FIREBASE_AUTH, FIRESTORE } from './firebase';
 import { PresenceService } from './presence.service';
@@ -113,10 +114,31 @@ export class AuthService {
     await confirmPasswordReset(this.auth, code, password);
   }
 
-  /** Marks the person offline and signs out. */
+  /**
+   * Marks the person offline and signs out. A guest account is deleted with its profile, so
+   * guests do not pile up in the direct messages. A failed presence update never blocks it.
+   */
   async logOut(): Promise<void> {
-    await this.presence.setPresence('offline');
+    const user = this.auth.currentUser;
+    if (user?.isAnonymous && (await this.removeGuest(user))) {
+      return;
+    }
+    await this.presence.setPresence('offline').catch(() => undefined);
     await signOut(this.auth);
+  }
+
+  /**
+   * Deletes the profile and the anonymous account of a guest, which also signs the guest out.
+   * Returns false when Firebase refuses, e.g. for an old session; a normal sign-out follows.
+   */
+  private async removeGuest(user: User): Promise<boolean> {
+    try {
+      await deleteDoc(this.profileRef(user.uid));
+      await deleteUser(user);
+      return true;
+    } catch {
+      return false;
+    }
   }
 
   /** Writes the profile of a new account. */
