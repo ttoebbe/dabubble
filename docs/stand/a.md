@@ -20,8 +20,11 @@ Aktualisiert: 23.10.2026 (abends)
   - „Neue Nachricht“ (`features/new-message/`): Adressfeld mit `#`, `@`, Name oder E-Mail, danach öffnet der Chat.
   - Suche (`features/search/`, `MessageSearchService`): Desktop „Devspace durchsuchen“ im Header, mobil „Gehe zu...“
     im Menü mit Ansicht „Search“. `#` Channels, `@` Personen, sonst auch Nachrichten mit Kontext; Klick auf eine
-    Nachricht öffnet den Chat mit ihrem Thread.
-  - Doku nachgezogen: `README.md`, `docs/todo.md`, `docs/arbeitsteilung.md`, Spec 8.14–8.17.
+    Nachricht öffnet den Chat mit ihrem Thread. Thread-Antworten werden mit durchsucht. Bei schmaler Leiste
+    (768 bis ca. 990 px) weniger Innenabstand, 18-px-Schrift und rechtsbündige Liste.
+  - Layout-Check (`ttoebbe/dabubble-layout-check` becede6) misst zusätzlich Channel, Chat mit sich selbst,
+    „Neue Nachricht“ und die Suche (`#`, `@`, ohne Treffer): 18 Seiten × 6 Viewports, noch nicht gelaufen.
+  - Doku nachgezogen: `README.md`, `docs/todo.md`, `docs/arbeitsteilung.md`, `docs/einstieg.md`, Spec 8.14–8.17.
 - Nur Lint, Build und Format geprüft; angemeldet durchgeklickt ist von den Punkten oben noch nichts.
 
 ## In Arbeit
@@ -41,6 +44,8 @@ Aktualisiert: 23.10.2026 (abends)
 ## Brauche von B
 
 - Rückmeldung, ob Bearbeiten, „Neue Nachricht“ und Suche so passen; sonst gern direkt ändern.
+- Offene Frage in `docs/todo.md` („Im Team klären“): „Neue Nachricht“ zeigt bei `#` nur die eigenen Channels,
+  die Checkliste nennt „alle existierenden Kanäle“.
 
 ## Hinweise für B
 
