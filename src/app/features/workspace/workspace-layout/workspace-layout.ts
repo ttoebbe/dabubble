@@ -1,5 +1,7 @@
 import { Component, computed, inject, signal } from '@angular/core';
-import { ActivatedRoute, Router, RouterOutlet } from '@angular/router';
+import { toSignal } from '@angular/core/rxjs-interop';
+import { ActivatedRoute, NavigationEnd, Router, RouterOutlet } from '@angular/router';
+import { filter, map } from 'rxjs';
 import { AuthService } from '../../../core/services/auth.service';
 import { ChannelService } from '../../../core/services/channel.service';
 import { UserService } from '../../../core/services/user.service';
@@ -10,6 +12,7 @@ import {
   NewChannel,
 } from '../../channels/create-channel-dialog/create-channel-dialog';
 import { PersonProfile } from '../../profile/person-profile/person-profile';
+import { activeEntryOf, channelLink, directMessageLink, newMessageLink } from '../chat-links';
 import { MenuToggle } from '../menu-toggle/menu-toggle';
 import { WorkspaceHeader } from '../workspace-header/workspace-header';
 import { toMenuContacts } from '../workspace-menu/menu-entries';
@@ -18,7 +21,8 @@ import { WorkspaceMenu } from '../workspace-menu/workspace-menu';
 /**
  * Workspace frame after login (Figma `06-Slack Clone Desktop general view`, spec 2.4):
  * header, workspace menu, chat and thread. Area B renders chat views into the primary
- * outlet and threads into the outlet `thread`; the frame only tracks which one is active.
+ * outlet and threads into the outlet `thread`; the menu opens them through those routes and
+ * marks the entry of the open chat.
  * From 1440 px all three panels sit side by side, from 768 px at most two, below
  * that one panel at a time (menu → chat → thread).
  */
@@ -58,7 +62,14 @@ export class WorkspaceLayout {
   readonly channelNames = computed(() => this.channelService.allChannels().map((c) => c.name));
   readonly contacts = computed(() => toMenuContacts(this.users.users(), this.auth.uid()));
   readonly people = computed(() => this.contacts().filter((contact) => !contact.isSelf));
-  readonly activeEntryId = signal<string | null>(null);
+  private readonly url = toSignal(
+    this.router.events.pipe(
+      filter((event) => event instanceof NavigationEnd),
+      map(() => this.router.url),
+    ),
+    { initialValue: this.router.url },
+  );
+  readonly activeEntryId = computed(() => activeEntryOf(this.router.parseUrl(this.url())));
   readonly createChannelOpen = signal(false);
 
   /** Collapses or expands the workspace menu. */
@@ -77,20 +88,30 @@ export class WorkspaceLayout {
         ? this.contacts().map((contact) => contact.id)
         : channel.memberIds;
     const id = await this.channelService.create({ ...channel, memberIds });
-    this.activeEntryId.set(id);
     this.createChannelOpen.set(false);
+    await this.router.navigate(channelLink(id));
   };
 
-  /** Selects the person for a direct message and closes a channel dialog still open behind. */
-  openDirectMessage(uid: string): void {
-    this.channelDialogs.close();
-    this.activeEntryId.set(uid);
+  /** Opens a channel in the chat area. */
+  openChannel(id: string): void {
+    this.router.navigate(channelLink(id));
   }
 
-  /** Deselects a channel the person has just left. */
+  /** Opens "Neue Nachricht" in the chat area. */
+  openNewMessage(): void {
+    this.router.navigate(newMessageLink());
+  }
+
+  /** Opens the direct message with a person and closes a channel dialog still open behind. */
+  openDirectMessage(uid: string): void {
+    this.channelDialogs.close();
+    this.router.navigate(directMessageLink(uid));
+  }
+
+  /** Leaves the view of a channel the person has just left. */
   forgetChannel(id: string): void {
     if (this.activeEntryId() === id) {
-      this.activeEntryId.set(null);
+      this.router.navigate(['/workspace']);
     }
   }
 

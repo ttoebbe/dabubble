@@ -8,9 +8,10 @@
     [channels]="channels()"
     [contacts]="contacts()"
     [activeId]="activeEntryId()"
-    (channelSelected)="activeEntryId.set($event)"
-    (contactSelected)="activeEntryId.set($event)"
+    (channelSelected)="openChannel($event)"
+    (contactSelected)="openDirectMessage($event)"
     (addChannel)="createChannelOpen.set(true)"
+    (newMessage)="openNewMessage()"
   />
 </nav>
 <main class="workspace__chat">
