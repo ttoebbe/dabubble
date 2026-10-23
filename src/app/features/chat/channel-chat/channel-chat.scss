@@ -73,10 +73,10 @@
 
   &__avatars {
     display: flex;
-    padding-left: 10px;
+    padding-left: 6px;
 
     app-avatar {
-      margin-left: -10px;
+      margin-left: -6px;
     }
   }
 
@@ -130,6 +130,12 @@
 
   &__link {
     color: var(--color-link);
+  }
+}
+
+@container (max-width: 600px) {
+  .channel__members {
+    display: none;
   }
 }
 

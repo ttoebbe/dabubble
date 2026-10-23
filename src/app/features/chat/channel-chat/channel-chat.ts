@@ -16,8 +16,10 @@ const SHOWN_MEMBERS = 3;
 
 /**
  * Channel view (DA checklist Channels US1, Figma `210:750`): header with name, member avatars
- * and counter, then the messages. Name, members and "Mitglieder hinzufügen" open the channel
- * dialogs of area A through `ChannelDialogs`.
+ * (36 px, overlapping by 6 px as in the reference of `210:750`) and counter, then the messages.
+ * Name, members and "Mitglieder hinzufügen" open the channel dialogs of area A through
+ * `ChannelDialogs`. When the header gets too narrow for one line (no artboard between 768 and
+ * 1440 px), avatars and counter hide as on mobile (ttoebbe/dabubble#3).
  */
 @Component({
   selector: 'app-channel-chat',

@@ -13,6 +13,7 @@
   padding: 25px 45px;
   background-color: var(--color-white);
   box-shadow: var(--shadow-header);
+  container-type: inline-size;
 }
 
 @include bp.mobile {
