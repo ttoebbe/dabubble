@@ -89,7 +89,7 @@ Bis eine Schnittstelle steht, arbeitet die andere Person gegen einen Platzhalter
 | `src/app/features/new-message/`                                                               | B         |                                                                                                  |
 | `src/app/features/search/`                                                                    | B         |                                                                                                  |
 | `src/app/core/services/` auth, user, presence, channel                                        | A         |                                                                                                  |
-| `src/app/core/services/` message, direct-chat, thread, search                                 | B         |                                                                                                  |
+| `src/app/core/services/` message, direct-chat, message-search                                 | B         |                                                                                                  |
 | `src/app/core/models/`                                                                        | gemeinsam | nur nach Absprache, eigener Commit                                                               |
 | `src/app/shared/`                                                                             | A legt an | Erweiterungen als eigener Commit, vorher ankündigen                                              |
 | `src/styles/`                                                                                 | A         |                                                                                                  |
@@ -105,25 +105,27 @@ Bis eine Schnittstelle steht, arbeitet die andere Person gegen einen Platzhalter
 
 ## Schnittstellen
 
-| Von → An | Was                                                           | Bis          | Stand 22.10.2026                    |
-| -------- | ------------------------------------------------------------- | ------------ | ----------------------------------- |
-| A → B    | `AuthService.currentUser` als Signal                          | Ende Phase 0 | steht                               |
-| A → B    | `UserService.users` als Signal (Namen, Avatare)               | Ende Phase 0 | steht                               |
-| A → B    | `ChannelService.channels` als Signal (eigene Channels)        | Ende Phase 0 | steht                               |
-| B → A    | Routen für Channel-, DM- und Thread-Ansicht                   | Ende Phase 0 | offen (`CHAT_ROUTES` ist noch leer) |
-| A → B    | Workspace-Layout mit Platz für Chat, Thread und Suchfeld      | Phase 1      | steht                               |
-| A → B    | Profil-Dialog per `uid` öffnen (Klick auf Autor oder Mention) | Phase 1      | steht: `ProfileViewer.show(uid)`    |
-| A → B    | Channel-Dialoge aus dem Channel-Kopf öffnen                   | Phase 1      | steht: `ChannelDialogs.open(…)`     |
-| B → A    | Route zur DM mit einer Person (Button im Profil)              | Phase 1      | offen                               |
-| B → A    | Such-Komponente für den Header                                | Phase 2      | offen                               |
+| Von → An | Was                                                           | Bis          | Stand 23.10.2026                                         |
+| -------- | ------------------------------------------------------------- | ------------ | -------------------------------------------------------- |
+| A → B    | `AuthService.currentUser` als Signal                          | Ende Phase 0 | steht                                                    |
+| A → B    | `UserService.users` als Signal (Namen, Avatare)               | Ende Phase 0 | steht                                                    |
+| A → B    | `ChannelService.channels` als Signal (eigene Channels)        | Ende Phase 0 | steht                                                    |
+| B → A    | Routen für Channel-, DM- und Thread-Ansicht                   | Ende Phase 0 | steht: `CHAT_ROUTES`, Links in `workspace/chat-links.ts` |
+| A → B    | Workspace-Layout mit Platz für Chat, Thread und Suchfeld      | Phase 1      | steht                                                    |
+| A → B    | Profil-Dialog per `uid` öffnen (Klick auf Autor oder Mention) | Phase 1      | steht: `ProfileViewer.show(uid)`                         |
+| A → B    | Channel-Dialoge aus dem Channel-Kopf öffnen                   | Phase 1      | steht: `ChannelDialogs.open(…)`                          |
+| B → A    | Route zur DM mit einer Person (Button im Profil)              | Phase 1      | steht: `/workspace/dm/:uid`                              |
+| B → A    | Such-Komponente für den Header                                | Phase 2      | steht: `<app-workspace-search>`, mobil im Menü           |
 
 **Hash-URLs (seit 22.10.2026, `app.config.ts`):** Der DA-Webspace wertet `.htaccess` nicht aus, deshalb steht die Route hinter `#`, z. B. `/#/workspace`. In `routerLink` und `router.navigate` ändert sich nichts.
 
-**Routen (Stand 21.10.2026, Vorschlag von A, Bestätigung durch B offen):** `CHAT_ROUTES` aus `features/chat/chat.routes.ts`
-hängen als Kinder unter `/workspace`. Chat-Ansichten (Channel, DM, „Neue Nachricht“) nutzen das
-primäre Outlet, Threads das Outlet `thread`, z. B. `{ path: 'thread/:messageId', outlet: 'thread', … }`.
-Der Rahmen erkennt daran selbst, welche Ansicht offen ist; auf dem Handy führt sein Zurück-Pfeil
-Thread → Chat → Menü.
+**Routen (Stand 23.10.2026, umgesetzt):** `CHAT_ROUTES` aus `features/chat/chat.routes.ts` hängen als
+Kinder unter `/workspace`. Im primären Outlet stehen `channel/:channelId`, `dm/:uid` (uid der anderen Person)
+und `new-message`, im Outlet `thread` steht `thread/:kind/:conversationId/:messageId` (`kind` ist `channel`
+oder `dm`, `conversationId` die Channel-ID bzw. die ID der Direktnachricht). Die Links bauen
+`features/workspace/chat-links.ts` (`channelLink`, `directMessageLink`, `newMessageLink`, `messageLink`) und
+`features/thread/thread-route.ts` (`threadCommands`). Der Rahmen erkennt daran selbst, welche Ansicht offen ist;
+auf dem Handy führt sein Zurück-Pfeil Thread → Chat → Menü.
 
 Signaturen stehen als JSDoc an der jeweiligen Methode. Ändert sich eine Signatur, gilt das wie eine Änderung an `core/models/`.
 
@@ -140,48 +142,16 @@ Alles liegt auf `main`; die Signaturen stehen als JSDoc an den Klassen.
 | Profil einer Person                              | `features/profile/profile-viewer.ts`     | `inject(ProfileViewer).show(uid)`; der Workspace-Rahmen zeigt den Dialog, „Nachricht“ wählt die Person im Menü                                |
 | Channel bearbeiten, Mitglieder, Leute hinzufügen | `features/channels/channel-dialogs.ts`   | `inject(ChannelDialogs).open(channelId, 'settings' \| 'members' \| 'add-members')`; Speichern, Verlassen und Profil-Klick erledigt der Rahmen |
 | Workspace-Rahmen                                 | `features/workspace/workspace.routes.ts` | `/workspace` nur angemeldet (`signedInGuard`); `CHAT_ROUTES` als Kinder, Threads im Outlet `thread`                                           |
-| Datenmodell                                      | `core/models/app-user.ts`, `channel.ts`  | Vorschlag ttoebbe/dabubble#1, Bestätigung durch B offen                                                                                       |
+| Datenmodell                                      | `core/models/`                           | `app-user.ts`, `channel.ts` (A), `message.ts`, `direct-chat.ts` (B), alle nach ttoebbe/dabubble#1                                             |
 
 Start-Channel: `channels/entwicklerteam` („Entwicklerteam“) legt die erste Person an, die sich anmeldet; jedes
 neue Konto und jeder Gast tritt ihm automatisch bei (`core/services/channel-membership.ts`).
 
 Gäste: Beim Log out entfernt die App den Gast aus allen Channels und löscht das anonyme Konto und sein Profil. Nachrichten eines Gastes zeigen danach
-auf eine `uid` ohne Profil; wie die Ansicht das darstellt, entscheidet B.
+auf eine `uid` ohne Profil; die Ansicht zeigt dann „Gast“ mit dem Platzhalter-Avatar.
 
-**Firestore-Regeln, live in der Konsole (Stand 22.10.2026).** `firestore.rules` gehört B; bis die Datei im Repo
-steht und um Nachrichten erweitert ist, gilt dieser Stand:
-
-```
-rules_version = '2';
-
-service cloud.firestore {
-  match /databases/{database}/documents {
-    function signedIn() {
-      return request.auth != null;
-    }
-
-    function joinsStartChannel(channelId) {
-      return channelId == 'entwicklerteam'
-        && request.resource.data.diff(resource.data).affectedKeys().hasOnly(['memberIds'])
-        && request.resource.data.memberIds.toSet()
-          == resource.data.memberIds.toSet().union([request.auth.uid].toSet());
-    }
-
-    match /users/{uid} {
-      allow read: if signedIn();
-      allow create, update: if signedIn() && request.auth.uid == uid;
-      allow delete: if signedIn() && request.auth.uid == uid && resource.data.isGuest == true;
-    }
-
-    match /channels/{channelId} {
-      allow read: if signedIn();
-      allow create: if signedIn() && request.resource.data.creatorId == request.auth.uid;
-      allow update: if signedIn()
-        && (request.auth.uid in resource.data.memberIds || joinsStartChannel(channelId));
-    }
-  }
-}
-```
+**Firestore-Regeln:** stehen in `firestore.rules` (B) und sind seit 23.10.2026 in der Konsole
+veröffentlicht. Eine Änderung kommt erst ins Repo und geht dann nach Absprache in die Konsole.
 
 Lokal braucht jede Person `src/environments/environment.ts` mit der Firebase-Konfiguration (`docs/einstieg.md`).
 
