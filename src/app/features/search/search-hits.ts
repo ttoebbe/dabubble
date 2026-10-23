@@ -25,16 +25,16 @@ export interface PersonHit {
   readonly contact: MenuContact;
 }
 
-/** A message that contains the text, with where, by whom and when it was written. */
+/** A message or thread reply that contains the text, with where, by whom and when it was written. */
 export interface MessageHit {
   readonly type: 'message';
   readonly key: string;
-  /** "#Entwicklerteam" or the other person of a direct chat. */
+  /** "#Entwicklerteam" or the other person of a direct chat; replies add "· Thread". */
   readonly place: string;
   readonly author: string;
   readonly time: string;
   readonly snippet: Snippet;
-  /** Opens the chat with the thread of the message next to it. */
+  /** Opens the chat with the thread of the message (or of the message a reply answers). */
   readonly link: unknown[];
 }
 
@@ -111,21 +111,21 @@ function messageHits(sources: SearchSources, text: string): MessageHit[] {
     });
 }
 
-/** Hit of one message written at `place`. */
+/** Hit of one message or reply written at `place`; a reply links to the thread it is in. */
 function toMessageHit(
-  { kind, conversationId, message }: PlacedMessage,
+  { kind, conversationId, message, parentId }: PlacedMessage,
   place: Place,
   sources: SearchSources,
   text: string,
 ): MessageHit {
   return {
     type: 'message',
-    key: `message:${conversationId}/${message.id}`,
-    place: place.label,
+    key: `message:${conversationId}/${parentId ? `${parentId}/` : ''}${message.id}`,
+    place: parentId ? `${place.label} · Thread` : place.label,
     author: sources.users.get(message.authorId)?.name ?? UNKNOWN_PERSON_NAME,
     time: `${formatDay(message.createdAt, sources.now)}, ${formatTime(message.createdAt)}`,
     snippet: toSnippet(message.text, text),
-    link: messageLink(kind, place.chat, conversationId, message.id),
+    link: messageLink(kind, place.chat, conversationId, parentId ?? message.id),
   };
 }
 
