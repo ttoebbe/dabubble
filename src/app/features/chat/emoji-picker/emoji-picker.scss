@@ -1,3 +1,5 @@
+@use 'breakpoints' as bp;
+
 :host {
   position: relative;
   display: inline-block;
@@ -50,5 +52,24 @@
   &__emoji {
     font-size: var(--font-size-title);
     line-height: 1;
+  }
+}
+
+:host(.picker--reaction) .picker__icon {
+  mask-image: url('/img/icons/add-reaction.svg');
+}
+
+:host(.picker--reaction) .picker__panel {
+  top: 100%;
+  right: 0;
+  bottom: auto;
+  left: auto;
+  margin: 8px 0 0;
+}
+
+@include bp.tablet-up {
+  :host(.picker--open-right) .picker__panel {
+    right: auto;
+    left: 0;
   }
 }

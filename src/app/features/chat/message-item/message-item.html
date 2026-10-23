@@ -1,4 +1,4 @@
-<div class="message" [class.message--own]="own()">
+<div class="message" [class.message--own]="own()" [class.message--bar]="barShown()">
   @if (author()) {
     <button
       class="message__avatar"
@@ -23,5 +23,18 @@
       <span class="message__time">{{ time() }}</span>
     </p>
     <p class="message__bubble">{{ message().text }}</p>
+    @if (chips().length) {
+      <app-message-reactions
+        [chips]="chips()"
+        [alignEnd]="own()"
+        (toggled)="toggleReaction($event)"
+      />
+    }
+    @if (failed()) {
+      <p class="message__error" role="alert">{{ errorText }}</p>
+    }
+  </div>
+  <div class="message__bar">
+    <app-reaction-bar [quick]="quick()" [openRight]="own()" (chosen)="toggleReaction($event)" />
   </div>
 </div>

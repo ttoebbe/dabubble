@@ -1,4 +1,8 @@
-<app-message-list [messages]="feed().messages" [loading]="feed().state === 'loading'">
+<app-message-list
+  [messages]="feed().messages"
+  [loading]="feed().state === 'loading'"
+  [react]="react"
+>
   <ng-content />
 </app-message-list>
 @if (feed().state === 'error') {

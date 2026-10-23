@@ -1,0 +1,13 @@
+<div class="bar" role="group" aria-label="Reagieren" [class.bar--short]="!quick().length">
+  @for (emoji of quick(); track emoji.id) {
+    <button
+      class="bar__emoji"
+      type="button"
+      [attr.aria-label]="'Mit ' + emoji.label + ' reagieren'"
+      (click)="chosen.emit(emoji.id)"
+    >
+      {{ emoji.char }}
+    </button>
+  }
+  <app-emoji-picker [reaction]="true" [openRight]="openRight()" (picked)="pickChar($event)" />
+</div>

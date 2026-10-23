@@ -1,21 +1,46 @@
-import { Component, ElementRef, inject, output, signal } from '@angular/core';
+import {
+  Component,
+  ElementRef,
+  afterRenderEffect,
+  inject,
+  input,
+  output,
+  signal,
+  viewChild,
+} from '@angular/core';
 import { CHAT_EMOJIS } from '../chat-emojis';
 
 /**
  * Emoji button of the message box (Figma `60. Icons text box aux`, `sentiment_satisfied`)
- * with the list of emojis above it. Closes after a pick, on Escape and on a click elsewhere.
+ * with the list of emojis above it. As `reaction` it is the add-reaction button of the
+ * reaction bar (Figma `59. add reaction`) and the list opens below it, to the left of the
+ * button (`openRight`: to the right on wide screens). Closes after a pick, on Escape and on
+ * a click elsewhere; a list that opens out of view is scrolled into view.
  */
 @Component({
   selector: 'app-emoji-picker',
   templateUrl: './emoji-picker.html',
   styleUrl: './emoji-picker.scss',
-  host: { '(document:click)': 'closeOnOutsideClick($event)', '(keydown.escape)': 'close()' },
+  host: {
+    '[class.picker--reaction]': 'reaction()',
+    '[class.picker--open-right]': 'openRight()',
+    '(document:click)': 'closeOnOutsideClick($event)',
+    '(keydown.escape)': 'close()',
+  },
 })
 export class EmojiPicker {
   private readonly host = inject<ElementRef<HTMLElement>>(ElementRef);
+  private readonly panel = viewChild<ElementRef<HTMLElement>>('panel');
+  readonly reaction = input(false);
+  readonly openRight = input(false);
   readonly picked = output<string>();
   readonly open = signal(false);
   readonly emojis = CHAT_EMOJIS;
+
+  /** Scrolls the list into view when it opens. */
+  constructor() {
+    afterRenderEffect(() => this.panel()?.nativeElement.scrollIntoView({ block: 'nearest' }));
+  }
 
   /** Shows or hides the list. */
   toggle(): void {

@@ -5,6 +5,7 @@
 }
 
 .message {
+  position: relative;
   display: flex;
   gap: 30px;
   padding: 10px 45px;
@@ -72,6 +73,29 @@
     }
   }
 
+  &__error {
+    font-size: var(--font-size-small);
+    color: var(--color-error);
+  }
+
+  &__bar {
+    position: absolute;
+    top: 0;
+    right: 16px;
+    z-index: 1;
+    opacity: 0;
+    pointer-events: none;
+    transform: translateY(-50%);
+    transition: opacity var(--duration-hover) var(--easing-hover);
+  }
+
+  &:hover &__bar,
+  &:focus-within &__bar,
+  &:has([aria-expanded='true']) &__bar {
+    opacity: 1;
+    pointer-events: auto;
+  }
+
   &__time {
     font-size: var(--font-size-small);
     color: var(--color-text-gray);
@@ -96,6 +120,24 @@
     border-radius: var(--radius-bubble-own);
     background-color: var(--color-purple-3);
     color: var(--color-white);
+  }
+}
+
+@media (hover: none) {
+  .message--bar .message__bar {
+    opacity: 1;
+    pointer-events: auto;
+  }
+}
+
+@include bp.tablet-up {
+  .message__bar {
+    right: 45px;
+  }
+
+  .message--own .message__bar {
+    right: auto;
+    left: 45px;
   }
 }
 

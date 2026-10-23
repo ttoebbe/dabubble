@@ -1,5 +1,14 @@
 import { Service, inject } from '@angular/core';
-import { addDoc, collection, onSnapshot, orderBy, query } from 'firebase/firestore';
+import {
+  DocumentReference,
+  addDoc,
+  collection,
+  doc,
+  onSnapshot,
+  orderBy,
+  query,
+  runTransaction,
+} from 'firebase/firestore';
 import { Observable, distinctUntilChanged, of, switchMap } from 'rxjs';
 import { Message } from '../models/message';
 import { AuthService } from './auth.service';
@@ -51,6 +60,41 @@ export class MessageService {
       lastReplyAt: null,
     };
     await addDoc(this.messagesRef(kind, conversationId), message);
+  }
+
+  /**
+   * Adds the reaction of the signed-in person to a message, or removes it when it is already
+   * there. Rejects when Firestore refuses, e.g. a 21st emoji.
+   */
+  toggleReaction(
+    kind: ConversationKind,
+    conversationId: string,
+    messageId: string,
+    emojiId: string,
+  ): Promise<void> {
+    const ref = doc(this.messagesRef(kind, conversationId), messageId);
+    return this.toggleAt(ref, emojiId);
+  }
+
+  /**
+   * Toggles a reaction on any message document (a message or, later, a thread reply). Reads
+   * and writes in one transaction so two people reacting at once do not overwrite each other;
+   * an emoji nobody reacted with is removed from the map.
+   */
+  private toggleAt(ref: DocumentReference, emojiId: string): Promise<void> {
+    const uid = this.auth.uid() ?? '';
+    return runTransaction(this.firestore, async (transaction) => {
+      const snapshot = await transaction.get(ref);
+      const reactions: Record<string, string[]> = { ...snapshot.data()?.['reactions'] };
+      const uids = reactions[emojiId] ?? [];
+      const next = uids.includes(uid) ? uids.filter((id) => id !== uid) : [...uids, uid];
+      if (next.length) {
+        reactions[emojiId] = next;
+      } else {
+        delete reactions[emojiId];
+      }
+      transaction.update(ref, { reactions });
+    });
   }
 
   /** Listens to the messages collection, sorted by `createdAt`. */

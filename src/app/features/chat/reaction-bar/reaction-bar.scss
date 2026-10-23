@@ -1,0 +1,27 @@
+.bar {
+  display: flex;
+  gap: 5px;
+  padding: 3px 15px 3px 20px;
+  border: 1px solid var(--color-lines);
+  border-radius: var(--radius-reaction-bar);
+  background-color: var(--color-white);
+
+  &--short {
+    padding: 3px 13px;
+  }
+
+  &__emoji {
+    display: grid;
+    place-items: center;
+    width: var(--touch-target-min);
+    height: var(--touch-target-min);
+    border-radius: 50%;
+    font-size: var(--font-size-title);
+    line-height: 1;
+    transition: background-color var(--duration-hover) var(--easing-hover);
+
+    &:hover {
+      background-color: var(--color-bg);
+    }
+  }
+}

@@ -1,0 +1,116 @@
+@use 'breakpoints' as bp;
+
+:host {
+  display: block;
+  max-width: 100%;
+}
+
+.reactions {
+  position: relative;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+
+  &--end {
+    justify-content: flex-end;
+  }
+
+  &__chip,
+  &__more {
+    position: relative;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    height: 34px;
+    padding: 5px 10px;
+    border: 1px solid var(--color-lines);
+    border-radius: var(--radius-box);
+    background-color: var(--color-white);
+    transition:
+      border-color var(--duration-hover) var(--easing-hover),
+      background-color var(--duration-hover) var(--easing-hover);
+
+    &::before {
+      content: '';
+      position: absolute;
+      inset: -5px 0;
+    }
+
+    &:hover,
+    &:focus-visible {
+      border-color: var(--color-accent);
+    }
+  }
+
+  &__chip--own {
+    border-color: var(--color-accent);
+    background-color: var(--color-bg);
+  }
+
+  &__emoji {
+    font-size: var(--font-size-title);
+    line-height: 1;
+  }
+
+  &__more {
+    display: none;
+    color: var(--color-accent);
+  }
+
+  &__tip {
+    position: absolute;
+    bottom: 100%;
+    left: 0;
+    z-index: 2;
+    display: none;
+    flex-direction: column;
+    align-items: center;
+    width: max-content;
+    max-width: min(260px, calc(100vw - 110px));
+    margin-bottom: 14px;
+    padding: 15px 20px;
+    border-radius: var(--radius-panel) var(--radius-panel) var(--radius-panel) 0;
+    background-color: var(--color-purple-3);
+    color: var(--color-white);
+    text-align: center;
+    overflow-wrap: anywhere;
+  }
+
+  &--end &__tip {
+    right: 0;
+    left: auto;
+    border-radius: var(--radius-panel) var(--radius-panel) 0 var(--radius-panel);
+  }
+
+  &__tip-name {
+    font-size: var(--font-size-body);
+    font-weight: var(--font-weight-bold);
+  }
+
+  &__item {
+    display: contents;
+  }
+
+  &__item:hover &__tip,
+  &__item:has(:focus-visible) &__tip {
+    display: flex;
+  }
+}
+
+@media (hover: none) {
+  .reactions__item:focus-within .reactions__tip {
+    display: flex;
+  }
+}
+
+@include bp.mobile {
+  .reactions {
+    &--collapsed &__chip--extra {
+      display: none;
+    }
+
+    &__more {
+      display: flex;
+    }
+  }
+}

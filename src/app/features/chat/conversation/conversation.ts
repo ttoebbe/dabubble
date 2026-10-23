@@ -34,4 +34,8 @@ export class Conversation {
   /** Sends a message into this conversation; the composer shows a failure. */
   readonly send = (text: string): Promise<void> =>
     this.messages.send(this.kind(), this.conversationId(), text);
+
+  /** Toggles the own reaction on a message of this conversation. */
+  readonly react = (messageId: string, emojiId: string): Promise<void> =>
+    this.messages.toggleReaction(this.kind(), this.conversationId(), messageId, emojiId);
 }

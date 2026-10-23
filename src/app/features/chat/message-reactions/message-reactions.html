@@ -1,0 +1,38 @@
+<div
+  class="reactions"
+  [class.reactions--end]="alignEnd()"
+  [class.reactions--collapsed]="!expanded()"
+>
+  @for (chip of chips(); track chip.emoji.id; let index = $index) {
+    <span class="reactions__item">
+      <button
+        class="reactions__chip"
+        type="button"
+        [class.reactions__chip--own]="chip.own"
+        [class.reactions__chip--extra]="index >= collapsedCount"
+        [attr.aria-pressed]="chip.own"
+        [attr.aria-label]="
+          chip.emoji.label + ', ' + chip.count + '. ' + chip.names + ' ' + chip.verb
+        "
+        (click)="toggled.emit(chip.emoji.id)"
+      >
+        <span class="reactions__emoji" aria-hidden="true">{{ chip.emoji.char }}</span>
+        <span aria-hidden="true">{{ chip.count }}</span>
+      </button>
+      <span class="reactions__tip" aria-hidden="true">
+        <strong class="reactions__tip-name">{{ chip.names }}</strong>
+        <span>{{ chip.verb }}</span>
+      </span>
+    </span>
+  }
+  @if (hiddenCount()) {
+    <button
+      class="reactions__more"
+      type="button"
+      [attr.aria-expanded]="expanded()"
+      (click)="toggleExpanded()"
+    >
+      {{ expanded() ? 'Weniger anzeigen' : '+' + hiddenCount() + ' weitere' }}
+    </button>
+  }
+</div>

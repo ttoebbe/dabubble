@@ -15,6 +15,8 @@
             <app-message-item
               [message]="row.message"
               [author]="authors().get(row.message.authorId) ?? null"
+              [people]="authors()"
+              [react]="react()"
               [own]="row.message.authorId === selfUid()"
             />
           </li>
