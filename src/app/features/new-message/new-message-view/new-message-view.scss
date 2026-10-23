@@ -1,0 +1,44 @@
+@use 'breakpoints' as bp;
+@use 'forms';
+
+:host {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+
+.new {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  width: 100%;
+
+  &__title {
+    font-size: var(--font-size-title);
+  }
+
+  &__field {
+    @include forms.text-box(var(--radius-panel));
+
+    position: relative;
+    padding: 15px 20px;
+  }
+
+  &__input {
+    @include forms.text-box-control;
+  }
+
+  &__space {
+    flex: 1;
+  }
+}
+
+@include bp.mobile {
+  .new {
+    gap: 15px;
+
+    &__title {
+      font-size: var(--font-size-subtitle);
+    }
+  }
+}

@@ -1,9 +1,5 @@
 import { Routes } from '@angular/router';
 
-/** Lazy-loads the placeholder view; the real views replace it route by route. */
-const loadView = () =>
-  import('./chat-placeholder/chat-placeholder').then((module) => module.ChatPlaceholder);
-
 /** Lazy-loads the channel view. */
 const loadChannel = () =>
   import('./channel-chat/channel-chat').then((module) => module.ChannelChat);
@@ -11,6 +7,12 @@ const loadChannel = () =>
 /** Lazy-loads the direct message view. */
 const loadDirectChat = () =>
   import('./direct-chat/direct-chat').then((module) => module.DirectChat);
+
+/** Lazy-loads "Neue Nachricht". */
+const loadNewMessage = () =>
+  import('../new-message/new-message-view/new-message-view').then(
+    (module) => module.NewMessageView,
+  );
 
 /** Lazy-loads the thread view. */
 const loadThread = () =>
@@ -26,7 +28,7 @@ const loadThread = () =>
 export const CHAT_ROUTES: Routes = [
   { path: 'channel/:channelId', loadComponent: loadChannel },
   { path: 'dm/:uid', loadComponent: loadDirectChat },
-  { path: 'new-message', loadComponent: loadView, data: { view: 'Neue Nachricht' } },
+  { path: 'new-message', loadComponent: loadNewMessage },
   {
     path: 'thread/:kind/:conversationId/:messageId',
     outlet: 'thread',

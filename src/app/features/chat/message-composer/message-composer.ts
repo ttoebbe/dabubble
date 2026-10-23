@@ -32,7 +32,8 @@ let nextListId = 0;
  * draft lands in the wrong chat, and gets the focus (DA checklist Schreiben US1).
  * Typing `@` or `#` opens a list of people or channels (DA checklist Schreiben US5) that
  * narrows while typing; arrow keys move, Enter or Tab insert, Escape closes it. The field is
- * its combobox, the list its listbox.
+ * its combobox, the list its listbox. While `disabled` is set (e.g. "Neue Nachricht" without
+ * recipient) nothing can be sent.
  */
 @Component({
   selector: 'app-message-composer',
@@ -48,6 +49,7 @@ export class MessageComposer {
   readonly placeholder = input.required<string>();
   readonly focusKey = input.required<string>();
   readonly submit = input.required<(text: string) => Promise<void>>();
+  readonly disabled = input(false);
   readonly maxLength = MAX_LENGTH;
   readonly listId = `mention-list-${nextListId++}`;
   readonly text = signal('');
@@ -56,7 +58,9 @@ export class MessageComposer {
   readonly dismissed = signal<number | null>(null);
   readonly error = signal('');
   readonly sending = signal(false);
-  readonly canSend = computed(() => this.text().trim().length > 0 && !this.sending());
+  readonly canSend = computed(
+    () => this.text().trim().length > 0 && !this.sending() && !this.disabled(),
+  );
   private readonly trigger = computed(() => findTrigger(this.text(), this.caret()));
   private readonly people = computed<MentionOption[]>(() =>
     toMenuContacts(this.users.users(), this.auth.uid()).map((person) => ({

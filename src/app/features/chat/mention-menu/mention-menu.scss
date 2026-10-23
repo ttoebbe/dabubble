@@ -6,6 +6,11 @@
   width: min(348px, 100%);
 }
 
+:host(.mention--below) {
+  top: calc(100% + 8px);
+  bottom: auto;
+}
+
 .menu {
   display: flex;
   flex-direction: column;

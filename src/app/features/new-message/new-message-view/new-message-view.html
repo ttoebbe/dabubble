@@ -1,0 +1,43 @@
+<app-chat-header>
+  <div class="new">
+    <h1 class="new__title">Neue Nachricht</h1>
+    <div class="new__field">
+      <input
+        #addressField
+        class="new__input"
+        type="text"
+        role="combobox"
+        autocomplete="off"
+        aria-label="Empfänger"
+        aria-autocomplete="list"
+        aria-haspopup="listbox"
+        [attr.aria-expanded]="menu() !== null"
+        [attr.aria-controls]="listId"
+        [attr.aria-activedescendant]="activeId()"
+        [placeholder]="placeholder()"
+        [value]="address()"
+        (input)="onInput($event)"
+        (keydown)="onKeydown($event)"
+        (focus)="focused.set(true)"
+        (blur)="focused.set(false)"
+      />
+      @if (menu(); as open) {
+        <app-mention-menu
+          [below]="true"
+          [listId]="listId"
+          [char]="open.char"
+          [options]="open.options"
+          [active]="active()"
+          (picked)="pick($event)"
+        />
+      }
+    </div>
+  </div>
+</app-chat-header>
+<div class="new__space"></div>
+<app-message-composer
+  placeholder="Starte eine neue Nachricht"
+  focusKey="new-message"
+  [disabled]="!recipient()"
+  [submit]="send"
+/>
