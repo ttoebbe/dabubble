@@ -1,6 +1,9 @@
 <div class="list" #scroller tabindex="0" role="region" aria-label="Nachrichten">
   <div class="list__content">
     <ng-content />
+    @if (loading()) {
+      <p class="list__loading" role="status">Nachrichten werden geladen …</p>
+    }
     <ol class="list__rows">
       @for (row of rows(); track row.key) {
         @if (row.kind === 'day') {

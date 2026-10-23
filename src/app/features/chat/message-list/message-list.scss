@@ -24,6 +24,11 @@
     list-style: none;
   }
 
+  &__loading {
+    margin: 0;
+    padding: 10px 45px;
+  }
+
   &__day {
     display: flex;
     align-items: center;
@@ -47,6 +52,11 @@
 }
 
 @include bp.mobile {
+  .list__loading {
+    padding-right: 16px;
+    padding-left: 16px;
+  }
+
   .list__day {
     margin: 10px 16px;
   }
