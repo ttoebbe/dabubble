@@ -1,6 +1,6 @@
 # Stand Bereich B (Yannic)
 
-Aktualisiert: 23.10.2026
+Aktualisiert: 23.10.2026 (abends)
 
 ## Erledigt
 
@@ -30,7 +30,20 @@ Aktualisiert: 23.10.2026
   Tipp. Mobil max. 7 Chips plus „+x weitere“ / „Weniger anzeigen“. Schreiben per Transaktion
   (`MessageService.toggleReaction`, generisch über `toggleAt`), leere Einträge werden entfernt. Live mit zwei Gästen in
   der DM geprüft: setzen, entfernen, Echtzeit, Zähler, Namen, zuletzt genutzt, 320–1920 px ohne Scrollleiste.
-- Thread-Route jetzt `thread/:kind/:conversationId/:messageId`; der markierte Menüeintrag bleibt mit offenem Thread.
+- Thread-Route `thread/:kind/:conversationId/:messageId`; der markierte Menüeintrag bleibt mit offenem Thread.
+- Threads (Schreiben US5): Thread-Button in der Aktionsleiste (auch eigene Nachrichten), Thread-Ansicht im Outlet
+  `thread` (`features/thread/thread-view/`) mit Kopf („Thread“ + Channel bzw. Person, Schließen), Ursprungsnachricht,
+  Trenner „<n> Antworten“, Antworten live nach `createdAt`, Eingabefeld mit Fokus beim Öffnen, Reaktionen auf
+  Ursprungsnachricht und Antworten (max. 7 sichtbar + „+x weitere“ auch am Desktop). Antwort senden: Reply plus
+  `replyCount + 1` und `lastReplyAt` in einem Batch (`MessageService.reply`). Unter Nachrichten mit Antworten:
+  „<n> Antworten“ (klickbar) + „Letzte Antwort <Uhrzeit>“. Der Thread schließt sich, wenn ein anderer Chat geöffnet wird.
+- `@` und `#` im Eingabefeld (Haupt- und Thread-Eingabe): Dropdown mit Personen (ohne ausgeblendete Gäste) bzw. eigenen
+  Channels, filtert beim Tippen, Pfeile/Enter/Tab/Escape, ARIA combobox/listbox; „@“-Button im Eingabefeld.
+  Im Text sind `@Name`/`#channel` hervorgehoben und klickbar (Profil bzw. Channel); nicht auflösbare Namen bleiben
+  normaler Text.
+- Live mit zwei Gästen in der DM geprüft: Thread öffnen, Antworten in beide Richtungen mit Echtzeit-Zähler, Reaktion
+  auf Antwort, Dropdown per Tastatur, Klick auf Erwähnungen; 320–1920 px ohne Scrollleiste (mit offenem Thread),
+  mobil Thread als eigene Ansicht mit Zurück und Schließen; Konsole fehlerfrei. Beide Test-Gäste per Log out abgemeldet.
 
 ## In Arbeit
 
@@ -38,8 +51,8 @@ Aktualisiert: 23.10.2026
 
 ## Als Nächstes
 
-1. Threads (US5; Reaktionen dort über `toggleAt` auf Antworten, Leiste braucht den Thread-Button), Bearbeiten (Leiste
-   braucht den „more“-Button), „Neue Nachricht“ (US4), Suche (US6).
+1. Bearbeiten (Leiste braucht den „more“-Button), „Neue Nachricht“ (US4, `#`/`@`-Logik aus `mention-trigger.ts`
+   wiederverwendbar), Suche (US6).
 
 ## Brauche von A
 
@@ -49,8 +62,8 @@ Aktualisiert: 23.10.2026
 
 ## Hinweise für A
 
-- Neue Dateien in `features/chat/` (u. a. `reaction-bar/`, `message-reactions/`, `reaction-chips.ts`, `recent-emojis.ts`); `chat.routes.ts` bindet Channel- und DM-Ansicht ein, „Neue Nachricht“ und Thread
-  sind noch Platzhalter.
+- Neue Dateien in `features/chat/` (u. a. `reaction-bar/`, `message-reactions/`, `reaction-chips.ts`, `recent-emojis.ts`); `chat.routes.ts` bindet Channel-, DM- und Thread-Ansicht ein, „Neue Nachricht“
+  ist noch ein Platzhalter.
 - `AuthService.logOut` löscht den Gast: seine Nachrichten bleiben stehen und zeigen „Gast“ mit Platzhalter-Avatar.
 - Channel-Kopf-Avatare und Kopf-Umbruch 768–1440 px bewusst nicht angefasst (Issue ttoebbe/dabubble#3 an Thomas).
 - Nicht angefasst, aber veraltet: Hinweis „Chat-Ansicht … ein Platzhalter“ in `README.md` und `docs/todo.md`
