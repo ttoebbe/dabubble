@@ -1,5 +1,5 @@
 import { Service, inject } from '@angular/core';
-import { doc, getDoc, onSnapshot, setDoc } from 'firebase/firestore';
+import { collection, doc, getDoc, onSnapshot, query, setDoc, where } from 'firebase/firestore';
 import { Observable } from 'rxjs';
 import { DirectChat } from '../models/direct-chat';
 import { FIRESTORE } from './firebase';
@@ -31,6 +31,24 @@ export class DirectChatService {
         doc(this.firestore, 'directChats', chatId),
         { includeMetadataChanges: true },
         (snapshot) => subscriber.next(snapshot.exists() && !snapshot.metadata.hasPendingWrites),
+        (error) => subscriber.error(error),
+      ),
+    );
+  }
+
+  /** Live: the chats a person belongs to. Errors with the Firestore error when access is denied. */
+  watchOwn(uid: string): Observable<DirectChat[]> {
+    const own = query(
+      collection(this.firestore, 'directChats'),
+      where('memberIds', 'array-contains', uid),
+    );
+    return new Observable<DirectChat[]>((subscriber) =>
+      onSnapshot(
+        own,
+        (snapshot) =>
+          subscriber.next(
+            snapshot.docs.map((entry) => ({ ...entry.data(), id: entry.id }) as DirectChat),
+          ),
         (error) => subscriber.error(error),
       ),
     );

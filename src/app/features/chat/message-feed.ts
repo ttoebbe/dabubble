@@ -1,8 +1,11 @@
 import { Observable, catchError, map, of, startWith } from 'rxjs';
-import { ChatMessage, Message } from '../../core/models/message';
+import { Message } from '../../core/models/message';
 
-/** What a conversation view knows about its messages: still loading, ready or not readable. */
-export interface MessageFeed<T extends ChatMessage = Message> {
+/**
+ * What a conversation view or the search knows about its messages: still loading, ready or not
+ * readable.
+ */
+export interface MessageFeed<T = Message> {
   readonly state: 'loading' | 'ready' | 'error';
   readonly messages: readonly T[];
 }
@@ -14,9 +17,7 @@ export const LOADING_FEED: MessageFeed<never> = { state: 'loading', messages: []
 const ERROR_FEED: MessageFeed<never> = { state: 'error', messages: [] };
 
 /** Turns the live messages into a feed that starts as loading and ends in an error feed. */
-export function toFeed<T extends ChatMessage = Message>(
-  source: Observable<T[]>,
-): Observable<MessageFeed<T>> {
+export function toFeed<T = Message>(source: Observable<T[]>): Observable<MessageFeed<T>> {
   return source.pipe(
     map((messages): MessageFeed<T> => ({ state: 'ready', messages })),
     startWith(LOADING_FEED),
