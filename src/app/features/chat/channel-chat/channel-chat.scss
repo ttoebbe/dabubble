@@ -73,10 +73,13 @@
 
   &__avatars {
     display: flex;
-    padding-left: 6px;
+    padding-left: 10px;
 
     app-avatar {
-      margin-left: -6px;
+      margin-left: -10px;
+      border-radius: 50%;
+      outline: 2px solid var(--color-white);
+      outline-offset: -2px;
     }
   }
 

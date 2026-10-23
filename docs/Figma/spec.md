@@ -911,10 +911,13 @@ ttoebbe/dabubble#1.
 
 ### 8.14 Channel header in the chat
 
-`src/app/features/chat/channel-chat/` (ttoebbe/dabubble#3): the member avatars are 36 px and overlap by
-6 px, so the row "3" plus `person_add` keeps the Figma width. Below a chat width of 600 px (container query
-on `chat-header`) the avatar row is hidden and only the channel name and the add button stay, so the
-header does not wrap between 768 and 1440 px.
+`src/app/features/chat/channel-chat/` (ttoebbe/dabubble#3), from `210:1110` and `46. Members Miniatures
+Chat info` (`392:4020`, hover `392:4022`): avatars 40 px with a 2 px white ring, overlapping by 10 px
+(`Members preview` gap -10), count Nunito 20/600, hover `#ECEEFE`, radius 30, count 20/700 `#535AF1`;
+padding 3/10, gap 10, 142 x 46 in all; `44. Add members button` 40 px on `#ECEEFE` (44 px here, touch
+target). Not in Figma: below a chat width of 600 px (container query on `chat-header`) the avatar row
+is hidden and only the channel name and the add button stay, as on mobile (`07`), so the header does
+not wrap between 768 and 1440 px.
 
 ### 8.15 Editing a message
 
