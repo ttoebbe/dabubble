@@ -100,6 +100,8 @@ Bis eine Schnittstelle steht, arbeitet die andere Person gegen einen Platzhalter
 | `package.json`, `angular.json`, `src/app/app.config.ts`, `eslint.config.js`, `tsconfig*.json` | gemeinsam | eigener Commit, vorher absprechen                                                                |
 | `.github/` (CI, Deploy, PR-Vorlage), `.claude/`                                               | gemeinsam | eigener Commit, vorher absprechen                                                                |
 | `CLAUDE.md`, `README.md`, `docs/arbeitsteilung.md`, `docs/todo.md`                            | gemeinsam | nur nach Absprache                                                                               |
+| `docs/stand/a.md`                                                                             | A         | Arbeitsstand für B, bei Feierabend überschreiben                                                 |
+| `docs/stand/b.md`                                                                             | B         | Arbeitsstand für A, bei Feierabend überschreiben                                                 |
 
 ## Schnittstellen
 
@@ -194,4 +196,5 @@ Lokal braucht jede Person `src/environments/environment.ts` mit der Firebase-Kon
 - Wird etwas im fremden Bereich gebraucht: GitHub-Issue mit Label `bereich-a` oder `bereich-b`, nicht selbst ändern.
 - Gemeinsame Dateien nur nach kurzer Absprache, als eigener Commit.
 - Ein Deploy ist eine gemeinsame Entscheidung; beide können ihn in GitHub Actions starten.
+- Arbeitsstand bei Feierabend in die eigene Datei unter `docs/stand/`, Ablauf in `CLAUDE.md` („Absprache zwischen den Claude-Sitzungen“).
 - Nach der Abgabe forken beide das Repo (DA-Checkliste).
