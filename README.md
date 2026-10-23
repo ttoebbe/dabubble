@@ -58,17 +58,17 @@ Grundlage ist die Checkliste der Developer Akademie (`docs/DA_Checkliste/`), das
 
 ### Nachrichten (Bereich B)
 
-| Funktion                                                                         | Checkliste    | Stand                                     |
-| -------------------------------------------------------------------------------- | ------------- | ----------------------------------------- |
-| Nachrichten im Channel senden und empfangen, live                                | Channels US1  | fertig                                    |
-| Direktnachrichten, auch mit sich selbst; Fokus beim Chatwechsel im Eingabefeld   | Schreiben US1 | fertig                                    |
-| Reaktionen: zwei zuletzt genutzte Emojis, „+ x weitere“, wer reagiert hat        | Schreiben US2 | fertig                                    |
-| Emojis in Nachrichten, Zähler bei mehrfach genutzten Reaktionen                  | Schreiben US3 | fertig                                    |
-| „Neue Nachricht“: `#` listet Channels, `@` Personen, sonst Name oder E-Mail      | Schreiben US4 | fertig                                    |
-| Threads in Channels und Direktnachrichten, „2 Antworten“, „Letzte Antwort 14:56“ | Schreiben US5 | fertig                                    |
-| `@` und `#` im Eingabefeld, Erwähnungen im Text klickbar                         | Schreiben US5 | fertig                                    |
-| Suche: `#` Channels, `@` Personen, sonst auch Nachrichten mit Kontext, live      | Schreiben US6 | fertig; Thread-Antworten noch nicht dabei |
-| Eigene Nachrichten und Antworten bearbeiten                                      | Figma         | fertig                                    |
+| Funktion                                                                         | Checkliste    | Stand                         |
+| -------------------------------------------------------------------------------- | ------------- | ----------------------------- |
+| Nachrichten im Channel senden und empfangen, live                                | Channels US1  | fertig                        |
+| Direktnachrichten, auch mit sich selbst; Fokus beim Chatwechsel im Eingabefeld   | Schreiben US1 | fertig                        |
+| Reaktionen: zwei zuletzt genutzte Emojis, „+ x weitere“, wer reagiert hat        | Schreiben US2 | fertig                        |
+| Emojis in Nachrichten, Zähler bei mehrfach genutzten Reaktionen                  | Schreiben US3 | fertig                        |
+| „Neue Nachricht“: `#` listet Channels, `@` Personen, sonst Name oder E-Mail      | Schreiben US4 | fertig                        |
+| Threads in Channels und Direktnachrichten, „2 Antworten“, „Letzte Antwort 14:56“ | Schreiben US5 | fertig                        |
+| `@` und `#` im Eingabefeld, Erwähnungen im Text klickbar                         | Schreiben US5 | fertig                        |
+| Suche: `#` Channels, `@` Personen, sonst auch Nachrichten mit Kontext, live      | Schreiben US6 | fertig, auch Thread-Antworten |
+| Eigene Nachrichten und Antworten bearbeiten                                      | Figma         | fertig                        |
 
 ## Tech-Stack
 

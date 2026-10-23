@@ -44,8 +44,8 @@ Aktualisiert: 23.10.2026 (abends)
 
 ## Hinweise für B
 
-- Suche: Thread-Antworten werden noch nicht durchsucht. Dafür bräuchte es eine Collection-Group-Abfrage auf
-  `replies` und eine Regel `match /{path=**}/replies/{replyId}` (`docs/todo.md`).
+- Suche: Thread-Antworten werden mit durchsucht; `MessageSearchService` liest dafür die Antworten jeder Nachricht
+  mit `replyCount > 0` (keine Regeländerung nötig).
 - `MessageFeed`/`toFeed` (`features/chat/message-feed.ts`) sind jetzt für jeden Typ nutzbar, nicht nur für
   `ChatMessage`; die Suche nutzt sie für `PlacedMessage`.
 - `chat-links.ts` hat `messageLink(kind, chat, conversationId, messageId)`: Chat mit offenem Thread einer Nachricht.

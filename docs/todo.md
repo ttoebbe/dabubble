@@ -48,7 +48,7 @@ Offene Aufgaben außerhalb der Arbeitspakete. Erledigtes abhaken, nicht löschen
 - [x] Build-Warnung „Unable to locate stylesheet fonts/fonts.css“ (beasties): `data-beasties-skip` am Link – A
 - [x] Konsolen-Warnung zum Nunito-Preload: das Intro lädt die Schrift schon während der Animation – A
 - [ ] Vier Gast-Konten aus einem abgebrochenen Testlauf (23.10.2026) löschen: Authentication und `users`, dazu aus `channels/entwicklerteam` → `memberIds` entfernen – Thomas in der Firebase-Konsole
-- [ ] Suche: Thread-Antworten mit durchsuchen. Bisher nur Nachrichten; für Antworten braucht es eine Collection-Group-Abfrage auf `replies` und dafür eine Regel `match /{path=**}/replies/{replyId}` (Regeländerung, vorher absprechen) – B
+- [x] Suche: Thread-Antworten mit durchsuchen – ohne Regeländerung: die Suche liest die Antworten jeder Nachricht mit `replyCount > 0` (23.10.2026)
 - [ ] Chat-Ansichten, „Neue Nachricht“ und Suche angemeldet durchklicken: Konsole, axe-core, 320–1920 px – A, B
 - [ ] Layout-Check um die Chat-Seiten erweitern (Channel, DM, Thread, „Neue Nachricht“, Suche offen) – A
 
