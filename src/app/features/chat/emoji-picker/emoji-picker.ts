@@ -1,21 +1,5 @@
 import { Component, ElementRef, inject, output, signal } from '@angular/core';
-
-/** An emoji of the picker with the name screen readers announce. */
-interface PickerEmoji {
-  readonly char: string;
-  readonly label: string;
-}
-
-/**
- * The emojis on offer: the four of Figma `51. Emojis` (rocket, white heavy check mark, nerd
- * face, person raising both hands in celebration). The file defines no further ones (spec 6.6).
- */
-const EMOJIS: readonly PickerEmoji[] = [
-  { char: '🚀', label: 'Rakete' },
-  { char: '✅', label: 'Häkchen' },
-  { char: '🤓', label: 'Nerd-Gesicht' },
-  { char: '🙌', label: 'Feiernde Hände' },
-];
+import { CHAT_EMOJIS } from '../chat-emojis';
 
 /**
  * Emoji button of the message box (Figma `60. Icons text box aux`, `sentiment_satisfied`)
@@ -31,7 +15,7 @@ export class EmojiPicker {
   private readonly host = inject<ElementRef<HTMLElement>>(ElementRef);
   readonly picked = output<string>();
   readonly open = signal(false);
-  readonly emojis = EMOJIS;
+  readonly emojis = CHAT_EMOJIS;
 
   /** Shows or hides the list. */
   toggle(): void {

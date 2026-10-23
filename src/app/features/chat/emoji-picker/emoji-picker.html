@@ -10,7 +10,7 @@
 </button>
 @if (open()) {
   <div class="picker__panel" role="group" aria-label="Emojis">
-    @for (emoji of emojis; track emoji.char) {
+    @for (emoji of emojis; track emoji.id) {
       <button
         class="picker__emoji"
         type="button"

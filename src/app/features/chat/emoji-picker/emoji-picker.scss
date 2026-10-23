@@ -36,7 +36,8 @@
     bottom: 100%;
     left: 0;
     z-index: 1;
-    display: flex;
+    display: grid;
+    grid-template-columns: repeat(5, var(--touch-target-min));
     gap: 5px;
     margin-bottom: 8px;
     padding: 5px;
