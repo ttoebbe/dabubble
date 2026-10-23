@@ -411,7 +411,7 @@ flowchart LR
   deployButton["Actions: Deploy<br/>von Hand, nur main"] --> deploy["deploy.yml<br/>Lint, Build mit FIREBASE_CONFIG"]
   deploy -->|"FTPS"| webspace["DA-Webspace<br/>dabubble-3299.developerakademie.net"]
 
-  checkButton["Actions: Layout check<br/>von Hand"] --> layout["layout-check.yml<br/>Build, Gäste-Login,<br/>12 Seiten und Zustände × 6 Viewports"]
+  checkButton["Actions: Layout check<br/>von Hand"] --> layout["layout-check.yml<br/>Build, Gäste-Login,<br/>18 Seiten und Zustände × 6 Viewports"]
 ```
 
 - **CI** läuft bei jedem Push und Pull Request. Wird `main` rot, behebt das sofort, wer gepusht hat.

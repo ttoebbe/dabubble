@@ -33,7 +33,7 @@ Aktualisiert: 23.10.2026 (abends)
 - Angemeldet durchklicken: Bearbeiten, „Neue Nachricht“, Suche (Desktop und mobil), Konsole, axe-core,
   320–1920 px. Fällt die Stichwortsuche mit „Das hat nicht geklappt …“ aus, lehnen die Regeln die Abfrage
   `directChats where memberIds array-contains uid` ab.
-- Layout-Check um die Chat-Seiten erweitern.
+- Layout-Check mit den neuen Chat-Seiten laufen lassen (Thomas startet ihn, Gäste-Login).
 - Vier Gast-Konten vom 23.10. löschen (Thomas, Firebase-Konsole).
 - Deploy des neuen Stands nach Absprache.
 - Impressum mit echten Daten füllen, Datenschutz-Entwurf gemeinsam prüfen (`docs/todo.md`).
