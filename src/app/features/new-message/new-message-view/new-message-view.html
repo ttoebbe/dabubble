@@ -12,7 +12,7 @@
         aria-autocomplete="list"
         aria-haspopup="listbox"
         [attr.aria-expanded]="menu() !== null"
-        [attr.aria-controls]="listId"
+        [attr.aria-controls]="menu() ? listId : null"
         [attr.aria-activedescendant]="activeId()"
         [placeholder]="placeholder()"
         [value]="address()"

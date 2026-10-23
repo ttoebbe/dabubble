@@ -84,8 +84,9 @@ export class WorkspaceSearch {
     const shown = this.mobile() ? this.viewOpen() : this.focused() && !this.dismissed();
     return shown && this.query() !== null;
   });
+  readonly listShown = computed(() => this.open() && this.hits().length > 0);
   readonly activeId = computed(() =>
-    this.open() && this.hits().length ? optionId(this.listId, this.active()) : null,
+    this.listShown() ? optionId(this.listId, this.active()) : null,
   );
 
   /** Follows the typed text and shows the list again after Escape. */
