@@ -23,6 +23,13 @@ Aktualisiert: 23.10.2026
 - Channel-Intro nennt Ersteller und Datum („Du hast diesen Channel heute erstellt.“ für den Ersteller), Jahr nur wenn
   nicht das aktuelle. Datumstrenner: „Heute“, „Gestern“, „Dienstag, 14. Januar“ (mit Jahr, wenn nicht aktuell).
 - Ladezustand der Nachrichtenliste: „Nachrichten werden geladen …“ bis zur ersten Antwort.
+- Reaktionen (Schreiben US2, Zähler US3): Aktionsleiste beim Hover/Fokus (mobil nach Tipp auf die Nachricht) mit den zwei
+  zuletzt genutzten Emojis (`localStorage` pro uid, ohne Historie ✅ und 🙌) und Emoji-Liste (Picker als „Reaktion
+  hinzufügen“ wiederverwendet). Eigene Nachrichten: nur Emoji-Liste (Figma `53B.`). Chips mit Zähler unter der
+  Nachricht, eigene Reaktion markiert, Klick schaltet um. Tooltip „<Name> hat reagiert“ bei Hover, Tastaturfokus und
+  Tipp. Mobil max. 7 Chips plus „+x weitere“ / „Weniger anzeigen“. Schreiben per Transaktion
+  (`MessageService.toggleReaction`, generisch über `toggleAt`), leere Einträge werden entfernt. Live mit zwei Gästen in
+  der DM geprüft: setzen, entfernen, Echtzeit, Zähler, Namen, zuletzt genutzt, 320–1920 px ohne Scrollleiste.
 - Thread-Route jetzt `thread/:kind/:conversationId/:messageId`; der markierte Menüeintrag bleibt mit offenem Thread.
 
 ## In Arbeit
@@ -31,7 +38,8 @@ Aktualisiert: 23.10.2026
 
 ## Als Nächstes
 
-1. Reaktionen (Schreiben US2), Zähler gleicher Emojis (US3), Threads (US5), Bearbeiten, „Neue Nachricht“ (US4), Suche (US6).
+1. Threads (US5; Reaktionen dort über `toggleAt` auf Antworten, Leiste braucht den Thread-Button), Bearbeiten (Leiste
+   braucht den „more“-Button), „Neue Nachricht“ (US4), Suche (US6).
 
 ## Brauche von A
 
@@ -41,7 +49,7 @@ Aktualisiert: 23.10.2026
 
 ## Hinweise für A
 
-- Neue Dateien in `features/chat/`; `chat.routes.ts` bindet Channel- und DM-Ansicht ein, „Neue Nachricht“ und Thread
+- Neue Dateien in `features/chat/` (u. a. `reaction-bar/`, `message-reactions/`, `reaction-chips.ts`, `recent-emojis.ts`); `chat.routes.ts` bindet Channel- und DM-Ansicht ein, „Neue Nachricht“ und Thread
   sind noch Platzhalter.
 - `AuthService.logOut` löscht den Gast: seine Nachrichten bleiben stehen und zeigen „Gast“ mit Platzhalter-Avatar.
 - Channel-Kopf-Avatare und Kopf-Umbruch 768–1440 px bewusst nicht angefasst (Issue ttoebbe/dabubble#3 an Thomas).
