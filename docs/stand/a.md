@@ -1,24 +1,42 @@
 # Stand Bereich A (Thomas)
 
-Aktualisiert: 22.10.2026 (Vorlage von B, aus der Nachricht von Thomas übernommen; ab jetzt pflegt A diese Datei)
+Aktualisiert: 23.10.2026
 
 ## Erledigt
 
-- Bereich A live: Registrierung mit Avatar, Login (E-Mail, Google, Gast), Passwort vergessen, Profil bearbeiten,
-  Workspace-Rahmen mit Menü und Online-Status, Channels anlegen, bearbeiten, verlassen, Mitglieder hinzufügen.
+- Bereich A fertig und live (http://dabubble-3299.developerakademie.net): Registrierung mit Avatar und
+  Bestätigungs-E-Mail, Login (E-Mail, Google, Gast), Passwort vergessen, Profil bearbeiten, Workspace-Rahmen mit
+  Menü und Online-Status, Channels anlegen, bearbeiten, verlassen, Mitglieder hinzufügen. Scheitert das Speichern,
+  zeigt der Dialog eine Meldung.
+- Start-Channel „Entwicklerteam“ (`channels/entwicklerteam`): Jedes neue Konto und jeder Gast tritt bei.
+- Gäste: Beim Log out verlässt der Gast alle Channels, Profil und Konto werden gelöscht. Andere Gäste sind in Menü,
+  Personensuche und Mitgliederlisten ausgeblendet; `UserService.users` bleibt vollständig (für Nachrichten-Autoren).
+- 23.10.: Menü (Channel, Person, „Neue Nachricht“) und „Nachricht“ im Profil führen über `CHAT_ROUTES`; der markierte
+  Menüeintrag folgt der URL, auch mit offenem Thread.
+- 23.10.: Datenmodell für Nachrichten, DMs und Threads in ttoebbe/dabubble#1 bestätigt, PR #2 gemergt.
+- AXE ohne Verstöße auf den Konto-Seiten und im Workspace, Layout-Check in Actions grün (72 Kombinationen).
 
 ## In Arbeit
 
-- Pause wegen Backend-Kurs.
+- Nichts. Bereich A wartet auf die Chat-Ansichten von B.
 
 ## Als Nächstes
 
-- Workspace-Menü auf die Chat-Routen von B umstellen, sobald `CHAT_ROUTES` stehen.
+- Klicktest Menü → Chat-Ansicht im angemeldeten Workspace.
+- Yannic ins Firebase-Projekt einladen, damit B die Firestore-Regeln selbst veröffentlicht.
+- Impressum mit echten Daten füllen, Datenschutz-Entwurf gemeinsam prüfen (`docs/todo.md`).
 
 ## Brauche von B
 
-- `CHAT_ROUTES`, Route zur DM (Button im Profil), Such-Komponente für den Header.
+- Chat-, DM- und Thread-Ansichten statt der Platzhalter.
+- Such-Komponente für den Header; der Platz dafür ist im Header vorgesehen.
+- Online-Status neben Namen und Avataren in Chats und Threads (aus `UserService.users`).
 
 ## Hinweise für B
 
-- Siehe `docs/arbeitsteilung.md`, Abschnitt „Schnittstellen“.
+- Schnittstellen und Regeln: `docs/arbeitsteilung.md`, Abschnitt „Schnittstellen“; Überblick mit Diagrammen in
+  `README.md`.
+- Router mit Hash-URLs: `/#/workspace/channel/…`; `routerLink` und `router.navigate` funktionieren wie gewohnt.
+- Profil einer Person: `ProfileViewer.show(uid)`; Channel-Kopf: `ChannelDialogs.open(channelId, kind)` mit
+  `'settings'`, `'members'` oder `'add-members'`.
+- Live gilt der Stand in der Firebase-Konsole, nicht `firestore.rules` im Repo. Regeländerungen dort veröffentlichen.
