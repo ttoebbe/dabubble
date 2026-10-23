@@ -8,9 +8,10 @@ Gruppenprojekt der Developer Akademie, umgesetzt mit Angular 22 und Firebase.
 **Live:** <http://dabubble-3299.developerakademie.net> – zum Ausprobieren „Gäste-Login“ wählen.
 Die Seite läuft bewusst nur über http, es ist ein Übungsprojekt.
 
-> **Stand 22.10.2026:** Bereich A (Konto, Workspace-Rahmen, Channels) ist fertig und live. Bereich B
-> (Nachrichten, Threads, Suche) beginnt. Die Diagramme zeigen die Zielstruktur; was noch fehlt, ist als
-> „geplant“ markiert. Offene Punkte: [`docs/todo.md`](docs/todo.md).
+> **Stand 23.10.2026:** Bereich A (Konto, Workspace-Rahmen, Channels) ist fertig. Bereich B (Nachrichten,
+> Threads, Suche) steht auf `main`: Channel- und Direktnachrichten, Reaktionen, Emojis, Threads, Erwähnungen,
+> Bearbeiten, „Neue Nachricht“ und die Suche. Live ist noch der Stand vom 22.10.2026 (nur Bereich A); der
+> nächste Deploy folgt nach Absprache. Offene Punkte: [`docs/todo.md`](docs/todo.md).
 
 ## Inhalt
 
@@ -36,36 +37,38 @@ Grundlage ist die Checkliste der Developer Akademie (`docs/DA_Checkliste/`), das
 
 ### Konto und Workspace (Bereich A)
 
-| Funktion                                                                            | Checkliste        | Stand                                                          |
-| ----------------------------------------------------------------------------------- | ----------------- | -------------------------------------------------------------- |
-| Registrierung mit Name, E-Mail, Passwort, Datenschutz-Häkchen und Avatar-Auswahl    | Konto US1         | fertig                                                         |
-| Anmeldung mit Google                                                                | Konto US1 (opt.)  | fertig                                                         |
-| Bestätigungs-E-Mail nach der Registrierung                                          | Konto US1 (opt.)  | fertig                                                         |
-| Login mit E-Mail und Passwort, Fehlermeldung direkt am Feld                         | Konto US2         | fertig                                                         |
-| Gäste-Login; der Gast wird beim Log out samt Profil gelöscht                        | Figma             | fertig                                                         |
-| Passwort vergessen: E-Mail mit Link, neues Passwort setzen                          | Konto US3         | fertig                                                         |
-| Profil ansehen und bearbeiten (Name, Avatar aus der Auswahl)                        | Konto US4         | fertig                                                         |
-| Menü mit Channels und Direktnachrichten ein- und ausklappen                         | Konto US5         | fertig                                                         |
-| Mobile Ansichten: Menü → Chat → Thread mit Zurück-Pfeil                             | Konto US5         | fertig; die Chat-Ansicht selbst ist noch ein Platzhalter von B |
-| Online-Status (aktiv, abwesend, offline) im Menü, im Profil und in Mitgliederlisten | Konto US6 (opt.)  | fertig; in Chats und Threads Bereich B                         |
-| Channel erstellen mit Name, Beschreibung und Mitgliedern, Namensprüfung             | Channels US1      | fertig                                                         |
-| Mitglieder nachträglich hinzufügen                                                  | Channels US2      | fertig                                                         |
-| Channel verlassen                                                                   | Channels US3      | fertig                                                         |
-| Name und Beschreibung bearbeiten, Fehlermeldung bei gescheitertem Speichern         | Channels US4      | fertig                                                         |
-| Start-Channel „Entwicklerteam“: jedes neue Konto und jeder Gast tritt bei           | Entscheidung Team | fertig                                                         |
-| Intro mit Logo-Animation, Impressum, Datenschutz                                    | Figma             | fertig (Impressum-Daten fehlen noch)                           |
+| Funktion                                                                            | Checkliste        | Stand                                |
+| ----------------------------------------------------------------------------------- | ----------------- | ------------------------------------ |
+| Registrierung mit Name, E-Mail, Passwort, Datenschutz-Häkchen und Avatar-Auswahl    | Konto US1         | fertig                               |
+| Anmeldung mit Google                                                                | Konto US1 (opt.)  | fertig                               |
+| Bestätigungs-E-Mail nach der Registrierung                                          | Konto US1 (opt.)  | fertig                               |
+| Login mit E-Mail und Passwort, Fehlermeldung direkt am Feld                         | Konto US2         | fertig                               |
+| Gäste-Login; der Gast wird beim Log out samt Profil gelöscht                        | Figma             | fertig                               |
+| Passwort vergessen: E-Mail mit Link, neues Passwort setzen                          | Konto US3         | fertig                               |
+| Profil ansehen und bearbeiten (Name, Avatar aus der Auswahl)                        | Konto US4         | fertig                               |
+| Menü mit Channels und Direktnachrichten ein- und ausklappen                         | Konto US5         | fertig                               |
+| Mobile Ansichten: Menü → Chat → Thread mit Zurück-Pfeil                             | Konto US5         | fertig                               |
+| Online-Status (aktiv, abwesend, offline) im Menü, im Profil und in Mitgliederlisten | Konto US6 (opt.)  | fertig, auch in Chats und Threads    |
+| Channel erstellen mit Name, Beschreibung und Mitgliedern, Namensprüfung             | Channels US1      | fertig                               |
+| Mitglieder nachträglich hinzufügen                                                  | Channels US2      | fertig                               |
+| Channel verlassen                                                                   | Channels US3      | fertig                               |
+| Name und Beschreibung bearbeiten, Fehlermeldung bei gescheitertem Speichern         | Channels US4      | fertig                               |
+| Start-Channel „Entwicklerteam“: jedes neue Konto und jeder Gast tritt bei           | Entscheidung Team | fertig                               |
+| Intro mit Logo-Animation, Impressum, Datenschutz                                    | Figma             | fertig (Impressum-Daten fehlen noch) |
 
-### Nachrichten (Bereich B, geplant)
+### Nachrichten (Bereich B)
 
-| Funktion                                                             | Checkliste    |
-| -------------------------------------------------------------------- | ------------- |
-| Nachrichten im Channel senden und empfangen                          | Channels US1  |
-| Direktnachrichten, Fokus beim Chatwechsel im Eingabefeld             | Schreiben US1 |
-| Reaktionen: zuletzt genutzte Emojis, „+ x weitere“, wer reagiert hat | Schreiben US2 |
-| Emojis in Nachrichten                                                | Schreiben US3 |
-| „Neue Nachricht“ mit `#` und `@` im Adressfeld                       | Schreiben US4 |
-| Threads in Channels und Direktnachrichten                            | Schreiben US5 |
-| Suche in Nachrichten mit `#`- und `@`-Dropdown und Live-Filter       | Schreiben US6 |
+| Funktion                                                                         | Checkliste    | Stand                                     |
+| -------------------------------------------------------------------------------- | ------------- | ----------------------------------------- |
+| Nachrichten im Channel senden und empfangen, live                                | Channels US1  | fertig                                    |
+| Direktnachrichten, auch mit sich selbst; Fokus beim Chatwechsel im Eingabefeld   | Schreiben US1 | fertig                                    |
+| Reaktionen: zwei zuletzt genutzte Emojis, „+ x weitere“, wer reagiert hat        | Schreiben US2 | fertig                                    |
+| Emojis in Nachrichten, Zähler bei mehrfach genutzten Reaktionen                  | Schreiben US3 | fertig                                    |
+| „Neue Nachricht“: `#` listet Channels, `@` Personen, sonst Name oder E-Mail      | Schreiben US4 | fertig                                    |
+| Threads in Channels und Direktnachrichten, „2 Antworten“, „Letzte Antwort 14:56“ | Schreiben US5 | fertig                                    |
+| `@` und `#` im Eingabefeld, Erwähnungen im Text klickbar                         | Schreiben US5 | fertig                                    |
+| Suche: `#` Channels, `@` Personen, sonst auch Nachrichten mit Kontext, live      | Schreiben US6 | fertig; Thread-Antworten noch nicht dabei |
+| Eigene Nachrichten und Antworten bearbeiten                                      | Figma         | fertig                                    |
 
 ## Tech-Stack
 
@@ -102,18 +105,18 @@ flowchart LR
       legal["features/legal<br/>Impressum, Datenschutz"]
     end
 
-    subgraph areaB["Bereich B – Yannic (geplant)"]
-      chat["features/chat<br/>Channel- und DM-Ansicht"]
-      thread["features/thread"]
-      newMessage["features/new-message"]
-      search["features/search"]
+    subgraph areaB["Bereich B – Yannic"]
+      chat["features/chat<br/>Channel- und DM-Ansicht, Eingabe,<br/>Reaktionen, Erwähnungen, Bearbeiten"]
+      thread["features/thread<br/>Thread-Ansicht"]
+      newMessage["features/new-message<br/>Neue Nachricht"]
+      search["features/search<br/>Suche im Header und im Menü"]
     end
 
     subgraph core["core"]
       guards["guards<br/>signedInGuard, signedOutGuard"]
       servicesA["services (A)<br/>Auth, User, Channel, Presence"]
-      servicesB["services (B, geplant)<br/>Message, DirectChat, Thread, Search"]
-      models["models<br/>AppUser, Channel, …"]
+      servicesB["services (B)<br/>Message, DirectChat, MessageSearch"]
+      models["models<br/>AppUser, Channel, Message, DirectChat"]
     end
 
     shared["shared<br/>Avatar, Brand, Button, Dialog, InputField"]
@@ -159,8 +162,8 @@ flowchart TD
   subgraph workspaceFrame["/workspace · signedInGuard"]
     header["Header<br/>Logo, Suche (B), Profilmenü"]
     menu["Menü<br/>Channels, Direktnachrichten"]
-    primaryOutlet["Outlet primary (B, geplant)<br/>Channel, Direktnachricht, Neue Nachricht"]
-    threadOutlet["Outlet thread (B, geplant)<br/>Thread"]
+    primaryOutlet["Outlet primary (B)<br/>channel/:channelId, dm/:uid, new-message"]
+    threadOutlet["Outlet thread (B)<br/>thread/:kind/:conversationId/:messageId"]
     dialogs["Dialoge (A)<br/>Channel erstellen und bearbeiten,<br/>Mitglieder, Leute hinzufügen, Profil"]
   end
 
@@ -179,8 +182,8 @@ ohne horizontale Scrollleiste.
 
 ## Happy Flow
 
-Eine neue Person registriert sich, meldet sich an, legt einen Channel an, schreibt eine Nachricht und meldet
-sich wieder ab. Die Schritte von Bereich B sind geplant.
+Eine neue Person registriert sich, meldet sich an, legt einen Channel an, schreibt eine Nachricht, findet sie
+über die Suche wieder und meldet sich ab.
 
 ```mermaid
 sequenceDiagram
@@ -206,9 +209,14 @@ sequenceDiagram
   person->>app: „Channel erstellen“: Name, Beschreibung, Mitglieder
   app->>db: Channel anlegen
   app-->>person: Channel erscheint unten in der Liste
-  person->>app: Channel öffnen, Nachricht schreiben (B, geplant)
-  app->>db: Nachricht speichern (B, geplant)
-  app-->>person: Nachricht erscheint bei allen Mitgliedern
+  person->>app: Channel öffnen, Nachricht schreiben, Enter
+  app->>db: channels/id/messages anlegen
+  app-->>person: Nachricht erscheint live bei allen Mitgliedern
+  person->>app: Stichwort in „Devspace durchsuchen“ tippen
+  app->>db: Nachrichten der eigenen Channels und Direktnachrichten live lesen
+  app-->>person: Treffer mit Channel, Autor und Zeit
+  person->>app: Treffer anklicken
+  app-->>person: Channel mit dem Thread der Nachricht daneben
   person->>app: Profilmenü, „Log out“
   app->>db: Online-Status offline
   app->>auth: abmelden
@@ -229,8 +237,9 @@ flowchart LR
 
 ## Datenmodell
 
-`users` und `channels` sind umgesetzt (Vorschlag in ttoebbe/dabubble#1). Nachrichten, Direktnachrichten und
-Threads legt Bereich B fest; die Einträge unten sind ein Entwurf.
+Umgesetzt nach ttoebbe/dabubble#1. Nachrichten liegen als Untercollection am Channel bzw. an der
+Direktnachricht (`channels/{id}/messages`, `directChats/{id}/messages`), Thread-Antworten an der Nachricht
+(`…/messages/{id}/replies`). Eine Direktnachricht entsteht mit der ersten Nachricht.
 
 ```mermaid
 erDiagram
@@ -251,29 +260,43 @@ erDiagram
     number createdAt
   }
   DIRECT_CHATS {
-    string id PK "Entwurf B"
-    string[] memberIds
+    string id PK "beide uids sortiert, mit _ verbunden"
+    string[] memberIds "genau zwei, sortiert"
+    number createdAt
   }
   MESSAGES {
-    string id PK "Entwurf B"
+    string id PK
+    string authorId FK "kann auf ein gelöschtes Gastprofil zeigen"
+    string text "1 bis 4000 Zeichen"
+    number createdAt
+    number editedAt "null, solange nie bearbeitet"
+    map reactions "Emoji-ID und uids, höchstens 20"
+    number replyCount
+    number lastReplyAt "null ohne Antworten"
+  }
+  REPLIES {
+    string id PK
     string authorId FK
     string text
     number createdAt
-    map reactions "Emoji und uids"
+    number editedAt
+    map reactions
   }
   USERS ||--o{ CHANNELS : "erstellt"
   USERS }o--o{ CHANNELS : "ist Mitglied"
   USERS }o--o{ DIRECT_CHATS : "ist beteiligt"
-  CHANNELS ||--o{ MESSAGES : "enthält (geplant)"
-  DIRECT_CHATS ||--o{ MESSAGES : "enthält (geplant)"
-  MESSAGES ||--o{ MESSAGES : "Thread-Antworten (geplant)"
-  USERS ||--o{ MESSAGES : "schreibt (geplant)"
+  CHANNELS ||--o{ MESSAGES : "enthält"
+  DIRECT_CHATS ||--o{ MESSAGES : "enthält"
+  MESSAGES ||--o{ REPLIES : "Thread-Antworten"
+  USERS ||--o{ MESSAGES : "schreibt"
+  USERS ||--o{ REPLIES : "schreibt"
 ```
 
-Die Firestore-Regeln stehen in der Firebase-Konsole; ihr aktueller Text ist in
-[`docs/arbeitsteilung.md`](docs/arbeitsteilung.md) unter „Schnittstellen“ dokumentiert. Kurz: Angemeldete
-lesen alle Profile und Channels, jede Person schreibt nur ihr eigenes Profil, Channels ändern nur Mitglieder,
-und dem Start-Channel darf man sich selbst hinzufügen.
+Die Firestore-Regeln stehen in [`firestore.rules`](firestore.rules) und sind in der Firebase-Konsole
+veröffentlicht. Kurz: Angemeldete lesen alle Profile und Channels, jede Person schreibt nur ihr eigenes Profil,
+Channels ändern nur Mitglieder, und dem Start-Channel darf man sich selbst hinzufügen. Nachrichten und Antworten
+lesen und schreiben nur die Mitglieder des Channels bzw. der Direktnachricht; den Text ändert nur der Autor,
+reagieren dürfen alle Mitglieder (höchstens 20 Emojis je Nachricht).
 
 ## Online-Status
 
@@ -291,8 +314,6 @@ Der Punkt am Avatar ist grün für „Aktiv“ und grau für „Abwesend“ oder
 
 ## Ordnerstruktur
 
-Zielstruktur; die Ordner von Bereich B sind angelegt und füllen sich mit seiner Arbeit.
-
 ```text
 src/
 ├── app/
@@ -300,19 +321,19 @@ src/
 │   ├── app.routes.ts            bindet die Routen beider Bereiche ein
 │   ├── core/
 │   │   ├── guards/              signedInGuard, signedOutGuard
-│   │   ├── models/              AppUser, Channel (Nachrichten-Modelle folgen von B)
+│   │   ├── models/              AppUser, Channel, Message, DirectChat
 │   │   └── services/            A: firebase, auth, user, channel, channel-membership, presence
-│   │                            B: message, direct-chat, thread, search (geplant)
+│   │                            B: message, direct-chat, message-search
 │   ├── features/
 │   │   ├── auth/                Intro, Login, Registrierung, Avatar, Passwort vergessen und zurücksetzen
 │   │   ├── workspace/           Rahmen, Header, Menü, Menü-Umschalter
 │   │   ├── channels/            Channel erstellen und bearbeiten, Mitglieder, Leute hinzufügen
 │   │   ├── profile/             Profilmenü, Profil-Dialog, Profil bearbeiten, ProfileViewer
 │   │   ├── legal/               Impressum, Datenschutz
-│   │   ├── chat/                B: Channel- und DM-Ansicht, Eingabe, Reaktionen (geplant)
-│   │   ├── thread/              B: Threads (geplant)
-│   │   ├── new-message/         B: „Neue Nachricht“ (geplant)
-│   │   └── search/              B: Suche im Header (geplant)
+│   │   ├── chat/                B: Channel- und DM-Ansicht, Eingabe, Reaktionen, Erwähnungen, Bearbeiten
+│   │   ├── thread/              B: Thread-Ansicht
+│   │   ├── new-message/         B: „Neue Nachricht“
+│   │   └── search/              B: Suche im Header (Desktop) und im Menü (mobil)
 │   └── shared/
 │       ├── components/          avatar, brand, button, dialog, input-field
 │       └── pipes/               gemeinsame Pipes (geplant)
@@ -333,8 +354,8 @@ tools/layout-check/              Layout-Check, privates Repo, lokal geklont und 
 | Channels, live                                   | `core/services/channel.service.ts`     | `channels()` (eigene), `allChannels()`                                     |
 | Profil einer Person öffnen                       | `features/profile/profile-viewer.ts`   | `ProfileViewer.show(uid)`                                                  |
 | Channel bearbeiten, Mitglieder, Leute hinzufügen | `features/channels/channel-dialogs.ts` | `ChannelDialogs.open(channelId, 'settings' \| 'members' \| 'add-members')` |
-| Routen für Chat und Thread (B → A)               | `features/chat/chat.routes.ts`         | stehen (Platzhalter-Ansichten); Menü und Profil führen schon dorthin       |
-| Suche im Header (B → A)                          | `features/search/`                     | geplant; der Header hat den Platz dafür                                    |
+| Routen für Chat und Thread (B → A)               | `features/workspace/chat-links.ts`     | `channelLink`, `directMessageLink`, `newMessageLink`, `messageLink`        |
+| Suche (B → A)                                    | `features/search/workspace-search/`    | `<app-workspace-search>` im Header, mobil mit `[mobile]="true"` im Menü    |
 
 Details und Regeln für Änderungen: [`docs/arbeitsteilung.md`](docs/arbeitsteilung.md).
 
@@ -373,7 +394,8 @@ Die App läuft dann unter `http://localhost:4200/`.
   camelCase, sprechende Namen. ESLint prüft die Limits und Namen automatisch.
 - **Formulare:** leere, ungültige und fehlerhafte Eingaben zeigen eine konkrete Meldung direkt am Feld,
   ohne `alert()` und ohne HTML5-Standardmeldungen. Buttons haben die Zustände enabled, disabled und hover.
-- **Barrierefreiheit:** axe-core meldet auf den Konto-Seiten und im Workspace keine Verstöße (WCAG AA).
+- **Barrierefreiheit:** axe-core meldet auf den Konto-Seiten und im Workspace-Rahmen keine Verstöße
+  (WCAG AA, Stand 22.10.2026); die Prüfung der Chat-Ansichten steht noch aus.
   Wo Figma-Farben den Kontrast von 4,5 : 1 verfehlen, sind sie abgedunkelt (Spec, Abschnitt 6.5 und 8).
 - **Design:** Werte nur aus `docs/Figma/spec.md` bzw. `src/styles/`; Schrift mindestens 16 px
   (Kleingedrucktes 14 px), Touch-Targets mindestens 44 px. Abweichungen von Figma sind in der Spec begründet.
