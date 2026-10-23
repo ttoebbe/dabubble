@@ -3,6 +3,10 @@
   display: block;
 }
 
+:host(:not(.search--mobile)) {
+  container: search / inline-size;
+}
+
 .search {
   &__field {
     display: flex;
@@ -25,6 +29,7 @@
     flex: 1;
     min-width: 0;
     font-size: var(--font-size-title);
+    text-overflow: ellipsis;
     outline: none;
 
     &::placeholder {
@@ -51,6 +56,23 @@
     &--wide {
       width: min(600px, calc(100% - 43px));
     }
+  }
+}
+
+@container search (max-width: 435px) {
+  .search__field {
+    padding-inline: 20px;
+  }
+
+  .search__input {
+    font-size: var(--font-size-body);
+  }
+
+  .search__results,
+  .search__results--wide {
+    right: 0;
+    left: auto;
+    width: 350px;
   }
 }
 

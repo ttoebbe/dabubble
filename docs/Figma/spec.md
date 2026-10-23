@@ -972,5 +972,8 @@ Not in Figma, decided for the implementation:
   Person rows are indented 25 px on desktop as on mobile (Figma desktop 33 px). Mobile text 18 px
   instead of 17 px (body size). A 1 px border in `#444DF2` marks the focused desktop bar (no focus state
   in Figma).
+- Below 436 px bar width (768 to about 990 px, no artboard; the bar is about 208 px wide at 768 px)
+  the bar keeps 20 px padding and 18 px text, the placeholder ends in an ellipsis, and the 350 px list
+  aligns to the right edge of the bar instead of 43 px from its left edge, so it stays in the window.
 - Thread replies are searched as well (read for every message that has replies); their hit says
   "#Entwicklerteam · Thread" and opens the thread of the message they answer.
