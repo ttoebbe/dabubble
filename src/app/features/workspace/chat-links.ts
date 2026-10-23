@@ -13,6 +13,21 @@ export function directMessageLink(uid: string): string[] {
   return ['/', WORKSPACE_PATH, 'dm', uid];
 }
 
+/**
+ * Route of a chat with the thread of one of its messages open next to it, e.g. for a search hit.
+ * `chat` is the channel id or the uid of the other person, `conversationId` the channel id or the
+ * id of the direct chat.
+ */
+export function messageLink(
+  kind: 'channel' | 'dm',
+  chat: string,
+  conversationId: string,
+  messageId: string,
+): unknown[] {
+  const thread = ['thread', kind, conversationId, messageId];
+  return ['/', WORKSPACE_PATH, { outlets: { primary: [kind, chat], thread } }];
+}
+
 /** Route of "Neue Nachricht". */
 export function newMessageLink(): string[] {
   return ['/', WORKSPACE_PATH, 'new-message'];

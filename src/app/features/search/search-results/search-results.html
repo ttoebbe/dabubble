@@ -1,0 +1,55 @@
+@if (groups().length) {
+  <div class="results__list" role="listbox" aria-label="Suchergebnisse" [id]="listId()">
+    @for (group of indexed(); track group.heading) {
+      <div class="results__group" role="group" [attr.aria-label]="group.heading">
+        @if (headings()) {
+          <p class="results__heading" aria-hidden="true">{{ group.heading }}</p>
+        }
+        @for (hit of group.hits; track hit.key; let index = $index) {
+          <div
+            class="results__option"
+            role="option"
+            tabindex="-1"
+            [id]="optionId(group.start + index)"
+            [class.results__option--active]="group.start + index === active()"
+            [class.results__option--message]="hit.type === 'message'"
+            [attr.aria-selected]="group.start + index === active()"
+            (mousedown)="$event.preventDefault()"
+            (click)="picked.emit(hit)"
+            (keydown.enter)="picked.emit(hit)"
+          >
+            @switch (hit.type) {
+              @case ('channel') {
+                <span class="results__tag" aria-hidden="true"></span>
+                <span class="results__label">{{ hit.name }}</span>
+              }
+              @case ('person') {
+                <app-avatar [src]="hit.contact.avatarUrl" [status]="hit.contact.status" />
+                <span class="results__label">
+                  {{ hit.contact.name }}{{ hit.contact.isSelf ? ' (Du)' : '' }}
+                </span>
+              }
+              @case ('message') {
+                <span class="results__place">{{ hit.place }}</span>
+                <span class="results__meta">{{ hit.author }} · {{ hit.time }}</span>
+                <span class="results__snippet">
+                  {{ hit.snippet.before }}<mark class="results__hit">{{ hit.snippet.hit }}</mark
+                  >{{ hit.snippet.after }}
+                </span>
+              }
+            }
+          </div>
+        }
+      </div>
+    }
+  </div>
+}
+<p class="results__status" role="status">
+  @if (messages().state === 'loading') {
+    Nachrichten werden durchsucht …
+  } @else if (messages().state === 'error') {
+    {{ errorText }}
+  } @else if (empty()) {
+    Keine Ergebnisse gefunden.
+  }
+</p>

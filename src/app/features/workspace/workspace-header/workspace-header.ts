@@ -2,15 +2,16 @@ import { NgOptimizedImage } from '@angular/common';
 import { Component, input, output } from '@angular/core';
 import { Brand } from '../../../shared/components/brand/brand';
 import { ProfileMenu } from '../../profile/profile-menu/profile-menu';
+import { WorkspaceSearch } from '../../search/workspace-search/workspace-search';
 
 /**
- * Top bar of the workspace: DABubble logo, a place for the search (area B) and the
- * profile menu. On mobile a chat or thread shows a back arrow and the workspace name
- * (Figma `15B. Channel name`) instead of the logo; the arrow leads from thread to chat to menu.
+ * Top bar of the workspace: DABubble logo, the search and the profile menu. On mobile the search
+ * moves into the menu; a chat or thread shows a back arrow and the workspace name (Figma
+ * `15B. Channel name`) instead of the logo; the arrow leads from thread to chat to menu.
  */
 @Component({
   selector: 'app-workspace-header',
-  imports: [NgOptimizedImage, Brand, ProfileMenu],
+  imports: [NgOptimizedImage, Brand, ProfileMenu, WorkspaceSearch],
   host: { role: 'banner', '[class.header--in-chat]': 'showBack()' },
   templateUrl: './workspace-header.html',
   styleUrl: './workspace-header.scss',

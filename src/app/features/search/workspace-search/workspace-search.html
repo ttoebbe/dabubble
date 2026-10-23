@@ -1,0 +1,46 @@
+<div class="search" [class.search--view]="viewOpen()">
+  @if (viewOpen()) {
+    <div class="search__head">
+      <h2 class="search__title">Search</h2>
+      <button class="search__close" type="button" aria-label="Suche schließen" (click)="close()">
+        <span class="search__close-icon" aria-hidden="true"></span>
+      </button>
+    </div>
+  }
+  <div class="search__field">
+    <input
+      #searchField
+      class="search__input"
+      type="text"
+      role="combobox"
+      autocomplete="off"
+      enterkeyhint="search"
+      aria-autocomplete="list"
+      aria-haspopup="listbox"
+      [attr.aria-label]="placeholder()"
+      [attr.aria-expanded]="open()"
+      [attr.aria-controls]="listId"
+      [attr.aria-activedescendant]="activeId()"
+      [placeholder]="placeholder()"
+      [value]="value()"
+      (input)="onInput($event)"
+      (keydown)="onKeydown($event)"
+      (focus)="onFocus()"
+      (blur)="focused.set(false)"
+    />
+    <span class="search__icon" aria-hidden="true"></span>
+  </div>
+  @if (open()) {
+    <app-search-results
+      class="search__results"
+      [class.search__results--wide]="query()?.char === null"
+      [listId]="listId"
+      [groups]="groups()"
+      [messages]="messages()"
+      [headings]="query()?.char === null"
+      [plain]="mobile()"
+      [active]="active()"
+      (picked)="pick($event)"
+    />
+  }
+</div>

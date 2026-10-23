@@ -1,0 +1,120 @@
+:host {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  max-height: min(520px, calc(100dvh - 180px));
+  padding: 20px 21px;
+  overflow-y: auto;
+  border: 1px solid var(--color-lines);
+  border-radius: var(--radius-dropdown);
+  background-color: var(--color-white);
+  box-shadow: var(--shadow-header);
+}
+
+:host(.results--plain) {
+  max-height: none;
+  padding: 0;
+  overflow-y: visible;
+  border: none;
+  border-radius: 0;
+  box-shadow: none;
+}
+
+.results {
+  &__list,
+  &__group {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+  }
+
+  &__list {
+    gap: 25px;
+  }
+
+  &__heading {
+    font-size: var(--font-size-label);
+    font-weight: var(--font-weight-bold);
+    color: var(--color-text-gray);
+  }
+
+  &__option {
+    position: relative;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    min-height: 33px;
+    margin-left: 25px;
+    padding: 4px 20px;
+    border-radius: var(--radius-panel);
+    cursor: pointer;
+    transition:
+      background-color var(--duration-hover) var(--easing-hover),
+      color var(--duration-hover) var(--easing-hover);
+
+    &::after {
+      content: '';
+      position: absolute;
+      inset: -6px 0;
+    }
+
+    &:hover,
+    &--active {
+      background-color: var(--color-bg);
+      color: var(--color-accent);
+    }
+
+    &:has(app-avatar) {
+      gap: 15px;
+      min-height: 58px;
+    }
+
+    &--message {
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 2px;
+      margin-left: 0;
+      padding: 8px 20px;
+      border-radius: var(--radius-box);
+    }
+  }
+
+  &__tag {
+    flex: none;
+    width: 24px;
+    height: 24px;
+    background-color: currentColor;
+    mask: url('/img/icons/tag.svg') center / 16px no-repeat;
+  }
+
+  &__label,
+  &__snippet {
+    min-width: 0;
+    overflow-wrap: anywhere;
+  }
+
+  &__place {
+    font-size: var(--font-size-label);
+    font-weight: var(--font-weight-bold);
+    color: var(--color-accent);
+  }
+
+  &__meta {
+    font-size: var(--font-size-small);
+    color: var(--color-text-gray);
+  }
+
+  &__snippet {
+    color: var(--color-black);
+  }
+
+  &__hit {
+    background-color: transparent;
+    color: var(--color-accent);
+    font-weight: var(--font-weight-bold);
+  }
+
+  &__status:empty {
+    display: none;
+  }
+}
