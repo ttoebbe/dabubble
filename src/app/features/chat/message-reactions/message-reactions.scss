@@ -103,6 +103,16 @@
   }
 }
 
+.reactions--limited {
+  &.reactions--collapsed .reactions__chip--extra {
+    display: none;
+  }
+
+  .reactions__more {
+    display: flex;
+  }
+}
+
 @include bp.mobile {
   .reactions {
     &--collapsed &__chip--extra {

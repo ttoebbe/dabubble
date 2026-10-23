@@ -1,0 +1,18 @@
+.mention {
+  display: inline;
+  color: var(--color-link);
+  font-weight: var(--font-weight-semibold);
+  text-align: left;
+  overflow-wrap: anywhere;
+  transition: color var(--duration-hover) var(--easing-hover);
+
+  &:hover {
+    color: var(--color-accent);
+    text-decoration: underline;
+  }
+}
+
+:host-context(.message--own) .mention {
+  color: var(--color-white);
+  text-decoration: underline;
+}

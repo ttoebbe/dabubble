@@ -1,0 +1,38 @@
+<app-chat-header>
+  <div class="thread__title">
+    <h2 class="thread__heading">Thread</h2>
+    <p class="thread__context">
+      @if (isChannel()) {
+        <span class="thread__tag" aria-hidden="true"></span>
+      }
+      {{ contextName() }}
+    </p>
+  </div>
+  <button class="thread__close" type="button" aria-label="Thread schließen" (click)="close()">
+    <span class="thread__close-icon" aria-hidden="true"></span>
+  </button>
+</app-chat-header>
+<app-message-list
+  [messages]="feed().messages"
+  [loading]="feed().state === 'loading'"
+  [thread]="true"
+  [react]="reactToReply"
+>
+  @if (origin(); as message) {
+    <app-message-item
+      [message]="message"
+      [author]="people().get(message.authorId) ?? null"
+      [people]="people()"
+      [own]="own()"
+      [inThread]="true"
+      [react]="reactToMessage"
+    />
+  }
+  @if (feed().messages.length) {
+    <p class="thread__divider">{{ repliesLabel() }}</p>
+  }
+</app-message-list>
+@if (feed().state === 'error') {
+  <p class="thread__error" role="alert">{{ errorText }}</p>
+}
+<app-message-composer placeholder="Antworten …" [focusKey]="focusKey()" [submit]="sendReply" />

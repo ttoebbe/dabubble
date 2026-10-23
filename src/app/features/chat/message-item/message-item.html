@@ -1,4 +1,9 @@
-<div class="message" [class.message--own]="own()" [class.message--bar]="barShown()">
+<div
+  class="message"
+  [class.message--own]="own()"
+  [class.message--bar]="barShown()"
+  [class.message--thread]="inThread()"
+>
   @if (author()) {
     <button
       class="message__avatar"
@@ -22,19 +27,39 @@
       }
       <span class="message__time">{{ time() }}</span>
     </p>
-    <p class="message__bubble">{{ message().text }}</p>
+    <p class="message__bubble"><app-message-text [text]="message().text" /></p>
     @if (chips().length) {
       <app-message-reactions
         [chips]="chips()"
+        [limited]="inThread()"
         [alignEnd]="own()"
         (toggled)="toggleReaction($event)"
       />
+    }
+    @if (replies(); as replies) {
+      <p class="message__replies">
+        <button
+          class="message__replies-link"
+          type="button"
+          [attr.data-label]="replies.label"
+          (click)="threadOpened.emit(message().id)"
+        >
+          {{ replies.label }}
+        </button>
+        <span class="message__time">{{ replies.last }}</span>
+      </p>
     }
     @if (failed()) {
       <p class="message__error" role="alert">{{ errorText }}</p>
     }
   </div>
   <div class="message__bar">
-    <app-reaction-bar [quick]="quick()" [openRight]="own()" (chosen)="toggleReaction($event)" />
+    <app-reaction-bar
+      [quick]="quick()"
+      [openRight]="own()"
+      [threadable]="!inThread()"
+      (chosen)="toggleReaction($event)"
+      (threadStarted)="threadOpened.emit(message().id)"
+    />
   </div>
 </div>

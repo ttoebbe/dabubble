@@ -10,4 +10,14 @@
     </button>
   }
   <app-emoji-picker [reaction]="true" [openRight]="openRight()" (picked)="pickChar($event)" />
+  @if (threadable()) {
+    <button
+      class="bar__emoji"
+      type="button"
+      aria-label="Thread starten"
+      (click)="threadStarted.emit()"
+    >
+      <span class="bar__thread-icon" aria-hidden="true"></span>
+    </button>
+  }
 </div>

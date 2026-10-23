@@ -73,6 +73,36 @@
     }
   }
 
+  &__replies {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: baseline;
+    gap: 5px 20px;
+  }
+
+  &__replies-link {
+    display: flex;
+    flex-direction: column;
+    min-height: var(--touch-target-min);
+    justify-content: center;
+    color: var(--color-link);
+    text-align: left;
+    transition: color var(--duration-hover) var(--easing-hover);
+
+    &::after {
+      content: attr(data-label);
+      height: 0;
+      overflow: hidden;
+      font-weight: var(--font-weight-bold);
+      visibility: hidden;
+    }
+
+    &:hover {
+      color: var(--color-accent);
+      font-weight: var(--font-weight-bold);
+    }
+  }
+
   &__error {
     font-size: var(--font-size-small);
     color: var(--color-error);
@@ -148,6 +178,22 @@
 
     &__avatar {
       width: 50px;
+    }
+  }
+}
+
+@include bp.tablet-up {
+  .message--thread {
+    gap: 20px;
+    padding: 10px 16px;
+
+    .message__bar {
+      right: 16px;
+    }
+
+    &.message--own .message__bar {
+      right: auto;
+      left: 16px;
     }
   }
 }

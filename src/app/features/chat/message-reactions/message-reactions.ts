@@ -7,7 +7,8 @@ const COLLAPSED_COUNT = 7;
 /**
  * Reaction chips under a message (Figma `54.–57. … reaction`): emoji and count, the own
  * reaction marked, a click toggles it. Hover or focus shows who reacted. On mobile only
- * seven chips show, the rest hides behind "+x weitere" and "Weniger anzeigen" (Figma note 11).
+ * seven chips show, the rest hides behind "+x weitere" and "Weniger anzeigen" (Figma note 11);
+ * `limited` (inside a thread) does so on every screen size.
  */
 @Component({
   selector: 'app-message-reactions',
@@ -17,6 +18,7 @@ const COLLAPSED_COUNT = 7;
 export class MessageReactions {
   readonly chips = input.required<readonly ReactionChip[]>();
   readonly alignEnd = input(false);
+  readonly limited = input(false);
   readonly toggled = output<string>();
   readonly expanded = signal(false);
   readonly collapsedCount = COLLAPSED_COUNT;

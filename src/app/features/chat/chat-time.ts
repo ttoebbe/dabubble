@@ -1,7 +1,16 @@
+/** Time of day without unit, e.g. `14:56` ("Letzte Antwort 14:56", Figma `48.`). */
+export function formatClock(timestamp: number): string {
+  return new Intl.DateTimeFormat('de-DE', { hour: '2-digit', minute: '2-digit' }).format(timestamp);
+}
+
+/** Number of replies as the thread link and divider say it: "1 Antwort", "2 Antworten". */
+export function formatReplies(count: number): string {
+  return `${count} ${count === 1 ? 'Antwort' : 'Antworten'}`;
+}
+
 /** Time of day as the chat shows it, e.g. `14:25 Uhr` (Figma `48. Messages main chat`). */
 export function formatTime(timestamp: number): string {
-  const time = new Intl.DateTimeFormat('de-DE', { hour: '2-digit', minute: '2-digit' });
-  return `${time.format(timestamp)} Uhr`;
+  return `${formatClock(timestamp)} Uhr`;
 }
 
 /** Same for all timestamps of one calendar day in the local time zone. */

@@ -12,6 +12,10 @@ const loadChannel = () =>
 const loadDirectChat = () =>
   import('./direct-chat/direct-chat').then((module) => module.DirectChat);
 
+/** Lazy-loads the thread view. */
+const loadThread = () =>
+  import('../thread/thread-view/thread-view').then((module) => module.ThreadView);
+
 /**
  * Routes of area B (Yannic), mounted as children of `/workspace`: channel, direct message
  * (`:uid` is the other person) and new-message views in the primary outlet, the thread
@@ -26,7 +30,6 @@ export const CHAT_ROUTES: Routes = [
   {
     path: 'thread/:kind/:conversationId/:messageId',
     outlet: 'thread',
-    loadComponent: loadView,
-    data: { view: 'Thread' },
+    loadComponent: loadThread,
   },
 ];

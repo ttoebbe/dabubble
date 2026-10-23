@@ -5,7 +5,8 @@ import { EmojiPicker } from '../emoji-picker/emoji-picker';
 /**
  * Reaction bar of a message (Figma `52B. Reaction bar`, `53B.` without quick emojis): the
  * two quick emojis and the button that opens the emoji list. Reports the id of the chosen
- * emoji. Thread and "more" buttons of the design follow with threads and editing.
+ * emoji. With `threadable` the thread button (Figma comment icon, "Thread starten") follows;
+ * the "more" button of the design comes with editing.
  */
 @Component({
   selector: 'app-reaction-bar',
@@ -16,7 +17,9 @@ import { EmojiPicker } from '../emoji-picker/emoji-picker';
 export class ReactionBar {
   readonly quick = input<readonly ChatEmoji[]>([]);
   readonly openRight = input(false);
+  readonly threadable = input(false);
   readonly chosen = output<string>();
+  readonly threadStarted = output();
 
   /** Reports the emoji picked in the list by its id. */
   pickChar(char: string): void {

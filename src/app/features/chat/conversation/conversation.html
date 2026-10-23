@@ -2,6 +2,7 @@
   [messages]="feed().messages"
   [loading]="feed().state === 'loading'"
   [react]="react"
+  (threadOpened)="openThread($event)"
 >
   <ng-content />
 </app-message-list>

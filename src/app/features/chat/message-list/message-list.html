@@ -1,4 +1,11 @@
-<div class="list" #scroller tabindex="0" role="region" aria-label="Nachrichten">
+<div
+  class="list"
+  #scroller
+  tabindex="0"
+  role="region"
+  aria-label="Nachrichten"
+  [class.list--thread]="thread()"
+>
   <div class="list__content">
     <ng-content />
     @if (loading()) {
@@ -18,6 +25,8 @@
               [people]="authors()"
               [react]="react()"
               [own]="row.message.authorId === selfUid()"
+              [inThread]="thread()"
+              (threadOpened)="threadOpened.emit($event)"
             />
           </li>
         }

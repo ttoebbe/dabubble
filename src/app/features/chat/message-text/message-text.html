@@ -1,0 +1,7 @@
+@for (part of parts(); track $index) {
+  @if (part.kind === 'text') {
+    <span>{{ part.text }}</span>
+  } @else {
+    <button class="mention" type="button" (click)="open(part)">{{ part.text }}</button>
+  }
+}

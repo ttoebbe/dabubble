@@ -4,15 +4,44 @@
       #field
       class="composer__field"
       rows="2"
+      role="combobox"
       aria-label="Nachricht"
+      aria-autocomplete="list"
+      aria-haspopup="listbox"
+      [attr.aria-expanded]="menu() !== null"
+      [attr.aria-controls]="listId"
+      [attr.aria-activedescendant]="activeId()"
       [maxLength]="maxLength"
       [placeholder]="placeholder()"
       [value]="text()"
       (input)="onInput($event)"
-      (keydown.enter)="onEnter($event)"
+      (keydown)="onKeydown($event)"
+      (keyup)="syncCaret()"
+      (click)="syncCaret()"
+      (focus)="focused.set(true)"
+      (blur)="focused.set(false)"
     ></textarea>
+    @if (menu(); as open) {
+      <app-mention-menu
+        [listId]="listId"
+        [char]="open.char"
+        [options]="open.options"
+        [active]="active()"
+        (picked)="pick($event)"
+      />
+    }
     <div class="composer__tools">
-      <app-emoji-picker (picked)="insertEmoji($event)" />
+      <span class="composer__icons">
+        <app-emoji-picker (picked)="insertEmoji($event)" />
+        <button
+          class="composer__at"
+          type="button"
+          aria-label="Person erwähnen"
+          (click)="insertAt()"
+        >
+          <span class="composer__at-icon" aria-hidden="true"></span>
+        </button>
+      </span>
       <button
         class="composer__send"
         type="button"

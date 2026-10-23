@@ -2,6 +2,7 @@
   class="reactions"
   [class.reactions--end]="alignEnd()"
   [class.reactions--collapsed]="!expanded()"
+  [class.reactions--limited]="limited()"
 >
   @for (chip of chips(); track chip.emoji.id; let index = $index) {
     <span class="reactions__item">

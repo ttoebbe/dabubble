@@ -18,6 +18,10 @@
     padding-bottom: 20px;
   }
 
+  &--thread &__content {
+    margin-top: 0;
+  }
+
   &__rows {
     margin: 0;
     padding: 0;

@@ -10,6 +10,13 @@
     padding: 3px 13px;
   }
 
+  &__thread-icon {
+    width: 24px;
+    height: 24px;
+    background-color: var(--color-icon);
+    mask: url('/img/icons/comment.svg') center / contain no-repeat;
+  }
+
   &__emoji {
     display: grid;
     place-items: center;
