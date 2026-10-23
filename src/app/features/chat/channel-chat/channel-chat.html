@@ -35,11 +35,13 @@
   [conversationId]="channelId()"
   [placeholder]="'Nachricht an #' + name()"
 >
-  <h2 class="intro__title"><span class="intro__tag" aria-hidden="true"></span>{{ name() }}</h2>
-  <p class="intro__text">
-    {{ introStart() }}
-    <span class="intro__link"
-      ><span class="intro__link-tag" aria-hidden="true"></span>{{ name() }}</span
-    >.
-  </p>
+  @if (name()) {
+    <h2 class="intro__title"><span class="intro__tag" aria-hidden="true"></span>{{ name() }}</h2>
+    <p class="intro__text">
+      {{ introStart() }}
+      <span class="intro__link"
+        ><span class="intro__link-tag" aria-hidden="true"></span>{{ name() }}</span
+      >.
+    </p>
+  }
 </app-conversation>

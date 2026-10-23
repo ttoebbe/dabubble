@@ -19,3 +19,13 @@ export function formatDay(timestamp: number, now: number): string {
   const date = new Intl.DateTimeFormat('de-DE', { day: 'numeric', month: 'long' });
   return `${weekday}, ${date.format(timestamp).replace('.', '')}`;
 }
+
+/** Calendar date, e.g. `23. Oktober`; the year only follows when it is not the year of `now`. */
+export function formatDate(timestamp: number, now: number): string {
+  const sameYear = new Date(timestamp).getFullYear() === new Date(now).getFullYear();
+  const options: Intl.DateTimeFormatOptions = { day: 'numeric', month: 'long' };
+  return new Intl.DateTimeFormat(
+    'de-DE',
+    sameYear ? options : { ...options, year: 'numeric' },
+  ).format(timestamp);
+}

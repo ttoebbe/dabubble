@@ -11,7 +11,7 @@ import { ChatHeader } from '../chat-header/chat-header';
 import { Conversation } from '../conversation/conversation';
 
 /** Name shown for a person without profile, e.g. a guest who has logged out. */
-const UNKNOWN_PERSON_NAME = 'Gast';
+export const UNKNOWN_PERSON_NAME = 'Gast';
 
 /**
  * Direct message view (DA checklist Schreiben US1, Figma `12.` and `12 E.`): header with the

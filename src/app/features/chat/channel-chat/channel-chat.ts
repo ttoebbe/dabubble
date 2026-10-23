@@ -7,8 +7,9 @@ import { UserService } from '../../../core/services/user.service';
 import { Avatar } from '../../../shared/components/avatar/avatar';
 import { ChannelDialogs } from '../../channels/channel-dialogs';
 import { ChatHeader } from '../chat-header/chat-header';
-import { dayKey } from '../chat-time';
+import { describeCreation } from '../channel-intro';
 import { Conversation } from '../conversation/conversation';
+import { UNKNOWN_PERSON_NAME } from '../direct-chat/direct-chat';
 
 /** How many member avatars the header shows (Figma `46. Members Miniatures Chat info`). */
 const SHOWN_MEMBERS = 3;
@@ -43,10 +44,17 @@ export class ChannelChat {
   });
   readonly introStart = computed(() => {
     const channel = this.channel();
-    const createdTodayByMe =
-      channel?.creatorId === this.auth.uid() && dayKey(channel.createdAt) === dayKey(Date.now());
-    return createdTodayByMe
-      ? 'Du hast diesen Channel heute erstellt. Das ist der Anfang des Channels'
-      : 'Das ist der Anfang des Channels';
+    if (!channel) {
+      return '';
+    }
+    const creator = this.users.users().find((user) => user.uid === channel.creatorId);
+    const byMe = channel.creatorId === this.auth.uid();
+    const created = describeCreation(
+      creator?.name ?? UNKNOWN_PERSON_NAME,
+      byMe,
+      channel.createdAt,
+      Date.now(),
+    );
+    return `${created} Das ist der Anfang des Channels`;
   });
 }
