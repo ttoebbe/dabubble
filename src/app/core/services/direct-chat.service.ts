@@ -20,12 +20,17 @@ export function directChatId(first: string, second: string): string {
 export class DirectChatService {
   private readonly firestore = inject(FIRESTORE);
 
-  /** Live: whether the chat exists. Errors with the Firestore error when access is denied. */
+  /**
+   * Live: whether the chat exists on the server. A local write that is not committed yet counts
+   * as missing, because the rules check membership against the server copy.
+   * Errors with the Firestore error when access is denied.
+   */
   exists(chatId: string): Observable<boolean> {
     return new Observable<boolean>((subscriber) =>
       onSnapshot(
         doc(this.firestore, 'directChats', chatId),
-        (snapshot) => subscriber.next(snapshot.exists()),
+        { includeMetadataChanges: true },
+        (snapshot) => subscriber.next(snapshot.exists() && !snapshot.metadata.hasPendingWrites),
         (error) => subscriber.error(error),
       ),
     );
