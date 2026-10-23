@@ -7,6 +7,7 @@ import { toAvatarStatus } from '../../profile/profile-details';
 import { ProfileViewer } from '../../profile/profile-viewer';
 import { AUTH_ERRORS } from '../../auth/auth-validation';
 import { formatClock, formatReplies, formatTime } from '../chat-time';
+import { MessageEditor } from '../message-editor/message-editor';
 import { MessageText } from '../message-text/message-text';
 import { MessageReactions } from '../message-reactions/message-reactions';
 import { ReactionBar } from '../reaction-bar/reaction-bar';
@@ -24,11 +25,12 @@ const UNKNOWN_AUTHOR_NAME = 'Gast';
  * bubble. `react` toggles the own reaction of a message by emoji id. A message with replies
  * shows "<n> Antworten" and the time of the last one; both that link and the thread button of
  * the bar report the message in `threadOpened`. Inside a thread (`inThread`) there is neither,
- * and at most seven reactions show.
+ * and at most seven reactions show. With `edit` an own message offers "Nachricht bearbeiten"
+ * in the bar; the bubble then turns into the editor until it is saved or cancelled.
  */
 @Component({
   selector: 'app-message-item',
-  imports: [Avatar, MessageReactions, MessageText, ReactionBar],
+  imports: [Avatar, MessageEditor, MessageReactions, MessageText, ReactionBar],
   templateUrl: './message-item.html',
   styleUrl: './message-item.scss',
   host: { '(document:click)': 'tap($event)' },
@@ -44,8 +46,11 @@ export class MessageItem {
   readonly own = input(false);
   readonly inThread = input(false);
   readonly react = input.required<(messageId: string, emojiId: string) => Promise<void>>();
+  readonly edit = input<((messageId: string, text: string) => Promise<void>) | null>(null);
   readonly threadOpened = output<string>();
   readonly barShown = signal(false);
+  readonly editing = signal(false);
+  readonly editable = computed(() => this.own() && this.edit() !== null);
   readonly failed = signal(false);
   readonly errorText = AUTH_ERRORS.generic;
   readonly quick = computed(() => (this.own() ? [] : this.recent.quick()));
@@ -67,6 +72,10 @@ export class MessageItem {
     const last = lastReplyAt ? ` ${formatClock(lastReplyAt)}` : '';
     return { label: formatReplies(replyCount), last: `Letzte Antwort${last}` };
   });
+
+  /** Stores the edited text of this message. */
+  readonly saveEdit = (text: string): Promise<void> =>
+    this.edit()?.(this.message().id, text) ?? Promise.resolve();
 
   /** Opens the profile of the author. */
   showProfile(): void {

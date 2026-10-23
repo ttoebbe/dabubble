@@ -45,6 +45,10 @@ export class Conversation {
       relativeTo: this.route.parent,
     });
 
+  /** Stores the new text of an own message of this conversation. */
+  readonly edit = (messageId: string, text: string): Promise<void> =>
+    this.messages.edit(this.kind(), this.conversationId(), messageId, text);
+
   /** Toggles the own reaction on a message of this conversation. */
   readonly react = (messageId: string, emojiId: string): Promise<void> =>
     this.messages.toggleReaction(this.kind(), this.conversationId(), messageId, emojiId);

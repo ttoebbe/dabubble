@@ -17,6 +17,7 @@
   [loading]="feed().state === 'loading'"
   [thread]="true"
   [react]="reactToReply"
+  [edit]="editReply"
 >
   @if (origin(); as message) {
     <app-message-item
@@ -26,6 +27,7 @@
       [own]="own()"
       [inThread]="true"
       [react]="reactToMessage"
+      [edit]="editMessage"
     />
   }
   @if (feed().messages.length) {

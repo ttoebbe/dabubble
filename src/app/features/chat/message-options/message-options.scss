@@ -1,0 +1,62 @@
+:host {
+  position: relative;
+  display: inline-block;
+}
+
+.options {
+  &__toggle {
+    display: grid;
+    place-items: center;
+    width: var(--touch-target-min);
+    height: var(--touch-target-min);
+    border-radius: 50%;
+    transition: background-color var(--duration-hover) var(--easing-hover);
+
+    &:hover,
+    &[aria-expanded='true'] {
+      background-color: var(--color-bg);
+    }
+  }
+
+  &__icon {
+    width: 24px;
+    height: 24px;
+    background-color: var(--color-icon);
+    mask: url('/img/icons/more-vert.svg') center / contain no-repeat;
+    transition: background-color var(--duration-hover) var(--easing-hover);
+  }
+
+  &__toggle:hover &__icon,
+  &__toggle[aria-expanded='true'] &__icon {
+    background-color: var(--color-accent);
+  }
+
+  &__menu {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    z-index: 2;
+    margin-top: 5px;
+    padding: 10px 20px;
+    border-radius: var(--radius-dropdown);
+    background-color: var(--color-white);
+    box-shadow: var(--shadow-menu);
+  }
+
+  &__item {
+    min-height: var(--touch-target-min);
+    padding: 5px 15px;
+    border-radius: var(--radius-panel);
+    font-size: var(--font-size-title);
+    font-weight: var(--font-weight-semibold);
+    white-space: nowrap;
+    transition:
+      background-color var(--duration-hover) var(--easing-hover),
+      color var(--duration-hover) var(--easing-hover);
+
+    &:hover {
+      background-color: var(--color-bg);
+      color: var(--color-link);
+    }
+  }
+}

@@ -1,0 +1,67 @@
+@use 'breakpoints' as bp;
+@use 'forms';
+
+:host {
+  display: block;
+  width: 100%;
+}
+
+.editor {
+  &__box {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    padding: 20px;
+    border: 1px solid var(--color-lines);
+    border-radius: var(--radius-box);
+    background-color: var(--color-white);
+    transition: border-color var(--duration-hover) var(--easing-hover);
+
+    &:hover {
+      border-color: var(--color-purple-2);
+    }
+
+    &:focus-within {
+      border-color: var(--color-primary);
+    }
+  }
+
+  &__field {
+    width: 100%;
+    max-height: 200px;
+    padding: 0;
+    outline: none;
+    resize: none;
+    field-sizing: content;
+  }
+
+  &__tools {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+    gap: 10px;
+    margin-left: -10px;
+  }
+
+  &__actions {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: flex-end;
+    gap: 20px;
+  }
+
+  &__error {
+    @include forms.error-line;
+  }
+}
+
+@include bp.mobile {
+  .editor__box {
+    padding: 15px;
+  }
+
+  .editor__actions {
+    gap: 10px;
+  }
+}

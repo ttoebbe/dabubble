@@ -20,4 +20,7 @@
       <span class="bar__thread-icon" aria-hidden="true"></span>
     </button>
   }
+  @if (editable()) {
+    <app-message-options (editRequested)="editRequested.emit()" />
+  }
 </div>

@@ -24,6 +24,7 @@
               [author]="authors().get(row.message.authorId) ?? null"
               [people]="authors()"
               [react]="react()"
+              [edit]="edit()"
               [own]="row.message.authorId === selfUid()"
               [inThread]="thread()"
               (threadOpened)="threadOpened.emit($event)"

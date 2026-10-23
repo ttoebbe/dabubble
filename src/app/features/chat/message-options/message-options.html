@@ -1,0 +1,17 @@
+<button
+  class="options__toggle"
+  type="button"
+  aria-label="Weitere Optionen"
+  aria-haspopup="menu"
+  [attr.aria-expanded]="open()"
+  (click)="open.set(!open())"
+>
+  <span class="options__icon" aria-hidden="true"></span>
+</button>
+@if (open()) {
+  <div class="options__menu" role="menu">
+    <button class="options__item" type="button" role="menuitem" (click)="requestEdit()">
+      Nachricht bearbeiten
+    </button>
+  </div>
+}

@@ -1,0 +1,23 @@
+<div class="editor">
+  <div class="editor__box">
+    <textarea
+      #field
+      class="editor__field"
+      rows="2"
+      aria-label="Nachricht bearbeiten"
+      [attr.aria-describedby]="errorId"
+      [maxLength]="maxLength"
+      [value]="draft()"
+      (input)="onInput($event)"
+      (keydown)="onKeydown($event)"
+    ></textarea>
+    <div class="editor__tools">
+      <app-emoji-picker (picked)="insertEmoji($event)" />
+      <div class="editor__actions">
+        <app-button variant="secondary" (click)="closed.emit()">Abbrechen</app-button>
+        <app-button [disabled]="!canSave()" (click)="submit()">Speichern</app-button>
+      </div>
+    </div>
+  </div>
+  <p class="editor__error" role="alert" [id]="errorId">{{ error() }}</p>
+</div>

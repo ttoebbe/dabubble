@@ -3,6 +3,7 @@
   [class.message--own]="own()"
   [class.message--bar]="barShown()"
   [class.message--thread]="inThread()"
+  [class.message--editing]="editing()"
 >
   @if (author()) {
     <button
@@ -27,7 +28,11 @@
       }
       <span class="message__time">{{ time() }}</span>
     </p>
-    <p class="message__bubble"><app-message-text [text]="message().text" /></p>
+    @if (editing()) {
+      <app-message-editor [text]="message().text" [save]="saveEdit" (closed)="editing.set(false)" />
+    } @else {
+      <p class="message__bubble"><app-message-text [text]="message().text" /></p>
+    }
     @if (chips().length) {
       <app-message-reactions
         [chips]="chips()"
@@ -58,8 +63,10 @@
       [quick]="quick()"
       [openRight]="own()"
       [threadable]="!inThread()"
+      [editable]="editable()"
       (chosen)="toggleReaction($event)"
       (threadStarted)="threadOpened.emit(message().id)"
+      (editRequested)="editing.set(true)"
     />
   </div>
 </div>

@@ -20,6 +20,7 @@ import { buildRows } from '../message-rows';
  * scrolls to the newest message whenever the messages change. Authors come from
  * `UserService.users`, so online status and names stay current. While `loading` is set, a
  * note stands where the messages will appear. `react` toggles the own reaction of a message,
+ * `edit` stores the new text of an own message,
  * `threadOpened` reports a message whose thread is wanted. As the replies of a `thread` the list
  * has no date separators and starts at the top under the projected first message.
  */
@@ -37,6 +38,7 @@ export class MessageList {
   readonly loading = input(false);
   readonly thread = input(false);
   readonly react = input.required<(messageId: string, emojiId: string) => Promise<void>>();
+  readonly edit = input<((messageId: string, text: string) => Promise<void>) | null>(null);
   readonly threadOpened = output<string>();
   readonly selfUid = this.auth.uid;
   readonly rows = computed(() =>

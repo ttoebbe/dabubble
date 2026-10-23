@@ -101,6 +101,14 @@ export class ThreadView {
   readonly reactToMessage = (messageId: string, emojiId: string): Promise<void> =>
     this.messages.toggleReaction(this.kind(), this.conversationId(), messageId, emojiId);
 
+  /** Stores the new text of the own message the thread started from. */
+  readonly editMessage = (messageId: string, text: string): Promise<void> =>
+    this.messages.edit(this.kind(), this.conversationId(), messageId, text);
+
+  /** Stores the new text of an own reply. */
+  readonly editReply = (replyId: string, text: string): Promise<void> =>
+    this.messages.editReply(this.kind(), this.conversationId(), this.messageId(), replyId, text);
+
   /** Toggles the own reaction on a reply. */
   readonly reactToReply = (replyId: string, emojiId: string): Promise<void> =>
     this.messages.toggleReplyReaction(

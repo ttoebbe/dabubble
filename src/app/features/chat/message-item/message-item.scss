@@ -21,6 +21,12 @@
     flex-direction: row-reverse;
   }
 
+  &--editing {
+    --avatar-ring: var(--color-bg);
+
+    background-color: var(--color-bg);
+  }
+
   &__avatar {
     display: block;
     flex: none;
@@ -39,6 +45,15 @@
 
   &--own &__body {
     align-items: flex-end;
+  }
+
+  &--editing &__body {
+    flex: 1;
+    align-items: stretch;
+  }
+
+  &--editing &__bar {
+    display: none;
   }
 
   &__meta {

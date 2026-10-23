@@ -11,6 +11,7 @@ import {
   orderBy,
   query,
   runTransaction,
+  updateDoc,
   writeBatch,
 } from 'firebase/firestore';
 import { Observable, distinctUntilChanged, of, switchMap } from 'rxjs';
@@ -103,6 +104,28 @@ export class MessageService {
     await batch.commit();
   }
 
+  /** Changes the text of an own message; the rules allow only `text` and `editedAt`. */
+  edit(
+    kind: ConversationKind,
+    conversationId: string,
+    messageId: string,
+    text: string,
+  ): Promise<void> {
+    const ref = doc(this.messagesRef(kind, conversationId), messageId);
+    return this.editAt(ref, text);
+  }
+
+  /** Same as `edit`, on an own reply of a message. */
+  editReply(
+    kind: ConversationKind,
+    conversationId: string,
+    messageId: string,
+    replyId: string,
+    text: string,
+  ): Promise<void> {
+    return this.editAt(doc(this.repliesRef(kind, conversationId, messageId), replyId), text);
+  }
+
   /**
    * Adds the reaction of the signed-in person to a message, or removes it when it is already
    * there. Rejects when Firestore refuses, e.g. a 21st emoji.
@@ -148,6 +171,11 @@ export class MessageService {
       }
       transaction.update(ref, { reactions });
     });
+  }
+
+  /** Writes the new text of a message or reply and when it was changed. */
+  private editAt(ref: DocumentReference, text: string): Promise<void> {
+    return updateDoc(ref, { text, editedAt: Date.now() });
   }
 
   /** Message of an existing document. */
