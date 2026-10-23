@@ -1,0 +1,22 @@
+<div class="list" #scroller tabindex="0" role="region" aria-label="Nachrichten">
+  <div class="list__content">
+    <ng-content />
+    <ol class="list__rows">
+      @for (row of rows(); track row.key) {
+        @if (row.kind === 'day') {
+          <li class="list__day">
+            <span class="list__day-label">{{ row.label }}</span>
+          </li>
+        } @else {
+          <li>
+            <app-message-item
+              [message]="row.message"
+              [author]="authors().get(row.message.authorId) ?? null"
+              [own]="row.message.authorId === selfUid()"
+            />
+          </li>
+        }
+      }
+    </ol>
+  </div>
+</div>

@@ -1,0 +1,150 @@
+@use 'breakpoints' as bp;
+
+:host {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+
+.channel {
+  &__title {
+    min-width: 0;
+    font-size: var(--font-size-title);
+  }
+
+  &__name {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    min-height: var(--touch-target-min);
+    max-width: 100%;
+    padding: 0 10px;
+    border-radius: var(--radius-pill);
+    font-weight: var(--font-weight-bold);
+    overflow-wrap: anywhere;
+    text-align: left;
+    transition: background-color var(--duration-hover) var(--easing-hover);
+
+    &:hover {
+      background-color: var(--color-bg);
+    }
+  }
+
+  &__tag,
+  &__chevron,
+  &__add-icon {
+    flex: none;
+    width: 24px;
+    height: 24px;
+    background-color: currentColor;
+  }
+
+  &__tag {
+    mask: url('/img/icons/tag.svg') center / contain no-repeat;
+  }
+
+  &__chevron {
+    mask: url('/img/icons/expand-more.svg') center / contain no-repeat;
+  }
+
+  &__people {
+    display: flex;
+    flex: none;
+    align-items: center;
+    gap: 10px;
+  }
+
+  &__members {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    min-height: var(--touch-target-min);
+    padding: 3px 10px;
+    border-radius: var(--radius-panel);
+    font-size: var(--font-size-subtitle);
+    font-weight: var(--font-weight-semibold);
+    transition: background-color var(--duration-hover) var(--easing-hover);
+
+    &:hover {
+      background-color: var(--color-bg);
+      font-weight: var(--font-weight-bold);
+    }
+  }
+
+  &__avatars {
+    display: flex;
+    padding-left: 10px;
+
+    app-avatar {
+      margin-left: -10px;
+    }
+  }
+
+  &__add {
+    display: grid;
+    place-items: center;
+    width: var(--touch-target-min);
+    height: var(--touch-target-min);
+    border-radius: 50%;
+    background-color: var(--color-bg);
+    transition: color var(--duration-hover) var(--easing-hover);
+
+    &:hover {
+      color: var(--color-accent);
+    }
+  }
+
+  &__add-icon {
+    mask: url('/img/icons/person-add.svg') center / contain no-repeat;
+  }
+}
+
+.intro {
+  &__title {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 0 45px;
+    font-size: var(--font-size-title);
+  }
+
+  &__tag,
+  &__link-tag {
+    display: inline-block;
+    flex: none;
+    width: 24px;
+    height: 24px;
+    background-color: currentColor;
+    mask: url('/img/icons/tag.svg') center / contain no-repeat;
+  }
+
+  &__link-tag {
+    width: 1em;
+    height: 1em;
+    vertical-align: middle;
+  }
+
+  &__text {
+    padding: 10px 45px 20px;
+  }
+
+  &__link {
+    color: var(--color-link);
+  }
+}
+
+@include bp.mobile {
+  .channel__members {
+    display: none;
+  }
+
+  .channel__title {
+    font-size: var(--font-size-subtitle);
+  }
+
+  .intro__title,
+  .intro__text {
+    padding-right: 16px;
+    padding-left: 16px;
+  }
+}

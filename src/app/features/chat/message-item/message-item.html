@@ -1,0 +1,27 @@
+<div class="message" [class.message--own]="own()">
+  @if (author()) {
+    <button
+      class="message__avatar"
+      type="button"
+      [attr.aria-label]="'Profil von ' + name()"
+      (click)="showProfile()"
+    >
+      <app-avatar [src]="avatarUrl()" [status]="status()" [size]="70" />
+    </button>
+  } @else {
+    <span class="message__avatar">
+      <app-avatar [src]="avatarUrl()" [size]="70" />
+    </span>
+  }
+  <div class="message__body">
+    <p class="message__meta">
+      @if (author()) {
+        <button class="message__name" type="button" (click)="showProfile()">{{ name() }}</button>
+      } @else {
+        <span class="message__name message__name--static">{{ name() }}</span>
+      }
+      <span class="message__time">{{ time() }}</span>
+    </p>
+    <p class="message__bubble">{{ message().text }}</p>
+  </div>
+</div>

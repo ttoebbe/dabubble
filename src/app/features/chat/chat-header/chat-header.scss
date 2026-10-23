@@ -1,0 +1,24 @@
+@use 'breakpoints' as bp;
+
+:host {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  flex: none;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 20px;
+  min-height: 96px;
+  padding: 25px 45px;
+  background-color: var(--color-white);
+  box-shadow: var(--shadow-header);
+}
+
+@include bp.mobile {
+  :host {
+    flex-wrap: nowrap;
+    min-height: 60px;
+    padding: 10px 16px;
+  }
+}

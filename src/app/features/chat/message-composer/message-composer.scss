@@ -1,0 +1,86 @@
+@use 'breakpoints' as bp;
+
+:host {
+  display: block;
+  padding: 0 35px 20px;
+}
+
+.composer {
+  &__box {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    padding: 20px;
+    border: 1px solid var(--color-lines);
+    border-radius: var(--radius-box);
+    background-color: var(--color-white);
+    transition: border-color var(--duration-hover) var(--easing-hover);
+
+    &:hover {
+      border-color: var(--color-purple-2);
+    }
+
+    &:focus-within {
+      border-color: var(--color-primary);
+    }
+  }
+
+  &__field {
+    width: 100%;
+    max-height: 200px;
+    padding: 0;
+    outline: none;
+    resize: none;
+    field-sizing: content;
+
+    &::placeholder {
+      color: var(--color-text-gray);
+      opacity: 1;
+    }
+  }
+
+  &__tools {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin: -10px;
+  }
+
+  &__send {
+    display: grid;
+    place-items: center;
+    width: var(--touch-target-min);
+    height: var(--touch-target-min);
+    border-radius: 50%;
+    transition: background-color var(--duration-hover) var(--easing-hover);
+
+    &:hover:enabled {
+      background-color: var(--color-bg);
+    }
+  }
+
+  &__send-icon {
+    width: 24px;
+    height: 24px;
+    background-color: var(--color-primary);
+    mask: url('/img/icons/send.svg') center / contain no-repeat;
+    transition: background-color var(--duration-hover) var(--easing-hover);
+  }
+
+  &__send:disabled &__send-icon {
+    background-color: var(--color-disabled);
+  }
+
+  &__error {
+    min-height: calc(var(--font-size-small) * var(--line-height-auto));
+    margin-top: 6px;
+    font-size: var(--font-size-small);
+    color: var(--color-error);
+  }
+}
+
+@include bp.mobile {
+  :host {
+    padding: 0 16px 16px;
+  }
+}

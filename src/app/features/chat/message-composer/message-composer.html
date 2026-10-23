@@ -1,0 +1,28 @@
+<div class="composer">
+  <div class="composer__box">
+    <textarea
+      #field
+      class="composer__field"
+      rows="2"
+      aria-label="Nachricht"
+      [maxLength]="maxLength"
+      [placeholder]="placeholder()"
+      [value]="text()"
+      (input)="onInput($event)"
+      (keydown.enter)="onEnter($event)"
+    ></textarea>
+    <div class="composer__tools">
+      <app-emoji-picker (picked)="insertEmoji($event)" />
+      <button
+        class="composer__send"
+        type="button"
+        aria-label="Nachricht senden"
+        [disabled]="!canSend()"
+        (click)="send()"
+      >
+        <span class="composer__send-icon" aria-hidden="true"></span>
+      </button>
+    </div>
+  </div>
+  <p class="composer__error" role="alert">{{ error() }}</p>
+</div>

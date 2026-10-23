@@ -1,0 +1,11 @@
+<app-message-list [messages]="feed().messages">
+  <ng-content />
+</app-message-list>
+@if (feed().state === 'error') {
+  <p class="conversation__error" role="alert">{{ errorText }}</p>
+}
+<app-message-composer
+  [placeholder]="placeholder()"
+  [focusKey]="kind() + conversationId()"
+  [submit]="send"
+/>

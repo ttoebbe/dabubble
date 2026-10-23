@@ -1,0 +1,53 @@
+@use 'breakpoints' as bp;
+
+:host {
+  display: flex;
+  flex: 1;
+  min-height: 0;
+}
+
+.list {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  min-width: 0;
+  overflow-y: auto;
+
+  &__content {
+    margin-top: auto;
+    padding-bottom: 20px;
+  }
+
+  &__rows {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+  }
+
+  &__day {
+    display: flex;
+    align-items: center;
+    margin: 10px 35px;
+
+    &::before,
+    &::after {
+      content: '';
+      flex: 1;
+      height: 1px;
+      background-color: var(--color-lines);
+    }
+  }
+
+  &__day-label {
+    padding: 5px 15px;
+    border: 1px solid var(--color-lines);
+    border-radius: var(--radius-panel);
+    text-align: center;
+  }
+}
+
+@include bp.mobile {
+  .list__day {
+    margin: 10px 16px;
+  }
+}

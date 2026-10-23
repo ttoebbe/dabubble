@@ -1,0 +1,45 @@
+<app-chat-header>
+  <h1 class="channel__title">
+    <button class="channel__name" type="button" (click)="dialogs.open(channelId(), 'settings')">
+      <span class="channel__tag" aria-hidden="true"></span>
+      {{ name() }}
+      <span class="channel__chevron" aria-hidden="true"></span>
+    </button>
+  </h1>
+  <div class="channel__people">
+    <button
+      class="channel__members"
+      type="button"
+      [attr.aria-label]="'Mitglieder anzeigen, ' + memberCount()"
+      (click)="dialogs.open(channelId(), 'members')"
+    >
+      <span class="channel__avatars" aria-hidden="true">
+        @for (url of memberAvatars(); track $index) {
+          <app-avatar [src]="url" [size]="36" />
+        }
+      </span>
+      {{ memberCount() }}
+    </button>
+    <button
+      class="channel__add"
+      type="button"
+      aria-label="Mitglieder hinzufügen"
+      (click)="dialogs.open(channelId(), 'add-members')"
+    >
+      <span class="channel__add-icon" aria-hidden="true"></span>
+    </button>
+  </div>
+</app-chat-header>
+<app-conversation
+  kind="channel"
+  [conversationId]="channelId()"
+  [placeholder]="'Nachricht an #' + name()"
+>
+  <h2 class="intro__title"><span class="intro__tag" aria-hidden="true"></span>{{ name() }}</h2>
+  <p class="intro__text">
+    {{ introStart() }}
+    <span class="intro__link"
+      ><span class="intro__link-tag" aria-hidden="true"></span>{{ name() }}</span
+    >.
+  </p>
+</app-conversation>

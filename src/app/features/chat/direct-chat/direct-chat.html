@@ -1,0 +1,33 @@
+<app-chat-header>
+  <h1 class="direct__title">
+    <app-avatar [src]="avatarUrl()" [status]="status()" [size]="50" />
+    {{ name() }}
+  </h1>
+</app-chat-header>
+@if (chatId()) {
+  <app-conversation kind="dm" [conversationId]="chatId()" [placeholder]="'Nachricht an ' + name()">
+    <div class="intro__head">
+      <app-avatar [src]="avatarUrl()" [size]="100" />
+      <h2 class="intro__name">{{ name() }}</h2>
+    </div>
+    @if (isSelf()) {
+      <p class="intro__text">
+        <strong>Dieser Raum ist nur für dich da.</strong>
+        Mache dir Notizen, liste deine To-dos auf oder bewahre Links und Dateien griffbereit auf. Du
+        kannst hier auch gerne Dinge mit dir selbst besprechen.
+      </p>
+    } @else {
+      <p class="intro__text">
+        Diese Unterhaltung findet nur zwischen
+        @if (hasProfile()) {
+          <button class="intro__link" type="button" (click)="profiles.show(uid())">
+            &#64;{{ personName() }}
+          </button>
+        } @else {
+          <span>&#64;{{ personName() }}</span>
+        }
+        und dir statt.
+      </p>
+    }
+  </app-conversation>
+}

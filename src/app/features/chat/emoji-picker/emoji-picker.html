@@ -1,0 +1,24 @@
+<button
+  class="picker__toggle"
+  type="button"
+  aria-label="Emoji auswählen"
+  aria-haspopup="true"
+  [attr.aria-expanded]="open()"
+  (click)="toggle()"
+>
+  <span class="picker__icon" aria-hidden="true"></span>
+</button>
+@if (open()) {
+  <div class="picker__panel" role="group" aria-label="Emojis">
+    @for (emoji of emojis; track emoji.char) {
+      <button
+        class="picker__emoji"
+        type="button"
+        [attr.aria-label]="emoji.label"
+        (click)="pick(emoji.char)"
+      >
+        {{ emoji.char }}
+      </button>
+    }
+  </div>
+}

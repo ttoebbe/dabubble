@@ -1,0 +1,111 @@
+@use 'breakpoints' as bp;
+
+:host {
+  display: block;
+}
+
+.message {
+  display: flex;
+  gap: 30px;
+  padding: 10px 45px;
+  transition: background-color var(--duration-hover) var(--easing-hover);
+
+  &:hover {
+    --avatar-ring: var(--color-bg);
+
+    background-color: var(--color-bg);
+  }
+
+  &--own {
+    flex-direction: row-reverse;
+  }
+
+  &__avatar {
+    display: block;
+    flex: none;
+    width: 70px;
+    height: fit-content;
+    border-radius: 50%;
+  }
+
+  &__body {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    align-items: flex-start;
+    min-width: 0;
+  }
+
+  &--own &__body {
+    align-items: flex-end;
+  }
+
+  &__meta {
+    display: flex;
+    align-items: baseline;
+    gap: 20px;
+    max-width: 100%;
+  }
+
+  &--own &__meta {
+    flex-direction: row-reverse;
+  }
+
+  &__name {
+    position: relative;
+    font-weight: var(--font-weight-bold);
+    text-align: left;
+    transition: color var(--duration-hover) var(--easing-hover);
+
+    &::after {
+      content: '';
+      position: absolute;
+      inset: -10px 0;
+    }
+
+    &:hover {
+      color: var(--color-accent);
+    }
+
+    &--static {
+      cursor: default;
+    }
+  }
+
+  &__time {
+    font-size: var(--font-size-small);
+    color: var(--color-text-gray);
+  }
+
+  &__bubble {
+    max-width: 100%;
+    padding: 15px;
+    border-radius: var(--radius-bubble-other);
+    background-color: var(--color-other-bubble);
+    white-space: pre-wrap;
+    overflow-wrap: anywhere;
+    transition: background-color var(--duration-hover) var(--easing-hover);
+  }
+
+  &:hover &__bubble {
+    background-color: var(--color-white);
+  }
+
+  &--own &__bubble,
+  &--own:hover &__bubble {
+    border-radius: var(--radius-bubble-own);
+    background-color: var(--color-purple-3);
+    color: var(--color-white);
+  }
+}
+
+@include bp.mobile {
+  .message {
+    gap: 20px;
+    padding: 10px 16px;
+
+    &__avatar {
+      width: 50px;
+    }
+  }
+}

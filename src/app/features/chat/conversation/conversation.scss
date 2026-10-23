@@ -1,0 +1,20 @@
+@use 'breakpoints' as bp;
+
+:host {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  min-height: 0;
+}
+
+.conversation__error {
+  padding: 0 35px 6px;
+  font-size: var(--font-size-small);
+  color: var(--color-error);
+}
+
+@include bp.mobile {
+  .conversation__error {
+    padding: 0 16px 6px;
+  }
+}
