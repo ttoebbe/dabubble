@@ -6,6 +6,9 @@ auf `main`, beide nach denselben Regeln.
 
 ## Stand am 21.10.2026
 
+Diese Seite beschreibt den Start. Den aktuellen Stand zeigen `README.md` und `docs/stand/a.md` bzw.
+`docs/stand/b.md`.
+
 Fertig:
 
 - **Angular 22-Grundgerüst** mit Routing und Strict Mode. Die App ist noch leer; jeder Bereich hat
@@ -79,8 +82,8 @@ Entschieden: Formulare mit Signal Forms (22.10.2026).
 
 ## Was Bereich A schon bereitstellt
 
-Services, Dialoge, Workspace-Rahmen und die aktuell gültigen Firestore-Regeln stehen in
-`docs/arbeitsteilung.md` unter „Schnittstellen“. Die Datei liest Claude Code vor jeder Aufgabe.
+Services, Dialoge und Workspace-Rahmen stehen in `docs/arbeitsteilung.md` unter „Schnittstellen“, die
+Firestore-Regeln in `firestore.rules`. Die Arbeitsteilung liest Claude Code vor jeder Aufgabe.
 
 Das Repo liegt in Thomas' GitHub-Konto. Repo-Einstellungen (Secrets, Einladungen) kann dort nur
 der Besitzer ändern; brauchst du dort etwas, sag Thomas Bescheid.
