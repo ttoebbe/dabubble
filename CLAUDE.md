@@ -28,6 +28,7 @@ Welche Ordner und Dateien zu welchem Bereich gehören, steht in `docs/arbeitstei
 | Design (SOLL)        | `docs/Figma/spec.md`, `docs/Figma/components.md`, Assets laut `docs/Figma/MANIFEST.md` in `public/`, Referenzbilder in `docs/Figma/reference/` |
 | Arbeitsteilung       | `docs/arbeitsteilung.md`                                                                                                                       |
 | Offene Aufgaben      | `docs/todo.md`                                                                                                                                 |
+| Arbeitsstand         | `docs/stand/a.md` (Thomas), `docs/stand/b.md` (Yannic)                                                                                         |
 | Einstieg ins Projekt | `docs/einstieg.md`                                                                                                                             |
 
 ## Harte Regeln
@@ -120,6 +121,21 @@ Vor der Abgabe zusätzlich der Skill `final-check` und alle offenen Punkte aus `
 `typescript-standards` und `figma-extract`, damit beide Claude-Sitzungen nach denselben Regeln arbeiten.
 `figma-extract` braucht Figma-Zugang und nutzt nur Thomas. Die Skills werden vor der Abgabe entfernt (`docs/todo.md`).
 
+## Absprache zwischen den Claude-Sitzungen
+
+Die beiden Sitzungen laufen auf zwei Rechnern und erreichen sich nur über das Repo:
+
+- **Arbeitsstand:** Jede Person hat eine eigene Datei, `docs/stand/a.md` (Thomas) und `docs/stand/b.md` (Yannic).
+  Nur die eigene Datei schreiben, die andere nur lesen.
+- **Sitzungsstart:** `git pull --rebase`, die Stand-Datei der anderen Person lesen,
+  offene Issues für den eigenen Bereich prüfen (`gh issue list --label bereich-b` bzw. `bereich-a`, dazu `shared`).
+  Was die eigene Arbeit betrifft, kurz der Person nennen, bevor es losgeht.
+- **Feierabend** (die Person sagt Schluss): eigene Stand-Datei überschreiben, nicht anhängen; die Geschichte steht in Git.
+  Commit `docs: update status a` bzw. `b`, `git pull --rebase`, pushen.
+- **Anfragen und Antworten** laufen über Issues mit Label (siehe Harte Regel 1). Technische Fragen, Hinweise und
+  Erledigt-Meldungen darf Claude selbst posten. Was etwas festlegt (Datenmodell, gemeinsame Dateien, Umfang),
+  erst nach Freigabe der arbeitenden Person.
+
 ## Ablauf je Aufgabe
 
 1. Person und Bereich feststellen (siehe oben), `docs/arbeitsteilung.md` lesen.
@@ -128,3 +144,4 @@ Vor der Abgabe zusätzlich der Skill `final-check` und alle offenen Punkte aus `
 4. Qualitäts-Check (oben) durchgehen.
 5. Commit nach den Commit-Regeln, noch einmal `git pull --rebase`, dann auf `main` pushen. Bei größeren Umbauten stattdessen Branch und PR mit der PR-Vorlage.
 6. Kurz zusammenfassen: was geändert, welche Dateien, was offen ist.
+7. Bei Feierabend die eigene Stand-Datei aktualisieren (siehe oben).
