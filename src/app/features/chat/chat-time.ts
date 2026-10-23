@@ -10,14 +10,18 @@ export function dayKey(timestamp: number): string {
   return `${date.getFullYear()}-${date.getMonth()}-${date.getDate()}`;
 }
 
-/** Label of a date separator: "Heute" or e.g. `Dienstag, 14 Januar` (Figma `210:1106`). */
+/** Label of a date separator: "Heute", "Gestern" or e.g. `Dienstag, 14. Januar` (Figma `210:1106`). */
 export function formatDay(timestamp: number, now: number): string {
   if (dayKey(timestamp) === dayKey(now)) {
     return 'Heute';
   }
+  const yesterday = new Date(now);
+  yesterday.setDate(yesterday.getDate() - 1);
+  if (dayKey(timestamp) === dayKey(yesterday.getTime())) {
+    return 'Gestern';
+  }
   const weekday = new Intl.DateTimeFormat('de-DE', { weekday: 'long' }).format(timestamp);
-  const date = new Intl.DateTimeFormat('de-DE', { day: 'numeric', month: 'long' });
-  return `${weekday}, ${date.format(timestamp).replace('.', '')}`;
+  return `${weekday}, ${formatDate(timestamp, now)}`;
 }
 
 /** Calendar date, e.g. `23. Oktober`; the year only follows when it is not the year of `now`. */
