@@ -3,7 +3,13 @@
   [showBack]="chatOpen() || threadOpen()"
   (back)="goBack()"
 />
-<nav class="workspace__menu" aria-label="Workspace-Menü" [id]="menuId" [inert]="menuCollapsed()">
+<div
+  class="workspace__menu"
+  aria-label="Workspace-Menü"
+  [attr.role]="menuRole()"
+  [id]="menuId"
+  [inert]="menuCollapsed()"
+>
   <app-workspace-menu
     [channels]="channels()"
     [contacts]="contacts()"
@@ -13,7 +19,7 @@
     (addChannel)="createChannelOpen.set(true)"
     (newMessage)="openNewMessage()"
   />
-</nav>
+</div>
 <main class="workspace__chat">
   <router-outlet (activate)="chatOpen.set(true)" (deactivate)="chatOpen.set(false)" />
 </main>

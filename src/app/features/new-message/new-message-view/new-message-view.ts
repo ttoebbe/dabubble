@@ -1,7 +1,5 @@
 import {
   Component,
-  DOCUMENT,
-  DestroyRef,
   ElementRef,
   afterNextRender,
   computed,
@@ -21,12 +19,12 @@ import { MentionMenu } from '../../chat/mention-menu/mention-menu';
 import { MentionOption, filterOptions, optionId } from '../../chat/mention-trigger';
 import { MessageComposer } from '../../chat/message-composer/message-composer';
 import { channelLink, directMessageLink } from '../../workspace/chat-links';
+import { watchMobile } from '../../workspace/mobile-viewport';
 import { Recipient, matchPeople, readAddress } from '../recipients';
 
 /** Placeholder of the address field (Figma `723:10986`; mobile `754:12776` without e-mail). */
 const ADDRESS_HINT = 'An: #channel, oder @jemand oder E-Mail Adresse';
 const ADDRESS_HINT_MOBILE = 'An: #channel, oder @jemand';
-const MOBILE_QUERY = '(max-width: 767px)';
 
 /**
  * "Neue Nachricht" (DA checklist Schreiben US4, Figma `11-…new message`, mobile `09-New
@@ -53,7 +51,7 @@ export class NewMessageView {
   readonly recipient = signal<Recipient | null>(null);
   readonly focused = signal(false);
   readonly dismissed = signal(false);
-  readonly mobile = signal(false);
+  readonly mobile = watchMobile();
   readonly placeholder = computed(() => (this.mobile() ? ADDRESS_HINT_MOBILE : ADDRESS_HINT));
   private readonly people = computed(() =>
     this.users.users().filter((user) => !user.isGuest || user.uid === this.auth.uid()),
@@ -71,10 +69,9 @@ export class NewMessageView {
   readonly active = linkedSignal({ source: this.menu, computation: () => 0 });
   readonly activeId = computed(() => (this.menu() ? optionId(this.listId, this.active()) : null));
 
-  /** Starts with the focus in the address field and follows the mobile breakpoint. */
+  /** Starts with the focus in the address field. */
   constructor() {
     afterNextRender(() => this.field().nativeElement.focus());
-    this.followMobile();
   }
 
   /** Follows the typed address; any change drops a chosen recipient. */
@@ -127,17 +124,5 @@ export class NewMessageView {
       return false;
     }
     return true;
-  }
-
-  /** Keeps `mobile` in line with the mobile breakpoint of `_breakpoints.scss`. */
-  private followMobile(): void {
-    const media = inject(DOCUMENT).defaultView?.matchMedia(MOBILE_QUERY);
-    if (!media) {
-      return;
-    }
-    const update = () => this.mobile.set(media.matches);
-    update();
-    media.addEventListener('change', update);
-    inject(DestroyRef).onDestroy(() => media.removeEventListener('change', update));
   }
 }

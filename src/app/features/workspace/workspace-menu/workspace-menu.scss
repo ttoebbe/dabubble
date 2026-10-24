@@ -177,6 +177,16 @@
   }
 
   .menu__head {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    overflow: hidden;
+    clip-path: inset(50%);
+    white-space: nowrap;
+  }
+
+  .menu__workspace-logo,
+  .menu__new-message {
     display: none;
   }
 

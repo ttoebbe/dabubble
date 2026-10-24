@@ -13,6 +13,7 @@ import {
 } from '../../channels/create-channel-dialog/create-channel-dialog';
 import { PersonProfile } from '../../profile/person-profile/person-profile';
 import { activeEntryOf, channelLink, directMessageLink, newMessageLink } from '../chat-links';
+import { watchMobile } from '../mobile-viewport';
 import { MenuToggle } from '../menu-toggle/menu-toggle';
 import { WorkspaceHeader } from '../workspace-header/workspace-header';
 import { toMenuContacts } from '../workspace-menu/menu-entries';
@@ -24,7 +25,8 @@ import { WorkspaceMenu } from '../workspace-menu/workspace-menu';
  * outlet and threads into the outlet `thread`; the menu opens them through those routes and
  * marks the entry of the open chat.
  * From 1440 px all three panels sit side by side, from 768 px at most two, below
- * that one panel at a time (menu → chat → thread).
+ * that one panel at a time (menu → chat → thread). On the mobile menu page the menu is the
+ * page's main content, so it takes the landmark role `main`; otherwise it is the navigation.
  */
 @Component({
   selector: 'app-workspace-layout',
@@ -56,6 +58,8 @@ export class WorkspaceLayout {
   readonly menuCollapsed = signal(false);
   readonly chatOpen = signal(false);
   readonly threadOpen = signal(false);
+  private readonly mobile = watchMobile();
+  readonly menuRole = computed(() => (this.mobile() && !this.chatOpen() ? 'main' : 'navigation'));
   readonly channels = computed(() =>
     this.channelService.channels().map(({ id, name }) => ({ id, name })),
   );
