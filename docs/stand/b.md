@@ -1,104 +1,57 @@
 # Stand Bereich B (Yannic)
 
-Aktualisiert: 24.10.2026
+Aktualisiert: 24.10.2026 (Feierabend)
 
 ## Erledigt
 
-- Modelle `core/models/message.ts` und `direct-chat.ts` exakt nach ttoebbe/dabubble#1.
-- `firestore.rules` im Repo um Nachrichten, DMs und Thread-Antworten erweitert (Regeln aus #1). Eine Abweichung:
-  `directChats/{id}` darf auch lesen, wenn das Dokument noch nicht existiert (`resource == null`), sonst scheitert
-  das Öffnen einer neuen DM mit permission-denied. Seit 23.10. abends live in der Konsole (Yannic, Editor).
-- Live geprüft mit zwei Gästen: DM in beide Richtungen in Echtzeit, Chat mit sich selbst, Lesen im Entwicklerteam.
-  Senden im Channel live noch nicht geprüft (keine Testnachrichten ins Entwicklerteam). Fix c236034: neue DM wird
-  erst nach dem Server-Commit gelesen, sonst sah der Absender seine erste Nachricht nicht.
-- Services `MessageService` (live lesen sortiert nach `createdAt`, senden) und `DirectChatService` (DM-ID aus
-  sortierten uids, Chat beim ersten Senden anlegen: erst `directChats/{id}`, dann die Nachricht).
-- Channel-Ansicht (Kopf mit Name, Mitglieder-Avataren und Zähler, Klicks über `ChannelDialogs.open`) und
-  DM-Ansicht (Kopf mit Person, „(Du)“-Chat mit sich selbst) mit Nachrichtenliste, Datumstrennern, eigener und
-  fremder Ausrichtung, Autor-Klick (`ProfileViewer.show`), „Gast“ ohne Profil, Online-Status aus `UserService.users`.
-- Eingabefeld: Senden per Button und Enter (Shift+Enter = Zeilenumbruch), Fokus beim Chatwechsel, leere Nachricht
-  nicht sendbar, Fehler am Feld, Emoji-Auswahl als Unicode im Text.
-- Emojis: 20 Unicode-Emojis in `features/chat/chat-emojis.ts` (id, Zeichen, Screenreader-Name; die vier aus Figma
-  zuerst). Picker als Raster (5 Spalten, 44 px). Reaktionen nutzen später dieselbe Liste, Unicode statt Emojitwo-SVGs.
-- Channel-Intro nennt Ersteller und Datum („Du hast diesen Channel heute erstellt.“ für den Ersteller), Jahr nur wenn
-  nicht das aktuelle. Datumstrenner: „Heute“, „Gestern“, „Dienstag, 14. Januar“ (mit Jahr, wenn nicht aktuell).
-- Ladezustand der Nachrichtenliste: „Nachrichten werden geladen …“ bis zur ersten Antwort.
-- Reaktionen (Schreiben US2, Zähler US3): Aktionsleiste beim Hover/Fokus (mobil nach Tipp auf die Nachricht) mit den zwei
-  zuletzt genutzten Emojis (`localStorage` pro uid, ohne Historie ✅ und 🙌) und Emoji-Liste (Picker als „Reaktion
-  hinzufügen“ wiederverwendet). Eigene Nachrichten: nur Emoji-Liste (Figma `53B.`). Chips mit Zähler unter der
-  Nachricht, eigene Reaktion markiert, Klick schaltet um. Tooltip „<Name> hat reagiert“ bei Hover, Tastaturfokus und
-  Tipp. Mobil max. 7 Chips plus „+x weitere“ / „Weniger anzeigen“. Schreiben per Transaktion
-  (`MessageService.toggleReaction`, generisch über `toggleAt`), leere Einträge werden entfernt. Live mit zwei Gästen in
-  der DM geprüft: setzen, entfernen, Echtzeit, Zähler, Namen, zuletzt genutzt, 320–1920 px ohne Scrollleiste.
-- Thread-Route `thread/:kind/:conversationId/:messageId`; der markierte Menüeintrag bleibt mit offenem Thread.
-- Threads (Schreiben US5): Thread-Button in der Aktionsleiste (auch eigene Nachrichten), Thread-Ansicht im Outlet
-  `thread` (`features/thread/thread-view/`) mit Kopf („Thread“ + Channel bzw. Person, Schließen), Ursprungsnachricht,
-  Trenner „<n> Antworten“, Antworten live nach `createdAt`, Eingabefeld mit Fokus beim Öffnen, Reaktionen auf
-  Ursprungsnachricht und Antworten (max. 7 sichtbar + „+x weitere“ auch am Desktop). Antwort senden: Reply plus
-  `replyCount + 1` und `lastReplyAt` in einem Batch (`MessageService.reply`). Unter Nachrichten mit Antworten:
-  „<n> Antworten“ (klickbar) + „Letzte Antwort <Uhrzeit>“. Der Thread schließt sich, wenn ein anderer Chat geöffnet wird.
-- `@` und `#` im Eingabefeld (Haupt- und Thread-Eingabe): Dropdown mit Personen (ohne ausgeblendete Gäste) bzw. eigenen
-  Channels, filtert beim Tippen, Pfeile/Enter/Tab/Escape, ARIA combobox/listbox; „@“-Button im Eingabefeld.
-  Im Text sind `@Name`/`#channel` hervorgehoben und klickbar (Profil bzw. Channel); nicht auflösbare Namen bleiben
-  normaler Text.
-- Live mit zwei Gästen in der DM geprüft: Thread öffnen, Antworten in beide Richtungen mit Echtzeit-Zähler, Reaktion
-  auf Antwort, Dropdown per Tastatur, Klick auf Erwähnungen; 320–1920 px ohne Scrollleiste (mit offenem Thread),
-  mobil Thread als eigene Ansicht mit Zurück und Schließen; Konsole fehlerfrei. Beide Test-Gäste per Log out abgemeldet.
-- Bearbeiten, „Neue Nachricht“ und Suche hat Thomas am 23.10. mit Freigabe gebaut (3a95914, f12190a, 7225a42 u. a.;
-  Spec 8.15–8.17). Am 24.10. mit zwei Gästen live geprüft und im Code gegen Spec und Checkliste durchgesehen:
-  - Bearbeiten (Nachricht und Thread-Antwort): „⋮“ nur an eigenen Nachrichten, Enter speichert, Escape und „Abbrechen“
-    verwerfen, leer oder unverändert nicht speicherbar, Änderung live beim anderen. Fix: Fokus geht nach dem Bearbeiten
-    zurück auf „⋮“.
-  - Neue Nachricht: `#`, `@`, Name, E-Mail-Teil, Tab/Enter/Escape, Senden an sich selbst öffnet den Chat. Fix: das
-    Eingabefeld ist bis zur Empfängerwahl wirklich gesperrt (Spec 8.16). Fix:
-    auch Emoji- und „@“-Button sind dann gesperrt (natives `disabled`, grau wie „Senden“); live mit Gast geprüft,
-    axe-core ohne Verstöße.
-  - Suche: `#`, `@`, Stichwort in DM und Thread-Antwort, „Keine Ergebnisse gefunden.“, Treffer erscheint live, Klick
-    öffnet Chat mit Thread, mobil „Gehe zu...“ mit Schließen. Die Abfrage `directChats where memberIds
-array-contains uid` läuft durch die Regeln, keine Regeländerung nötig. Fix: Treffer-Farbe `#444DF2` statt `#535AF1`
-    (Kontrast 4,44 auf der markierten Zeile).
-  - Querschnitt: axe-core ohne Verstöße (Fixes: Eingabefeld ohne ungültige Rolle `combobox`, eindeutiges Label
-    „Antworten“ für die Thread-Liste), 320–1920 px ohne Scrollleiste, Konsole fehlerfrei. Beide Test-Gäste per Log out
-    abgemeldet.
-
-- Abnahme-Vorlauf 24.10. mit drei Gästen (docs/abnahme.md): S1–S7, S11, S12 bestanden; G6, G7, G9, G10 auf den
-  Chat-Seiten bestanden. Fixes: Reaktionsleiste der ersten Thread-Nachricht war unter dem Kopf abgeschnitten; Fokus
-  ging beim Schließen des Emoji-Pickers per Escape verloren (jetzt zurück auf den Button); Touch-Flächen unter 44 px
-  (Reaktions-Chips 42, Name 39 breit, Nachrichten-, Bearbeiten-, Empfänger- und Suchfeld 25–35 hoch). Alle drei Gäste
-  per Log out abgemeldet.
-- Kleinigkeiten aus dem Test vom 24.10. (Thomas): Thread-Kopf im Chat mit sich selbst zeigt „(Du)“ wie der DM-Kopf
-  (gemeinsame Funktion `chatPersonName`, e46e144); mobile Suche gibt den Fokus beim Schließen zurück auf „Gehe zu...“,
-  ohne Datei aus Bereich A (57a41e9). Live mit Gästen geprüft (430 px, Tastatur), axe-core ohne neue Verstöße.
+- Alle User Storys von B sind umgesetzt (Channels US1 Teil, Schreiben US1–US6) und dazu die Figma-Punkte
+  Kopf-Avatare, Bearbeiten und Datumstrenner. Details zu Modell, Regeln, Services und Ansichten: Git-Historie bis
+  `e614966`, Spec 8.x, `README.md`.
+- `firestore.rules` gelten so wie im Repo, auch live. Abweichung von #1: `directChats/{id}` darf auch lesen, wenn das
+  Dokument noch nicht existiert (`resource == null`). Am 24.10. per Firebase-CLI stichprobenartig mit der Konsole
+  verglichen.
+- Bearbeiten, „Neue Nachricht“ und Suche (von Thomas am 23.10. gebaut) am 24.10. mit Gästen live geprüft und
+  durchgesehen, Rückmeldung in ttoebbe/dabubble#4. Fixes: Fokus nach dem Bearbeiten, Eingabefeld sowie Emoji- und
+  „@“-Button bis zur Empfängerwahl gesperrt, Treffer-Farbe mit Kontrast, gültiges ARIA im Eingabefeld, Label
+  „Antworten“ für die Thread-Liste.
+- Abnahme-Vorlauf 24.10. mit Gästen (`docs/abnahme.md`, markiert mit „(B)“): S1–S7, S11, S12 bestanden, G6, G7, G9
+  und G10 auf den Chat-Seiten. Fixes: Reaktionsleiste der ersten Thread-Nachricht sichtbar, Fokus nach Escape im
+  Emoji-Picker, 44-px-Touch-Flächen für Chips, Namen, Nachrichten-, Bearbeiten-, Empfänger- und Suchfeld (das
+  Nachrichtenfeld ist dadurch ca. 19 px höher als in Figma, Regel 5 in `CLAUDE.md`).
+- Thomas' Kleinigkeiten vom 24.10.: Thread-Kopf im Chat mit sich selbst zeigt „(Du)“ (e46e144), mobile Suche gibt
+  den Fokus beim Schließen zurück auf „Gehe zu...“ (57a41e9).
+- Entschieden (Yannic): Ein einzelnes „@“ bleibt sendbar.
 
 ## In Arbeit
 
-- Nichts.
+- Nichts. Ich warte auf das Gespräch mit Thomas und seine Antwort auf ttoebbe/dabubble#5.
 
 ## Als Nächstes
 
-1. Abnahme-Durchlauf `docs/abnahme.md` mit Thomas, offene Punkte aus `docs/todo.md`. S1, S5, S6 mit Konto wiederholen. Dabei mitprüfen:
-   - „Neue Nachricht“ an einen Channel senden (24.10. nicht live geprüft, keine Testnachrichten im Entwicklerteam;
-     im Abnahme-Channel `abnahme-test`).
-   - Tab im Adressfeld von „Neue Nachricht“ übernimmt den Vorschlag (`@ga` → `@Gast`): in einem Testlauf am 24.10.
-     einmal nicht gegriffen, im Einzellauf schon; vermutlich Testaufbau, nicht geklärt.
+1. Antwort auf ttoebbe/dabubble#5 (Restarbeiten, Datei-Upload, Blaze) und danach die Zuordnung in `docs/todo.md`
+   eintragen.
+2. Gemeinsamer Abnahme-Termin: S1, S5 und S6 mit Konto ↔ Gast wiederholen (Tooltip mit echtem Namen, `@Thomas`), dazu
+   „Neue Nachricht“ an `abnahme-test` senden und Tab im Adressfeld (`@ga` → `@Gast`; hat in einem Testlauf einmal
+   nicht gegriffen, ungeklärt).
+3. Falls entschieden: Datei-Upload („+“ im Eingabefeld, Firebase Storage, `storage.rules`). Er braucht vorher Blaze
+   und ein Design.
 
 ## Brauche von A
 
-- Bitte die 4 Gast-Konten löschen, die ein abgebrochener Testlauf am 23.10. im Projekt gelassen hat (dazu zwei bis vier weitere aus abgebrochenen Läufen am 24.10.) (Authentication
-  und `users`, sind noch Mitglied im Entwicklerteam).
-- Kontrast im Menü: der aktive Eintrag (`.menu__pill`, `#535AF1` auf `#ECEEFE`, 4,44:1) fällt bei axe-core durch; `--color-link`
-  (`#444DF2`) reicht.
-
-- Dev-Konsole: NG02955 „NgOptimizedImage … LCP … not marked priority“ für `img/logos/workspace-logo.svg`
-  (`workspace-menu.html`, `workspace-header.html`: `priority` ergänzen); erscheint nur im Dev-Server nach Neuladen im Workspace.
-- G6, G7, G9, G10 sind nur auf den Chat-Seiten geprüft; Login, Registrierung, Menü, Profil und Channel-Dialoge stehen aus
-  (Menü-Einträge 33 px, „Neue Nachricht“ 40 px, „Channel hinzufügen“ 30 px hoch).
+- Gast-Konten löschen: Stand 24.10. gibt es in Authentication 13 anonyme Konten (3 vom 22.10., 7 vom 23.10., 3 vom
+  24.10.) neben den 2 echten. Dazu gehören `users/<uid>` und der Eintrag in `channels/entwicklerteam` → `memberIds`.
+  Vorher sicherstellen, dass gerade niemand als Gast angemeldet ist.
+- Antwort auf ttoebbe/dabubble#5.
+- Funde aus meinem Test (auch in `docs/todo.md`): Klickflächen im Menü (Einträge 33 px, „Neue Nachricht“ 40 px,
+  „Channel hinzufügen“ 30 px), NG02955 für `workspace-logo.svg` ohne `priority` (nur Dev-Server), auf der mobilen
+  Menü-Seite fehlen `main` und `h1` (axe `landmark-one-main`, `page-has-heading-one`). G6, G7, G9, G10 auf Login,
+  Registrierung, Menü, Profil und Dialogen.
 
 ## Hinweise für A
 
-- Neue Dateien in `features/chat/` (u. a. `reaction-bar/`, `message-reactions/`, `reaction-chips.ts`, `recent-emojis.ts`); `chat.routes.ts` bindet Channel-, DM- und Thread-Ansicht ein, „Neue Nachricht“
-  und die Suche sind eingebunden.
-- `AuthService.logOut` löscht den Gast: seine Nachrichten bleiben stehen und zeigen „Gast“ mit Platzhalter-Avatar.
-- Channel-Kopf-Avatare und Kopf-Umbruch 768–1440 px bewusst nicht angefasst (Issue ttoebbe/dabubble#3 an Thomas).
-- Nicht angefasst, aber veraltet: Hinweis „Chat-Ansicht … ein Platzhalter“ in `README.md` und `docs/todo.md`
-  (Channel-Kopf-Dialoge und `ProfileViewer.show` aus Nachrichten sind jetzt angeschlossen).
+- Danke für den Menü-Kontrast (c7212cb).
+- `chatPersonName(name, isSelf)` in `features/chat/direct-chat/direct-chat.ts` liefert den Namen mit „(Du)“ für DM-
+  und Thread-Kopf.
+- Der Emoji-Picker hat jetzt den Input `disabled`. Der Standardwert ist `false`, Editor und Reaktionsleiste bleiben
+  unverändert.
+- Yannics Claude hat jetzt Lesezugriff auf das Firebase-Projekt (Firebase-CLI und MCP). Geschrieben, veröffentlicht oder gelöscht wird dort nur nach Absprache.
