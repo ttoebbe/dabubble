@@ -13,6 +13,11 @@ import { Conversation } from '../conversation/conversation';
 /** Name shown for a person without profile, e.g. a guest who has logged out. */
 export const UNKNOWN_PERSON_NAME = 'Gast';
 
+/** Name of a person in a chat header: the unknown name without profile, "(Du)" for oneself. */
+export function chatPersonName(name: string | undefined, isSelf: boolean): string {
+  return (name ?? UNKNOWN_PERSON_NAME) + (isSelf ? ' (Du)' : '');
+}
+
 /**
  * Direct message view (DA checklist Schreiben US1, Figma `12.` and `12 E.`): header with the
  * person, then the messages. The chat with oneself is marked "(Du)". The chat document is
@@ -38,7 +43,7 @@ export class DirectChat {
   private readonly person = computed(() => this.users.users().find((u) => u.uid === this.uid()));
   readonly hasProfile = computed(() => this.person() !== undefined);
   readonly personName = computed(() => this.person()?.name ?? UNKNOWN_PERSON_NAME);
-  readonly name = computed(() => this.personName() + (this.isSelf() ? ' (Du)' : ''));
+  readonly name = computed(() => chatPersonName(this.person()?.name, this.isSelf()));
   readonly avatarUrl = computed(() => this.person()?.avatarUrl || AVATAR_PLACEHOLDER);
   readonly status = computed(() => {
     const person = this.person();

@@ -10,7 +10,7 @@ import { UserService } from '../../../core/services/user.service';
 import { AUTH_ERRORS } from '../../auth/auth-validation';
 import { ChatHeader } from '../../chat/chat-header/chat-header';
 import { formatReplies } from '../../chat/chat-time';
-import { UNKNOWN_PERSON_NAME } from '../../chat/direct-chat/direct-chat';
+import { chatPersonName } from '../../chat/direct-chat/direct-chat';
 import { LOADING_FEED, toFeed } from '../../chat/message-feed';
 import { MessageComposer } from '../../chat/message-composer/message-composer';
 import { MessageItem } from '../../chat/message-item/message-item';
@@ -133,12 +133,12 @@ export class ThreadView {
     return channel?.name ?? '';
   }
 
-  /** Name of the other person of the direct chat (oneself in the chat with oneself). */
+  /** Name of the other person of the direct chat as in its header ("(Du)" in the chat with oneself). */
   private personName(): string {
     const self = this.auth.uid();
-    const uid = this.conversationId()
+    const other = this.conversationId()
       .split('_')
       .find((entry) => entry !== self);
-    return this.people().get(uid ?? self ?? '')?.name ?? UNKNOWN_PERSON_NAME;
+    return chatPersonName(this.people().get(other ?? self ?? '')?.name, other === undefined);
   }
 }
