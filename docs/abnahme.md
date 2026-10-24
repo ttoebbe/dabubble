@@ -5,7 +5,8 @@ gemeinsamen Klicktest und die Abgabe. Erledigtes abhaken; was scheitert, kommt a
 
 Stand 24.10.2026: Bearbeiten, „Neue Nachricht“ und Suche sind von Yannic (zwei Gäste) und Thomas (eigenes
 Konto) geprüft; axe-core ohne Verstöße in Workspace, Channel, Direktnachricht, Thread, Suche und „Neue Nachricht“
-(G8; Konto-Seiten am 22.10.).
+(G8; Konto-Seiten am 22.10.). Direktnachrichten, Reaktionen, Threads und Erwähnungen hat Yannic am 23.10. mit
+zwei Gästen live geprüft. Was noch offen ist, steht gesammelt oben in `docs/todo.md`.
 
 ## Vorbereitung
 
@@ -52,25 +53,25 @@ Konto) geprüft; axe-core ohne Verstöße in Workspace, Channel, Direktnachricht
 
 ## Schreiben in Channels und Direktnachrichten
 
-| Nr  | Schritt                                                                   | Erwartet                                                                           | ✓        |
-| --- | ------------------------------------------------------------------------- | ---------------------------------------------------------------------------------- | -------- |
-| S1  | A öffnet die Direktnachricht mit B und schreibt                           | Nachricht erscheint bei B ohne Neuladen; ein Dritter sieht sie nicht               |          |
-| S2  | Zwischen Channel und Direktnachricht wechseln                             | Fokus steht sofort im Eingabefeld                                                  |          |
-| S3  | Leere Nachricht senden (Enter, Button)                                    | Nichts wird gesendet, Button gesperrt                                              |          |
-| S4  | Emoji im Eingabefeld einfügen, senden                                     | Emoji steht in der Nachricht, auch bei B                                           |          |
-| S5  | Auf eine Nachricht reagieren: Aktionsleiste, zwei zuletzt genutzte Emojis | Ohne Historie die Figma-Standard-Emojis, danach die zuletzt genutzten              |          |
-| S6  | A und B reagieren mit demselben Emoji                                     | Ein Chip mit Zähler 2; Hover zeigt, wer reagiert hat                               |          |
-| S7  | Mehr als 7 Reaktionen mobil bzw. im Thread                                | 7 sichtbar plus „+x weitere“, Klick zeigt alle und „Weniger anzeigen“              |          |
-| S8  | „Neue Nachricht“: `#` tippen                                              | Liste der eigenen Channels; Pfeiltasten, Enter wählen; Senden öffnet den Channel   | ✓ 24.10. |
-| S9  | „Neue Nachricht“: `@` tippen, dann Name, dann E-Mail                      | Personen gefiltert; nach Senden öffnet sich die Direktnachricht                    | ✓ 24.10. |
-| S10 | „Neue Nachricht“ ohne Empfänger                                           | Eingabefeld gesperrt                                                               | ✓ 24.10. |
-| S11 | Thread starten (Icon in der Aktionsleiste), B antwortet                   | Thread daneben (mobil eigene Ansicht), „1 Antwort“ und „Letzte Antwort“ im Chat    |          |
-| S12 | Im Eingabefeld `@` und `#`                                                | Liste öffnet sich, filtert beim Tippen; Erwähnung im Text klickbar                 |          |
-| S13 | Eigene Nachricht: „⋮“ → „Nachricht bearbeiten“, ändern, Enter             | Text geändert, bei B live; Escape bzw. „Abbrechen“ verwirft                        | ✓ 24.10. |
-| S14 | Suche: Stichwort aus S1                                                   | Treffer mit Channel bzw. Person, Autor, Zeit, markiertem Text; Klick öffnet Thread | ✓ 24.10. |
-| S15 | Suche: `#`, `@`, Stichwort aus einer Thread-Antwort, Unsinn (`qxz`)       | Channels, Personen, „· Thread“-Treffer, „Keine Ergebnisse gefunden.“               | ✓ 24.10. |
-| S16 | Suche offen lassen, B schreibt eine passende Nachricht                    | Treffer erscheint ohne neues Tippen                                                | ✓ 24.10. |
-| S17 | Mobil: „Gehe zu...“ antippen, suchen, Schließen                           | Ansicht „Search“, Treffer als Liste, Schließen führt zum Menü                      | ✓ 24.10. |
+| Nr  | Schritt                                                                   | Erwartet                                                                           | ✓            |
+| --- | ------------------------------------------------------------------------- | ---------------------------------------------------------------------------------- | ------------ |
+| S1  | A öffnet die Direktnachricht mit B und schreibt                           | Nachricht erscheint bei B ohne Neuladen; ein Dritter sieht sie nicht               | ✓ 23.10. (B) |
+| S2  | Zwischen Channel und Direktnachricht wechseln                             | Fokus steht sofort im Eingabefeld                                                  |              |
+| S3  | Leere Nachricht senden (Enter, Button)                                    | Nichts wird gesendet, Button gesperrt                                              |              |
+| S4  | Emoji im Eingabefeld einfügen, senden                                     | Emoji steht in der Nachricht, auch bei B                                           |              |
+| S5  | Auf eine Nachricht reagieren: Aktionsleiste, zwei zuletzt genutzte Emojis | Ohne Historie die Figma-Standard-Emojis, danach die zuletzt genutzten              | ✓ 23.10. (B) |
+| S6  | A und B reagieren mit demselben Emoji                                     | Ein Chip mit Zähler 2; Hover zeigt, wer reagiert hat                               | ✓ 23.10. (B) |
+| S7  | Mehr als 7 Reaktionen mobil bzw. im Thread                                | 7 sichtbar plus „+x weitere“, Klick zeigt alle und „Weniger anzeigen“              | ✓ 23.10. (B) |
+| S8  | „Neue Nachricht“: `#` tippen                                              | Liste der eigenen Channels; Pfeiltasten, Enter wählen; Senden öffnet den Channel   | ✓ 24.10.     |
+| S9  | „Neue Nachricht“: `@` tippen, dann Name, dann E-Mail                      | Personen gefiltert; nach Senden öffnet sich die Direktnachricht                    | ✓ 24.10.     |
+| S10 | „Neue Nachricht“ ohne Empfänger                                           | Eingabefeld gesperrt                                                               | ✓ 24.10.     |
+| S11 | Thread starten (Icon in der Aktionsleiste), B antwortet                   | Thread daneben (mobil eigene Ansicht), „1 Antwort“ und „Letzte Antwort“ im Chat    | ✓ 23.10. (B) |
+| S12 | Im Eingabefeld `@` und `#`                                                | Liste öffnet sich, filtert beim Tippen; Erwähnung im Text klickbar                 | ✓ 23.10. (B) |
+| S13 | Eigene Nachricht: „⋮“ → „Nachricht bearbeiten“, ändern, Enter             | Text geändert, bei B live; Escape bzw. „Abbrechen“ verwirft                        | ✓ 24.10.     |
+| S14 | Suche: Stichwort aus S1                                                   | Treffer mit Channel bzw. Person, Autor, Zeit, markiertem Text; Klick öffnet Thread | ✓ 24.10.     |
+| S15 | Suche: `#`, `@`, Stichwort aus einer Thread-Antwort, Unsinn (`qxz`)       | Channels, Personen, „· Thread“-Treffer, „Keine Ergebnisse gefunden.“               | ✓ 24.10.     |
+| S16 | Suche offen lassen, B schreibt eine passende Nachricht                    | Treffer erscheint ohne neues Tippen                                                | ✓ 24.10.     |
+| S17 | Mobil: „Gehe zu...“ antippen, suchen, Schließen                           | Ansicht „Search“, Treffer als Liste, Schließen führt zum Menü                      | ✓ 24.10.     |
 
 ## Channels
 

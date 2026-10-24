@@ -2,14 +2,43 @@
 
 Offene Aufgaben außerhalb der Arbeitspakete. Erledigtes abhaken, nicht löschen.
 
-## Vor der Abgabe
+## Offen bis zur Abgabe (Stand 24.10.2026)
 
+Alles, was noch zu tun ist, an einer Stelle. Live ist `040e841` (24.10.2026), der Layout-Check ist grün.
+
+### Thomas: Konsole und Daten
+
+- [ ] Vier Gast-Konten aus einem abgebrochenen Testlauf (23.10.2026) löschen: Authentication und `users`, dazu aus `channels/entwicklerteam` → `memberIds` entfernen; bis dahin zeigt der Channel-Kopf zu viele Mitglieder – Thomas in der Firebase-Konsole
+- [ ] Impressum mit echten Daten füllen: Namen, Anschrift, E-Mail von Thomas und Yannic (`features/legal/imprint/`, dort stehen noch die Figma-Platzhalter „[Student Names List]“ und „[Dein email]“) – A, Daten von B
+- [ ] Datenschutz-Entwurf (22.10.2026, `features/legal/privacy-policy/`) gemeinsam prüfen – A, B
+
+### Gemeinsam testen (`docs/abnahme.md`)
+
+- [ ] Konto-Punkte K1–K13 und Channel-Punkte C1–C7 mit zwei Sitzungen (Konto und Gast), Channel `abnahme-test` – A, B
+- [ ] Übrige Allgemein-Punkte G1–G4, G6, G7, G9, G10 und Schreiben S2–S4 – A, B
+- [ ] „Neue Nachricht“ an einen Channel senden, im Channel `abnahme-test` (bisher nur an Personen live geprüft) – Hinweis B
+- [ ] Tab im Adressfeld von „Neue Nachricht“ übernimmt den Vorschlag (`@ga` → `@Gast`): am 24.10. in einem Testlauf einmal nicht gegriffen, im Einzellauf schon; klären – Hinweis B
+
+### Kleinigkeiten aus dem Test vom 24.10.2026
+
+- [ ] Thread im Chat mit sich selbst: Der Kopf zeigt „Thomas“, der Chat-Kopf „Thomas (Du)“ (`thread-view.ts`, `personName`) – B
+- [ ] Mobile Suche: Nach „Suche schließen“ steht der Tastaturfokus auf der Seite statt auf „Gehe zu...“ (`workspace-search.ts`, `close`) – Suche
+
+### Vor der Abgabe
+
+- [ ] Skill `final-check` und der Qualitäts-Check aus `CLAUDE.md` ein letztes Mal – A, B
+- [ ] Zuordnung „Nur in Figma, nicht in der Checkliste“ in `docs/arbeitsteilung.md` bestätigen; alle Punkte sind umgesetzt – A, B
 - [ ] `docs/DA_Checkliste/` aus dem Repo entfernen und in `.gitignore` eintragen (Material der DA) – A
-- [ ] Impressum mit echten Daten füllen: Namen, Anschrift, E-Mail von Thomas und Yannic (`features/legal/imprint/`); den Datenschutz-Entwurf (22.10.2026, `features/legal/privacy-policy/`) gemeinsam prüfen – A, B
 - [ ] `.claude/skills/` aus dem Repo entfernen und in `.gitignore` eintragen – A
+- [ ] Letzter Deploy nach Absprache, danach die Live-Seite im Inkognito-Fenster prüfen – A
 - [ ] Beide Teammitglieder forken das Repo (DA-Checkliste) – A, B
 
-## Einrichtung (Phase 0)
+### Blockiert oder bewusst zurückgestellt
+
+- [ ] Reset-Mail: Aktions-URL auf `/passwort-zuruecksetzen` und Vorlage nach Figma `1898:19353` (Absender „DABubble“, Betreff „Dein Passwort zurücksetzen“, Text aus dem Mock-up; Firebase-Links gelten 1 Stunde, nicht 24). Firebase sperrt Vorlagen-Änderungen für dieses Projekt („derzeit nicht verfügbar“, 22.10.2026); bis dahin kommt die deutsche Standardmail und die Firebase-Seite setzt das Passwort. Später erneut versuchen oder Firebase-Support – A
+- [ ] „reuter“ in Absender und Link der Reset-Mail (`noreply@reuter-8ac51.firebaseapp.com`, `reuter-8ac51.firebaseapp.com/__/auth/action`) und im Google-Anmeldefenster: Die Projekt-ID ist fest. Weg nur über ein neues Firebase-Projekt mit neutraler ID (Projektlimit: gelöschte Projekte zählen 30 Tage mit) oder über eine eigene Domain mit DNS-Zugriff (Absender-Domain, Aktions-URL; dafür müssen Vorlagen-Änderungen wieder gehen). Stand 22.10.2026: bleibt vorerst; Thomas hat ein weiteres Projekt gelöscht, der Platz ist frühestens ab ca. 21.11.2026 frei (vorzeitig nicht möglich) – A
+
+## Erledigt: Einrichtung und Entwicklung
 
 - [x] Branch-Schutz für `main`: nur Force-Push und Löschen gesperrt, beide pushen direkt – A
 - [x] Deploy-Secrets setzen: `DEPLOY_HOST`, `DEPLOY_USER`, `DEPLOY_REMOTE_DIR`, Variable `DEPLOY_PROTOCOL`; `DEPLOY_PASSWORD` setzt Thomas selbst – A
@@ -27,8 +56,6 @@ Offene Aufgaben außerhalb der Arbeitspakete. Erledigtes abhaken, nicht löschen
 - [x] Startseite: `''` → `/intro` → `/login` (`app.routes.ts`, Freigabe Thomas 22.10.2026, Yannic informiert Thomas) – A
 - [x] Anmeldung an Firebase Authentication anbinden (E-Mail/Passwort, Gast, Google), bis dahin führt der Login ohne Prüfung in den Workspace – A, sobald Firebase steht
 - [x] Registrierung, Avatar und Passwort-Reset an Firebase Authentication anbinden (Konto anlegen, Avatar im Nutzer speichern, Reset-Mail) – A
-- [ ] Reset-Mail: Aktions-URL auf `/passwort-zuruecksetzen` und Vorlage nach Figma `1898:19353` (Absender „DABubble“, Betreff „Dein Passwort zurücksetzen“, Text aus dem Mock-up; Firebase-Links gelten 1 Stunde, nicht 24). Firebase sperrt Vorlagen-Änderungen für dieses Projekt („derzeit nicht verfügbar“, 22.10.2026); bis dahin kommt die deutsche Standardmail und die Firebase-Seite setzt das Passwort. Später erneut versuchen oder Firebase-Support – A
-- [ ] „reuter“ in Absender und Link der Reset-Mail (`noreply@reuter-8ac51.firebaseapp.com`, `reuter-8ac51.firebaseapp.com/__/auth/action`) und im Google-Anmeldefenster: Die Projekt-ID ist fest. Weg nur über ein neues Firebase-Projekt mit neutraler ID (Projektlimit: gelöschte Projekte zählen 30 Tage mit) oder über eine eigene Domain mit DNS-Zugriff (Absender-Domain, Aktions-URL; dafür müssen Vorlagen-Änderungen wieder gehen). Stand 22.10.2026: bleibt vorerst; Thomas hat ein weiteres Projekt gelöscht, der Platz ist frühestens ab ca. 21.11.2026 frei (vorzeitig nicht möglich) – A
 - [x] Workspace-Menü: Beispiel-Einträge (`workspace-menu/menu-entries.ts`) durch `ChannelService.channels` und `UserService.users` ersetzen – A
 - [x] Workspace-Menü: Auswahl, „Neue Nachricht“ und „Nachricht“ im Profil führen über die Chat-Routen von B (`/workspace/channel/:channelId`, `/workspace/dm/:uid`, `/workspace/new-message`); der markierte Eintrag folgt der URL – A, 23.10.2026
 - [x] Profil: „Log out“ an `AuthService` anbinden, Beispielprofil (`profile/profile-details.ts`) durch den angemeldeten Nutzer ersetzen – A, sobald Auth steht
@@ -47,14 +74,11 @@ Offene Aufgaben außerhalb der Arbeitspakete. Erledigtes abhaken, nicht löschen
 - [x] Nachrichten gelöschter Gäste anzeigen (Autor-`uid` ohne Profil): „Gast“ mit Platzhalter-Avatar – B, 23.10.2026
 - [x] Build-Warnung „Unable to locate stylesheet fonts/fonts.css“ (beasties): `data-beasties-skip` am Link – A
 - [x] Konsolen-Warnung zum Nunito-Preload: das Intro lädt die Schrift schon während der Animation – A
-- [ ] Vier Gast-Konten aus einem abgebrochenen Testlauf (23.10.2026) löschen: Authentication und `users`, dazu aus `channels/entwicklerteam` → `memberIds` entfernen – Thomas in der Firebase-Konsole
 - [x] Suche: Thread-Antworten mit durchsuchen – ohne Regeländerung: die Suche liest die Antworten jeder Nachricht mit `replyCount > 0` (23.10.2026)
-- [ ] Chat-Ansichten, „Neue Nachricht“ und Suche angemeldet durchklicken: Konsole, axe-core, 320–1920 px – A, B
+- [x] Chat-Ansichten, „Neue Nachricht“ und Suche angemeldet durchklicken: Konsole, axe-core, 320–1920 px – A, B (24.10.2026: Yannic mit zwei Gästen, Thomas mit eigenem Konto; Fixes eingearbeitet)
 - [x] Layout-Check um die Chat-Seiten erweitert (Channel, Chat mit sich selbst, „Neue Nachricht“, Suche mit `#`, `@` und ohne Treffer; `ttoebbe/dabubble-layout-check` becede6, 18 Seiten × 6 Viewports). Lauf 24.10.2026 grün (108 Kombinationen) nach zwei Checker-Fixes: Inline-Text überspringt Regel 3, abgebrochene Anfragen zählen nicht (3acd5dc) – A
 
-## Im Team klären
+## Im Team geklärt
 
 - [x] „Neue Nachricht“ mit `#`: Die Checkliste (Schreiben US4) nennt „alle existierenden Kanäle“; die Liste zeigt die Channels, in denen man Mitglied ist, denn nur dort kann man schreiben (Entscheidung Thomas 24.10.2026) – A
-
-- [ ] Zuordnung „Nur in Figma, nicht in der Checkliste“ in `docs/arbeitsteilung.md` bestätigen – A, B
 - [x] Formulare: Signal Forms (Entscheidung 22.10.2026) – A, B
