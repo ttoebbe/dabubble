@@ -35,7 +35,8 @@ Aktualisiert: 24.10.2026
 - 24.10.: Verwaiste Gäste räumt die App selbst auf (ttoebbe/dabubble#6): `lastActiveAt` im Profil (alle 15 Minuten
   und bei jedem Statuswechsel), nach jeder Anmeldung werden Gäste ohne Lebenszeichen seit 24 Stunden aus den eigenen
   Channels ausgetragen und ihr Profil gelöscht (`core/services/guest-cleanup.ts`). Regel in `firestore.rules`, in der
-  Konsole veröffentlicht (Thomas), Deploy `8ffbd77`.
+  Konsole veröffentlicht (Thomas), Deploy `8ffbd77`. Live geprüft: Nach der Anmeldung zeigt das Entwicklerteam 2
+  Mitglieder (Thomas, Yannic), Konsole fehlerfrei.
 
 ## In Arbeit
 
