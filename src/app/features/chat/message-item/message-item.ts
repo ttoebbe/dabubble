@@ -1,4 +1,14 @@
-import { Component, ElementRef, computed, inject, input, output, signal } from '@angular/core';
+import {
+  Component,
+  ElementRef,
+  Injector,
+  afterNextRender,
+  computed,
+  inject,
+  input,
+  output,
+  signal,
+} from '@angular/core';
 import { AppUser } from '../../../core/models/app-user';
 import { ChatMessage, Message } from '../../../core/models/message';
 import { AVATAR_PLACEHOLDER, AuthService } from '../../../core/services/auth.service';
@@ -39,6 +49,7 @@ export class MessageItem {
   private readonly profiles = inject(ProfileViewer);
   private readonly recent = inject(RecentEmojis);
   private readonly host = inject<ElementRef<HTMLElement>>(ElementRef);
+  private readonly injector = inject(Injector);
   private readonly selfUid = inject(AuthService).uid;
   readonly message = input.required<ChatMessage>();
   readonly author = input<AppUser | null>(null);
@@ -76,6 +87,16 @@ export class MessageItem {
   /** Stores the edited text of this message. */
   readonly saveEdit = (text: string): Promise<void> =>
     this.edit()?.(this.message().id, text) ?? Promise.resolve();
+
+  /** Leaves the edit mode; the focus returns to the "more" button so the keyboard keeps its place. */
+  endEdit(): void {
+    this.editing.set(false);
+    afterNextRender(
+      () =>
+        this.host.nativeElement.querySelector<HTMLElement>('app-message-options button')?.focus(),
+      { injector: this.injector },
+    );
+  }
 
   /** Opens the profile of the author. */
   showProfile(): void {

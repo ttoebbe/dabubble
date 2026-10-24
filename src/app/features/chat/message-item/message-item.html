@@ -29,7 +29,7 @@
       <span class="message__time">{{ time() }}</span>
     </p>
     @if (editing()) {
-      <app-message-editor [text]="message().text" [save]="saveEdit" (closed)="editing.set(false)" />
+      <app-message-editor [text]="message().text" [save]="saveEdit" (closed)="endEdit()" />
     } @else {
       <p class="message__bubble"><app-message-text [text]="message().text" /></p>
     }
