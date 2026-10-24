@@ -50,7 +50,9 @@ Aktualisiert: 24.10.2026
     verwerfen, leer oder unverändert nicht speicherbar, Änderung live beim anderen. Fix: Fokus geht nach dem Bearbeiten
     zurück auf „⋮“.
   - Neue Nachricht: `#`, `@`, Name, E-Mail-Teil, Tab/Enter/Escape, Senden an sich selbst öffnet den Chat. Fix: das
-    Eingabefeld ist bis zur Empfängerwahl wirklich gesperrt (Spec 8.16).
+    Eingabefeld ist bis zur Empfängerwahl wirklich gesperrt (Spec 8.16). Fix:
+    auch Emoji- und „@“-Button sind dann gesperrt (natives `disabled`, grau wie „Senden“); live mit Gast geprüft,
+    axe-core ohne Verstöße.
   - Suche: `#`, `@`, Stichwort in DM und Thread-Antwort, „Keine Ergebnisse gefunden.“, Treffer erscheint live, Klick
     öffnet Chat mit Thread, mobil „Gehe zu...“ mit Schließen. Die Abfrage `directChats where memberIds
     array-contains uid` läuft durch die Regeln, keine Regeländerung nötig. Fix: Treffer-Farbe `#444DF2` statt `#535AF1`
@@ -65,9 +67,7 @@ Aktualisiert: 24.10.2026
 
 ## Als Nächstes
 
-1. „Neue Nachricht“ ohne Empfänger: Emoji- und „@“-Button im Eingabefeld sind noch klickbar (Emoji landet im
-   gesperrten Feld). Mit dem Feld sperren.
-2. Abnahme-Durchlauf `docs/abnahme.md` mit Thomas, offene Punkte aus `docs/todo.md`. Dabei mitprüfen:
+1. Abnahme-Durchlauf `docs/abnahme.md` mit Thomas, offene Punkte aus `docs/todo.md`. Dabei mitprüfen:
    - „Neue Nachricht“ an einen Channel senden (24.10. nicht live geprüft, keine Testnachrichten im Entwicklerteam;
      im Abnahme-Channel `abnahme-test`).
    - Tab im Adressfeld von „Neue Nachricht“ übernimmt den Vorschlag (`@ga` → `@Gast`): in einem Testlauf am 24.10.
