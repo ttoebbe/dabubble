@@ -4,7 +4,7 @@ Aktualisiert: 24.10.2026
 
 ## Erledigt
 
-- Bereich A fertig, live ist der Stand vom 22.10. (http://dabubble-3299.developerakademie.net): Registrierung mit
+- Bereich A und B live seit 24.10. (`040e841`, https://dabubble-3299.developerakademie.net): Registrierung mit
   Avatar und Bestätigungs-E-Mail, Login (E-Mail, Google, Gast), Passwort vergessen, Profil bearbeiten,
   Workspace-Rahmen mit Menü und Online-Status, Channels anlegen, bearbeiten, verlassen, Mitglieder hinzufügen.
 - Start-Channel „Entwicklerteam“ (`channels/entwicklerteam`): Jedes neue Konto und jeder Gast tritt bei.
@@ -40,7 +40,6 @@ Aktualisiert: 24.10.2026
 - Rest von `docs/abnahme.md` (Konto- und Channel-Punkte mit zwei Sitzungen).
 - Layout-Check mit den neuen Chat-Seiten laufen lassen (Thomas startet ihn, Gäste-Login).
 - Vier Gast-Konten vom 23.10. löschen (Thomas, Firebase-Konsole).
-- Deploy des neuen Stands nach Absprache.
 - Impressum mit echten Daten füllen, Datenschutz-Entwurf gemeinsam prüfen (`docs/todo.md`).
 
 ## Brauche von B

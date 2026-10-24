@@ -15,7 +15,7 @@ Offene Aufgaben außerhalb der Arbeitspakete. Erledigtes abhaken, nicht löschen
 - [x] Deploy-Secrets setzen: `DEPLOY_HOST`, `DEPLOY_USER`, `DEPLOY_REMOTE_DIR`, Variable `DEPLOY_PROTOCOL`; `DEPLOY_PASSWORD` setzt Thomas selbst – A
 - [x] Erster Deploy (22.10.2026): SFTP lehnt die Anmeldung ab, also `DEPLOY_PROTOCOL=ftps`; `DEPLOY_HOST` ist der Servername `dd38226.kasserver.com`, weil das FTPS-Zertifikat auf `*.kasserver.com` lautet – A
 - [x] Webspace wertet `.htaccess` nicht aus (Direktaufruf von `/login` gab 404, die Datei liegt nachweislich im Zielordner): Router auf Hash-URLs umgestellt, z. B. `/#/login` (Entscheidung Thomas 22.10.2026, `app.config.ts`) – A
-- [x] Webspace ohne HTTPS-Zertifikat: http reicht für das Übungsprojekt, die DA wird nicht angeschrieben (Entscheidung Thomas 22.10.2026) – A
+- [x] Webspace ohne HTTPS-Zertifikat: http reicht für das Übungsprojekt, die DA wird nicht angeschrieben (Entscheidung Thomas 22.10.2026); seit spätestens 24.10.2026 leitet der Webspace http auf https mit gültigem Zertifikat um – A
 - [x] `.htaccess` für das Angular-Routing auf dem Webspace (Direktaufruf von Unterseiten) – A
 - [x] Favicon: Angular-Logo durch das DABubble-Logo ersetzen (DA-Checkliste) – A
 - [x] Design-Tokens aus `docs/Figma/spec.md` nach `src/styles/`, `public/fonts/fonts.css` einbinden – A
