@@ -16,10 +16,10 @@ Alles, was noch zu tun ist, an einer Stelle. Live ist `a32ea6a` (24.10.2026), de
 
 ### Gemeinsam testen (`docs/abnahme.md`)
 
-- [ ] Konto-Punkte K1–K13 und Channel-Punkte C1–C7 mit zwei Sitzungen (Konto und Gast), Channel `abnahme-test` – A, B
-- [ ] Übrige Allgemein-Punkte G1–G4 sowie G6, G7, G9, G10 auf Login, Registrierung, Menü, Profil und Channel-Dialogen (auf den Chat-Seiten am 24.10. mit Gästen bestanden, S2–S4 seit 3e86b54 abgehakt) – A, B
-- [ ] „Neue Nachricht“ an einen Channel senden, im Channel `abnahme-test` (bisher nur an Personen live geprüft) – Hinweis B
-- [ ] Tab im Adressfeld von „Neue Nachricht“ übernimmt den Vorschlag (`@ga` → `@Gast`): am 24.10. in einem Testlauf einmal nicht gegriffen, im Einzellauf schon. Lokal nicht nachstellbar (Yannic, 24.10.2026: dreimal als Gast, auch direkt nach dem Neuladen, jedes Mal `@Gast`). Wahrscheinlich gewollt: Die Adresszeile blendet andere Gäste aus, aus der Konto- oder der anderen Gast-Sitzung findet `@ga` niemanden, die Liste bleibt zu und Tab wandert weiter. Beim Abnahme-Termin aus beiden Sitzungen gegenprüfen – Hinweis B
+- [x] Konto-Punkte K1–K13 und Channel-Punkte C1–C7 mit zwei Sitzungen (Konto und Gast), Channel `abnahme-test` – bestanden im gemeinsamen Termin 24.10.2026 – A, B
+- [x] Übrige Allgemein-Punkte G1–G4 sowie G6, G7, G9, G10 auf Login, Registrierung, Menü, Profil und Channel-Dialogen (auf den Chat-Seiten am 24.10. mit Gästen bestanden, S2–S4 seit 3e86b54 abgehakt) – bestanden im gemeinsamen Termin 24.10.2026 – A, B
+- [x] „Neue Nachricht“ an einen Channel senden, im Channel `abnahme-test` (bisher nur an Personen live geprüft) – bestanden 24.10.2026 – Hinweis B
+- [x] Tab im Adressfeld von „Neue Nachricht“ übernimmt den Vorschlag (`@ga` → `@Gast`): am 24.10. in einem Testlauf einmal nicht gegriffen, im Einzellauf schon. Lokal nicht nachstellbar (Yannic, 24.10.2026: dreimal als Gast, auch direkt nach dem Neuladen, jedes Mal `@Gast`). Wahrscheinlich gewollt: Die Adresszeile blendet andere Gäste aus, aus der Konto- oder der anderen Gast-Sitzung findet `@ga` niemanden, die Liste bleibt zu und Tab wandert weiter. Im gemeinsamen Termin 24.10.2026 bestanden – Hinweis B
 
 ### Kleinigkeiten aus dem Test vom 24.10.2026
 
