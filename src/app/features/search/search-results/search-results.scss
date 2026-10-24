@@ -96,7 +96,7 @@
   &__place {
     font-size: var(--font-size-label);
     font-weight: var(--font-weight-bold);
-    color: var(--color-accent);
+    color: var(--color-link);
   }
 
   &__meta {
@@ -110,7 +110,7 @@
 
   &__hit {
     background-color: transparent;
-    color: var(--color-accent);
+    color: var(--color-link);
     font-weight: var(--font-weight-bold);
   }
 
