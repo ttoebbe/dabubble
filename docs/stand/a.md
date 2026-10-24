@@ -32,6 +32,11 @@ Aktualisiert: 24.10.2026
   nicht, Text auf hellem Lila in `--color-link` (Menü, Profilmenü, Trefferliste, Erwähnungsliste; Hinweis von B).
 - 24.10.: Deploy `040e841` (live über https). Layout-Check grün: 18 Seiten × 6 Viewports, 108 Kombinationen.
 
+- 24.10.: Verwaiste Gäste räumt die App selbst auf (ttoebbe/dabubble#6): `lastActiveAt` im Profil (alle 15 Minuten
+  und bei jedem Statuswechsel), nach jeder Anmeldung werden Gäste ohne Lebenszeichen seit 24 Stunden aus den eigenen
+  Channels ausgetragen und ihr Profil gelöscht (`core/services/guest-cleanup.ts`). Regel in `firestore.rules`, in der
+  Konsole noch nicht veröffentlicht; Deploy steht aus.
+
 ## In Arbeit
 
 - Nichts.
