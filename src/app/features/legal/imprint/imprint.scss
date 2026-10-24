@@ -67,6 +67,7 @@
 .imprint__text {
   font-size: var(--font-size-subtitle);
   line-height: var(--line-height-tight);
+  overflow-wrap: anywhere;
 }
 
 @include bp.mobile {

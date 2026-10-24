@@ -3,8 +3,9 @@ import { Component, inject } from '@angular/core';
 import { Router } from '@angular/router';
 
 /**
- * Imprint (Figma `18. Impressum`, mobile `156062:17209`). The bracketed texts are the
- * placeholders of the design; the team fills in real names and contact before submission.
+ * Imprint (Figma `18. Impressum`, mobile `156062:17209`) with the names of the team, the address
+ * of the operator (Thomas) and the contact e-mails. Yannic's name and e-mail are sample data
+ * until he fills them in (docs/todo.md).
  */
 @Component({
   selector: 'app-imprint',
