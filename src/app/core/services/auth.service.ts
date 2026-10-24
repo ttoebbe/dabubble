@@ -15,6 +15,7 @@ import {
   verifyPasswordResetCode,
 } from 'firebase/auth';
 import { deleteDoc, doc, getDoc, onSnapshot, setDoc, updateDoc } from 'firebase/firestore';
+import { AVATAR_OPTIONS } from '../../features/auth/avatar-picker/avatar-options';
 import { AppUser } from '../models/app-user';
 import { leaveAllChannels, prepareStartChannel } from './channel-membership';
 import { FIREBASE_AUTH, FIRESTORE } from './firebase';
@@ -101,14 +102,14 @@ export class AuthService {
     await this.createProfile(user, GUEST_NAME, AVATAR_PLACEHOLDER, true);
   }
 
-  /** Signs in with Google; the first time a profile is created. */
+  /** Signs in with Google; the first time a profile with the first avatar is created. */
   async logInWithGoogle(): Promise<void> {
     const { user } = await signInWithPopup(this.auth, new GoogleAuthProvider());
     const existing = await getDoc(this.profileRef(user.uid));
     if (existing.exists()) {
       await this.prepareChannel(user.uid, false);
     } else {
-      await this.createProfile(user, user.displayName ?? GUEST_NAME, AVATAR_PLACEHOLDER, false);
+      await this.createProfile(user, user.displayName ?? GUEST_NAME, AVATAR_OPTIONS[0], false);
     }
   }
 
