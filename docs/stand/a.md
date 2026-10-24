@@ -54,9 +54,8 @@ Aktualisiert: 24.10.2026
 
 ## Hinweise für B
 
-- Impressum: Bitte „Yannic Mustermann“ und „yannic.mustermann@example.com“ in `features/legal/imprint/imprint.html`
-  durch deinen Namen und deine E-Mail ersetzen (Punkt in `docs/todo.md`). Eine Anschrift brauchst du nicht, im
-  Impressum steht nur die des Betreibers (Thomas).
+- Datei-Upload: entschieden, wird nicht gebaut, kein Blaze-Tarif (Thomas und Yannic, 24.10.2026; `docs/todo.md`,
+  „Im Team geklärt“).
 - Alle offenen Punkte bis zur Abgabe stehen jetzt gesammelt oben in `docs/todo.md` („Offen bis zur Abgabe“), auch
   deine zwei Prüfpunkte („Neue Nachricht“ an einen Channel, Tab im Adressfeld) und zwei Kleinigkeiten aus dem Test.
 - Erledigt aus deinem „Brauche von A“: Menü-Kontrast (c7212cb, dazu Profilmenü, Trefferliste, Erwähnungsliste und

@@ -26,47 +26,6 @@ Alles, was noch zu tun ist, an einer Stelle. Live ist `a32ea6a` (24.10.2026), de
 - [x] Thread im Chat mit sich selbst: Der Kopf zeigt „Thomas“, der Chat-Kopf „Thomas (Du)“ (`thread-view.ts`, `personName`): beide nutzen jetzt `chatPersonName`, e46e144 – B
 - [x] Mobile Suche: Nach „Suche schließen“ steht der Tastaturfokus auf der Seite statt auf „Gehe zu...“ (`workspace-search.ts`, `close`): Fokus geht zurück aufs Feld, 57a41e9 – Suche
 
-### Aus dem DA-Vorstellungsvideo (Yannic, 24.10.2026)
-
-Abgeglichen mit Checkliste, Spec und Code: Antworten/Threads (Schreiben US5), Reaktionen mit Namen beim Hover
-(US2), Profil bearbeiten (Konto US4) und Hover-Effekt auf Nachrichten (Spec `463:4243`, Zeile `#ECEEFE` plus
-Aktionsleiste) sind umgesetzt. Neu ist nur:
-
-- [ ] Dateien hochladen: „+“ unten im Eingabefeld, Ablage in Firebase Storage, Anhang in der Nachricht anzeigen.
-  Steht weder in der Checkliste (Fassung 2024) noch in Figma, das Design (Icon, Anzeige im Chat, erlaubte Typen und
-  Größe, Fehlerzustände) fehlt also. Firebase Storage verlangt seit 30.10.2024 für neue Buckets (auch
-  `reuter-8ac51.firebasestorage.app`) den Blaze-Tarif mit hinterlegter Zahlungsart; kostenlos bis 5 GB Speicher und
-  5.000 Uploads pro Monat. Erst im Team klären: Pflicht laut DA? Blaze im Projekt aktivieren? – Entscheidung A, B;
-  Umsetzung B (Eingabefeld, Nachricht), Storage-Regeln B
-
-  Prüfung 24.10.2026 (Thomas): Im Projekt `reuter-8ac51` gibt es noch keinen Storage-Bucket (`reuter-8ac51.firebasestorage.app`
-  und `reuter-8ac51.appspot.com` antworten 404). Firebase verlangt seit 03.02.2026 für jeden Storage-Bucket den Blaze-Tarif,
-  auch für das kostenlose Kontingent; ein Spark-Projekt kommt an keinen Bucket. Unteraufgaben, falls wir es bauen:
-
-  - [ ] Entscheidung im Team: Upload bauen oder nicht (weder Checkliste noch Figma verlangen ihn) – A, B
-  - [ ] Blaze-Tarif aktivieren: Zahlungsart hinterlegen, Budget-Warnung setzen (z. B. 1 €; sie warnt nur, sie
-        begrenzt nichts). Nur der Projektinhaber kann das – Thomas in der Firebase-Konsole
-  - [ ] Standort des Buckets festlegen, lässt sich danach nicht mehr ändern: US-CENTRAL1, US-EAST1 oder US-WEST1 haben
-        das kostenlose „Always Free“-Kontingent (5 GB), Daten liegen dann in den USA; europe-west3 wie Firestore kostet
-        bei unserem Umfang Cent-Beträge – Entscheidung Thomas
-  - [ ] Bucket anlegen: Konsole → Storage → „Get started“, Standort wie oben – Thomas
-  - [ ] Design festlegen, weil Figma nichts zeigt: „+“-Symbol im Eingabefeld, Vorschau vor dem Senden, Anzeige in der
-        Nachricht (Bild als Vorschau, sonst Datei-Chip mit Name und Größe), Lade- und Fehlerzustand; erlaubte Typen
-        (z. B. Bilder und PDF) und Höchstgröße (z. B. 5 MB) – Entscheidung Thomas, Spec-Abschnitt 8 ergänzen
-  - [ ] Datenmodell (Issue mit Label `shared`): `ChatMessage.attachments` mit Name, Speicherpfad, Typ und Größe – B
-  - [ ] Firestore-Regeln: Nachricht ohne Text, aber mit Anhang erlauben (`validText` verlangt bisher 1–4000 Zeichen);
-        Anhänge nur beim Anlegen, nicht beim Bearbeiten – B
-  - [ ] `storage.rules` ins Repo und in der Konsole veröffentlichen: nur Angemeldete; lesen und schreiben nur Mitglieder
-        des Channels bzw. der Direktnachricht (`firestore.get()` in den Storage-Regeln); Größe und Typ begrenzen, damit
-        anonyme Gäste keine großen Dateien ablegen. Der Deploy-Workflow lädt Regeln nicht hoch – B, Veröffentlichen Thomas
-  - [ ] Code: Token `STORAGE` in `core/services/firebase.ts` (`getStorage`), Hochladen und Download-Adresse im
-        `MessageService`, „+“ und Vorschau im `MessageComposer` (auch im Thread), Anzeige in `MessageItem`; Meldungen am
-        Feld für zu große oder falsche Dateien – B
-  - [ ] Datenschutz-Entwurf ergänzen: hochgeladene Dateien, Speicherort (bei US-Standort Übermittlung in die USA) – A
-  - [ ] Aufräumen klären: Dateien gelöschter Gäste und Nachrichten bleiben im Bucket (es gibt kein Löschen von
-        Nachrichten); in Kauf nehmen oder beim Gast-Aufräumen (ttoebbe/dabubble#6) mit löschen – A, B
-  - [ ] Testdaten für jeden Zustand, `docs/abnahme.md` und Layout-Check um den Upload erweitern – A, B
-
 ### Vor der Abgabe
 
 - [ ] Skill `final-check` und der Qualitäts-Check aus `CLAUDE.md` ein letztes Mal – A, B
@@ -125,5 +84,6 @@ Aktionsleiste) sind umgesetzt. Neu ist nur:
 
 ## Im Team geklärt
 
+- [x] Dateien hochladen (aus dem DA-Vorstellungsvideo, Hinweis Yannic 24.10.2026): wird nicht gebaut, das Projekt bleibt im Spark-Tarif (Entscheidung Thomas und Yannic 24.10.2026). Gründe: steht weder in der Checkliste noch in Figma; Firebase Storage verlangt seit 03.02.2026 für jeden Bucket den Blaze-Tarif mit Zahlungsart, im Projekt gibt es keinen Bucket. Alles andere aus dem Video (Threads, Reaktionen mit Namen, Profil bearbeiten, Hover auf Nachrichten) ist umgesetzt – A, B
 - [x] „Neue Nachricht“ mit `#`: Die Checkliste (Schreiben US4) nennt „alle existierenden Kanäle“; die Liste zeigt die Channels, in denen man Mitglied ist, denn nur dort kann man schreiben (Entscheidung Thomas 24.10.2026) – A
 - [x] Formulare: Signal Forms (Entscheidung 22.10.2026) – A, B
