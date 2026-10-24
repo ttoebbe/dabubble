@@ -7,7 +7,6 @@
   transition: color var(--duration-hover) var(--easing-hover);
 
   &:hover {
-    color: var(--color-accent);
     text-decoration: underline;
   }
 }
