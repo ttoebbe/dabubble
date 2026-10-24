@@ -15,8 +15,9 @@ import { CHAT_EMOJIS } from '../chat-emojis';
  * with the list of emojis above it. As `reaction` it is the add-reaction button of the
  * reaction bar (Figma `59. add reaction`) and the list opens below it, to the left of the
  * button (`openRight`: to the right on wide screens). Closes after a pick, on Escape and on
- * a click elsewhere; a list that opens out of view is scrolled into view. While `disabled`
- * the button cannot be used and the list stays closed.
+ * a click elsewhere (focus inside the list returns to the button); a list that opens out of
+ * view is scrolled into view. While `disabled` the button cannot be used and the list stays
+ * closed.
  */
 @Component({
   selector: 'app-emoji-picker',
@@ -32,6 +33,7 @@ import { CHAT_EMOJIS } from '../chat-emojis';
 export class EmojiPicker {
   private readonly host = inject<ElementRef<HTMLElement>>(ElementRef);
   private readonly panel = viewChild<ElementRef<HTMLElement>>('panel');
+  private readonly toggleButton = viewChild<ElementRef<HTMLElement>>('toggleButton');
   readonly reaction = input(false);
   readonly openRight = input(false);
   readonly disabled = input(false);
@@ -49,8 +51,11 @@ export class EmojiPicker {
     this.open.update((open) => !open);
   }
 
-  /** Hides the list. */
+  /** Hides the list; focus that sat in the list moves back to the button. */
   close(): void {
+    if (this.panel()?.nativeElement.matches(':focus-within')) {
+      this.toggleButton()?.nativeElement.focus();
+    }
     this.open.set(false);
   }
 
