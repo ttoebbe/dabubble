@@ -760,6 +760,10 @@ visible element keeps the Figma size, so the layout keeps the Figma rhythm. Mobi
 (60 px, `#444DF2`, bottom right). Mobile texts are 17 px in Figma; the implementation keeps the
 18 px body size. Until the services exist the menu shows the Figma sample entries
 (`menu-entries.ts`); the search field "Gehe zu..." of the mobile menu is part of the search (area B).
+On the mobile menu page the heading "Devspace" stays in the page for screen readers (visually
+hidden, the page needs an `h1`), and the menu container takes the landmark role `main`, because it
+is the page's main content there; otherwise it is the navigation (axe `page-has-heading-one`,
+`landmark-one-main`).
 
 ### 8.6 Profile menu and profile dialog
 

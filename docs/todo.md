@@ -25,8 +25,8 @@ Alles, was noch zu tun ist, an einer Stelle. Live ist `6467190` (24.10.2026), de
 ### Funde aus Yannics Test vom 24.10.2026 (Bereich A)
 
 - [x] Klickflächen im Menü (Einträge 33 px, „Neue Nachricht“ 40 px, „Channel hinzufügen“ 30 px): sichtbar so hoch wie in Figma, die Klickfläche ist über ein transparentes `::after` jeweils 44 px groß (Spec 8.5) – kein Fehler, geprüft 24.10.2026 – A
-- [ ] Dev-Konsole NG02955 (LCP-Bild `workspace-logo.svg` ohne `priority`) in `workspace-menu.html` und `workspace-header.html` – A
-- [ ] Mobile Menü-Seite ohne `main` und ohne `h1` (axe Best Practice `landmark-one-main`, `page-has-heading-one`; kein WCAG-Verstoß): Die `h1` „Devspace“ ist mobil per `display: none` versteckt, `main` ist der ausgeblendete Chat. Vorschlag: `h1` mobil nur visuell ausblenden, für `main` eine Lösung finden, die das Raster nicht bricht – A
+- [x] Dev-Konsole NG02955 (LCP-Bild `workspace-logo.svg` ohne `priority`) in `workspace-menu.html` und `workspace-header.html`: beide mit `priority`, 0a0c2d2, Warnung weg – A
+- [x] Mobile Menü-Seite ohne `main` und ohne `h1` (axe Best Practice `landmark-one-main`, `page-has-heading-one`; kein WCAG-Verstoß): Die `h1` „Devspace“ ist mobil per `display: none` versteckt, `main` ist der ausgeblendete Chat. Gelöst in 7ddcc32: `h1` mobil nur visuell ausgeblendet; der Menü-Container hat auf der mobilen Menü-Seite die Rolle `main`, sonst `navigation` (`watchMobile` in `features/workspace/mobile-viewport.ts`). axe ohne Verstöße mobil (Menü und Chat) und am Desktop – A
 
 ### Kleinigkeiten aus dem Test vom 24.10.2026
 
