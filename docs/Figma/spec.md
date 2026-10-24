@@ -904,7 +904,10 @@ ttoebbe/dabubble#1.
   optional); logging in does not wait for the confirmation.
 - Other guests are hidden in the menu, the people search and member lists (decision Thomas
   22.10.2026): guests who only close the tab would otherwise pile up as "Gast". A guest still sees
-  themselves; `UserService.users` keeps everybody, e.g. for message authors.
+  themselves; `UserService.users` keeps everybody, e.g. for message authors. Since 24.10.2026 the
+  app also cleans them up (ttoebbe/dabubble#6): an open tab stores `lastActiveAt` every 15 minutes;
+  after each sign-in, guests without a sign of life for 24 hours leave the channels of the signed-in
+  person and their profile is deleted.
 - Profiles of other people (`ProfileViewer.show(uid)`) and the channel dialogs
   (`ChannelDialogs.open(id, kind)`) are shown by the workspace frame, so area B only calls the
   service.
