@@ -31,9 +31,9 @@ let nextListId = 0;
  * the text. Whenever `focusKey` changes (the chat was switched) the field is emptied, so no
  * draft lands in the wrong chat, and gets the focus (DA checklist Schreiben US1).
  * Typing `@` or `#` opens a list of people or channels (DA checklist Schreiben US5) that
- * narrows while typing; arrow keys move, Enter or Tab insert, Escape closes it. The field is
- * its combobox, the list its listbox. While `disabled` is set (e.g. "Neue Nachricht" without
- * recipient) nothing can be sent.
+ * narrows while typing; arrow keys move, Enter or Tab insert, Escape closes it. The list is
+ * a listbox the field points at (`aria-controls`, `aria-activedescendant`). While `disabled`
+ * is set (e.g. "Neue Nachricht" without recipient) nothing can be sent.
  */
 @Component({
   selector: 'app-message-composer',
