@@ -11,4 +11,9 @@ export interface AppUser {
   avatarUrl: string;
   isGuest: boolean;
   presence: Presence;
+  /**
+   * Milliseconds since 1970 of the last sign of life, written while a tab is open
+   * (ttoebbe/dabubble#6). Missing on profiles from before 24.10.2026.
+   */
+  lastActiveAt?: number;
 }
