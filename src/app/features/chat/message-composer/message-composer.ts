@@ -33,7 +33,7 @@ let nextListId = 0;
  * Typing `@` or `#` opens a list of people or channels (DA checklist Schreiben US5) that
  * narrows while typing; arrow keys move, Enter or Tab insert, Escape closes it. The list is
  * a listbox the field points at (`aria-controls`, `aria-activedescendant`). While `disabled`
- * is set (e.g. "Neue Nachricht" without recipient) nothing can be sent.
+ * is set (e.g. "Neue Nachricht" without recipient) nothing can be sent and the emoji and "@" buttons are locked.
  */
 @Component({
   selector: 'app-message-composer',

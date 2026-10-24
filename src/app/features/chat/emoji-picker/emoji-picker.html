@@ -4,11 +4,12 @@
   [attr.aria-label]="reaction() ? 'Reaktion hinzufügen' : 'Emoji auswählen'"
   aria-haspopup="true"
   [attr.aria-expanded]="open()"
+  [disabled]="disabled()"
   (click)="toggle()"
 >
   <span class="picker__icon" aria-hidden="true"></span>
 </button>
-@if (open()) {
+@if (open() && !disabled()) {
   <div #panel class="picker__panel" role="group" aria-label="Emojis">
     @for (emoji of emojis; track emoji.id) {
       <button

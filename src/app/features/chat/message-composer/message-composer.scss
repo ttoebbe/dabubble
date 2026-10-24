@@ -74,8 +74,12 @@
     transition: background-color var(--duration-hover) var(--easing-hover);
   }
 
-  &__at:hover &__at-icon {
+  &__at:hover:enabled &__at-icon {
     background-color: var(--color-accent);
+  }
+
+  &__at:disabled &__at-icon {
+    background-color: var(--color-disabled);
   }
 
   &__send-icon {

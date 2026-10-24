@@ -30,11 +30,12 @@
     }
     <div class="composer__tools">
       <span class="composer__icons">
-        <app-emoji-picker (picked)="insertEmoji($event)" />
+        <app-emoji-picker [disabled]="disabled()" (picked)="insertEmoji($event)" />
         <button
           class="composer__at"
           type="button"
           aria-label="Person erwähnen"
+          [disabled]="disabled()"
           (click)="insertAt()"
         >
           <span class="composer__at-icon" aria-hidden="true"></span>

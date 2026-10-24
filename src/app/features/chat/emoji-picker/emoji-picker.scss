@@ -15,7 +15,7 @@
     border-radius: 50%;
     transition: background-color var(--duration-hover) var(--easing-hover);
 
-    &:hover {
+    &:hover:enabled {
       background-color: var(--color-bg);
     }
   }
@@ -28,9 +28,13 @@
     transition: background-color var(--duration-hover) var(--easing-hover);
   }
 
-  &__toggle:hover &__icon,
+  &__toggle:hover:enabled &__icon,
   &__toggle[aria-expanded='true'] &__icon {
     background-color: var(--color-accent);
+  }
+
+  &__toggle:disabled &__icon {
+    background-color: var(--color-disabled);
   }
 
   &__panel {
