@@ -380,13 +380,14 @@ npm start
 
 Die App läuft dann unter `http://localhost:4200/`.
 
-| Befehl                 | Wirkung                                                      |
-| ---------------------- | ------------------------------------------------------------ |
-| `npm start`            | Dev-Server                                                   |
-| `npm run build`        | Produktions-Build nach `dist/dabubble/browser/`              |
-| `npm run lint`         | ESLint inkl. Zeilenlimits, Namensregeln und Barrierefreiheit |
-| `npm run format`       | Prettier formatiert `src/`                                   |
-| `npm run format:check` | Prettier prüft `src/` (wie die CI)                           |
+| Befehl                 | Wirkung                                                                                   |
+| ---------------------- | ----------------------------------------------------------------------------------------- |
+| `npm start`            | Dev-Server                                                                                |
+| `npm run build`        | Produktions-Build nach `dist/dabubble/browser/`                                           |
+| `npm run lint`         | ESLint inkl. Zeilenlimits, Namensregeln und Barrierefreiheit                              |
+| `npm run format`       | Prettier formatiert `src/`                                                                |
+| `npm run format:check` | Prettier prüft `src/` (wie die CI)                                                        |
+| `npm run docs`         | Code-Doku mit compodoc nach `documentation/` (gitignored); mit `-- -s` als lokaler Server |
 
 ## Qualität
 
@@ -401,6 +402,8 @@ Die App läuft dann unter `http://localhost:4200/`.
   (Kleingedrucktes 14 px), Touch-Targets mindestens 44 px. Abweichungen von Figma sind in der Spec begründet.
 - **Responsiv** bis 320 px ohne horizontale Scrollleiste, ohne Layout-Shifts.
 - **Konsole** ohne Fehler, auch im Inkognito-Modus.
+- **Code-Doku:** JSDoc an jeder Funktion, Klasse und jedem Export; `npm run docs` erzeugt daraus mit compodoc eine
+  Doku-Seite (DA-Checkliste, optional). Deren Abdeckungswert zählt auch jede Eigenschaft und jeden Input mit.
 
 ## CI, Deploy und Layout-Check
 
