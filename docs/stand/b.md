@@ -22,6 +22,9 @@ Aktualisiert: 24.10.2026 (Feierabend)
   den Fokus beim Schließen zurück auf „Gehe zu...“ (57a41e9).
 - Entschieden (Yannic): Ein einzelnes „@“ bleibt sendbar.
 - Impressum mit meinem Namen und meiner E-Mail gefüllt (24.10.).
+- Datenschutz-Entwurf (Bereich A, auf Yannics Ansage) korrigiert und mit den passenden Teilen der Join-Erklärung
+  ausgebaut: Gast-Aufräumen nach 24 h, letzte Aktivität, Emojis im Browser, Server-Logs, TLS, Kontakt, Empfänger,
+  Rechtsgrundlagen. Thomas muss ihn noch gegenlesen (docs/todo.md).
 - Google-Erstlogin bekommt den ersten Avatar statt des Platzhalters (`0f6aedd`, `auth.service.ts` in Bereich A,
   mit Thomas abgesprochen; Google-Popup noch nicht live getestet).
 
