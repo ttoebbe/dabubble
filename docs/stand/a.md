@@ -27,6 +27,8 @@ Aktualisiert: 23.10.2026 (abends)
   - Doku nachgezogen: `README.md`, `docs/todo.md`, `docs/arbeitsteilung.md`, `docs/einstieg.md`, Spec 8.14–8.17.
 - Nur Lint, Build und Format geprüft; angemeldet durchgeklickt ist von den Punkten oben noch nichts.
 
+- 24.10.: Abnahme-Testplan `docs/abnahme.md`; compodoc eingerichtet (`npm run docs`, optionaler Checklisten-Punkt).
+
 ## In Arbeit
 
 - Nichts.
@@ -47,6 +49,8 @@ Aktualisiert: 23.10.2026 (abends)
 
 ## Hinweise für B
 
+- Neu als Dev-Abhängigkeit: compodoc (`npm run docs`, Ausgabe in `documentation/`, gitignored). Nach dem Pull einmal
+  `npm install`.
 - Suche: Thread-Antworten werden mit durchsucht; `MessageSearchService` liest dafür die Antworten jeder Nachricht
   mit `replyCount > 0` (keine Regeländerung nötig).
 - `MessageFeed`/`toFeed` (`features/chat/message-feed.ts`) sind jetzt für jeden Typ nutzbar, nicht nur für
