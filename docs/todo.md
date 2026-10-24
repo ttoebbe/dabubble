@@ -24,6 +24,19 @@ Alles, was noch zu tun ist, an einer Stelle. Live ist `040e841` (24.10.2026), de
 - [x] Thread im Chat mit sich selbst: Der Kopf zeigt „Thomas“, der Chat-Kopf „Thomas (Du)“ (`thread-view.ts`, `personName`): beide nutzen jetzt `chatPersonName`, e46e144 – B
 - [x] Mobile Suche: Nach „Suche schließen“ steht der Tastaturfokus auf der Seite statt auf „Gehe zu...“ (`workspace-search.ts`, `close`): Fokus geht zurück aufs Feld, 57a41e9 – Suche
 
+### Aus dem DA-Vorstellungsvideo (Yannic, 24.10.2026)
+
+Abgeglichen mit Checkliste, Spec und Code: Antworten/Threads (Schreiben US5), Reaktionen mit Namen beim Hover
+(US2), Profil bearbeiten (Konto US4) und Hover-Effekt auf Nachrichten (Spec `463:4243`, Zeile `#ECEEFE` plus
+Aktionsleiste) sind umgesetzt. Neu ist nur:
+
+- [ ] Dateien hochladen: „+“ unten im Eingabefeld, Ablage in Firebase Storage, Anhang in der Nachricht anzeigen.
+  Steht weder in der Checkliste (Fassung 2024) noch in Figma, das Design (Icon, Anzeige im Chat, erlaubte Typen und
+  Größe, Fehlerzustände) fehlt also. Firebase Storage verlangt seit 30.10.2024 für neue Buckets (auch
+  `reuter-8ac51.firebasestorage.app`) den Blaze-Tarif mit hinterlegter Zahlungsart; kostenlos bis 5 GB Speicher und
+  5.000 Uploads pro Monat. Erst im Team klären: Pflicht laut DA? Blaze im Projekt aktivieren? – Entscheidung A, B;
+  Umsetzung B (Eingabefeld, Nachricht), Storage-Regeln B
+
 ### Vor der Abgabe
 
 - [ ] Skill `final-check` und der Qualitäts-Check aus `CLAUDE.md` ein letztes Mal – A, B
