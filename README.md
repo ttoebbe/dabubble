@@ -231,7 +231,13 @@ flowchart LR
   startChannel --> ws["Workspace"]
   ws -->|"Log out"| removed["Gast verlässt alle Channels,<br/>Profil und Konto werden gelöscht"]
   removed --> loginPage
+  ws -->|"Tab geschlossen"| stale["kein Lebenszeichen mehr<br/>(lastActiveAt)"]
+  stale -->|"nach 24 h, beim nächsten Login<br/>einer anderen Person"| cleaned["aus den Channels ausgetragen,<br/>Profil gelöscht"]
 ```
+
+Gäste, die den Tab schließen statt sich abzumelden, räumt die App selbst auf (ttoebbe/dabubble#6): Ein offener Tab
+schreibt alle 15 Minuten `lastActiveAt`; wer sich anmeldet, trägt Gäste ohne Lebenszeichen seit 24 Stunden aus den
+eigenen Channels aus und löscht ihr Profil. Das leere anonyme Anmeldekonto bleibt, es taucht in der App nirgends auf.
 
 ## Datenmodell
 
@@ -248,6 +254,7 @@ erDiagram
     string avatarUrl "einer der sechs Avatare"
     boolean isGuest
     string presence "online, away oder offline"
+    number lastActiveAt "letztes Lebenszeichen, alle 15 min"
   }
   CHANNELS {
     string id PK "entwicklerteam für den Start-Channel"
@@ -294,7 +301,8 @@ Die Firestore-Regeln stehen in [`firestore.rules`](firestore.rules) und sind in 
 veröffentlicht. Kurz: Angemeldete lesen alle Profile und Channels, jede Person schreibt nur ihr eigenes Profil,
 Channels ändern nur Mitglieder, und dem Start-Channel darf man sich selbst hinzufügen. Nachrichten und Antworten
 lesen und schreiben nur die Mitglieder des Channels bzw. der Direktnachricht; den Text ändert nur der Autor,
-reagieren dürfen alle Mitglieder (höchstens 20 Emojis je Nachricht).
+reagieren dürfen alle Mitglieder (höchstens 20 Emojis je Nachricht). Das Profil eines Gastes ohne Lebenszeichen seit
+24 Stunden darf jede angemeldete Person löschen.
 
 ## Online-Status
 
