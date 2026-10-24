@@ -21,6 +21,9 @@ Aktualisiert: 24.10.2026 (Feierabend)
 - Thomas' Kleinigkeiten vom 24.10.: Thread-Kopf im Chat mit sich selbst zeigt „(Du)“ (e46e144), mobile Suche gibt
   den Fokus beim Schließen zurück auf „Gehe zu...“ (57a41e9).
 - Entschieden (Yannic): Ein einzelnes „@“ bleibt sendbar.
+- Impressum mit meinem Namen und meiner E-Mail gefüllt (24.10.).
+- Google-Erstlogin bekommt den ersten Avatar statt des Platzhalters (`0f6aedd`, `auth.service.ts` in Bereich A,
+  mit Thomas abgesprochen; Google-Popup noch nicht live getestet).
 
 ## In Arbeit
 
@@ -38,9 +41,6 @@ Aktualisiert: 24.10.2026 (Feierabend)
 
 ## Brauche von A
 
-- Gast-Konten löschen: Stand 24.10. gibt es in Authentication 13 anonyme Konten (3 vom 22.10., 7 vom 23.10., 3 vom
-  24.10.) neben den 2 echten. Dazu gehören `users/<uid>` und der Eintrag in `channels/entwicklerteam` → `memberIds`.
-  Vorher sicherstellen, dass gerade niemand als Gast angemeldet ist.
 - Antwort auf ttoebbe/dabubble#5.
 - Funde aus meinem Test (auch in `docs/todo.md`): Klickflächen im Menü (Einträge 33 px, „Neue Nachricht“ 40 px,
   „Channel hinzufügen“ 30 px), NG02955 für `workspace-logo.svg` ohne `priority` (nur Dev-Server), auf der mobilen

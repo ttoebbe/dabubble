@@ -730,8 +730,7 @@ no horizontal scroll):
 
 `src/app/features/legal/`, routes `/impressum` and `/datenschutz` (no login needed). The imprint
 fills the placeholders of Figma (`5538:17437`, `5538:17487`) with the names of the team, the address
-of the operator (Thomas) and the e-mails; Yannic's name and e-mail are sample data until he supplies
-them (docs/todo.md). The privacy policy is a draft for what the app processes (decision Thomas 22.10.2026; not
+of the operator (Thomas) and the e-mails. The privacy policy is a draft for what the app processes (decision Thomas 22.10.2026; not
 legal advice, check before submission); it keeps the Figma layout of heading and paragraph per
 section (`165983:17011` …) and refers to the imprint for the persons responsible. Desktop: card centred in the window as in `5538:17434`, privacy title at y 138 as in
 `165983:17007`; mobile: content at x 15 / y 122 as in `156062:17294`, `165983:20669`. The empty
