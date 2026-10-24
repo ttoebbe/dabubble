@@ -939,6 +939,8 @@ people (other guests hidden as in the menu), any other text finds people by name
 list opens below the field (`21. Channels submenu` placement of the person and channel search variants
 of `61.`) and follows arrow keys, Enter, Tab and Escape. The message box stays disabled until a
 recipient is chosen; after sending, the channel or direct chat opens. Not in Figma: the disabled box.
+"All existing channels" of the checklist means the channels the person belongs to, because only there
+can they write (decision Thomas 24.10.2026).
 
 ### 8.17 Search
 

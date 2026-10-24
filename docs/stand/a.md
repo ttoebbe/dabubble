@@ -44,8 +44,6 @@ Aktualisiert: 23.10.2026 (abends)
 ## Brauche von B
 
 - Rückmeldung, ob Bearbeiten, „Neue Nachricht“ und Suche so passen; sonst gern direkt ändern.
-- Offene Frage in `docs/todo.md` („Im Team klären“): „Neue Nachricht“ zeigt bei `#` nur die eigenen Channels,
-  die Checkliste nennt „alle existierenden Kanäle“.
 
 ## Hinweise für B
 

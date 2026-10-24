@@ -54,7 +54,7 @@ Offene Aufgaben außerhalb der Arbeitspakete. Erledigtes abhaken, nicht löschen
 
 ## Im Team klären
 
-- [ ] „Neue Nachricht“ mit `#`: Die Checkliste (Schreiben US4) verlangt „alle existierenden Kanäle“, die App zeigt nur die eigenen, weil die Regeln Nachrichten nur Mitgliedern erlauben. Alle zeigen hieße: Senden in einen fremden Channel tritt ihm vorher bei (neue Regel wie beim Start-Channel) – Entscheidung Thomas
+- [x] „Neue Nachricht“ mit `#`: Die Checkliste (Schreiben US4) nennt „alle existierenden Kanäle“; die Liste zeigt die Channels, in denen man Mitglied ist, denn nur dort kann man schreiben (Entscheidung Thomas 24.10.2026) – A
 
 - [ ] Zuordnung „Nur in Figma, nicht in der Checkliste“ in `docs/arbeitsteilung.md` bestätigen – A, B
 - [x] Formulare: Signal Forms (Entscheidung 22.10.2026) – A, B
