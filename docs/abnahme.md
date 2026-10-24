@@ -7,6 +7,10 @@ Stand 24.10.2026: Bearbeiten, „Neue Nachricht“ und Suche sind von Yannic (zw
 Konto) geprüft; axe-core ohne Verstöße in Workspace, Channel, Direktnachricht, Thread, Suche und „Neue Nachricht“
 (G8; Konto-Seiten am 22.10.). Direktnachrichten, Reaktionen, Threads und Erwähnungen hat Yannic am 23.10. mit
 zwei Gästen live geprüft. Was noch offen ist, steht gesammelt oben in `docs/todo.md`.
+Vorlauf 24.10. (Yannic, nur mit drei Gästen, kein Konto): S1–S7, S11 und S12 erneut bestanden; G6, G7, G9 und G10 auf den
+Chat-Seiten (DM, Chat mit sich selbst, Thread, „Neue Nachricht“, Suche, Channel nur angesehen) bestanden, auf Login,
+Menü und Dialogen noch offen (Bereich A). „(B)“ heißt nur mit Gästen geprüft; im Termin mit Konto noch einmal ansehen:
+S1, S5, S6 (Echtzeit und Reaktionen zwischen Konto und Gast), Erwähnung echter Personen.
 
 ## Vorbereitung
 
@@ -56,9 +60,9 @@ zwei Gästen live geprüft. Was noch offen ist, steht gesammelt oben in `docs/to
 | Nr  | Schritt                                                                   | Erwartet                                                                           | ✓            |
 | --- | ------------------------------------------------------------------------- | ---------------------------------------------------------------------------------- | ------------ |
 | S1  | A öffnet die Direktnachricht mit B und schreibt                           | Nachricht erscheint bei B ohne Neuladen; ein Dritter sieht sie nicht               | ✓ 23.10. (B) |
-| S2  | Zwischen Channel und Direktnachricht wechseln                             | Fokus steht sofort im Eingabefeld                                                  |              |
-| S3  | Leere Nachricht senden (Enter, Button)                                    | Nichts wird gesendet, Button gesperrt                                              |              |
-| S4  | Emoji im Eingabefeld einfügen, senden                                     | Emoji steht in der Nachricht, auch bei B                                           |              |
+| S2  | Zwischen Channel und Direktnachricht wechseln                             | Fokus steht sofort im Eingabefeld                                                  | ✓ 24.10. (B) |
+| S3  | Leere Nachricht senden (Enter, Button)                                    | Nichts wird gesendet, Button gesperrt                                              | ✓ 24.10. (B) |
+| S4  | Emoji im Eingabefeld einfügen, senden                                     | Emoji steht in der Nachricht, auch bei B                                           | ✓ 24.10. (B) |
 | S5  | Auf eine Nachricht reagieren: Aktionsleiste, zwei zuletzt genutzte Emojis | Ohne Historie die Figma-Standard-Emojis, danach die zuletzt genutzten              | ✓ 23.10. (B) |
 | S6  | A und B reagieren mit demselben Emoji                                     | Ein Chip mit Zähler 2; Hover zeigt, wer reagiert hat                               | ✓ 23.10. (B) |
 | S7  | Mehr als 7 Reaktionen mobil bzw. im Thread                                | 7 sichtbar plus „+x weitere“, Klick zeigt alle und „Weniger anzeigen“              | ✓ 23.10. (B) |

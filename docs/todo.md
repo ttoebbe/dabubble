@@ -76,6 +76,8 @@ Alles, was noch zu tun ist, an einer Stelle. Live ist `040e841` (24.10.2026), de
 - [x] Konsolen-Warnung zum Nunito-Preload: das Intro lädt die Schrift schon während der Animation – A
 - [x] Suche: Thread-Antworten mit durchsuchen – ohne Regeländerung: die Suche liest die Antworten jeder Nachricht mit `replyCount > 0` (23.10.2026)
 - [x] Chat-Ansichten, „Neue Nachricht“ und Suche angemeldet durchklicken: Konsole, axe-core, 320–1920 px – A, B (24.10.2026: Yannic mit zwei Gästen, Thomas mit eigenem Konto; Fixes eingearbeitet)
+- [ ] Dev-Konsole NG02955 (LCP-Bild `workspace-logo.svg` ohne `priority`) in `workspace-menu.html` und `workspace-header.html` – A
+- [ ] G6, G7, G9, G10 (Hover/Disabled, Fokus, Tab/Escape, Schrift und Touch-Flächen) auf Login, Registrierung, Menü, Profil und Channel-Dialogen; Menü-Einträge 33 px, „Neue Nachricht“ 40 px, „Channel hinzufügen“ 30 px hoch – A
 - [x] Layout-Check um die Chat-Seiten erweitert (Channel, Chat mit sich selbst, „Neue Nachricht“, Suche mit `#`, `@` und ohne Treffer; `ttoebbe/dabubble-layout-check` becede6, 18 Seiten × 6 Viewports). Lauf 24.10.2026 grün (108 Kombinationen) nach zwei Checker-Fixes: Inline-Text überspringt Regel 3, abgebrochene Anfragen zählen nicht (3acd5dc) – A
 
 ## Im Team geklärt

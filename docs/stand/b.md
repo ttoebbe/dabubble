@@ -55,11 +55,17 @@ Aktualisiert: 24.10.2026
     axe-core ohne Verstöße.
   - Suche: `#`, `@`, Stichwort in DM und Thread-Antwort, „Keine Ergebnisse gefunden.“, Treffer erscheint live, Klick
     öffnet Chat mit Thread, mobil „Gehe zu...“ mit Schließen. Die Abfrage `directChats where memberIds
-    array-contains uid` läuft durch die Regeln, keine Regeländerung nötig. Fix: Treffer-Farbe `#444DF2` statt `#535AF1`
+array-contains uid` läuft durch die Regeln, keine Regeländerung nötig. Fix: Treffer-Farbe `#444DF2` statt `#535AF1`
     (Kontrast 4,44 auf der markierten Zeile).
   - Querschnitt: axe-core ohne Verstöße (Fixes: Eingabefeld ohne ungültige Rolle `combobox`, eindeutiges Label
     „Antworten“ für die Thread-Liste), 320–1920 px ohne Scrollleiste, Konsole fehlerfrei. Beide Test-Gäste per Log out
     abgemeldet.
+
+- Abnahme-Vorlauf 24.10. mit drei Gästen (docs/abnahme.md): S1–S7, S11, S12 bestanden; G6, G7, G9, G10 auf den
+  Chat-Seiten bestanden. Fixes: Reaktionsleiste der ersten Thread-Nachricht war unter dem Kopf abgeschnitten; Fokus
+  ging beim Schließen des Emoji-Pickers per Escape verloren (jetzt zurück auf den Button); Touch-Flächen unter 44 px
+  (Reaktions-Chips 42, Name 39 breit, Nachrichten-, Bearbeiten-, Empfänger- und Suchfeld 25–35 hoch). Alle drei Gäste
+  per Log out abgemeldet.
 
 ## In Arbeit
 
@@ -67,7 +73,7 @@ Aktualisiert: 24.10.2026
 
 ## Als Nächstes
 
-1. Abnahme-Durchlauf `docs/abnahme.md` mit Thomas, offene Punkte aus `docs/todo.md`. Dabei mitprüfen:
+1. Abnahme-Durchlauf `docs/abnahme.md` mit Thomas, offene Punkte aus `docs/todo.md`. S1, S5, S6 mit Konto wiederholen. Dabei mitprüfen:
    - „Neue Nachricht“ an einen Channel senden (24.10. nicht live geprüft, keine Testnachrichten im Entwicklerteam;
      im Abnahme-Channel `abnahme-test`).
    - Tab im Adressfeld von „Neue Nachricht“ übernimmt den Vorschlag (`@ga` → `@Gast`): in einem Testlauf am 24.10.
@@ -79,6 +85,11 @@ Aktualisiert: 24.10.2026
   und `users`, sind noch Mitglied im Entwicklerteam).
 - Kontrast im Menü: der aktive Eintrag (`.menu__pill`, `#535AF1` auf `#ECEEFE`, 4,44:1) fällt bei axe-core durch; `--color-link`
   (`#444DF2`) reicht.
+
+- Dev-Konsole: NG02955 „NgOptimizedImage … LCP … not marked priority“ für `img/logos/workspace-logo.svg`
+  (`workspace-menu.html`, `workspace-header.html`: `priority` ergänzen); erscheint nur im Dev-Server nach Neuladen im Workspace.
+- G6, G7, G9, G10 sind nur auf den Chat-Seiten geprüft; Login, Registrierung, Menü, Profil und Channel-Dialoge stehen aus
+  (Menü-Einträge 33 px, „Neue Nachricht“ 40 px, „Channel hinzufügen“ 30 px hoch).
 
 ## Hinweise für A
 
