@@ -1,6 +1,6 @@
 # Stand Bereich B (Yannic)
 
-Aktualisiert: 23.10.2026 (abends)
+Aktualisiert: 24.10.2026
 
 ## Erledigt
 
@@ -44,6 +44,20 @@ Aktualisiert: 23.10.2026 (abends)
 - Live mit zwei Gästen in der DM geprüft: Thread öffnen, Antworten in beide Richtungen mit Echtzeit-Zähler, Reaktion
   auf Antwort, Dropdown per Tastatur, Klick auf Erwähnungen; 320–1920 px ohne Scrollleiste (mit offenem Thread),
   mobil Thread als eigene Ansicht mit Zurück und Schließen; Konsole fehlerfrei. Beide Test-Gäste per Log out abgemeldet.
+- Bearbeiten, „Neue Nachricht“ und Suche hat Thomas am 23.10. mit Freigabe gebaut (3a95914, f12190a, 7225a42 u. a.;
+  Spec 8.15–8.17). Am 24.10. mit zwei Gästen live geprüft und im Code gegen Spec und Checkliste durchgesehen:
+  - Bearbeiten (Nachricht und Thread-Antwort): „⋮“ nur an eigenen Nachrichten, Enter speichert, Escape und „Abbrechen“
+    verwerfen, leer oder unverändert nicht speicherbar, Änderung live beim anderen. Fix: Fokus geht nach dem Bearbeiten
+    zurück auf „⋮“.
+  - Neue Nachricht: `#`, `@`, Name, E-Mail-Teil, Tab/Enter/Escape, Senden an sich selbst öffnet den Chat. Fix: das
+    Eingabefeld ist bis zur Empfängerwahl wirklich gesperrt (Spec 8.16).
+  - Suche: `#`, `@`, Stichwort in DM und Thread-Antwort, „Keine Ergebnisse gefunden.“, Treffer erscheint live, Klick
+    öffnet Chat mit Thread, mobil „Gehe zu...“ mit Schließen. Die Abfrage `directChats where memberIds
+    array-contains uid` läuft durch die Regeln, keine Regeländerung nötig. Fix: Treffer-Farbe `#444DF2` statt `#535AF1`
+    (Kontrast 4,44 auf der markierten Zeile).
+  - Querschnitt: axe-core ohne Verstöße (Fixes: Eingabefeld ohne ungültige Rolle `combobox`, eindeutiges Label
+    „Antworten“ für die Thread-Liste), 320–1920 px ohne Scrollleiste, Konsole fehlerfrei. Beide Test-Gäste per Log out
+    abgemeldet.
 
 ## In Arbeit
 
@@ -51,19 +65,20 @@ Aktualisiert: 23.10.2026 (abends)
 
 ## Als Nächstes
 
-1. Bearbeiten (Leiste braucht den „more“-Button), „Neue Nachricht“ (US4, `#`/`@`-Logik aus `mention-trigger.ts`
-   wiederverwendbar), Suche (US6).
+1. Abnahme-Durchlauf `docs/abnahme.md` mit Thomas, offene Punkte aus `docs/todo.md`.
 
 ## Brauche von A
 
 - Bitte die 4 Gast-Konten löschen, die ein abgebrochener Testlauf am 23.10. im Projekt gelassen hat (Authentication
   und `users`, sind noch Mitglied im Entwicklerteam).
 - Issue ttoebbe/dabubble#3 (Channel-Kopf).
+- Kontrast im Menü: der aktive Eintrag (`.menu__pill`, `#535AF1` auf `#ECEEFE`, 4,44:1) fällt bei axe-core durch; `--color-link`
+  (`#444DF2`) reicht.
 
 ## Hinweise für A
 
 - Neue Dateien in `features/chat/` (u. a. `reaction-bar/`, `message-reactions/`, `reaction-chips.ts`, `recent-emojis.ts`); `chat.routes.ts` bindet Channel-, DM- und Thread-Ansicht ein, „Neue Nachricht“
-  ist noch ein Platzhalter.
+  und die Suche sind eingebunden.
 - `AuthService.logOut` löscht den Gast: seine Nachrichten bleiben stehen und zeigen „Gast“ mit Platzhalter-Avatar.
 - Channel-Kopf-Avatare und Kopf-Umbruch 768–1440 px bewusst nicht angefasst (Issue ttoebbe/dabubble#3 an Thomas).
 - Nicht angefasst, aber veraltet: Hinweis „Chat-Ansicht … ein Platzhalter“ in `README.md` und `docs/todo.md`
