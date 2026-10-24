@@ -35,24 +35,24 @@ Grundlage ist die Checkliste der Developer Akademie (`docs/DA_Checkliste/`), das
 
 ### Konto und Workspace (Bereich A)
 
-| Funktion                                                                            | Checkliste        | Stand                                |
-| ----------------------------------------------------------------------------------- | ----------------- | ------------------------------------ |
-| Registrierung mit Name, E-Mail, Passwort, Datenschutz-Häkchen und Avatar-Auswahl    | Konto US1         | fertig                               |
-| Anmeldung mit Google                                                                | Konto US1 (opt.)  | fertig                               |
-| Bestätigungs-E-Mail nach der Registrierung                                          | Konto US1 (opt.)  | fertig                               |
-| Login mit E-Mail und Passwort, Fehlermeldung direkt am Feld                         | Konto US2         | fertig                               |
-| Gäste-Login; der Gast wird beim Log out samt Profil gelöscht                        | Figma             | fertig                               |
-| Passwort vergessen: E-Mail mit Link, neues Passwort setzen                          | Konto US3         | fertig                               |
-| Profil ansehen und bearbeiten (Name, Avatar aus der Auswahl)                        | Konto US4         | fertig                               |
-| Menü mit Channels und Direktnachrichten ein- und ausklappen                         | Konto US5         | fertig                               |
-| Mobile Ansichten: Menü → Chat → Thread mit Zurück-Pfeil                             | Konto US5         | fertig                               |
-| Online-Status (aktiv, abwesend, offline) im Menü, im Profil und in Mitgliederlisten | Konto US6 (opt.)  | fertig, auch in Chats und Threads    |
-| Channel erstellen mit Name, Beschreibung und Mitgliedern, Namensprüfung             | Channels US1      | fertig                               |
-| Mitglieder nachträglich hinzufügen                                                  | Channels US2      | fertig                               |
-| Channel verlassen                                                                   | Channels US3      | fertig                               |
-| Name und Beschreibung bearbeiten, Fehlermeldung bei gescheitertem Speichern         | Channels US4      | fertig                               |
-| Start-Channel „Entwicklerteam“: jedes neue Konto und jeder Gast tritt bei           | Entscheidung Team | fertig                               |
-| Intro mit Logo-Animation, Impressum, Datenschutz                                    | Figma             | fertig (Impressum-Daten fehlen noch) |
+| Funktion                                                                            | Checkliste        | Stand                                            |
+| ----------------------------------------------------------------------------------- | ----------------- | ------------------------------------------------ |
+| Registrierung mit Name, E-Mail, Passwort, Datenschutz-Häkchen und Avatar-Auswahl    | Konto US1         | fertig                                           |
+| Anmeldung mit Google                                                                | Konto US1 (opt.)  | fertig                                           |
+| Bestätigungs-E-Mail nach der Registrierung                                          | Konto US1 (opt.)  | fertig                                           |
+| Login mit E-Mail und Passwort, Fehlermeldung direkt am Feld                         | Konto US2         | fertig                                           |
+| Gäste-Login; der Gast wird beim Log out samt Profil gelöscht                        | Figma             | fertig                                           |
+| Passwort vergessen: E-Mail mit Link, neues Passwort setzen                          | Konto US3         | fertig                                           |
+| Profil ansehen und bearbeiten (Name, Avatar aus der Auswahl)                        | Konto US4         | fertig                                           |
+| Menü mit Channels und Direktnachrichten ein- und ausklappen                         | Konto US5         | fertig                                           |
+| Mobile Ansichten: Menü → Chat → Thread mit Zurück-Pfeil                             | Konto US5         | fertig                                           |
+| Online-Status (aktiv, abwesend, offline) im Menü, im Profil und in Mitgliederlisten | Konto US6 (opt.)  | fertig, auch in Chats und Threads                |
+| Channel erstellen mit Name, Beschreibung und Mitgliedern, Namensprüfung             | Channels US1      | fertig                                           |
+| Mitglieder nachträglich hinzufügen                                                  | Channels US2      | fertig                                           |
+| Channel verlassen                                                                   | Channels US3      | fertig                                           |
+| Name und Beschreibung bearbeiten, Fehlermeldung bei gescheitertem Speichern         | Channels US4      | fertig                                           |
+| Start-Channel „Entwicklerteam“: jedes neue Konto und jeder Gast tritt bei           | Entscheidung Team | fertig                                           |
+| Intro mit Logo-Animation, Impressum, Datenschutz                                    | Figma             | fertig (Impressum: Daten von Yannic fehlen noch) |
 
 ### Nachrichten (Bereich B)
 
