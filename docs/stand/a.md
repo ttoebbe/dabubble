@@ -46,7 +46,7 @@ Aktualisiert: 24.10.2026
 
 - Rest von `docs/abnahme.md` (Konto- und Channel-Punkte mit zwei Sitzungen).
 - Vier Gast-Konten vom 23.10. löschen (Thomas, Firebase-Konsole).
-- Impressum mit echten Daten füllen, Datenschutz-Entwurf gemeinsam prüfen (`docs/todo.md`).
+- Datenschutz-Entwurf gemeinsam prüfen (`docs/todo.md`).
 
 ## Brauche von B
 
@@ -54,6 +54,9 @@ Aktualisiert: 24.10.2026
 
 ## Hinweise für B
 
+- Impressum: Bitte „Yannic Mustermann“ und „yannic.mustermann@example.com“ in `features/legal/imprint/imprint.html`
+  durch deinen Namen und deine E-Mail ersetzen (Punkt in `docs/todo.md`). Eine Anschrift brauchst du nicht, im
+  Impressum steht nur die des Betreibers (Thomas).
 - Alle offenen Punkte bis zur Abgabe stehen jetzt gesammelt oben in `docs/todo.md` („Offen bis zur Abgabe“), auch
   deine zwei Prüfpunkte („Neue Nachricht“ an einen Channel, Tab im Adressfeld) und zwei Kleinigkeiten aus dem Test.
 - Erledigt aus deinem „Brauche von A“: Menü-Kontrast (c7212cb, dazu Profilmenü, Trefferliste, Erwähnungsliste und
