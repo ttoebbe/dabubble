@@ -3,6 +3,7 @@ import {
   ElementRef,
   afterNextRender,
   computed,
+  inject,
   input,
   linkedSignal,
   output,
@@ -34,6 +35,7 @@ let nextEditorId = 0;
   styleUrl: './message-editor.scss',
 })
 export class MessageEditor {
+  private readonly host = inject<ElementRef<HTMLElement>>(ElementRef);
   private readonly field = viewChild.required<ElementRef<HTMLTextAreaElement>>('field');
   readonly text = input.required<string>();
   readonly save = input.required<(text: string) => Promise<void>>();
@@ -48,12 +50,13 @@ export class MessageEditor {
     return draft.length > 0 && draft !== this.text() && !this.saving();
   });
 
-  /** Puts the focus into the field, with the cursor after the text. */
+  /** Puts the focus into the field, with the cursor after the text, and shows the whole box. */
   constructor() {
     afterNextRender(() => {
       const element = this.field().nativeElement;
-      element.focus();
+      element.focus({ preventScroll: true });
       element.setSelectionRange(element.value.length, element.value.length);
+      this.host.nativeElement.scrollIntoView({ block: 'nearest' });
     });
   }
 
