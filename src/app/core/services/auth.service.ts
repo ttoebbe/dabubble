@@ -18,6 +18,7 @@ import { deleteDoc, doc, getDoc, onSnapshot, setDoc, updateDoc } from 'firebase/
 import { AppUser } from '../models/app-user';
 import { leaveAllChannels, prepareStartChannel } from './channel-membership';
 import { FIREBASE_AUTH, FIRESTORE } from './firebase';
+import { removeStaleGuests } from './guest-cleanup';
 import { PresenceService } from './presence.service';
 
 /** Picture of a person who has not chosen an avatar (Figma `81. Profile`). */
@@ -41,9 +42,18 @@ export interface SignUpData {
   readonly avatarUrl: string;
 }
 
-/** Profile of a new account; it starts online. */
+/** Profile of a new account; it starts online and active now. */
 function toProfile(user: User, name: string, avatarUrl: string, isGuest: boolean): AppUser {
-  return { uid: user.uid, name, email: user.email ?? '', avatarUrl, isGuest, presence: 'online' };
+  const { uid, email } = user;
+  return {
+    uid,
+    name,
+    email: email ?? '',
+    avatarUrl,
+    isGuest,
+    presence: 'online',
+    lastActiveAt: Date.now(),
+  };
 }
 
 /**
@@ -60,9 +70,17 @@ export class AuthService {
   readonly currentUser = signal<AppUser | null>(null);
   readonly uid = computed(() => this.currentUser()?.uid ?? null);
 
-  /** Follows the profile of whoever is signed in. */
+  /**
+   * Follows the profile of whoever is signed in; after every sign-in, guests who left without
+   * logging out are cleaned up (best effort).
+   */
   constructor() {
-    onAuthStateChanged(this.auth, (user) => this.followProfile(user));
+    onAuthStateChanged(this.auth, (user) => {
+      this.followProfile(user);
+      if (user) {
+        removeStaleGuests(this.firestore, user.uid).catch(() => undefined);
+      }
+    });
   }
 
   /** Whether somebody is signed in, once Firebase has restored the session. */

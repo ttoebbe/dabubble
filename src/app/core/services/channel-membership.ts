@@ -54,14 +54,17 @@ function newStartChannel(uid: string): Omit<Channel, 'id'> {
   return { ...START_CHANNEL, creatorId: uid, memberIds: [uid], createdAt: Date.now() };
 }
 
-/** Removes a person from every channel, e.g. a guest before the account is deleted. */
+/**
+ * Removes a person from every channel, e.g. a guest before the account is deleted. Channels the
+ * signed-in person may not change (not a member) are skipped.
+ */
 export async function leaveAllChannels(firestore: Firestore, uid: string): Promise<void> {
   const memberOf = query(
     collection(firestore, 'channels'),
     where('memberIds', 'array-contains', uid),
   );
   const snapshot = await getDocs(memberOf);
-  await Promise.all(
+  await Promise.allSettled(
     snapshot.docs.map((entry) => updateDoc(entry.ref, { memberIds: arrayRemove(uid) })),
   );
 }
