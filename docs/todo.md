@@ -12,7 +12,7 @@ Alles, was noch zu tun ist, an einer Stelle. Live ist `6467190` (24.10.2026), de
 - [x] Deploy mit dem automatischen Aufräumen (ttoebbe/dabubble#6), nach der Regel: `8ffbd77`, 24.10.2026 – A
 - [x] Impressum mit echten Daten füllen: Name, Anschrift und E-Mail von Thomas eingetragen (Thomas ist Betreiber, nur seine Anschrift steht im Impressum; 24.10.2026, live seit `a32ea6a`) – A
 - [x] Impressum: Musterdaten durch Yannics Namen und E-Mail ersetzt (`features/legal/imprint/imprint.html`, JSDoc von `imprint.ts`, Spec 8.3; 24.10.2026, live seit `6467190`) – B
-- [ ] Issue ttoebbe/dabubble#5 (Restarbeiten, Vorschlag Yannic) beantworten: Zuordnung bestätigen; Upload, Gast-Konten, Impressum und Abnahme sind inzwischen erledigt oder entschieden – Thomas
+- [x] Issue ttoebbe/dabubble#5 (Restarbeiten, Vorschlag Yannic) beantwortet (24.10.2026): Zuordnung bestätigt; Upload, Gast-Konten, Impressum und Abnahme sind inzwischen erledigt oder entschieden – Thomas
 - [ ] Datenschutz-Entwurf (22.10.2026, `features/legal/privacy-policy/`, von Yannic am 24.10.2026 erweitert, eec8e07, live seit `6467190`) gemeinsam lesen – A, B
 
 ### Gemeinsam testen (`docs/abnahme.md`)
