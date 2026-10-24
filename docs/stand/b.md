@@ -66,6 +66,9 @@ array-contains uid` läuft durch die Regeln, keine Regeländerung nötig. Fix: T
   ging beim Schließen des Emoji-Pickers per Escape verloren (jetzt zurück auf den Button); Touch-Flächen unter 44 px
   (Reaktions-Chips 42, Name 39 breit, Nachrichten-, Bearbeiten-, Empfänger- und Suchfeld 25–35 hoch). Alle drei Gäste
   per Log out abgemeldet.
+- Kleinigkeiten aus dem Test vom 24.10. (Thomas): Thread-Kopf im Chat mit sich selbst zeigt „(Du)“ wie der DM-Kopf
+  (gemeinsame Funktion `chatPersonName`, e46e144); mobile Suche gibt den Fokus beim Schließen zurück auf „Gehe zu...“,
+  ohne Datei aus Bereich A (57a41e9). Live mit Gästen geprüft (430 px, Tastatur), axe-core ohne neue Verstöße.
 
 ## In Arbeit
 

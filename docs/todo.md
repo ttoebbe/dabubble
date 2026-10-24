@@ -15,14 +15,14 @@ Alles, was noch zu tun ist, an einer Stelle. Live ist `040e841` (24.10.2026), de
 ### Gemeinsam testen (`docs/abnahme.md`)
 
 - [ ] Konto-Punkte K1–K13 und Channel-Punkte C1–C7 mit zwei Sitzungen (Konto und Gast), Channel `abnahme-test` – A, B
-- [ ] Übrige Allgemein-Punkte G1–G4, G6, G7, G9, G10 und Schreiben S2–S4 – A, B
+- [ ] Übrige Allgemein-Punkte G1–G4 sowie G6, G7, G9, G10 auf Login, Registrierung, Menü, Profil und Channel-Dialogen (auf den Chat-Seiten am 24.10. mit Gästen bestanden, S2–S4 seit 3e86b54 abgehakt) – A, B
 - [ ] „Neue Nachricht“ an einen Channel senden, im Channel `abnahme-test` (bisher nur an Personen live geprüft) – Hinweis B
 - [ ] Tab im Adressfeld von „Neue Nachricht“ übernimmt den Vorschlag (`@ga` → `@Gast`): am 24.10. in einem Testlauf einmal nicht gegriffen, im Einzellauf schon; klären – Hinweis B
 
 ### Kleinigkeiten aus dem Test vom 24.10.2026
 
-- [ ] Thread im Chat mit sich selbst: Der Kopf zeigt „Thomas“, der Chat-Kopf „Thomas (Du)“ (`thread-view.ts`, `personName`) – B
-- [ ] Mobile Suche: Nach „Suche schließen“ steht der Tastaturfokus auf der Seite statt auf „Gehe zu...“ (`workspace-search.ts`, `close`) – Suche
+- [x] Thread im Chat mit sich selbst: Der Kopf zeigt „Thomas“, der Chat-Kopf „Thomas (Du)“ (`thread-view.ts`, `personName`): beide nutzen jetzt `chatPersonName`, e46e144 – B
+- [x] Mobile Suche: Nach „Suche schließen“ steht der Tastaturfokus auf der Seite statt auf „Gehe zu...“ (`workspace-search.ts`, `close`): Fokus geht zurück aufs Feld, 57a41e9 – Suche
 
 ### Vor der Abgabe
 
