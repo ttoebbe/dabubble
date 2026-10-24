@@ -21,6 +21,7 @@ Aktualisiert: 24.10.2026 (Feierabend)
 - Thomas' Kleinigkeiten vom 24.10.: Thread-Kopf im Chat mit sich selbst zeigt „(Du)“ (e46e144), mobile Suche gibt
   den Fokus beim Schließen zurück auf „Gehe zu...“ (57a41e9).
 - Entschieden (Yannic): Ein einzelnes „@“ bleibt sendbar.
+- Entschieden (Thomas und Yannic, 24.10.): kein Datei-Upload, das Projekt bleibt im Spark-Tarif (`docs/todo.md`).
 - Impressum mit meinem Namen und meiner E-Mail gefüllt (24.10.).
 - Datenschutz-Entwurf (Bereich A, auf Yannics Ansage) korrigiert und mit den passenden Teilen der Join-Erklärung
   ausgebaut: Gast-Aufräumen nach 24 h, letzte Aktivität, Emojis im Browser, Server-Logs, TLS, Kontakt, Empfänger,
@@ -30,17 +31,14 @@ Aktualisiert: 24.10.2026 (Feierabend)
 
 ## In Arbeit
 
-- Nichts. Ich warte auf das Gespräch mit Thomas und seine Antwort auf ttoebbe/dabubble#5.
+- Nichts. Ich warte auf Thomas' Antwort auf ttoebbe/dabubble#5 (Restarbeiten).
 
 ## Als Nächstes
 
-1. Antwort auf ttoebbe/dabubble#5 (Restarbeiten, Datei-Upload, Blaze) und danach die Zuordnung in `docs/todo.md`
-   eintragen.
+1. Antwort auf ttoebbe/dabubble#5 (Restarbeiten) und danach die Zuordnung in `docs/todo.md` eintragen.
 2. Gemeinsamer Abnahme-Termin: S1, S5 und S6 mit Konto ↔ Gast wiederholen (Tooltip mit echtem Namen, `@Thomas`), dazu
    „Neue Nachricht“ an `abnahme-test` senden und Tab im Adressfeld (`@ga` → `@Gast`; hat in einem Testlauf einmal
    nicht gegriffen, ungeklärt).
-3. Falls entschieden: Datei-Upload („+“ im Eingabefeld, Firebase Storage, `storage.rules`). Er braucht vorher Blaze
-   und ein Design.
 
 ## Brauche von A
 
