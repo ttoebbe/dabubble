@@ -1,0 +1,99 @@
+# Abnahme-Test
+
+Durchlauf gegen die DA-Checkliste (`docs/DA_Checkliste/`) und den Qualitäts-Check aus `CLAUDE.md`, für den
+gemeinsamen Klicktest und die Abgabe. Erledigtes abhaken; was scheitert, kommt als Punkt nach `docs/todo.md`.
+
+## Vorbereitung
+
+- **Zwei Sitzungen:** A = Thomas mit eigenem Konto (Browser-Fenster der App oder Chrome), B = ein Gast im
+  Inkognito-Fenster. So lassen sich Echtzeit, Direktnachrichten und Reaktionen beidseitig prüfen.
+- **Testdaten:** Ins „Entwicklerteam“ schreiben wir keine Testnachrichten. Für Channel-Tests legt A den Channel
+  `abnahme-test` an und verlässt ihn am Ende; Nachrichten-Tests laufen dort und in der Direktnachricht A ↔ B.
+- **Werkzeuge:** DevTools offen (Konsole, Netzwerk „Offline“ für Fehlerzustände), axe-core
+  (Browser-Erweiterung oder Snippet), Gerätemodus für die Breiten 320, 430, 768, 1024, 1440 und 1920 px.
+- **Layout-Check:** GitHub → Actions → „Layout check“ → „Run workflow“ (18 Seiten × 6 Viewports, Gäste-Login).
+
+## Allgemein
+
+| Nr  | Schritt                                                              | Erwartet                                                     | ✓   |
+| --- | -------------------------------------------------------------------- | ------------------------------------------------------------ | --- |
+| G1  | Jede Seite und jeden Dialog öffnen, alle Buttons und Links anklicken | Jeder Klick tut etwas, keine toten Links                     |     |
+| G2  | Konsole während des ganzen Durchlaufs beobachten                     | Keine Fehler und keine Warnungen der App                     |     |
+| G3  | Login, Workspace und Chat im Inkognito-Fenster                       | Funktioniert wie im normalen Fenster                         |     |
+| G4  | Favicon im Tab                                                       | DABubble-Logo                                                |     |
+| G5  | Alle Seiten in den sechs Breiten                                     | Keine horizontale Scrollleiste, nichts abgeschnitten         |     |
+| G6  | Buttons: Maus darüber, deaktiviert, aktiv                            | `cursor: pointer`, Hover-Zustand, Disabled sichtbar          |     |
+| G7  | Inputs und Buttons ohne Fokus                                        | Kein Browser-Standardrahmen; Fokus mit Tastatur sichtbar     |     |
+| G8  | axe-core auf Login, Registrierung, Workspace, Channel, DM, Thread    | Keine Verstöße                                               |     |
+| G9  | Tab-Taste durch Login, Menü, Chat, Dialoge                           | Reihenfolge logisch, Escape schließt Dialoge und Listen      |     |
+| G10 | Schriftgrößen und Touch-Flächen stichprobenartig (DevTools)          | Schrift ≥ 16 px (Zeitstempel, Fehler 14 px), Flächen ≥ 44 px |     |
+
+## Konto (Benutzeraccount & Administration)
+
+| Nr  | Schritt                                                                  | Erwartet                                                                      | ✓   |
+| --- | ------------------------------------------------------------------------ | ----------------------------------------------------------------------------- | --- |
+| K1  | „Konto erstellen“: jedes Feld anklicken und leer verlassen               | Meldung direkt am Feld, „Weiter“ gesperrt, kein `alert()`, keine HTML5-Blase  |     |
+| K2  | Ungültige E-Mail, zu kurzes Passwort, Datenschutz nicht angehakt         | Je eine konkrete Meldung am Feld                                              |     |
+| K3  | Bereits verwendete E-Mail                                                | „Diese E-Mail-Adresse wird bereits verwendet.“ am Feld                        |     |
+| K4  | Gültig registrieren, Avatar wählen („Wähle deinen Avatar“)               | „Konto erfolgreich erstellt!“, zurück zum Login, Bestätigungs-E-Mail kommt    |     |
+| K5  | Login mit falschem Passwort                                              | „Falsches Passwort. Bitte noch einmal versuchen.“                             |     |
+| K6  | Login richtig; „Anmelden mit Google“; „Gäste-Login“                      | Workspace öffnet sich, Start-Channel „Entwicklerteam“ ist im Menü             |     |
+| K7  | „Passwort vergessen?“ → E-Mail eingeben                                  | E-Mail mit Link kommt; neues Passwort setzen; Login mit neuem Passwort klappt |     |
+| K8  | Profilmenü → „Profil“ → „Bearbeiten“: Name ändern, Avatar wählen         | Speichern zeigt den neuen Namen und Avatar sofort im Profil, Menü und Chat    |     |
+| K9  | Profil bearbeiten mit leerem Namen, „Speichern“                          | Meldung am Feld, nichts gespeichert                                           |     |
+| K10 | Desktop: Menü über „Workspace-Menü schließen“ ein- und wieder ausklappen | Chat wird breiter, Menü kommt zurück                                          |     |
+| K11 | Mobil: Channel wählen, Zurück-Pfeil; Thread öffnen, Zurück               | Menü → Chat → Thread als eigene Ansichten, Zurück führt eine Ebene hoch       |     |
+| K12 | Online-Status: B öffnet einen anderen Tab, dann meldet sich B ab         | Punkt bei B in Menü und Chat wird grau; nach Log out offline                  |     |
+| K13 | Log out als Gast                                                         | Gast verschwindet aus dem Entwicklerteam, Konto und Profil sind gelöscht      |     |
+
+## Schreiben in Channels und Direktnachrichten
+
+| Nr  | Schritt                                                                   | Erwartet                                                                           | ✓   |
+| --- | ------------------------------------------------------------------------- | ---------------------------------------------------------------------------------- | --- |
+| S1  | A öffnet die Direktnachricht mit B und schreibt                           | Nachricht erscheint bei B ohne Neuladen; ein Dritter sieht sie nicht               |     |
+| S2  | Zwischen Channel und Direktnachricht wechseln                             | Fokus steht sofort im Eingabefeld                                                  |     |
+| S3  | Leere Nachricht senden (Enter, Button)                                    | Nichts wird gesendet, Button gesperrt                                              |     |
+| S4  | Emoji im Eingabefeld einfügen, senden                                     | Emoji steht in der Nachricht, auch bei B                                           |     |
+| S5  | Auf eine Nachricht reagieren: Aktionsleiste, zwei zuletzt genutzte Emojis | Ohne Historie die Figma-Standard-Emojis, danach die zuletzt genutzten              |     |
+| S6  | A und B reagieren mit demselben Emoji                                     | Ein Chip mit Zähler 2; Hover zeigt, wer reagiert hat                               |     |
+| S7  | Mehr als 7 Reaktionen mobil bzw. im Thread                                | 7 sichtbar plus „+x weitere“, Klick zeigt alle und „Weniger anzeigen“              |     |
+| S8  | „Neue Nachricht“: `#` tippen                                              | Liste der eigenen Channels; Pfeiltasten, Enter wählen; Senden öffnet den Channel   |     |
+| S9  | „Neue Nachricht“: `@` tippen, dann Name, dann E-Mail                      | Personen gefiltert; nach Senden öffnet sich die Direktnachricht                    |     |
+| S10 | „Neue Nachricht“ ohne Empfänger                                           | Eingabefeld gesperrt                                                               |     |
+| S11 | Thread starten (Icon in der Aktionsleiste), B antwortet                   | Thread daneben (mobil eigene Ansicht), „1 Antwort“ und „Letzte Antwort“ im Chat    |     |
+| S12 | Im Eingabefeld `@` und `#`                                                | Liste öffnet sich, filtert beim Tippen; Erwähnung im Text klickbar                 |     |
+| S13 | Eigene Nachricht: „⋮“ → „Nachricht bearbeiten“, ändern, Enter             | Text geändert, bei B live; Escape bzw. „Abbrechen“ verwirft                        |     |
+| S14 | Suche: Stichwort aus S1                                                   | Treffer mit Channel bzw. Person, Autor, Zeit, markiertem Text; Klick öffnet Thread |     |
+| S15 | Suche: `#`, `@`, Stichwort aus einer Thread-Antwort, Unsinn (`qxz`)       | Channels, Personen, „· Thread“-Treffer, „Keine Ergebnisse gefunden.“               |     |
+| S16 | Suche offen lassen, B schreibt eine passende Nachricht                    | Treffer erscheint ohne neues Tippen                                                |     |
+| S17 | Mobil: „Gehe zu...“ antippen, suchen, Schließen                           | Ansicht „Search“, Treffer als Liste, Schließen führt zum Menü                      |     |
+
+## Channels
+
+| Nr  | Schritt                                                                     | Erwartet                                                                    | ✓   |
+| --- | --------------------------------------------------------------------------- | --------------------------------------------------------------------------- | --- |
+| C1  | „Channel erstellen“: Name `abnahme-test`, Beschreibung, B hinzufügen        | Channel erscheint unten in der Liste, B sieht ihn                           |     |
+| C2  | Channel erstellen mit vorhandenem Namen (`entwicklerTeam`), „Erstellen“     | Meldung am Feld, kein zweiter Channel                                       |     |
+| C3  | A und B schreiben im Channel                                                | Beide senden und empfangen live                                             |     |
+| C4  | B fügt über den Channel-Kopf eine weitere Person hinzu (mehrere auswählbar) | Zähler und Avatare im Kopf aktualisieren sich                               |     |
+| C5  | Channel-Name anklicken → Name und Beschreibung bearbeiten                   | Änderung sofort bei allen Mitgliedern                                       |     |
+| C6  | Umbenennen in einen vorhandenen Namen; Speichern offline (DevTools)         | Meldung am Feld bzw. „Das hat nicht geklappt. Bitte noch einmal versuchen.“ |     |
+| C7  | „Channel verlassen“                                                         | Channel verschwindet aus dem Menü, Ansicht wechselt                         |     |
+
+## Testdaten für die UI-Zustände
+
+| Zustand                   | So entsteht er                                                        |
+| ------------------------- | --------------------------------------------------------------------- |
+| Leerer Channel            | Neuer Channel (C1) vor der ersten Nachricht: Intro ohne Nachrichten   |
+| Leere Direktnachricht     | Person ohne bisherigen Chat öffnen; Chat mit sich selbst: Notiz-Intro |
+| Laden                     | DevTools „Slow 3G“, Channel öffnen: „Nachrichten werden geladen …“    |
+| Suche lädt / ohne Treffer | Stichwort tippen: „Nachrichten werden durchsucht …“; `qxz`            |
+| Fehler beim Speichern     | DevTools „Offline“, dann speichern oder senden                        |
+| Abgelaufener Link         | Reset-Link ein zweites Mal öffnen: „Dieser Link ist ungültig …“       |
+| Autor ohne Profil         | Nachricht eines Gastes nach dessen Log out: „Gast“ mit Platzhalter    |
+
+## Nach dem Durchlauf
+
+- A verlässt `abnahme-test`, der Gast meldet sich ab.
+- Funde nach `docs/todo.md`, Ergebnis kurz in `docs/stand/a.md` bzw. `b.md`.
+- Vor der Abgabe zusätzlich der Skill `final-check` und die Punkte „Vor der Abgabe“ in `docs/todo.md`.
