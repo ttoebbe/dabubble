@@ -4,7 +4,7 @@ Aktualisiert: 24.10.2026
 
 ## Erledigt
 
-- Bereich A und B live seit 24.10. (`040e841`, https://dabubble-3299.developerakademie.net): Registrierung mit
+- Bereich A und B live seit 24.10. (zuletzt `8ffbd77`, https://dabubble-3299.developerakademie.net): Registrierung mit
   Avatar und Bestätigungs-E-Mail, Login (E-Mail, Google, Gast), Passwort vergessen, Profil bearbeiten,
   Workspace-Rahmen mit Menü und Online-Status, Channels anlegen, bearbeiten, verlassen, Mitglieder hinzufügen.
 - Start-Channel „Entwicklerteam“ (`channels/entwicklerteam`): Jedes neue Konto und jeder Gast tritt bei.
@@ -35,7 +35,7 @@ Aktualisiert: 24.10.2026
 - 24.10.: Verwaiste Gäste räumt die App selbst auf (ttoebbe/dabubble#6): `lastActiveAt` im Profil (alle 15 Minuten
   und bei jedem Statuswechsel), nach jeder Anmeldung werden Gäste ohne Lebenszeichen seit 24 Stunden aus den eigenen
   Channels ausgetragen und ihr Profil gelöscht (`core/services/guest-cleanup.ts`). Regel in `firestore.rules`, in der
-  Konsole noch nicht veröffentlicht; Deploy steht aus.
+  Konsole veröffentlicht (Thomas), Deploy `8ffbd77`.
 
 ## In Arbeit
 

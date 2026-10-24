@@ -4,12 +4,12 @@ Offene Aufgaben außerhalb der Arbeitspakete. Erledigtes abhaken, nicht löschen
 
 ## Offen bis zur Abgabe (Stand 24.10.2026)
 
-Alles, was noch zu tun ist, an einer Stelle. Live ist `040e841` (24.10.2026), der Layout-Check ist grün.
+Alles, was noch zu tun ist, an einer Stelle. Live ist `8ffbd77` (24.10.2026), der Layout-Check ist grün.
 
 ### Thomas: Konsole und Daten
 
-- [ ] Regel für verwaiste Gäste aus `firestore.rules` in der Firebase-Konsole veröffentlichen (ttoebbe/dabubble#6). Danach räumt die App die Gast-Konten aus den abgebrochenen Testläufen vom 23. und 24.10.2026 beim nächsten Login selbst auf (24 Stunden nach ihrem letzten Lebenszeichen); von Hand ist nichts mehr zu löschen – Thomas
-- [ ] Deploy mit dem automatischen Aufräumen (ttoebbe/dabubble#6), nach der Regel – A
+- [x] Regel für verwaiste Gäste aus `firestore.rules` in der Firebase-Konsole veröffentlichen (ttoebbe/dabubble#6; Thomas, 24.10.2026). Danach räumt die App die Gast-Konten aus den abgebrochenen Testläufen vom 23. und 24.10.2026 beim nächsten Login selbst auf (24 Stunden nach ihrem letzten Lebenszeichen); von Hand ist nichts mehr zu löschen – Thomas
+- [x] Deploy mit dem automatischen Aufräumen (ttoebbe/dabubble#6), nach der Regel: `8ffbd77`, 24.10.2026 – A
 - [ ] Impressum mit echten Daten füllen: Namen, Anschrift, E-Mail von Thomas und Yannic (`features/legal/imprint/`, dort stehen noch die Figma-Platzhalter „[Student Names List]“ und „[Dein email]“) – A, Daten von B
 - [ ] Datenschutz-Entwurf (22.10.2026, `features/legal/privacy-policy/`) gemeinsam prüfen – A, B
 
