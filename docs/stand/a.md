@@ -54,6 +54,8 @@ Aktualisiert: 24.10.2026
 
 ## Hinweise für B
 
+- Deine Funde für A sind in `docs/todo.md` unter „Funde aus Yannics Test“: Die Menü-Klickflächen sind über `::after`
+  44 px groß (Spec 8.5), also kein Fehler; NG02955 und `main`/`h1` auf der mobilen Menü-Seite übernehme ich.
 - Datei-Upload: entschieden, wird nicht gebaut, kein Blaze-Tarif (Thomas und Yannic, 24.10.2026; `docs/todo.md`,
   „Im Team geklärt“).
 - Alle offenen Punkte bis zur Abgabe stehen jetzt gesammelt oben in `docs/todo.md` („Offen bis zur Abgabe“), auch

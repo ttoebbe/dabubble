@@ -12,7 +12,8 @@ Alles, was noch zu tun ist, an einer Stelle. Live ist `6467190` (24.10.2026), de
 - [x] Deploy mit dem automatischen Aufräumen (ttoebbe/dabubble#6), nach der Regel: `8ffbd77`, 24.10.2026 – A
 - [x] Impressum mit echten Daten füllen: Name, Anschrift und E-Mail von Thomas eingetragen (Thomas ist Betreiber, nur seine Anschrift steht im Impressum; 24.10.2026, live seit `a32ea6a`) – A
 - [x] Impressum: Musterdaten durch Yannics Namen und E-Mail ersetzt (`features/legal/imprint/imprint.html`, JSDoc von `imprint.ts`, Spec 8.3; 24.10.2026, live seit `6467190`) – B
-- [ ] Datenschutz-Entwurf (22.10.2026, `features/legal/privacy-policy/`) gemeinsam prüfen – A, B
+- [ ] Issue ttoebbe/dabubble#5 (Restarbeiten, Vorschlag Yannic) beantworten: Zuordnung bestätigen; Upload, Gast-Konten, Impressum und Abnahme sind inzwischen erledigt oder entschieden – Thomas
+- [ ] Datenschutz-Entwurf (22.10.2026, `features/legal/privacy-policy/`, von Yannic am 24.10.2026 erweitert, eec8e07, live seit `6467190`) gemeinsam lesen – A, B
 
 ### Gemeinsam testen (`docs/abnahme.md`)
 
@@ -20,6 +21,12 @@ Alles, was noch zu tun ist, an einer Stelle. Live ist `6467190` (24.10.2026), de
 - [x] Übrige Allgemein-Punkte G1–G4 sowie G6, G7, G9, G10 auf Login, Registrierung, Menü, Profil und Channel-Dialogen (auf den Chat-Seiten am 24.10. mit Gästen bestanden, S2–S4 seit 3e86b54 abgehakt) – bestanden im gemeinsamen Termin 24.10.2026 – A, B
 - [x] „Neue Nachricht“ an einen Channel senden, im Channel `abnahme-test` (bisher nur an Personen live geprüft) – bestanden 24.10.2026 – Hinweis B
 - [x] Tab im Adressfeld von „Neue Nachricht“ übernimmt den Vorschlag (`@ga` → `@Gast`): am 24.10. in einem Testlauf einmal nicht gegriffen, im Einzellauf schon. Lokal nicht nachstellbar (Yannic, 24.10.2026: dreimal als Gast, auch direkt nach dem Neuladen, jedes Mal `@Gast`). Wahrscheinlich gewollt: Die Adresszeile blendet andere Gäste aus, aus der Konto- oder der anderen Gast-Sitzung findet `@ga` niemanden, die Liste bleibt zu und Tab wandert weiter. Im gemeinsamen Termin 24.10.2026 bestanden – Hinweis B
+
+### Funde aus Yannics Test vom 24.10.2026 (Bereich A)
+
+- [x] Klickflächen im Menü (Einträge 33 px, „Neue Nachricht“ 40 px, „Channel hinzufügen“ 30 px): sichtbar so hoch wie in Figma, die Klickfläche ist über ein transparentes `::after` jeweils 44 px groß (Spec 8.5) – kein Fehler, geprüft 24.10.2026 – A
+- [ ] Dev-Konsole NG02955 (LCP-Bild `workspace-logo.svg` ohne `priority`) in `workspace-menu.html` und `workspace-header.html` – A
+- [ ] Mobile Menü-Seite ohne `main` und ohne `h1` (axe Best Practice `landmark-one-main`, `page-has-heading-one`; kein WCAG-Verstoß): Die `h1` „Devspace“ ist mobil per `display: none` versteckt, `main` ist der ausgeblendete Chat. Vorschlag: `h1` mobil nur visuell ausblenden, für `main` eine Lösung finden, die das Raster nicht bricht – A
 
 ### Kleinigkeiten aus dem Test vom 24.10.2026
 
@@ -78,9 +85,8 @@ Alles, was noch zu tun ist, an einer Stelle. Live ist `6467190` (24.10.2026), de
 - [x] Konsolen-Warnung zum Nunito-Preload: das Intro lädt die Schrift schon während der Animation – A
 - [x] Suche: Thread-Antworten mit durchsuchen – ohne Regeländerung: die Suche liest die Antworten jeder Nachricht mit `replyCount > 0` (23.10.2026)
 - [x] Chat-Ansichten, „Neue Nachricht“ und Suche angemeldet durchklicken: Konsole, axe-core, 320–1920 px – A, B (24.10.2026: Yannic mit zwei Gästen, Thomas mit eigenem Konto; Fixes eingearbeitet)
-- [ ] Dev-Konsole NG02955 (LCP-Bild `workspace-logo.svg` ohne `priority`) in `workspace-menu.html` und `workspace-header.html` – A
-- [ ] G6, G7, G9, G10 (Hover/Disabled, Fokus, Tab/Escape, Schrift und Touch-Flächen) auf Login, Registrierung, Menü, Profil und Channel-Dialogen; Menü-Einträge 33 px, „Neue Nachricht“ 40 px, „Channel hinzufügen“ 30 px hoch – A
 - [x] Layout-Check um die Chat-Seiten erweitert (Channel, Chat mit sich selbst, „Neue Nachricht“, Suche mit `#`, `@` und ohne Treffer; `ttoebbe/dabubble-layout-check` becede6, 18 Seiten × 6 Viewports). Lauf 24.10.2026 grün (108 Kombinationen) nach zwei Checker-Fixes: Inline-Text überspringt Regel 3, abgebrochene Anfragen zählen nicht (3acd5dc) – A
+- [x] G6, G7, G9, G10 (Hover/Disabled, Fokus, Tab/Escape, Schrift und Touch-Flächen) auf Login, Registrierung, Menü, Profil und Channel-Dialogen; Menü-Einträge 33 px, „Neue Nachricht“ 40 px, „Channel hinzufügen“ 30 px hoch – A Bestanden im gemeinsamen Termin 24.10.2026; Klickflächen siehe „Funde aus Yannics Test“.
 
 ## Im Team geklärt
 
