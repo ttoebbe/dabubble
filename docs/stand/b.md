@@ -65,13 +65,18 @@ Aktualisiert: 24.10.2026
 
 ## Als Nächstes
 
-1. Abnahme-Durchlauf `docs/abnahme.md` mit Thomas, offene Punkte aus `docs/todo.md`.
+1. „Neue Nachricht“ ohne Empfänger: Emoji- und „@“-Button im Eingabefeld sind noch klickbar (Emoji landet im
+   gesperrten Feld). Mit dem Feld sperren.
+2. Abnahme-Durchlauf `docs/abnahme.md` mit Thomas, offene Punkte aus `docs/todo.md`. Dabei mitprüfen:
+   - „Neue Nachricht“ an einen Channel senden (24.10. nicht live geprüft, keine Testnachrichten im Entwicklerteam;
+     im Abnahme-Channel `abnahme-test`).
+   - Tab im Adressfeld von „Neue Nachricht“ übernimmt den Vorschlag (`@ga` → `@Gast`): in einem Testlauf am 24.10.
+     einmal nicht gegriffen, im Einzellauf schon; vermutlich Testaufbau, nicht geklärt.
 
 ## Brauche von A
 
 - Bitte die 4 Gast-Konten löschen, die ein abgebrochener Testlauf am 23.10. im Projekt gelassen hat (Authentication
   und `users`, sind noch Mitglied im Entwicklerteam).
-- Issue ttoebbe/dabubble#3 (Channel-Kopf).
 - Kontrast im Menü: der aktive Eintrag (`.menu__pill`, `#535AF1` auf `#ECEEFE`, 4,44:1) fällt bei axe-core durch; `--color-link`
   (`#444DF2`) reicht.
 
