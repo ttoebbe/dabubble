@@ -84,7 +84,7 @@ array-contains uid` läuft durch die Regeln, keine Regeländerung nötig. Fix: T
 
 ## Brauche von A
 
-- Bitte die 4 Gast-Konten löschen, die ein abgebrochener Testlauf am 23.10. im Projekt gelassen hat (Authentication
+- Bitte die 4 Gast-Konten löschen, die ein abgebrochener Testlauf am 23.10. im Projekt gelassen hat (dazu zwei bis vier weitere aus abgebrochenen Läufen am 24.10.) (Authentication
   und `users`, sind noch Mitglied im Entwicklerteam).
 - Kontrast im Menü: der aktive Eintrag (`.menu__pill`, `#535AF1` auf `#ECEEFE`, 4,44:1) fällt bei axe-core durch; `--color-link`
   (`#444DF2`) reicht.

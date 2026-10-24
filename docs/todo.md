@@ -8,7 +8,7 @@ Alles, was noch zu tun ist, an einer Stelle. Live ist `040e841` (24.10.2026), de
 
 ### Thomas: Konsole und Daten
 
-- [ ] Vier Gast-Konten aus einem abgebrochenen Testlauf (23.10.2026) löschen: Authentication und `users`, dazu aus `channels/entwicklerteam` → `memberIds` entfernen; bis dahin zeigt der Channel-Kopf zu viele Mitglieder – Thomas in der Firebase-Konsole
+- [ ] Vier Gast-Konten aus einem abgebrochenen Testlauf (23.10.2026) löschen, dazu zwei bis vier weitere aus abgebrochenen Testläufen von B am 24.10.2026 (anonym, ohne Log out): Authentication und `users`, dazu aus `channels/entwicklerteam` → `memberIds` entfernen; bis dahin zeigt der Channel-Kopf zu viele Mitglieder – Thomas in der Firebase-Konsole
 - [ ] Impressum mit echten Daten füllen: Namen, Anschrift, E-Mail von Thomas und Yannic (`features/legal/imprint/`, dort stehen noch die Figma-Platzhalter „[Student Names List]“ und „[Dein email]“) – A, Daten von B
 - [ ] Datenschutz-Entwurf (22.10.2026, `features/legal/privacy-policy/`) gemeinsam prüfen – A, B
 
