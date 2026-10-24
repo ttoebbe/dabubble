@@ -439,11 +439,12 @@ flowchart LR
 
 ## Dokumentation
 
-| Datei                                              | Inhalt                                                        |
-| -------------------------------------------------- | ------------------------------------------------------------- |
-| [`docs/DA_Checkliste/`](docs/DA_Checkliste/)       | Anforderungen und Abnahmekriterien der Developer Akademie     |
-| [`docs/Figma/spec.md`](docs/Figma/spec.md)         | Design-Spec aus Figma, dazu `components.md` und `MANIFEST.md` |
-| [`docs/arbeitsteilung.md`](docs/arbeitsteilung.md) | Bereiche, Datei-Besitz, Schnittstellen, Firestore-Regeln, Git |
-| [`docs/einstieg.md`](docs/einstieg.md)             | Einstieg ins Projekt für Yannic                               |
-| [`docs/todo.md`](docs/todo.md)                     | Offene Aufgaben außerhalb der Arbeitspakete                   |
-| [`CLAUDE.md`](CLAUDE.md)                           | Arbeitsregeln für Claude Code, für beide gleich               |
+| Datei                                              | Inhalt                                                                         |
+| -------------------------------------------------- | ------------------------------------------------------------------------------ |
+| [`docs/DA_Checkliste/`](docs/DA_Checkliste/)       | Anforderungen und Abnahmekriterien der Developer Akademie                      |
+| [`docs/Figma/spec.md`](docs/Figma/spec.md)         | Design-Spec aus Figma, dazu `components.md` und `MANIFEST.md`                  |
+| [`docs/arbeitsteilung.md`](docs/arbeitsteilung.md) | Bereiche, Datei-Besitz, Schnittstellen, Firestore-Regeln, Git                  |
+| [`docs/einstieg.md`](docs/einstieg.md)             | Einstieg ins Projekt für Yannic                                                |
+| [`docs/todo.md`](docs/todo.md)                     | Offene Aufgaben außerhalb der Arbeitspakete                                    |
+| [`docs/abnahme.md`](docs/abnahme.md)               | Abnahme-Test gegen Checkliste und Qualitäts-Check, mit Testdaten je UI-Zustand |
+| [`CLAUDE.md`](CLAUDE.md)                           | Arbeitsregeln für Claude Code, für beide gleich                                |
