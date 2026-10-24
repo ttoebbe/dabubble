@@ -9,7 +9,7 @@ Gruppenprojekt der Developer Akademie, umgesetzt mit Angular 22 und Firebase.
 
 > **Stand 24.10.2026:** Bereich A (Konto, Workspace-Rahmen, Channels) ist fertig. Bereich B (Nachrichten,
 > Threads, Suche) steht auf `main`: Channel- und Direktnachrichten, Reaktionen, Emojis, Threads, Erwähnungen,
-> Bearbeiten, „Neue Nachricht“ und die Suche. Live ist der Stand vom 24.10.2026 (`040e841`). Offene Punkte: [`docs/todo.md`](docs/todo.md).
+> Bearbeiten, „Neue Nachricht“ und die Suche. Live ist der Stand vom 24.10.2026 (`8ffbd77`). Offene Punkte: [`docs/todo.md`](docs/todo.md).
 
 ## Inhalt
 
