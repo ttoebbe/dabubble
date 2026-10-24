@@ -1,6 +1,6 @@
 # Stand Bereich A (Thomas)
 
-Aktualisiert: 23.10.2026 (abends)
+Aktualisiert: 24.10.2026
 
 ## Erledigt
 
@@ -25,9 +25,11 @@ Aktualisiert: 23.10.2026 (abends)
   - Layout-Check (`ttoebbe/dabubble-layout-check` becede6) misst zusätzlich Channel, Chat mit sich selbst,
     „Neue Nachricht“ und die Suche (`#`, `@`, ohne Treffer): 18 Seiten × 6 Viewports, noch nicht gelaufen.
   - Doku nachgezogen: `README.md`, `docs/todo.md`, `docs/arbeitsteilung.md`, `docs/einstieg.md`, Spec 8.14–8.17.
-- Nur Lint, Build und Format geprüft; angemeldet durchgeklickt ist von den Punkten oben noch nichts.
-
 - 24.10.: Abnahme-Testplan `docs/abnahme.md`; compodoc eingerichtet (`npm run docs`, optionaler Checklisten-Punkt).
+- 24.10.: Angemeldet geprüft (eigenes Konto, 430/320 px und Desktop): Suche mit `#`, `@`, Stichwort in Channel, DM und
+  Thread-Antwort, „Neue Nachricht“, Bearbeiten; axe-core ohne Verstöße. Fixes daraus: mobile Abstände der Suche wie
+  Figma, Bearbeiten-Kasten scrollt ganz in Sicht, „#“ und Name im Channel-Intro bleiben zusammen, Logo staucht
+  nicht, Text auf hellem Lila in `--color-link` (Menü, Profilmenü, Trefferliste, Erwähnungsliste; Hinweis von B).
 
 ## In Arbeit
 
@@ -35,9 +37,7 @@ Aktualisiert: 23.10.2026 (abends)
 
 ## Als Nächstes
 
-- Angemeldet durchklicken nach `docs/abnahme.md` (Checkliste Punkt für Punkt, zwei Sitzungen: Konto und Gast),
-  dabei Konsole, axe-core, 320–1920 px. Fällt die Stichwortsuche mit „Das hat nicht geklappt …“ aus, lehnen die Regeln die Abfrage
-  `directChats where memberIds array-contains uid` ab.
+- Rest von `docs/abnahme.md` (Konto- und Channel-Punkte mit zwei Sitzungen).
 - Layout-Check mit den neuen Chat-Seiten laufen lassen (Thomas startet ihn, Gäste-Login).
 - Vier Gast-Konten vom 23.10. löschen (Thomas, Firebase-Konsole).
 - Deploy des neuen Stands nach Absprache.
@@ -45,7 +45,7 @@ Aktualisiert: 23.10.2026 (abends)
 
 ## Brauche von B
 
-- Rückmeldung, ob Bearbeiten, „Neue Nachricht“ und Suche so passen; sonst gern direkt ändern.
+- Nichts offen. Danke für die Prüfung und die Fixes vom 24.10.; der Menü-Kontrast ist behoben (c7212cb).
 
 ## Hinweise für B
 

@@ -3,6 +3,10 @@
 Durchlauf gegen die DA-Checkliste (`docs/DA_Checkliste/`) und den Qualitäts-Check aus `CLAUDE.md`, für den
 gemeinsamen Klicktest und die Abgabe. Erledigtes abhaken; was scheitert, kommt als Punkt nach `docs/todo.md`.
 
+Stand 24.10.2026: Bearbeiten, „Neue Nachricht“ und Suche sind von Yannic (zwei Gäste) und Thomas (eigenes
+Konto) geprüft; axe-core ohne Verstöße in Workspace, Channel, Direktnachricht, Thread, Suche und „Neue Nachricht“
+(G8; Konto-Seiten am 22.10.).
+
 ## Vorbereitung
 
 - **Zwei Sitzungen:** A = Thomas mit eigenem Konto (Browser-Fenster der App oder Chrome), B = ein Gast im
@@ -15,18 +19,18 @@ gemeinsamen Klicktest und die Abgabe. Erledigtes abhaken; was scheitert, kommt a
 
 ## Allgemein
 
-| Nr  | Schritt                                                              | Erwartet                                                     | ✓   |
-| --- | -------------------------------------------------------------------- | ------------------------------------------------------------ | --- |
-| G1  | Jede Seite und jeden Dialog öffnen, alle Buttons und Links anklicken | Jeder Klick tut etwas, keine toten Links                     |     |
-| G2  | Konsole während des ganzen Durchlaufs beobachten                     | Keine Fehler und keine Warnungen der App                     |     |
-| G3  | Login, Workspace und Chat im Inkognito-Fenster                       | Funktioniert wie im normalen Fenster                         |     |
-| G4  | Favicon im Tab                                                       | DABubble-Logo                                                |     |
-| G5  | Alle Seiten in den sechs Breiten                                     | Keine horizontale Scrollleiste, nichts abgeschnitten         |     |
-| G6  | Buttons: Maus darüber, deaktiviert, aktiv                            | `cursor: pointer`, Hover-Zustand, Disabled sichtbar          |     |
-| G7  | Inputs und Buttons ohne Fokus                                        | Kein Browser-Standardrahmen; Fokus mit Tastatur sichtbar     |     |
-| G8  | axe-core auf Login, Registrierung, Workspace, Channel, DM, Thread    | Keine Verstöße                                               |     |
-| G9  | Tab-Taste durch Login, Menü, Chat, Dialoge                           | Reihenfolge logisch, Escape schließt Dialoge und Listen      |     |
-| G10 | Schriftgrößen und Touch-Flächen stichprobenartig (DevTools)          | Schrift ≥ 16 px (Zeitstempel, Fehler 14 px), Flächen ≥ 44 px |     |
+| Nr  | Schritt                                                              | Erwartet                                                     | ✓        |
+| --- | -------------------------------------------------------------------- | ------------------------------------------------------------ | -------- |
+| G1  | Jede Seite und jeden Dialog öffnen, alle Buttons und Links anklicken | Jeder Klick tut etwas, keine toten Links                     |          |
+| G2  | Konsole während des ganzen Durchlaufs beobachten                     | Keine Fehler und keine Warnungen der App                     |          |
+| G3  | Login, Workspace und Chat im Inkognito-Fenster                       | Funktioniert wie im normalen Fenster                         |          |
+| G4  | Favicon im Tab                                                       | DABubble-Logo                                                |          |
+| G5  | Alle Seiten in den sechs Breiten                                     | Keine horizontale Scrollleiste, nichts abgeschnitten         |          |
+| G6  | Buttons: Maus darüber, deaktiviert, aktiv                            | `cursor: pointer`, Hover-Zustand, Disabled sichtbar          |          |
+| G7  | Inputs und Buttons ohne Fokus                                        | Kein Browser-Standardrahmen; Fokus mit Tastatur sichtbar     |          |
+| G8  | axe-core auf Login, Registrierung, Workspace, Channel, DM, Thread    | Keine Verstöße                                               | ✓ 24.10. |
+| G9  | Tab-Taste durch Login, Menü, Chat, Dialoge                           | Reihenfolge logisch, Escape schließt Dialoge und Listen      |          |
+| G10 | Schriftgrößen und Touch-Flächen stichprobenartig (DevTools)          | Schrift ≥ 16 px (Zeitstempel, Fehler 14 px), Flächen ≥ 44 px |          |
 
 ## Konto (Benutzeraccount & Administration)
 
@@ -48,25 +52,25 @@ gemeinsamen Klicktest und die Abgabe. Erledigtes abhaken; was scheitert, kommt a
 
 ## Schreiben in Channels und Direktnachrichten
 
-| Nr  | Schritt                                                                   | Erwartet                                                                           | ✓   |
-| --- | ------------------------------------------------------------------------- | ---------------------------------------------------------------------------------- | --- |
-| S1  | A öffnet die Direktnachricht mit B und schreibt                           | Nachricht erscheint bei B ohne Neuladen; ein Dritter sieht sie nicht               |     |
-| S2  | Zwischen Channel und Direktnachricht wechseln                             | Fokus steht sofort im Eingabefeld                                                  |     |
-| S3  | Leere Nachricht senden (Enter, Button)                                    | Nichts wird gesendet, Button gesperrt                                              |     |
-| S4  | Emoji im Eingabefeld einfügen, senden                                     | Emoji steht in der Nachricht, auch bei B                                           |     |
-| S5  | Auf eine Nachricht reagieren: Aktionsleiste, zwei zuletzt genutzte Emojis | Ohne Historie die Figma-Standard-Emojis, danach die zuletzt genutzten              |     |
-| S6  | A und B reagieren mit demselben Emoji                                     | Ein Chip mit Zähler 2; Hover zeigt, wer reagiert hat                               |     |
-| S7  | Mehr als 7 Reaktionen mobil bzw. im Thread                                | 7 sichtbar plus „+x weitere“, Klick zeigt alle und „Weniger anzeigen“              |     |
-| S8  | „Neue Nachricht“: `#` tippen                                              | Liste der eigenen Channels; Pfeiltasten, Enter wählen; Senden öffnet den Channel   |     |
-| S9  | „Neue Nachricht“: `@` tippen, dann Name, dann E-Mail                      | Personen gefiltert; nach Senden öffnet sich die Direktnachricht                    |     |
-| S10 | „Neue Nachricht“ ohne Empfänger                                           | Eingabefeld gesperrt                                                               |     |
-| S11 | Thread starten (Icon in der Aktionsleiste), B antwortet                   | Thread daneben (mobil eigene Ansicht), „1 Antwort“ und „Letzte Antwort“ im Chat    |     |
-| S12 | Im Eingabefeld `@` und `#`                                                | Liste öffnet sich, filtert beim Tippen; Erwähnung im Text klickbar                 |     |
-| S13 | Eigene Nachricht: „⋮“ → „Nachricht bearbeiten“, ändern, Enter             | Text geändert, bei B live; Escape bzw. „Abbrechen“ verwirft                        |     |
-| S14 | Suche: Stichwort aus S1                                                   | Treffer mit Channel bzw. Person, Autor, Zeit, markiertem Text; Klick öffnet Thread |     |
-| S15 | Suche: `#`, `@`, Stichwort aus einer Thread-Antwort, Unsinn (`qxz`)       | Channels, Personen, „· Thread“-Treffer, „Keine Ergebnisse gefunden.“               |     |
-| S16 | Suche offen lassen, B schreibt eine passende Nachricht                    | Treffer erscheint ohne neues Tippen                                                |     |
-| S17 | Mobil: „Gehe zu...“ antippen, suchen, Schließen                           | Ansicht „Search“, Treffer als Liste, Schließen führt zum Menü                      |     |
+| Nr  | Schritt                                                                   | Erwartet                                                                           | ✓        |
+| --- | ------------------------------------------------------------------------- | ---------------------------------------------------------------------------------- | -------- |
+| S1  | A öffnet die Direktnachricht mit B und schreibt                           | Nachricht erscheint bei B ohne Neuladen; ein Dritter sieht sie nicht               |          |
+| S2  | Zwischen Channel und Direktnachricht wechseln                             | Fokus steht sofort im Eingabefeld                                                  |          |
+| S3  | Leere Nachricht senden (Enter, Button)                                    | Nichts wird gesendet, Button gesperrt                                              |          |
+| S4  | Emoji im Eingabefeld einfügen, senden                                     | Emoji steht in der Nachricht, auch bei B                                           |          |
+| S5  | Auf eine Nachricht reagieren: Aktionsleiste, zwei zuletzt genutzte Emojis | Ohne Historie die Figma-Standard-Emojis, danach die zuletzt genutzten              |          |
+| S6  | A und B reagieren mit demselben Emoji                                     | Ein Chip mit Zähler 2; Hover zeigt, wer reagiert hat                               |          |
+| S7  | Mehr als 7 Reaktionen mobil bzw. im Thread                                | 7 sichtbar plus „+x weitere“, Klick zeigt alle und „Weniger anzeigen“              |          |
+| S8  | „Neue Nachricht“: `#` tippen                                              | Liste der eigenen Channels; Pfeiltasten, Enter wählen; Senden öffnet den Channel   | ✓ 24.10. |
+| S9  | „Neue Nachricht“: `@` tippen, dann Name, dann E-Mail                      | Personen gefiltert; nach Senden öffnet sich die Direktnachricht                    | ✓ 24.10. |
+| S10 | „Neue Nachricht“ ohne Empfänger                                           | Eingabefeld gesperrt                                                               | ✓ 24.10. |
+| S11 | Thread starten (Icon in der Aktionsleiste), B antwortet                   | Thread daneben (mobil eigene Ansicht), „1 Antwort“ und „Letzte Antwort“ im Chat    |          |
+| S12 | Im Eingabefeld `@` und `#`                                                | Liste öffnet sich, filtert beim Tippen; Erwähnung im Text klickbar                 |          |
+| S13 | Eigene Nachricht: „⋮“ → „Nachricht bearbeiten“, ändern, Enter             | Text geändert, bei B live; Escape bzw. „Abbrechen“ verwirft                        | ✓ 24.10. |
+| S14 | Suche: Stichwort aus S1                                                   | Treffer mit Channel bzw. Person, Autor, Zeit, markiertem Text; Klick öffnet Thread | ✓ 24.10. |
+| S15 | Suche: `#`, `@`, Stichwort aus einer Thread-Antwort, Unsinn (`qxz`)       | Channels, Personen, „· Thread“-Treffer, „Keine Ergebnisse gefunden.“               | ✓ 24.10. |
+| S16 | Suche offen lassen, B schreibt eine passende Nachricht                    | Treffer erscheint ohne neues Tippen                                                | ✓ 24.10. |
+| S17 | Mobil: „Gehe zu...“ antippen, suchen, Schließen                           | Ansicht „Search“, Treffer als Liste, Schließen führt zum Menü                      | ✓ 24.10. |
 
 ## Channels
 
