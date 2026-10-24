@@ -4,13 +4,13 @@ Offene Aufgaben außerhalb der Arbeitspakete. Erledigtes abhaken, nicht löschen
 
 ## Offen bis zur Abgabe (Stand 24.10.2026)
 
-Alles, was noch zu tun ist, an einer Stelle. Live ist `8ffbd77` (24.10.2026), der Layout-Check ist grün.
+Alles, was noch zu tun ist, an einer Stelle. Live ist `a32ea6a` (24.10.2026), der Layout-Check ist grün.
 
 ### Thomas: Konsole und Daten
 
 - [x] Regel für verwaiste Gäste aus `firestore.rules` in der Firebase-Konsole veröffentlichen (ttoebbe/dabubble#6; Thomas, 24.10.2026). Live geprüft: Das Entwicklerteam zählt nach der Anmeldung nur noch 2 Mitglieder. Danach räumt die App die Gast-Konten aus den abgebrochenen Testläufen vom 23. und 24.10.2026 beim nächsten Login selbst auf (24 Stunden nach ihrem letzten Lebenszeichen); von Hand ist nichts mehr zu löschen – Thomas
 - [x] Deploy mit dem automatischen Aufräumen (ttoebbe/dabubble#6), nach der Regel: `8ffbd77`, 24.10.2026 – A
-- [x] Impressum mit echten Daten füllen: Name, Anschrift und E-Mail von Thomas eingetragen (Thomas ist Betreiber, nur seine Anschrift steht im Impressum; 24.10.2026) – A
+- [x] Impressum mit echten Daten füllen: Name, Anschrift und E-Mail von Thomas eingetragen (Thomas ist Betreiber, nur seine Anschrift steht im Impressum; 24.10.2026, live seit `a32ea6a`) – A
 - [ ] Impressum: Yannic ersetzt die Musterdaten „Yannic Mustermann“ und „yannic.mustermann@example.com“ durch seinen Namen und seine E-Mail (`features/legal/imprint/imprint.html`, dazu der Satz zu den Musterdaten im JSDoc von `imprint.ts` und in Spec 8.3) – B
 - [ ] Datenschutz-Entwurf (22.10.2026, `features/legal/privacy-policy/`) gemeinsam prüfen – A, B
 

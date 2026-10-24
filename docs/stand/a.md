@@ -4,7 +4,7 @@ Aktualisiert: 24.10.2026
 
 ## Erledigt
 
-- Bereich A und B live seit 24.10. (zuletzt `8ffbd77`, https://dabubble-3299.developerakademie.net): Registrierung mit
+- Bereich A und B live seit 24.10. (zuletzt `a32ea6a` mit Impressum, https://dabubble-3299.developerakademie.net): Registrierung mit
   Avatar und Bestätigungs-E-Mail, Login (E-Mail, Google, Gast), Passwort vergessen, Profil bearbeiten,
   Workspace-Rahmen mit Menü und Online-Status, Channels anlegen, bearbeiten, verlassen, Mitglieder hinzufügen.
 - Start-Channel „Entwicklerteam“ (`channels/entwicklerteam`): Jedes neue Konto und jeder Gast tritt bei.
