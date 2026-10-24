@@ -132,7 +132,15 @@
   }
 
   &__link {
+    display: inline-flex;
+    align-items: baseline;
+    max-width: 100%;
     color: var(--color-link);
+  }
+
+  &__link-name {
+    min-width: 0;
+    overflow-wrap: anywhere;
   }
 }
 
