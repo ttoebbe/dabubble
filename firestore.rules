@@ -35,6 +35,14 @@ service cloud.firestore {
       return changes(['reactions']) && request.resource.data.reactions.size() <= 20;
     }
 
+    // A guest without a sign of life for a day closed the tab without logging out; any
+    // signed-in person may delete that profile (ttoebbe/dabubble#6).
+    function staleGuest() {
+      return resource.data.isGuest == true
+        && (!('lastActiveAt' in resource.data)
+          || resource.data.lastActiveAt < request.time.toMillis() - 86400000);
+    }
+
     function canEdit() {
       return resource.data.authorId == request.auth.uid
         && changes(['text', 'editedAt']) && validText(request.resource.data);
@@ -43,7 +51,8 @@ service cloud.firestore {
     match /users/{uid} {
       allow read: if signedIn();
       allow create, update: if signedIn() && request.auth.uid == uid;
-      allow delete: if signedIn() && request.auth.uid == uid && resource.data.isGuest == true;
+      allow delete: if signedIn() && resource.data.isGuest == true
+        && (request.auth.uid == uid || staleGuest());
     }
 
     match /channels/{channelId} {
