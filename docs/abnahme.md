@@ -25,7 +25,7 @@ Konto) geprüft; axe-core ohne Verstöße in Workspace, Channel, Direktnachricht
 | G2  | Konsole während des ganzen Durchlaufs beobachten                     | Keine Fehler und keine Warnungen der App                     |          |
 | G3  | Login, Workspace und Chat im Inkognito-Fenster                       | Funktioniert wie im normalen Fenster                         |          |
 | G4  | Favicon im Tab                                                       | DABubble-Logo                                                |          |
-| G5  | Alle Seiten in den sechs Breiten                                     | Keine horizontale Scrollleiste, nichts abgeschnitten         |          |
+| G5  | Alle Seiten in den sechs Breiten                                     | Keine horizontale Scrollleiste, nichts abgeschnitten         | ✓ 24.10. |
 | G6  | Buttons: Maus darüber, deaktiviert, aktiv                            | `cursor: pointer`, Hover-Zustand, Disabled sichtbar          |          |
 | G7  | Inputs und Buttons ohne Fokus                                        | Kein Browser-Standardrahmen; Fokus mit Tastatur sichtbar     |          |
 | G8  | axe-core auf Login, Registrierung, Workspace, Channel, DM, Thread    | Keine Verstöße                                               | ✓ 24.10. |

@@ -30,6 +30,7 @@ Aktualisiert: 24.10.2026
   Thread-Antwort, „Neue Nachricht“, Bearbeiten; axe-core ohne Verstöße. Fixes daraus: mobile Abstände der Suche wie
   Figma, Bearbeiten-Kasten scrollt ganz in Sicht, „#“ und Name im Channel-Intro bleiben zusammen, Logo staucht
   nicht, Text auf hellem Lila in `--color-link` (Menü, Profilmenü, Trefferliste, Erwähnungsliste; Hinweis von B).
+- 24.10.: Deploy `040e841` (live über https). Layout-Check grün: 18 Seiten × 6 Viewports, 108 Kombinationen.
 
 ## In Arbeit
 
@@ -38,7 +39,6 @@ Aktualisiert: 24.10.2026
 ## Als Nächstes
 
 - Rest von `docs/abnahme.md` (Konto- und Channel-Punkte mit zwei Sitzungen).
-- Layout-Check mit den neuen Chat-Seiten laufen lassen (Thomas startet ihn, Gäste-Login).
 - Vier Gast-Konten vom 23.10. löschen (Thomas, Firebase-Konsole).
 - Impressum mit echten Daten füllen, Datenschutz-Entwurf gemeinsam prüfen (`docs/todo.md`).
 

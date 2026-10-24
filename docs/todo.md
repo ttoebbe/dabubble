@@ -50,7 +50,7 @@ Offene Aufgaben außerhalb der Arbeitspakete. Erledigtes abhaken, nicht löschen
 - [ ] Vier Gast-Konten aus einem abgebrochenen Testlauf (23.10.2026) löschen: Authentication und `users`, dazu aus `channels/entwicklerteam` → `memberIds` entfernen – Thomas in der Firebase-Konsole
 - [x] Suche: Thread-Antworten mit durchsuchen – ohne Regeländerung: die Suche liest die Antworten jeder Nachricht mit `replyCount > 0` (23.10.2026)
 - [ ] Chat-Ansichten, „Neue Nachricht“ und Suche angemeldet durchklicken: Konsole, axe-core, 320–1920 px – A, B
-- [ ] Layout-Check um die Chat-Seiten erweitert (Channel, Chat mit sich selbst, „Neue Nachricht“, Suche mit `#`, `@` und ohne Treffer; `ttoebbe/dabubble-layout-check` becede6, 18 Seiten × 6 Viewports). Offen: erster Lauf mit Gäste-Login (Thomas startet) – A
+- [x] Layout-Check um die Chat-Seiten erweitert (Channel, Chat mit sich selbst, „Neue Nachricht“, Suche mit `#`, `@` und ohne Treffer; `ttoebbe/dabubble-layout-check` becede6, 18 Seiten × 6 Viewports). Lauf 24.10.2026 grün (108 Kombinationen) nach zwei Checker-Fixes: Inline-Text überspringt Regel 3, abgebrochene Anfragen zählen nicht (3acd5dc) – A
 
 ## Im Team klären
 
