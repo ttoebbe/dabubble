@@ -4,7 +4,7 @@ Offene Aufgaben außerhalb der Arbeitspakete. Erledigtes abhaken, nicht löschen
 
 ## Offen bis zur Abgabe (Stand 24.10.2026)
 
-Alles, was noch zu tun ist, an einer Stelle. Live ist `6467190` (24.10.2026), der Layout-Check ist grün.
+Alles, was noch zu tun ist, an einer Stelle. Live ist `c17eb55` (24.10.2026), der Layout-Check ist grün.
 
 ### Thomas: Konsole und Daten
 
