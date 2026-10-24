@@ -60,6 +60,7 @@ export class WorkspaceSearch {
   readonly focused = signal(false);
   readonly dismissed = signal(false);
   readonly viewOpen = signal(false);
+  private keepViewClosed = false;
   readonly query = computed(() => readSearch(this.value()));
   readonly placeholder = computed(() => (this.mobile() ? 'Gehe zu...' : 'Devspace durchsuchen'));
   private readonly wantsMessages = computed(() => this.query()?.char === null);
@@ -93,12 +94,13 @@ export class WorkspaceSearch {
   onInput(event: Event): void {
     this.value.set((event.target as HTMLInputElement).value);
     this.dismissed.set(false);
+    this.viewOpen.set(this.mobile());
   }
 
   /** Marks the field as focused; on mobile the search view opens. */
   onFocus(): void {
     this.focused.set(true);
-    this.viewOpen.set(this.mobile());
+    this.viewOpen.set(this.mobile() && !this.keepViewClosed);
   }
 
   /** Arrow keys move through the hits, Enter picks one, Escape closes the list or the view. */
@@ -111,7 +113,7 @@ export class WorkspaceSearch {
 
   /** Opens what the hit stands for and empties the search. */
   pick(hit: SearchHit): void {
-    this.close();
+    this.reset();
     if (hit.type === 'channel') {
       void this.router.navigate(channelLink(hit.id));
     } else if (hit.type === 'person') {
@@ -121,8 +123,16 @@ export class WorkspaceSearch {
     }
   }
 
-  /** Empties the search and closes the list and the mobile view. */
+  /** Empties the search, closes the list and the mobile view; the focus returns to the field. */
   close(): void {
+    this.reset();
+    this.keepViewClosed = true;
+    this.field().nativeElement.focus();
+    this.keepViewClosed = false;
+  }
+
+  /** Empties the search and closes the list and the mobile view without keeping the focus. */
+  private reset(): void {
     this.value.set('');
     this.viewOpen.set(false);
     this.field().nativeElement.blur();
