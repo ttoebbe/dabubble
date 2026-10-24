@@ -3,7 +3,7 @@
   #scroller
   tabindex="0"
   role="region"
-  aria-label="Nachrichten"
+  [attr.aria-label]="thread() ? 'Antworten' : 'Nachrichten'"
   [class.list--thread]="thread()"
 >
   <div class="list__content">
