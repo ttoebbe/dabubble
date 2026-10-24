@@ -37,8 +37,9 @@ Aktualisiert: 24.10.2026 (Feierabend)
 
 1. Antwort auf ttoebbe/dabubble#5 (Restarbeiten) und danach die Zuordnung in `docs/todo.md` eintragen.
 2. Gemeinsamer Abnahme-Termin: S1, S5 und S6 mit Konto ↔ Gast wiederholen (Tooltip mit echtem Namen, `@Thomas`), dazu
-   „Neue Nachricht“ an `abnahme-test` senden und Tab im Adressfeld (`@ga` → `@Gast`; hat in einem Testlauf einmal
-   nicht gegriffen, ungeklärt).
+   „Neue Nachricht“ an `abnahme-test` senden und Tab im Adressfeld (`@ga` → `@Gast`) aus Gast- und Konto-Sitzung
+   tippen. Lokal nicht nachstellbar; vermutlich hat jemand aus einer Sitzung getippt, die andere Gäste nicht sieht
+   (gewollt, `docs/todo.md`).
 
 ## Brauche von A
 
