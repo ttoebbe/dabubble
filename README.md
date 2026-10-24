@@ -5,13 +5,11 @@ Gruppenprojekt der Developer Akademie, umgesetzt mit Angular 22 und Firebase.
 
 [![CI](https://github.com/ttoebbe/dabubble/actions/workflows/ci.yml/badge.svg)](https://github.com/ttoebbe/dabubble/actions/workflows/ci.yml)
 
-**Live:** <http://dabubble-3299.developerakademie.net> – zum Ausprobieren „Gäste-Login“ wählen.
-Die Seite läuft bewusst nur über http, es ist ein Übungsprojekt.
+**Live:** <https://dabubble-3299.developerakademie.net> – zum Ausprobieren „Gäste-Login“ wählen.
 
-> **Stand 23.10.2026:** Bereich A (Konto, Workspace-Rahmen, Channels) ist fertig. Bereich B (Nachrichten,
+> **Stand 24.10.2026:** Bereich A (Konto, Workspace-Rahmen, Channels) ist fertig. Bereich B (Nachrichten,
 > Threads, Suche) steht auf `main`: Channel- und Direktnachrichten, Reaktionen, Emojis, Threads, Erwähnungen,
-> Bearbeiten, „Neue Nachricht“ und die Suche. Live ist noch der Stand vom 22.10.2026 (nur Bereich A); der
-> nächste Deploy folgt nach Absprache. Offene Punkte: [`docs/todo.md`](docs/todo.md).
+> Bearbeiten, „Neue Nachricht“ und die Suche. Live ist der Stand vom 24.10.2026 (`040e841`). Offene Punkte: [`docs/todo.md`](docs/todo.md).
 
 ## Inhalt
 
@@ -137,7 +135,7 @@ flowchart LR
 
 ## Routen und Ansichten
 
-Die Routen stehen hinter `#`, z. B. `http://dabubble-3299.developerakademie.net/#/login`. Bereich A
+Die Routen stehen hinter `#`, z. B. `https://dabubble-3299.developerakademie.net/#/login`. Bereich A
 definiert seine Routen in `auth.routes.ts`, `legal.routes.ts` und `workspace.routes.ts`, Bereich B in
 `chat.routes.ts`, die als Kinder unter `/workspace` hängen. Die Konto-Seiten öffnen nur abgemeldet
 (`signedOutGuard`), der Workspace nur angemeldet (`signedInGuard`), Impressum und Datenschutz immer.
