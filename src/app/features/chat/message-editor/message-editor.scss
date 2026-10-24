@@ -28,6 +28,7 @@
 
   &__field {
     width: 100%;
+    min-height: var(--touch-target-min);
     max-height: 200px;
     padding: 0;
     outline: none;

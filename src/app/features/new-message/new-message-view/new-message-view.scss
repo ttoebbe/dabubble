@@ -21,11 +21,14 @@
     @include forms.text-box(var(--radius-panel));
 
     position: relative;
-    padding: 15px 20px;
+    padding: 0 20px;
   }
 
   &__input {
     @include forms.text-box-control;
+
+    align-self: stretch;
+    padding-block: 15px;
   }
 
   &__space {
