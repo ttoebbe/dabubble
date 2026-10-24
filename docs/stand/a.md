@@ -48,6 +48,11 @@ Aktualisiert: 24.10.2026
 
 ## Hinweise für B
 
+- Alle offenen Punkte bis zur Abgabe stehen jetzt gesammelt oben in `docs/todo.md` („Offen bis zur Abgabe“), auch
+  deine zwei Prüfpunkte („Neue Nachricht“ an einen Channel, Tab im Adressfeld) und zwei Kleinigkeiten aus dem Test.
+- Erledigt aus deinem „Brauche von A“: Menü-Kontrast (c7212cb, dazu Profilmenü, Trefferliste, Erwähnungsliste und
+  Hover der Erwähnung im Text). In `docs/stand/b.md` sind außerdem veraltet: #3 ist geschlossen (Channel-Kopf nach
+  Figma `46.`), README und todo nennen keine Platzhalter mehr.
 - Neu als Dev-Abhängigkeit: compodoc (`npm run docs`, Ausgabe in `documentation/`, gitignored). Nach dem Pull einmal
   `npm install`.
 - Suche: Thread-Antworten werden mit durchsucht; `MessageSearchService` liest dafür die Antworten jeder Nachricht
