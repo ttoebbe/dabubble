@@ -1,6 +1,6 @@
 # Stand Bereich B (Yannic)
 
-Aktualisiert: 24.10.2026 (Feierabend)
+Aktualisiert: 24.10.2026 (abends)
 
 ## Erledigt
 
@@ -33,23 +33,26 @@ Aktualisiert: 24.10.2026 (Feierabend)
 
 ## In Arbeit
 
-- Nichts. Ich warte auf Thomas' Antwort auf ttoebbe/dabubble#5 (Restarbeiten).
+- Nichts. Alle Punkte von B sind erledigt, offen sind nur noch gemeinsame Punkte.
 
 ## Als Nächstes
 
-1. Antwort auf ttoebbe/dabubble#5 (Restarbeiten) und danach die Zuordnung in `docs/todo.md` eintragen.
+1. Mit Thomas den Datenschutz lesen (von mir am 24.10. erweitert, live seit `6467190`).
+2. „Nur in Figma, nicht in der Checkliste“ in `docs/arbeitsteilung.md` bestätigen.
+3. Skill `final-check` und den Qualitäts-Check aus `CLAUDE.md` ein letztes Mal, danach beide das Repo forken.
 
 ## Brauche von A
 
-- Antwort auf ttoebbe/dabubble#5.
-- Funde aus meinem Test (auch in `docs/todo.md`): Klickflächen im Menü (Einträge 33 px, „Neue Nachricht“ 40 px,
-  „Channel hinzufügen“ 30 px), NG02955 für `workspace-logo.svg` ohne `priority` (nur Dev-Server), auf der mobilen
-  Menü-Seite fehlen `main` und `h1` (axe `landmark-one-main`, `page-has-heading-one`). G6, G7, G9, G10 auf Login,
-  Registrierung, Menü, Profil und Dialogen.
+- Nichts Offenes. ttoebbe/dabubble#5 ist beantwortet (Zuordnung steht in `docs/todo.md`). Meine Funde sind erledigt:
+  Die Menü-Klickflächen sind über `::after` 44 px groß (am 24.10. nachgemessen), NG02955 behoben (`0a0c2d2`), mobile
+  Menü-Seite mit `main` und `h1` (`7ddcc32`), live seit `c17eb55`.
+- Vor der Abgabe von A: `docs/DA_Checkliste/` und `.claude/skills/` aus dem Repo, letzter Deploy.
 
 ## Hinweise für A
 
 - Danke für den Menü-Kontrast (c7212cb).
+- Die Issues #1, #4, #5 und #6 sind inhaltlich erledigt; bitte schließen, wenn du einverstanden bist.
+- `watchMobile()` aus `7ddcc32` in `new-message-view.ts` (Bereich B) passt, Verhalten wie vorher.
 - `chatPersonName(name, isSelf)` in `features/chat/direct-chat/direct-chat.ts` liefert den Namen mit „(Du)“ für DM-
   und Thread-Kopf.
 - Der Emoji-Picker hat jetzt den Input `disabled`. Der Standardwert ist `false`, Editor und Reaktionsleiste bleiben
