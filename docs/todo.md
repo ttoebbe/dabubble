@@ -37,8 +37,8 @@ Alles, was noch zu tun ist, an einer Stelle. Live ist `c17eb55` (24.10.2026), de
 
 - [ ] Skill `final-check` und der Qualitäts-Check aus `CLAUDE.md` ein letztes Mal – A, B
 - [ ] Zuordnung „Nur in Figma, nicht in der Checkliste“ in `docs/arbeitsteilung.md` bestätigen; alle Punkte sind umgesetzt – A, B
-- [ ] `docs/DA_Checkliste/` aus dem Repo entfernen und in `.gitignore` eintragen (Material der DA) – A
-- [ ] `.claude/skills/` aus dem Repo entfernen und in `.gitignore` eintragen – A
+- [x] `docs/DA_Checkliste/` aus dem Repo entfernen und in `.gitignore` eintragen (Material der DA) (25.10.2026, lokal behalten) – A
+- [x] `.claude/skills/` aus dem Repo entfernen und in `.gitignore` eintragen (25.10.2026, lokal behalten) – A
 - [ ] Letzter Deploy nach Absprache, danach die Live-Seite im Inkognito-Fenster prüfen – A
 - [ ] Beide Teammitglieder forken das Repo (DA-Checkliste) – A, B
 
