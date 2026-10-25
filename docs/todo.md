@@ -35,7 +35,7 @@ Alles, was noch zu tun ist, an einer Stelle. Live ist `c17eb55` (24.10.2026), de
 
 ### Vor der Abgabe
 
-- [ ] Skill `final-check` und der Qualitäts-Check aus `CLAUDE.md` ein letztes Mal – A, B
+- [x] Skill `final-check` und der Qualitäts-Check aus `CLAUDE.md` ein letztes Mal (25.10.2026: lint, build, format grün; Browser-Checks 320–1920 px ohne Scrollleiste, Konsole lokal und live leer; Touch-Targets der Auth-Links in 086e592) – A, B
 - [ ] Zuordnung „Nur in Figma, nicht in der Checkliste“ in `docs/arbeitsteilung.md` bestätigen; alle Punkte sind umgesetzt – A, B
 - [x] `docs/DA_Checkliste/` aus dem Repo entfernen und in `.gitignore` eintragen (Material der DA) (25.10.2026, lokal behalten) – A
 - [x] `.claude/skills/` aus dem Repo entfernen und in `.gitignore` eintragen (25.10.2026, lokal behalten) – A
