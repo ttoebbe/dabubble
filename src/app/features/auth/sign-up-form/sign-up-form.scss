@@ -35,7 +35,7 @@
     content: '';
     position: absolute;
     z-index: -1;
-    inset: -6px 0;
+    inset: calc((25px - var(--touch-target-min)) / 2) 0;
   }
 }
 
@@ -73,6 +73,7 @@
 }
 
 .sign-up__link {
+  position: relative;
   padding: 5px 4px;
   border-radius: var(--radius-panel);
   font-family: var(--font-link);
@@ -80,6 +81,12 @@
   color: var(--color-link);
   text-decoration: none;
   transition: background-color var(--duration-hover) var(--easing-hover);
+
+  &::after {
+    content: '';
+    position: absolute;
+    inset: calc((32px - var(--touch-target-min)) / 2) 0;
+  }
 
   &:hover {
     background-color: var(--color-bg);
