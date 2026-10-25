@@ -69,3 +69,7 @@ __pycache__/
 .playwright-mcp/
 scratchpad/
 .claude/settings.local.json
+
+# Local only, not part of the submission
+docs/DA_Checkliste/
+.claude/skills/
