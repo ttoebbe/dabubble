@@ -7,9 +7,11 @@ interface PrivacySection {
 }
 
 /**
- * Draft of the privacy policy for what DABubble actually processes (decision Thomas 22.10.2026),
- * extended with the parts of the Join policy (e-recht24 template) that apply here. Not legal
- * advice: the team checks it before submission; names and address come from the imprint.
+ * Privacy policy for what DABubble actually processes (decision Thomas 22.10.2026), extended with
+ * the parts of the Join policy (e-recht24 template) that apply here and read by the team on
+ * 25.10.2026. Both team members are joint controllers (decision Thomas 10.11.2026, arrangement in
+ * `docs/vereinbarung-gemeinsame-verantwortung.md`); the addresses stand in the imprint. Not legal
+ * advice.
  */
 const PRIVACY_SECTIONS: readonly PrivacySection[] = [
   {
@@ -23,10 +25,19 @@ const PRIVACY_SECTIONS: readonly PrivacySection[] = [
   {
     title: 'Verantwortlich',
     text:
-      'Verantwortlich für die Verarbeitung deiner Daten in DABubble sind die im Impressum ' +
-      'genannten Personen. Verantwortlich ist, wer allein oder gemeinsam mit anderen über Zweck ' +
-      'und Mittel der Verarbeitung entscheidet. Im Impressum findest du auch die ' +
-      'E-Mail-Adressen für alle Fragen zum Datenschutz.',
+      'Verantwortlich für die Verarbeitung deiner Daten in DABubble sind Thomas Többe-Hömke und ' +
+      'Yannic Jundt gemeinsam (Art. 26 DSGVO). Verantwortlich ist, wer allein oder gemeinsam mit ' +
+      'anderen über Zweck und Mittel der Verarbeitung entscheidet. Im Impressum findest du die ' +
+      'Anschriften und die E-Mail-Adressen für alle Fragen zum Datenschutz.',
+  },
+  {
+    title: 'Gemeinsame Verantwortung',
+    text:
+      'Wir haben gemeinsam festgelegt, welche Daten DABubble wofür verarbeitet, und vereinbart, ' +
+      'wer welche Aufgabe übernimmt. Jeder von uns nimmt Anfragen zum Datenschutz an; du kannst ' +
+      'deine Rechte also bei jedem von uns geltend machen, und wer deine Anfrage erhält, stimmt ' +
+      'sich mit dem anderen ab. Thomas Többe-Hömke verwaltet das Firebase-Projekt und setzt ' +
+      'Auskünfte und Löschungen technisch um.',
   },
   {
     title: 'Worum es geht',
