@@ -4,7 +4,7 @@ Offene Aufgaben außerhalb der Arbeitspakete. Erledigtes abhaken, nicht löschen
 
 ## Offen bis zur Abgabe (Stand 10.11.2026)
 
-Alles, was noch zu tun ist, an einer Stelle. Live ist `c17eb55` (24.10.2026), der Layout-Check ist grün.
+Alles, was noch zu tun ist, an einer Stelle. Live ist `c17eb55` (24.10.2026). Der Layout-Check ist grün auf `7c26079` (10.11.2026, 108 Kombinationen; Fehlalarm am mobil nur visuell ausgeblendeten Menükopf im Checker behoben, `2d94d17` in `dabubble-layout-check`).
 
 ### Thomas: Konsole und Daten
 
