@@ -51,12 +51,10 @@ Alles, was noch zu tun ist, an einer Stelle. Live ist `c17eb55` (24.10.2026), de
 
 ### Impressum und Datenschutz (Prüfung 10.11.2026, keine Rechtsberatung)
 
-- [ ] Verantwortlichen festlegen – Entscheidung A, B. Heute widerspricht sich das: Das Impressum nennt beide Namen über Thomas’ Anschrift (liest sich, als wohnten beide dort), hier steht „Thomas ist Betreiber“, und die Datenschutzerklärung nennt „die im Impressum genannten Personen“ als Verantwortliche – das wären gemeinsam Verantwortliche nach Art. 26 DSGVO, die dafür eine Vereinbarung brauchen. Entweder nur Thomas als Anbieter und Verantwortlicher (Yannic als Teammitglied ohne Anschrift), oder Yannic mit eigener Anschrift und eine kurze Vereinbarung nach Art. 26
-- [ ] Datenschutzerklärung präzisieren (`features/legal/privacy-policy/privacy-policy.ts`) – A:
-  - Firebase Authentication läuft laut Google nur in Rechenzentren in den USA und hebt IP-Adressen einige Wochen auf (<https://firebase.google.com/support/privacy>); heute steht dort nur „Eine Übermittlung in die USA ist nicht ausgeschlossen“
-  - Fehlt: Firebase verschickt an die E-Mail-Adresse die Bestätigungs- und die Passwort-Mail
-  - Fehlt: Für Anmeldung und Daten spricht der Browser direkt mit Servern von Google, dabei geht die IP-Adresse an Google
-  - JSDoc nennt den Text noch „Draft … the team checks it before submission“ (gelesen am 25.10.2026)
+- [x] Verantwortlichen festlegen: Das Impressum nannte beide Namen über Thomas’ Anschrift, die Datenschutzerklärung „die im Impressum genannten Personen“. Entscheidung Thomas 10.11.2026: beide mit eigener Anschrift, gemeinsam verantwortlich nach Art. 26 DSGVO. Impressum mit zwei Anschriften, Datenschutz-Abschnitte „Verantwortlich“ und „Gemeinsame Verantwortung“, Spec 8.3, Entwurf `docs/vereinbarung-gemeinsame-verantwortung.md` (c8eced9) – A
+- [ ] Anschrift von Yannic im Impressum: Dort stehen Musterdaten („Musterstraße 1, 12345 Musterstadt“, `features/legal/imprint/imprint.html`). Yannic trägt seine Anschrift selbst ein, nicht in einem Issue posten (das Repo ist öffentlich). Will er sie nicht veröffentlichen, gilt wieder „nur Thomas“ – B, vor dem letzten Deploy
+- [ ] Vereinbarung `docs/vereinbarung-gemeinsame-verantwortung.md` lesen und unten mit Datum bestätigen – A, B
+- [x] Datenschutzerklärung präzisiert (`features/legal/privacy-policy/privacy-policy.ts`): Firebase Authentication läuft nur in den USA und hebt IP-Adressen einige Wochen auf (<https://firebase.google.com/support/privacy>), Firestore in Frankfurt; Bestätigungs- und Passwort-Mail; IP-Adresse an Google während der Nutzung; JSDoc nicht mehr „Draft“ – A
 - [ ] Auftragsverarbeitung mit Google: Die Erklärung sagt, Google verarbeite „in unserem Auftrag“. Google nennt sich in der Firebase-Doku Auftragsverarbeiter; ob dafür in der Firebase-Konsole Bedingungen zu bestätigen sind, ließ sich in der Doku nicht belegen. In den Projekteinstellungen nachsehen – Thomas
 - [ ] Optional, Entscheidung A, B: Impressum und Datenschutz sind wie in Figma nur auf den Konto-Seiten verlinkt; im Workspace erreicht man sie nur über die Adresse `/#/impressum`. Ein Link im Profilmenü stünde nicht in Figma
 
@@ -66,7 +64,7 @@ Alles, was noch zu tun ist, an einer Stelle. Live ist `c17eb55` (24.10.2026), de
 - [ ] Zuordnung „Nur in Figma, nicht in der Checkliste“ in `docs/arbeitsteilung.md` bestätigen; alle Punkte sind umgesetzt – A, B
 - [x] `docs/DA_Checkliste/` aus dem Repo entfernen und in `.gitignore` eintragen (Material der DA) (25.10.2026, lokal behalten) – A
 - [x] `.claude/skills/` aus dem Repo entfernen und in `.gitignore` eintragen (25.10.2026, lokal behalten) – A
-- [ ] Letzter Deploy nach Absprache, danach die Live-Seite im Inkognito-Fenster prüfen – A
+- [ ] Letzter Deploy nach Absprache, erst wenn Yannics Anschrift im Impressum steht; danach die Live-Seite im Inkognito-Fenster prüfen – A
 - [ ] Beide Teammitglieder forken das Repo (DA-Checkliste) – A, B
 
 ### Blockiert oder bewusst zurückgestellt
