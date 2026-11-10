@@ -24,7 +24,7 @@ Welche Ordner und Dateien zu welchem Bereich gehören, steht in `docs/arbeitstei
 
 | Was                  | Wo                                                                                                                                             |
 | -------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------- |
-| Anforderungen (DA)   | `docs/DA_Checkliste/DaBubble Checkliste.md`                                                                                                    |
+| Anforderungen (DA)   | `docs/DA_Checkliste/DaBubble Checkliste.md`, nur lokal (gitignored)                                                                            |
 | Design (SOLL)        | `docs/Figma/spec.md`, `docs/Figma/components.md`, Assets laut `docs/Figma/MANIFEST.md` in `public/`, Referenzbilder in `docs/Figma/reference/` |
 | Arbeitsteilung       | `docs/arbeitsteilung.md`                                                                                                                       |
 | Offene Aufgaben      | `docs/todo.md`                                                                                                                                 |
@@ -115,11 +115,12 @@ Vor der Abgabe zusätzlich der Skill `final-check` und alle offenen Punkte aus `
 - **Deploy** (`.github/workflows/deploy.yml`) nur von Hand (`workflow_dispatch`), nur von `main`, nur nach Absprache im Team – ein Deploy ist eine Entscheidung, keine Nebenwirkung eines Pushes. Er baut den gewählten Commit und spiegelt nur `dist/dabubble/browser/` per SFTP oder FTPS auf den DA-Webspace. Secrets: `DEPLOY_HOST`, `DEPLOY_USER`, `DEPLOY_PASSWORD`, `DEPLOY_REMOTE_DIR`, `FIREBASE_CONFIG`; Variable `DEPLOY_PROTOCOL` (`sftp` oder `ftps`, derzeit `ftps`).
 - **Layout-Check** (`.github/workflows/layout-check.yml`): Checker im privaten Repo `ttoebbe/dabubble-layout-check`, lokal nach `tools/layout-check/` geklont (gitignored), im Repo nur der Workflow mit `workflow_dispatch`. Start nur von Hand, ein roter Check blockiert nichts. Er meldet sich für die Workspace-Seiten als Gast an und am Ende wieder ab; Secrets `LAYOUT_CHECK_TOKEN`, `FIREBASE_CONFIG`.
 
-## Skills im Repo
+## Skills (nur lokal)
 
 `.claude/skills/` enthält `code-review-self`, `final-check`, `angular`, `angular-forms`, `scss-component`,
 `typescript-standards` und `figma-extract`, damit beide Claude-Sitzungen nach denselben Regeln arbeiten.
-`figma-extract` braucht Figma-Zugang und nutzt nur Thomas. Die Skills werden vor der Abgabe entfernt (`docs/todo.md`).
+`figma-extract` braucht Figma-Zugang und nutzt nur Thomas. Seit 25.10.2026 liegen die Skills nur noch lokal
+(gitignored), ebenso `docs/DA_Checkliste/`.
 
 ## Absprache zwischen den Claude-Sitzungen
 
