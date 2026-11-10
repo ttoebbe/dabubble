@@ -1,15 +1,11 @@
 # DABubble
 
-Team-Messenger im Stil von Slack: Channels, Direktnachrichten, Threads und Reaktionen in einem Workspace.
-Gruppenprojekt der Developer Akademie, umgesetzt mit Angular 22 und Firebase.
+Team-Messenger im Stil von Slack: Channels, Direktnachrichten, Threads und Reaktionen in einem Workspace,
+umgesetzt mit Angular 22 und Firebase.
 
 [![CI](https://github.com/ttoebbe/dabubble/actions/workflows/ci.yml/badge.svg)](https://github.com/ttoebbe/dabubble/actions/workflows/ci.yml)
 
 **Live:** <https://dabubble-3299.developerakademie.net> – zum Ausprobieren „Gäste-Login“ wählen.
-
-> **Stand 24.10.2026:** Bereich A (Konto, Workspace-Rahmen, Channels) ist fertig. Bereich B (Nachrichten,
-> Threads, Suche) steht auf `main`: Channel- und Direktnachrichten, Reaktionen, Emojis, Threads, Erwähnungen,
-> Bearbeiten, „Neue Nachricht“ und die Suche. Live ist der Stand vom 24.10.2026 (`c17eb55`). Offene Punkte: [`docs/todo.md`](docs/todo.md).
 
 ## Inhalt
 
@@ -21,52 +17,46 @@ Gruppenprojekt der Developer Akademie, umgesetzt mit Angular 22 und Firebase.
 - [Datenmodell](#datenmodell)
 - [Online-Status](#online-status)
 - [Ordnerstruktur](#ordnerstruktur)
-- [Schnittstellen zwischen den Bereichen](#schnittstellen-zwischen-den-bereichen)
 - [Projekt starten](#projekt-starten)
 - [Qualität](#qualität)
 - [CI, Deploy und Layout-Check](#ci-deploy-und-layout-check)
-- [Team und Zusammenarbeit](#team-und-zusammenarbeit)
-- [Dokumentation](#dokumentation)
+- [Team](#team)
 
 ## Funktionen
 
-Grundlage ist die Checkliste der Developer Akademie (`docs/DA_Checkliste/`), das Design kommt aus Figma
-(`docs/Figma/spec.md`).
+### Konto
 
-### Konto und Workspace (Bereich A)
+- Registrierung mit Name, E-Mail, Passwort, Zustimmung zur Datenschutzerklärung und Avatar-Auswahl, danach
+  Bestätigungs-E-Mail
+- Anmeldung mit E-Mail und Passwort oder mit Google; Fehlermeldungen direkt am Feld
+- Gäste-Login ohne Konto: Beim Log out werden Gastkonto und Profil gelöscht
+- Passwort vergessen: E-Mail mit Link, danach neues Passwort setzen
+- Profil ansehen und bearbeiten (Name, Avatar aus der Auswahl)
+- Online-Status (aktiv, abwesend, offline) im Menü, im Profil, in Mitgliederlisten, Chats und Threads
 
-| Funktion                                                                            | Checkliste        | Stand                                            |
-| ----------------------------------------------------------------------------------- | ----------------- | ------------------------------------------------ |
-| Registrierung mit Name, E-Mail, Passwort, Datenschutz-Häkchen und Avatar-Auswahl    | Konto US1         | fertig                                           |
-| Anmeldung mit Google                                                                | Konto US1 (opt.)  | fertig                                           |
-| Bestätigungs-E-Mail nach der Registrierung                                          | Konto US1 (opt.)  | fertig                                           |
-| Login mit E-Mail und Passwort, Fehlermeldung direkt am Feld                         | Konto US2         | fertig                                           |
-| Gäste-Login; der Gast wird beim Log out samt Profil gelöscht                        | Figma             | fertig                                           |
-| Passwort vergessen: E-Mail mit Link, neues Passwort setzen                          | Konto US3         | fertig                                           |
-| Profil ansehen und bearbeiten (Name, Avatar aus der Auswahl)                        | Konto US4         | fertig                                           |
-| Menü mit Channels und Direktnachrichten ein- und ausklappen                         | Konto US5         | fertig                                           |
-| Mobile Ansichten: Menü → Chat → Thread mit Zurück-Pfeil                             | Konto US5         | fertig                                           |
-| Online-Status (aktiv, abwesend, offline) im Menü, im Profil und in Mitgliederlisten | Konto US6 (opt.)  | fertig, auch in Chats und Threads                |
-| Channel erstellen mit Name, Beschreibung und Mitgliedern, Namensprüfung             | Channels US1      | fertig                                           |
-| Mitglieder nachträglich hinzufügen                                                  | Channels US2      | fertig                                           |
-| Channel verlassen                                                                   | Channels US3      | fertig                                           |
-| Name und Beschreibung bearbeiten, Fehlermeldung bei gescheitertem Speichern         | Channels US4      | fertig                                           |
-| Start-Channel „Entwicklerteam“: jedes neue Konto und jeder Gast tritt bei           | Entscheidung Team | fertig                                           |
-| Intro mit Logo-Animation, Impressum, Datenschutz                                    | Figma             | fertig (Impressum: Daten von Yannic fehlen noch) |
+### Workspace und Channels
 
-### Nachrichten (Bereich B)
+- Menü mit Channels und Direktnachrichten, ein- und ausklappbar
+- Channel erstellen mit Name, Beschreibung und Mitgliedern; Channel-Namen sind eindeutig
+- Mitglieder hinzufügen, Channel verlassen, Name und Beschreibung bearbeiten
+- Start-Channel „Entwicklerteam“, dem jedes neue Konto und jeder Gast beitritt
+- Mobile Ansichten: Menü → Chat → Thread, jeweils mit Zurück-Pfeil
 
-| Funktion                                                                         | Checkliste    | Stand                         |
-| -------------------------------------------------------------------------------- | ------------- | ----------------------------- |
-| Nachrichten im Channel senden und empfangen, live                                | Channels US1  | fertig                        |
-| Direktnachrichten, auch mit sich selbst; Fokus beim Chatwechsel im Eingabefeld   | Schreiben US1 | fertig                        |
-| Reaktionen: zwei zuletzt genutzte Emojis, „+ x weitere“, wer reagiert hat        | Schreiben US2 | fertig                        |
-| Emojis in Nachrichten, Zähler bei mehrfach genutzten Reaktionen                  | Schreiben US3 | fertig                        |
-| „Neue Nachricht“: `#` listet Channels, `@` Personen, sonst Name oder E-Mail      | Schreiben US4 | fertig                        |
-| Threads in Channels und Direktnachrichten, „2 Antworten“, „Letzte Antwort 14:56“ | Schreiben US5 | fertig                        |
-| `@` und `#` im Eingabefeld, Erwähnungen im Text klickbar                         | Schreiben US5 | fertig                        |
-| Suche: `#` Channels, `@` Personen, sonst auch Nachrichten mit Kontext, live      | Schreiben US6 | fertig, auch Thread-Antworten |
-| Eigene Nachrichten und Antworten bearbeiten                                      | Figma         | fertig                        |
+### Nachrichten und Suche
+
+- Channel- und Direktnachrichten live, auch an sich selbst
+- Reaktionen mit Emojis: die zwei zuletzt genutzten, „+ x weitere“, Zähler und wer reagiert hat
+- Emojis im Text; eigene Nachrichten und Antworten bearbeiten
+- Threads in Channels und Direktnachrichten mit „2 Antworten“ und „Letzte Antwort 14:56“
+- `@` und `#` im Eingabefeld, Erwähnungen im Text klickbar
+- „Neue Nachricht“: `#` listet Channels, `@` Personen, sonst Suche nach Name oder E-Mail
+- Suche: `#` findet Channels, `@` Personen, sonst Nachrichten und Thread-Antworten der eigenen Channels und
+  Direktnachrichten, live und mit Kontext
+
+### Außerdem
+
+- Intro mit Logo-Animation
+- Impressum und Datenschutzerklärung
 
 ## Tech-Stack
 
@@ -89,56 +79,49 @@ Services unter `core/services/`; die Komponenten lesen deren Signals.
 
 ```mermaid
 flowchart LR
-  browser(["Browser"]) -->|"http, Hash-URLs"| app
+  browser(["Browser"]) -->|"https, Hash-URLs"| app
 
   subgraph app["Angular-App (src/app)"]
     direction TB
-    routes["app.routes.ts<br/>Routen beider Bereiche"]
+    routes["app.routes.ts<br/>Routen und Guards"]
 
-    subgraph areaA["Bereich A – Thomas"]
-      auth["features/auth<br/>Intro, Login, Registrierung, Passwort"]
-      workspace["features/workspace<br/>Rahmen, Header, Menü"]
-      channels["features/channels<br/>Channel-Dialoge"]
-      profile["features/profile<br/>Profilmenü, Profil"]
-      legal["features/legal<br/>Impressum, Datenschutz"]
-    end
-
-    subgraph areaB["Bereich B – Yannic"]
-      chat["features/chat<br/>Channel- und DM-Ansicht, Eingabe,<br/>Reaktionen, Erwähnungen, Bearbeiten"]
-      thread["features/thread<br/>Thread-Ansicht"]
-      newMessage["features/new-message<br/>Neue Nachricht"]
-      search["features/search<br/>Suche im Header und im Menü"]
+    subgraph features["features"]
+      auth["auth<br/>Intro, Login, Registrierung, Passwort"]
+      workspace["workspace<br/>Rahmen, Header, Menü"]
+      channels["channels<br/>Channel-Dialoge"]
+      profile["profile<br/>Profilmenü, Profil"]
+      chat["chat<br/>Channel- und DM-Ansicht, Eingabe,<br/>Reaktionen, Erwähnungen, Bearbeiten"]
+      thread["thread<br/>Thread-Ansicht"]
+      newMessage["new-message<br/>Neue Nachricht"]
+      search["search<br/>Suche im Header und im Menü"]
+      legal["legal<br/>Impressum, Datenschutz"]
     end
 
     subgraph core["core"]
       guards["guards<br/>signedInGuard, signedOutGuard"]
-      servicesA["services (A)<br/>Auth, User, Channel, Presence"]
-      servicesB["services (B)<br/>Message, DirectChat, MessageSearch"]
+      services["services<br/>Auth, User, Channel, Presence,<br/>Message, DirectChat, MessageSearch"]
       models["models<br/>AppUser, Channel, Message, DirectChat"]
     end
 
     shared["shared<br/>Avatar, Brand, Button, Dialog, InputField"]
 
-    routes --> areaA
-    routes --> areaB
-    areaA --> servicesA
-    areaB --> servicesB
-    areaB --> servicesA
-    areaA --> shared
-    areaB --> shared
+    routes --> features
+    routes --> guards
+    features --> services
+    features --> shared
+    services --> models
   end
 
-  servicesA --> firebaseAuth[("Firebase Authentication")]
-  servicesA --> firestore[("Cloud Firestore")]
-  servicesB --> firestore
+  services --> firebaseAuth[("Firebase Authentication")]
+  services --> firestore[("Cloud Firestore")]
 ```
 
 ## Routen und Ansichten
 
-Die Routen stehen hinter `#`, z. B. `https://dabubble-3299.developerakademie.net/#/login`. Bereich A
-definiert seine Routen in `auth.routes.ts`, `legal.routes.ts` und `workspace.routes.ts`, Bereich B in
-`chat.routes.ts`, die als Kinder unter `/workspace` hängen. Die Konto-Seiten öffnen nur abgemeldet
-(`signedOutGuard`), der Workspace nur angemeldet (`signedInGuard`), Impressum und Datenschutz immer.
+Die Routen stehen hinter `#`, z. B. `https://dabubble-3299.developerakademie.net/#/login`. Sie sind in
+`auth.routes.ts`, `legal.routes.ts`, `workspace.routes.ts` und `chat.routes.ts` definiert; die Chat-Routen
+hängen als Kinder unter `/workspace`. Die Konto-Seiten öffnen nur abgemeldet (`signedOutGuard`), der Workspace
+nur angemeldet (`signedInGuard`), Impressum und Datenschutz immer.
 
 ```mermaid
 flowchart TD
@@ -158,11 +141,11 @@ flowchart TD
   end
 
   subgraph workspaceFrame["/workspace · signedInGuard"]
-    header["Header<br/>Logo, Suche (B), Profilmenü"]
+    header["Header<br/>Logo, Suche, Profilmenü"]
     menu["Menü<br/>Channels, Direktnachrichten"]
-    primaryOutlet["Outlet primary (B)<br/>channel/:channelId, dm/:uid, new-message"]
-    threadOutlet["Outlet thread (B)<br/>thread/:kind/:conversationId/:messageId"]
-    dialogs["Dialoge (A)<br/>Channel erstellen und bearbeiten,<br/>Mitglieder, Leute hinzufügen, Profil"]
+    primaryOutlet["Outlet primary<br/>channel/:channelId, dm/:uid, new-message"]
+    threadOutlet["Outlet thread<br/>thread/:kind/:conversationId/:messageId"]
+    dialogs["Dialoge<br/>Channel erstellen und bearbeiten,<br/>Mitglieder, Leute hinzufügen, Profil"]
   end
 
   login --> signUp
@@ -221,7 +204,7 @@ sequenceDiagram
   app-->>person: Login
 ```
 
-Der kürzeste Weg für Prüfer ist der Gäste-Login:
+Der kürzeste Weg zum Ausprobieren ist der Gäste-Login:
 
 ```mermaid
 flowchart LR
@@ -235,15 +218,15 @@ flowchart LR
   stale -->|"nach 24 h, beim nächsten Login<br/>einer anderen Person"| cleaned["aus den Channels ausgetragen,<br/>Profil gelöscht"]
 ```
 
-Gäste, die den Tab schließen statt sich abzumelden, räumt die App selbst auf (ttoebbe/dabubble#6): Ein offener Tab
-schreibt alle 15 Minuten `lastActiveAt`; wer sich anmeldet, trägt Gäste ohne Lebenszeichen seit 24 Stunden aus den
-eigenen Channels aus und löscht ihr Profil. Das leere anonyme Anmeldekonto bleibt, es taucht in der App nirgends auf.
+Gäste, die den Tab schließen statt sich abzumelden, räumt die App selbst auf: Ein offener Tab schreibt alle
+15 Minuten `lastActiveAt`; wer sich anmeldet, trägt Gäste ohne Lebenszeichen seit 24 Stunden aus den eigenen
+Channels aus und löscht ihr Profil. Das leere anonyme Anmeldekonto bleibt, es taucht in der App nirgends auf.
 
 ## Datenmodell
 
-Umgesetzt nach ttoebbe/dabubble#1. Nachrichten liegen als Untercollection am Channel bzw. an der
-Direktnachricht (`channels/{id}/messages`, `directChats/{id}/messages`), Thread-Antworten an der Nachricht
-(`…/messages/{id}/replies`). Eine Direktnachricht entsteht mit der ersten Nachricht.
+Nachrichten liegen als Untercollection am Channel bzw. an der Direktnachricht (`channels/{id}/messages`,
+`directChats/{id}/messages`), Thread-Antworten an der Nachricht (`…/messages/{id}/replies`). Eine
+Direktnachricht entsteht mit der ersten Nachricht.
 
 ```mermaid
 erDiagram
@@ -297,12 +280,11 @@ erDiagram
   USERS ||--o{ REPLIES : "schreibt"
 ```
 
-Die Firestore-Regeln stehen in [`firestore.rules`](firestore.rules) und sind in der Firebase-Konsole
-veröffentlicht. Kurz: Angemeldete lesen alle Profile und Channels, jede Person schreibt nur ihr eigenes Profil,
-Channels ändern nur Mitglieder, und dem Start-Channel darf man sich selbst hinzufügen. Nachrichten und Antworten
-lesen und schreiben nur die Mitglieder des Channels bzw. der Direktnachricht; den Text ändert nur der Autor,
-reagieren dürfen alle Mitglieder (höchstens 20 Emojis je Nachricht). Das Profil eines Gastes ohne Lebenszeichen seit
-24 Stunden darf jede angemeldete Person löschen.
+Die Firestore-Regeln stehen in [`firestore.rules`](firestore.rules). Kurz: Angemeldete lesen alle Profile und
+Channels, jede Person schreibt nur ihr eigenes Profil, Channels ändern nur Mitglieder, und dem Start-Channel darf
+man sich selbst hinzufügen. Nachrichten und Antworten lesen und schreiben nur die Mitglieder des Channels bzw.
+der Direktnachricht; den Text ändert nur der Autor, reagieren dürfen alle Mitglieder (höchstens 20 Emojis je
+Nachricht). Das Profil eines Gastes ohne Lebenszeichen seit 24 Stunden darf jede angemeldete Person löschen.
 
 ## Online-Status
 
@@ -324,50 +306,36 @@ Der Punkt am Avatar ist grün für „Aktiv“ und grau für „Abwesend“ oder
 src/
 ├── app/
 │   ├── app.config.ts            Router (Hash-URLs), globale Fehler-Listener
-│   ├── app.routes.ts            bindet die Routen beider Bereiche ein
+│   ├── app.routes.ts            bindet die Routen der Features ein
 │   ├── core/
 │   │   ├── guards/              signedInGuard, signedOutGuard
 │   │   ├── models/              AppUser, Channel, Message, DirectChat
-│   │   └── services/            A: firebase, auth, user, channel, channel-membership, presence
-│   │                            B: message, direct-chat, message-search
+│   │   └── services/            firebase, auth, user, presence, guest-cleanup, channel,
+│   │                            channel-membership, message, direct-chat, message-search
 │   ├── features/
 │   │   ├── auth/                Intro, Login, Registrierung, Avatar, Passwort vergessen und zurücksetzen
 │   │   ├── workspace/           Rahmen, Header, Menü, Menü-Umschalter
 │   │   ├── channels/            Channel erstellen und bearbeiten, Mitglieder, Leute hinzufügen
 │   │   ├── profile/             Profilmenü, Profil-Dialog, Profil bearbeiten, ProfileViewer
-│   │   ├── legal/               Impressum, Datenschutz
-│   │   ├── chat/                B: Channel- und DM-Ansicht, Eingabe, Reaktionen, Erwähnungen, Bearbeiten
-│   │   ├── thread/              B: Thread-Ansicht
-│   │   ├── new-message/         B: „Neue Nachricht“
-│   │   └── search/              B: Suche im Header (Desktop) und im Menü (mobil)
+│   │   ├── chat/                Channel- und DM-Ansicht, Eingabe, Reaktionen, Erwähnungen, Bearbeiten
+│   │   ├── thread/              Thread-Ansicht
+│   │   ├── new-message/         „Neue Nachricht“
+│   │   ├── search/              Suche im Header (Desktop) und im Menü (mobil)
+│   │   └── legal/               Impressum, Datenschutz
 │   └── shared/
-│       ├── components/          avatar, brand, button, dialog, input-field
-│       └── pipes/               gemeinsame Pipes (geplant)
+│       └── components/          avatar, brand, button, dialog, input-field
 ├── environments/                environment.example.ts im Repo, environment.ts nur lokal
 └── styles/                      _tokens, _base, _forms, _breakpoints
 public/                          img/ (Avatare, Emojis, Icons, Logos), fonts/, .htaccess
-docs/                            Checkliste, Figma-Spec, Arbeitsteilung, Einstieg, ToDo
+docs/Figma/                      Design-Spec, Komponenten, Asset-Liste, Referenzbilder
+firestore.rules                  Firestore-Regeln
 .github/workflows/               ci.yml, deploy.yml, layout-check.yml
-tools/layout-check/              Layout-Check, privates Repo, lokal geklont und gitignored
 ```
-
-## Schnittstellen zwischen den Bereichen
-
-| Was                                              | Wo                                     | Nutzung                                                                    |
-| ------------------------------------------------ | -------------------------------------- | -------------------------------------------------------------------------- |
-| Angemeldete Person                               | `core/services/auth.service.ts`        | `AuthService.currentUser()`, `uid()`                                       |
-| Alle Personen, live                              | `core/services/user.service.ts`        | `UserService.users()` mit Name, Avatar, Online-Status                      |
-| Channels, live                                   | `core/services/channel.service.ts`     | `channels()` (eigene), `allChannels()`                                     |
-| Profil einer Person öffnen                       | `features/profile/profile-viewer.ts`   | `ProfileViewer.show(uid)`                                                  |
-| Channel bearbeiten, Mitglieder, Leute hinzufügen | `features/channels/channel-dialogs.ts` | `ChannelDialogs.open(channelId, 'settings' \| 'members' \| 'add-members')` |
-| Routen für Chat und Thread (B → A)               | `features/workspace/chat-links.ts`     | `channelLink`, `directMessageLink`, `newMessageLink`, `messageLink`        |
-| Suche (B → A)                                    | `features/search/workspace-search/`    | `<app-workspace-search>` im Header, mobil mit `[mobile]="true"` im Menü    |
-
-Details und Regeln für Änderungen: [`docs/arbeitsteilung.md`](docs/arbeitsteilung.md).
 
 ## Projekt starten
 
-Voraussetzungen: Node.js 24 und npm.
+Voraussetzungen: Node.js 24, npm und ein Firebase-Projekt mit Authentication (E-Mail/Passwort, Google,
+anonym) und Cloud Firestore mit den Regeln aus [`firestore.rules`](firestore.rules).
 
 ```bash
 git clone https://github.com/ttoebbe/dabubble.git
@@ -378,7 +346,7 @@ npm install
 ```
 
 Danach `src/environments/environment.example.ts` nach `src/environments/environment.ts` kopieren und die
-Firebase-Konfiguration eintragen (bekommt man von Thomas). Die Datei bleibt lokal und kommt nie ins Repo.
+Web-Konfiguration des Firebase-Projekts eintragen. Die Datei bleibt lokal und kommt nie ins Repo.
 
 ```bash
 npm start
@@ -397,19 +365,19 @@ Die App läuft dann unter `http://localhost:4200/`.
 
 ## Qualität
 
-- **Clean Code laut Checkliste:** höchstens 14 Zeilen pro Funktion, 400 pro Datei, 100 pro HTML-Template,
-  camelCase, sprechende Namen. ESLint prüft die Limits und Namen automatisch.
-- **Formulare:** leere, ungültige und fehlerhafte Eingaben zeigen eine konkrete Meldung direkt am Feld,
+- **Clean Code:** höchstens 14 Zeilen pro Funktion, 400 pro Datei, 100 pro HTML-Template, camelCase,
+  sprechende Namen. ESLint prüft die Limits und Namen automatisch.
+- **Formulare:** Leere, ungültige und fehlerhafte Eingaben zeigen eine konkrete Meldung direkt am Feld,
   ohne `alert()` und ohne HTML5-Standardmeldungen. Buttons haben die Zustände enabled, disabled und hover.
-- **Barrierefreiheit:** axe-core meldet auf den Konto-Seiten und im Workspace-Rahmen keine Verstöße
-  (WCAG AA, Stand 22.10.2026); die Prüfung der Chat-Ansichten steht noch aus.
-  Wo Figma-Farben den Kontrast von 4,5 : 1 verfehlen, sind sie abgedunkelt (Spec, Abschnitt 6.5 und 8).
-- **Design:** Werte nur aus `docs/Figma/spec.md` bzw. `src/styles/`; Schrift mindestens 16 px
-  (Kleingedrucktes 14 px), Touch-Targets mindestens 44 px. Abweichungen von Figma sind in der Spec begründet.
+- **Barrierefreiheit:** axe-core meldet auf den Konto-Seiten, im Menü und in den Chat-Ansichten keine Verstöße
+  gegen WCAG AA, am Desktop und mobil. Wo Figma-Farben den Kontrast von 4,5 : 1 verfehlen, sind sie abgedunkelt.
+- **Design:** Werte aus der Design-Spec [`docs/Figma/spec.md`](docs/Figma/spec.md) bzw. `src/styles/`; Schrift
+  mindestens 16 px (Kleingedrucktes 14 px), Touch-Targets mindestens 44 px. Abweichungen von Figma sind in der
+  Spec begründet.
 - **Responsiv** bis 320 px ohne horizontale Scrollleiste, ohne Layout-Shifts.
 - **Konsole** ohne Fehler, auch im Inkognito-Modus.
-- **Code-Doku:** JSDoc an jeder Funktion, Klasse und jedem Export; `npm run docs` erzeugt daraus mit compodoc eine
-  Doku-Seite (DA-Checkliste, optional). Deren Abdeckungswert zählt auch jede Eigenschaft und jeden Input mit.
+- **Code-Doku:** JSDoc an jeder Funktion, Klasse und jedem Export; `npm run docs` erzeugt daraus mit compodoc
+  eine Doku-Seite.
 
 ## CI, Deploy und Layout-Check
 
@@ -418,42 +386,25 @@ flowchart LR
   push["Push auf main"] --> ci["CI: ci.yml<br/>Format-Check, Lint, Build"]
 
   deployButton["Actions: Deploy<br/>von Hand, nur main"] --> deploy["deploy.yml<br/>Lint, Build mit FIREBASE_CONFIG"]
-  deploy -->|"FTPS"| webspace["DA-Webspace<br/>dabubble-3299.developerakademie.net"]
+  deploy -->|"FTPS"| webspace["Webspace<br/>dabubble-3299.developerakademie.net"]
 
   checkButton["Actions: Layout check<br/>von Hand"] --> layout["layout-check.yml<br/>Build, Gäste-Login,<br/>18 Seiten und Zustände × 6 Viewports"]
 ```
 
-- **CI** läuft bei jedem Push und Pull Request. Wird `main` rot, behebt das sofort, wer gepusht hat.
-- **Deploy** nur von Hand, nur von `main`, nur nach Absprache. Er baut den gewählten Commit und spiegelt
-  ausschließlich `dist/dabubble/browser/` auf den Webspace. Secrets: `DEPLOY_HOST`, `DEPLOY_USER`,
-  `DEPLOY_PASSWORD`, `DEPLOY_REMOTE_DIR`, `FIREBASE_CONFIG`; Variable `DEPLOY_PROTOCOL` (`ftps`).
-- **Layout-Check** nur von Hand: Er misst jede Seite in 320, 430, 768, 1024, 1440 und 1920 px auf
-  horizontales Scrollen, Elemente außerhalb ihres Containers, Überlappungen und Randabstände. Der Checker
-  liegt im privaten Repo `ttoebbe/dabubble-layout-check`. Für den Workspace meldet er sich als Gast an
-  und am Ende wieder ab. Secrets: `LAYOUT_CHECK_TOKEN`, `FIREBASE_CONFIG`.
+- **CI** läuft bei jedem Push und Pull Request.
+- **Deploy** läuft nur von Hand und nur von `main`. Er baut den gewählten Commit und spiegelt ausschließlich
+  `dist/dabubble/browser/` auf den Webspace. Secrets: `DEPLOY_HOST`, `DEPLOY_USER`, `DEPLOY_PASSWORD`,
+  `DEPLOY_REMOTE_DIR`, `FIREBASE_CONFIG`; Variable `DEPLOY_PROTOCOL` (`ftps`).
+- **Layout-Check** läuft nur von Hand: Er misst jede Seite in 320, 430, 768, 1024, 1440 und 1920 px auf
+  horizontales Scrollen, Elemente außerhalb ihres Containers, Überlappungen und Randabstände. Der Checker liegt
+  in einem privaten Repo; für den Workspace meldet er sich als Gast an und am Ende wieder ab. Secrets:
+  `LAYOUT_CHECK_TOKEN`, `FIREBASE_CONFIG`.
 
-## Team und Zusammenarbeit
+## Team
 
-| Person | GitHub    | Bereich                               |
-| ------ | --------- | ------------------------------------- |
-| Thomas | `ttoebbe` | A – Konto, Workspace-Rahmen, Channels |
-| Yannic | `TheYan3` | B – Nachrichten, Threads, Suche       |
+Entstanden als Gruppenprojekt bei der Developer Akademie.
 
-- Beide arbeiten gleichberechtigt direkt auf `main`, größere Umbauten auf einem Branch mit Bereichskürzel
-  (`feature/a-…`, `feature/b-…`) und per Pull Request.
-- Vor Arbeitsbeginn und vor jedem Push `git pull --rebase`, nie Force-Push.
-- Commits nach Conventional Commits auf Englisch, eine Zeile; jede Person committet in jeder Arbeitssitzung.
-- Jede Person ändert nur Dateien ihres Bereichs. Gemeinsame Dateien (`core/models/`, `shared/`,
-  `app.routes.ts`, `app.config.ts`, `angular.json`, `.github/` …) nur nach Absprache und als eigener Commit.
-
-## Dokumentation
-
-| Datei                                              | Inhalt                                                                         |
-| -------------------------------------------------- | ------------------------------------------------------------------------------ |
-| [`docs/DA_Checkliste/`](docs/DA_Checkliste/)       | Anforderungen und Abnahmekriterien der Developer Akademie                      |
-| [`docs/Figma/spec.md`](docs/Figma/spec.md)         | Design-Spec aus Figma, dazu `components.md` und `MANIFEST.md`                  |
-| [`docs/arbeitsteilung.md`](docs/arbeitsteilung.md) | Bereiche, Datei-Besitz, Schnittstellen, Firestore-Regeln, Git                  |
-| [`docs/einstieg.md`](docs/einstieg.md)             | Einstieg ins Projekt für Yannic                                                |
-| [`docs/todo.md`](docs/todo.md)                     | Offene Aufgaben außerhalb der Arbeitspakete                                    |
-| [`docs/abnahme.md`](docs/abnahme.md)               | Abnahme-Test gegen Checkliste und Qualitäts-Check, mit Testdaten je UI-Zustand |
-| [`CLAUDE.md`](CLAUDE.md)                           | Arbeitsregeln für Claude Code, für beide gleich                                |
+| Name               | GitHub                                  |
+| ------------------ | --------------------------------------- |
+| Thomas Többe-Hömke | [`ttoebbe`](https://github.com/ttoebbe) |
+| Yannic Jundt       | [`TheYan3`](https://github.com/TheYan3) |
