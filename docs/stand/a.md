@@ -1,42 +1,21 @@
 # Stand Bereich A (Thomas)
 
-Aktualisiert: 24.10.2026
+Aktualisiert: 10.11.2026
 
 ## Erledigt
 
-- Bereich A und B live seit 24.10. (zuletzt `c17eb55` mit Impressum beider, Yannics Datenschutz-Entwurf und den Menü-Fixes, https://dabubble-3299.developerakademie.net): Registrierung mit
-  Avatar und Bestätigungs-E-Mail, Login (E-Mail, Google, Gast), Passwort vergessen, Profil bearbeiten,
-  Workspace-Rahmen mit Menü und Online-Status, Channels anlegen, bearbeiten, verlassen, Mitglieder hinzufügen.
-- Start-Channel „Entwicklerteam“ (`channels/entwicklerteam`): Jedes neue Konto und jeder Gast tritt bei.
-- Gäste: Beim Log out verlässt der Gast alle Channels, Profil und Konto werden gelöscht. Andere Gäste sind in Menü,
-  Personensuche und Mitgliederlisten ausgeblendet; `UserService.users` bleibt vollständig (für Nachrichten-Autoren).
-- Menü (Channel, Person, „Neue Nachricht“) und „Nachricht“ im Profil führen über `CHAT_ROUTES`; der markierte
-  Menüeintrag folgt der URL, auch mit offenem Thread.
-- 23.10. abends, mit Freigabe von Yannic in Bereich B:
-  - Channel-Kopf nach Figma `46.` (40-px-Avatare, 10 px Überlappung), unter 600 px Chatbreite ohne Avatare
-    (ttoebbe/dabubble#3, geschlossen).
-  - Eigene Nachrichten und Antworten bearbeiten: „⋮“ in der Aktionsleiste → „Nachricht bearbeiten“
-    (`message-options/`, `message-editor/`, `MessageService.edit`, `editReply`).
-  - „Neue Nachricht“ (`features/new-message/`): Adressfeld mit `#`, `@`, Name oder E-Mail, danach öffnet der Chat.
-  - Suche (`features/search/`, `MessageSearchService`): Desktop „Devspace durchsuchen“ im Header, mobil „Gehe zu...“
-    im Menü mit Ansicht „Search“. `#` Channels, `@` Personen, sonst auch Nachrichten mit Kontext; Klick auf eine
-    Nachricht öffnet den Chat mit ihrem Thread. Thread-Antworten werden mit durchsucht. Bei schmaler Leiste
-    (768 bis ca. 990 px) weniger Innenabstand, 18-px-Schrift und rechtsbündige Liste.
-  - Layout-Check (`ttoebbe/dabubble-layout-check` becede6) misst zusätzlich Channel, Chat mit sich selbst,
-    „Neue Nachricht“ und die Suche (`#`, `@`, ohne Treffer): 18 Seiten × 6 Viewports, noch nicht gelaufen.
-  - Doku nachgezogen: `README.md`, `docs/todo.md`, `docs/arbeitsteilung.md`, `docs/einstieg.md`, Spec 8.14–8.17.
-- 24.10.: Abnahme-Testplan `docs/abnahme.md`; compodoc eingerichtet (`npm run docs`, optionaler Checklisten-Punkt).
-- 24.10.: Angemeldet geprüft (eigenes Konto, 430/320 px und Desktop): Suche mit `#`, `@`, Stichwort in Channel, DM und
-  Thread-Antwort, „Neue Nachricht“, Bearbeiten; axe-core ohne Verstöße. Fixes daraus: mobile Abstände der Suche wie
-  Figma, Bearbeiten-Kasten scrollt ganz in Sicht, „#“ und Name im Channel-Intro bleiben zusammen, Logo staucht
-  nicht, Text auf hellem Lila in `--color-link` (Menü, Profilmenü, Trefferliste, Erwähnungsliste; Hinweis von B).
-- 24.10.: Deploy `040e841` (live über https). Layout-Check grün: 18 Seiten × 6 Viewports, 108 Kombinationen.
-
-- 24.10.: Verwaiste Gäste räumt die App selbst auf (ttoebbe/dabubble#6): `lastActiveAt` im Profil (alle 15 Minuten
-  und bei jedem Statuswechsel), nach jeder Anmeldung werden Gäste ohne Lebenszeichen seit 24 Stunden aus den eigenen
-  Channels ausgetragen und ihr Profil gelöscht (`core/services/guest-cleanup.ts`). Regel in `firestore.rules`, in der
-  Konsole veröffentlicht (Thomas), Deploy `8ffbd77`. Live geprüft: Nach der Anmeldung zeigt das Entwicklerteam 2
-  Mitglieder (Thomas, Yannic), Konsole fehlerfrei.
+- Bereich A und B fertig und live (`2d69587`, 10.11.2026, https://dabubble-3299.developerakademie.net).
+  Layout-Check grün auf `7c26079`: 18 Seiten × 6 Viewports, 108 Kombinationen (Fehlalarm am mobil nur visuell
+  ausgeblendeten Menükopf im Checker behoben, `2d94d17` in `ttoebbe/dabubble-layout-check`).
+- Funde aus deinem Test vom 24.10. erledigt: LCP-Logo mit `priority` (0a0c2d2), mobile Menü-Seite mit `main` und
+  `h1` (7ddcc32); axe ohne Verstöße mobil und am Desktop.
+- Issues ttoebbe/dabubble#1, #4, #5 und #6 geschlossen (10.11.2026).
+- Impressum und Datenschutz (Entscheidung Thomas 10.11.2026): Wir beide stehen mit eigener Anschrift im Impressum
+  und sind gemeinsam verantwortlich nach Art. 26 DSGVO. Die Datenschutzerklärung hat dafür den Abschnitt
+  „Gemeinsame Verantwortung“ und ist präzisiert (Firebase Authentication nur in den USA, Bestätigungs- und
+  Passwort-Mail, IP-Adresse an Google). Entwurf der Vereinbarung: `docs/vereinbarung-gemeinsame-verantwortung.md`.
+- README als Überblick über die App neu geschrieben, ohne Bereiche, Checkliste und Teamregeln. Verweise auf
+  `docs/DA_Checkliste/` und `.claude/skills/` in `CLAUDE.md` und `docs/` sagen jetzt „nur lokal“.
 
 ## In Arbeit
 
@@ -44,31 +23,19 @@ Aktualisiert: 24.10.2026
 
 ## Als Nächstes
 
-- Rest von `docs/abnahme.md` (Konto- und Channel-Punkte mit zwei Sitzungen).
-- Vier Gast-Konten vom 23.10. löschen (Thomas, Firebase-Konsole).
-- Datenschutz-Entwurf gemeinsam prüfen (`docs/todo.md`).
+- Sobald deine Anschrift im Impressum steht: erneut deployen und die Live-Seite prüfen.
+- Vereinbarung und „Nur in Figma“ (`docs/arbeitsteilung.md`) gemeinsam bestätigen.
+- Auftragsverarbeitung mit Google in der Firebase-Konsole nachsehen.
+- Abgabe bei der DA mit Repo- und Live-Link.
 
 ## Brauche von B
 
-- Nichts offen. Danke für die Prüfung und die Fixes vom 24.10.; der Menü-Kontrast ist behoben (c7212cb).
+- Deine Anschrift im Impressum (`src/app/features/legal/imprint/imprint.html`), dort stehen Musterdaten. Bitte
+  selbst eintragen und nicht in einem Issue posten, das Repo ist öffentlich. Live steht bis zum nächsten Deploy die
+  Musteranschrift.
+- `docs/vereinbarung-gemeinsame-verantwortung.md` lesen und unten mit Datum bestätigen.
+- Das Repo forken (DA-Checkliste).
 
 ## Hinweise für B
 
-- Deine Funde für A sind in `docs/todo.md` unter „Funde aus Yannics Test“: Die Menü-Klickflächen sind über `::after`
-  44 px groß (Spec 8.5), also kein Fehler; NG02955 und `main`/`h1` auf der mobilen Menü-Seite sind behoben
-  (0a0c2d2, 7ddcc32).
-- Datei-Upload: entschieden, wird nicht gebaut, kein Blaze-Tarif (Thomas und Yannic, 24.10.2026; `docs/todo.md`,
-  „Im Team geklärt“).
-- Alle offenen Punkte bis zur Abgabe stehen jetzt gesammelt oben in `docs/todo.md` („Offen bis zur Abgabe“), auch
-  deine zwei Prüfpunkte („Neue Nachricht“ an einen Channel, Tab im Adressfeld) und zwei Kleinigkeiten aus dem Test.
-- Erledigt aus deinem „Brauche von A“: Menü-Kontrast (c7212cb, dazu Profilmenü, Trefferliste, Erwähnungsliste und
-  Hover der Erwähnung im Text). In `docs/stand/b.md` sind außerdem veraltet: #3 ist geschlossen (Channel-Kopf nach
-  Figma `46.`), README und todo nennen keine Platzhalter mehr.
-- Neu als Dev-Abhängigkeit: compodoc (`npm run docs`, Ausgabe in `documentation/`, gitignored). Nach dem Pull einmal
-  `npm install`.
-- Suche: Thread-Antworten werden mit durchsucht; `MessageSearchService` liest dafür die Antworten jeder Nachricht
-  mit `replyCount > 0` (keine Regeländerung nötig).
-- `MessageFeed`/`toFeed` (`features/chat/message-feed.ts`) sind jetzt für jeden Typ nutzbar, nicht nur für
-  `ChatMessage`; die Suche nutzt sie für `PlacedMessage`.
-- `chat-links.ts` hat `messageLink(kind, chat, conversationId, messageId)`: Chat mit offenem Thread einer Nachricht.
-- Schnittstellen und Regeln: `docs/arbeitsteilung.md`, Überblick mit Diagrammen in `README.md`.
+- Die README beschreibt nur noch die App; Arbeitsregeln stehen in `CLAUDE.md`, offene Punkte in `docs/todo.md`.
