@@ -15,7 +15,7 @@ damit sich zwei parallel arbeitende Sitzungen nicht gegenseitig überschreiben.
 
 | Was                | Wo                                                                                                   |
 | ------------------ | ---------------------------------------------------------------------------------------------------- |
-| Anforderungen (DA) | `docs/DA_Checkliste/DaBubble Checkliste.md` (Fassung 2024)                                           |
+| Anforderungen (DA) | `docs/DA_Checkliste/DaBubble Checkliste.md` (Fassung 2024), nur lokal (gitignored)                   |
 | Design (SOLL)      | `docs/Figma/spec.md`, Assets in `public/`, Referenzbilder aller 97 Frames in `docs/Figma/reference/` |
 
 Die Spec wird einmal aus Thomas' Figma-Kopie erzeugt. Danach arbeiten beide nur mit der Spec, niemand braucht einen eigenen Figma-Zugang.
