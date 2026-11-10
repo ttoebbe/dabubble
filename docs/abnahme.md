@@ -1,6 +1,6 @@
 # Abnahme-Test
 
-Durchlauf gegen die DA-Checkliste (`docs/DA_Checkliste/`) und den Qualitäts-Check aus `CLAUDE.md`, für den
+Durchlauf gegen die DA-Checkliste (`docs/DA_Checkliste/`, nur lokal) und den Qualitäts-Check aus `CLAUDE.md`, für den
 gemeinsamen Klicktest und die Abgabe. Erledigtes abhaken; was scheitert, kommt als Punkt nach `docs/todo.md`.
 
 Stand 24.10.2026: Bearbeiten, „Neue Nachricht“ und Suche sind von Yannic (zwei Gäste) und Thomas (eigenes

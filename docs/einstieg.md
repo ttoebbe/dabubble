@@ -13,7 +13,7 @@ Fertig:
 
 - **Angular 22-Grundgerüst** mit Routing und Strict Mode. Die App ist noch leer; jeder Bereich hat
   seine Ordner unter `src/app/features/` und eine eigene Routen-Datei.
-- **Anforderungen:** die DA-Checkliste in `docs/DA_Checkliste/`.
+- **Anforderungen:** die DA-Checkliste in `docs/DA_Checkliste/` (seit 25.10.2026 nur lokal, gitignored).
 - **Design:** die komplette Figma-Spec in `docs/Figma/spec.md` (Farben, Schriften, Abstände,
   Komponenten mit Zuständen, Hinweise des Design-Teams, Abgleich mit der Checkliste), dazu
   `components.md` und `MANIFEST.md`. Alle Assets liegen schon in `public/` (Icons, Logos, Avatare,
@@ -24,7 +24,7 @@ Fertig:
   `dabubble-3299.developerakademie.net` (nur von Hand).
 - **Regeln für Claude Code:** `CLAUDE.md` gilt für uns beide gleich. Dazu liegen die Skills
   `code-review-self`, `final-check`, `angular`, `angular-forms`, `scss-component`,
-  `typescript-standards` unter `.claude/skills/`.
+  `typescript-standards` unter `.claude/skills/` (seit 25.10.2026 nur lokal, gitignored).
 
 Noch nicht da: Firebase, Datenmodell, Design-Tokens, Shared-UI, die ersten Screens.
 
