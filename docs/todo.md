@@ -4,7 +4,7 @@ Offene Aufgaben außerhalb der Arbeitspakete. Erledigtes abhaken, nicht löschen
 
 ## Offen bis zur Abgabe (Stand 10.11.2026)
 
-Alles, was noch zu tun ist, an einer Stelle. Live ist `c17eb55` (24.10.2026). Der Layout-Check ist grün auf `7c26079` (10.11.2026, 108 Kombinationen; Fehlalarm am mobil nur visuell ausgeblendeten Menükopf im Checker behoben, `2d94d17` in `dabubble-layout-check`).
+Alles, was noch zu tun ist, an einer Stelle. Live ist `2d69587` (10.11.2026, noch mit Yannics Musteranschrift im Impressum). Der Layout-Check ist grün auf `7c26079` (10.11.2026, 108 Kombinationen; Fehlalarm am mobil nur visuell ausgeblendeten Menükopf im Checker behoben, `2d94d17` in `dabubble-layout-check`).
 
 ### Thomas: Konsole und Daten
 
@@ -64,7 +64,8 @@ Alles, was noch zu tun ist, an einer Stelle. Live ist `c17eb55` (24.10.2026). De
 - [ ] Zuordnung „Nur in Figma, nicht in der Checkliste“ in `docs/arbeitsteilung.md` bestätigen; alle Punkte sind umgesetzt – A, B
 - [x] `docs/DA_Checkliste/` aus dem Repo entfernen und in `.gitignore` eintragen (Material der DA) (25.10.2026, lokal behalten) – A
 - [x] `.claude/skills/` aus dem Repo entfernen und in `.gitignore` eintragen (25.10.2026, lokal behalten) – A
-- [ ] Letzter Deploy nach Absprache, erst wenn Yannics Anschrift im Impressum steht; danach die Live-Seite im Inkognito-Fenster prüfen – A
+- [x] Deploy `2d69587` (10.11.2026, auf Ansage Thomas, noch mit Yannics Musteranschrift). Live in frischem Browser ohne Anmeldung geprüft: Startseite, Impressum, Datenschutz, Login, Registrierung und Passwort vergessen bei 320 px ohne Scrollleiste, Konsole ohne Fehler und Warnungen, keine fehlgeschlagenen Anfragen. Den Workspace hat der Layout-Check mit Gäste-Login auf demselben App-Code geprüft – A
+- [ ] Letzter Deploy, sobald Yannics Anschrift im Impressum steht; danach Impressum und Konsole live erneut prüfen – A
 - [ ] Beide Teammitglieder forken das Repo (DA-Checkliste) – A, B
 
 ### Blockiert oder bewusst zurückgestellt
