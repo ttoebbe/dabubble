@@ -51,7 +51,9 @@ const PRIVACY_SECTIONS: readonly PrivacySection[] = [
     text:
       'Für ein Konto speichern wir deinen Namen, deine E-Mail-Adresse, deinen gewählten Avatar, ' +
       'deinen Online-Status (aktiv oder abwesend) und den Zeitpunkt deiner letzten Aktivität. ' +
-      'Dein Passwort verwaltet Firebase Authentication, wir sehen es nicht. Name, Avatar, ' +
+      'Dein Passwort verwaltet Firebase Authentication, wir sehen es nicht. An deine ' +
+      'E-Mail-Adresse verschickt Firebase nach der Registrierung eine Bestätigung und auf ' +
+      'deinen Wunsch den Link zum Zurücksetzen des Passworts. Name, Avatar, ' +
       'E-Mail-Adresse und Online-Status sind für alle angemeldeten Personen in DABubble ' +
       'sichtbar. Rechtsgrundlage ist Art. 6 Abs. 1 lit. b DSGVO (Bereitstellung der App).',
   },
@@ -87,10 +89,14 @@ const PRIVACY_SECTIONS: readonly PrivacySection[] = [
   {
     title: 'Firebase',
     text:
-      'Konten und Inhalte liegen bei Google Firebase (Firebase Authentication und Cloud ' +
-      'Firestore) der Google Ireland Limited, die sie in unserem Auftrag verarbeitet. Die ' +
-      'Datenbank steht in Frankfurt am Main. Eine Übermittlung in die USA ist nicht ' +
-      'ausgeschlossen; Google ist dafür nach dem EU-US Data Privacy Framework zertifiziert.',
+      'Konten und Inhalte liegen bei Google Firebase der Google Ireland Limited, die sie in ' +
+      'unserem Auftrag verarbeitet. Profile, Channels und Nachrichten speichert Cloud Firestore ' +
+      'in Frankfurt am Main. Die Anmeldung (Firebase Authentication) läuft nur in ' +
+      'Rechenzentren in den USA: Dort liegen deine E-Mail-Adresse und deine Anmeldedaten, und ' +
+      'Google bewahrt IP-Adressen einige Wochen auf, um Missbrauch zu verhindern. Für die ' +
+      'Übermittlung in die USA ist Google nach dem EU-US Data Privacy Framework zertifiziert. ' +
+      'Während du DABubble nutzt, verbindet sich dein Browser direkt mit Servern von Google; ' +
+      'dabei erhält Google deine IP-Adresse.',
   },
   {
     title: 'Speicherung im Browser',
