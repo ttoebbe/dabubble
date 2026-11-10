@@ -2,7 +2,7 @@
 
 Offene Aufgaben außerhalb der Arbeitspakete. Erledigtes abhaken, nicht löschen.
 
-## Offen bis zur Abgabe (Stand 24.10.2026)
+## Offen bis zur Abgabe (Stand 10.11.2026)
 
 Alles, was noch zu tun ist, an einer Stelle. Live ist `c17eb55` (24.10.2026), der Layout-Check ist grün.
 
@@ -32,6 +32,33 @@ Alles, was noch zu tun ist, an einer Stelle. Live ist `c17eb55` (24.10.2026), de
 
 - [x] Thread im Chat mit sich selbst: Der Kopf zeigt „Thomas“, der Chat-Kopf „Thomas (Du)“ (`thread-view.ts`, `personName`): beide nutzen jetzt `chatPersonName`, e46e144 – B
 - [x] Mobile Suche: Nach „Suche schließen“ steht der Tastaturfokus auf der Seite statt auf „Gehe zu...“ (`workspace-search.ts`, `close`): Fokus geht zurück aufs Feld, 57a41e9 – Suche
+
+### README und Doku aufräumen (Durchsicht 10.11.2026)
+
+- [ ] README als Sachstand der App umschreiben, nicht als Projektgeschichte (gemeinsame Datei, Yannic vorher informieren) – A. Raus oder neutral formulieren:
+  - Hinweis „Stand 24.10.2026“ mit Bereich A/B und Live-Commit
+  - Funktionstabellen: Aufteilung nach Bereich A/B, Spalten „Checkliste“ (Konto US1 …) und „Stand“ (überall „fertig“), Verweis auf `docs/DA_Checkliste/` (Link auf GitHub tot), „Impressum: Daten von Yannic fehlen noch“ (veraltet); stattdessen eine Funktionsliste nach Themen
+  - Architektur- und Routen-Diagramm: Gruppen „Bereich A – Thomas“ und „Bereich B – Yannic“, Kennzeichen „(A)“ und „(B)“; stattdessen nach Funktion gruppieren
+  - Herleitungen wie „Umgesetzt nach ttoebbe/dabubble#1“ und „(ttoebbe/dabubble#6)“
+  - Abschnitt „Schnittstellen zwischen den Bereichen“ streichen oder als „Zentrale Services“ ohne Bereichsbezug
+  - Ordnerstruktur: Kennzeichen „A:“ und „B:“, `docs/` mit Checkliste und Arbeitsteilung
+  - „Firebase-Konfiguration bekommt man von Thomas“ ersetzen durch: Web-Konfiguration des eigenen Firebase-Projekts eintragen
+  - Qualität: „laut Checkliste“, „(DA-Checkliste, optional)“, axe „Stand 22.10.2026, Prüfung der Chat-Ansichten steht noch aus“ (veraltet, seit 10.11.2026 überall ohne Verstöße)
+  - CI und Deploy: Teamregeln („behebt, wer gepusht hat“, „nach Absprache“) gehören in `CLAUDE.md`, nicht in die README
+  - „Team und Zusammenarbeit“ auf das Team mit Namen und GitHub-Konto kürzen, Arbeitsregeln raus
+  - Dokumentationstabelle: nur, was Leser brauchen (Figma-Spec, `firestore.rules`); `arbeitsteilung.md`, `einstieg.md` („für Yannic“), `todo.md`, `abnahme.md` und `CLAUDE.md` nicht mehr verlinken
+- [ ] Verweise auf die entfernten Ordner `docs/DA_Checkliste/` und `.claude/skills/` anpassen: `CLAUDE.md` (Quellen, „Skills im Repo“), `docs/einstieg.md`, `docs/arbeitsteilung.md` (gemeinsame Dateien) – A
+
+### Impressum und Datenschutz (Prüfung 10.11.2026, keine Rechtsberatung)
+
+- [ ] Verantwortlichen festlegen – Entscheidung A, B. Heute widerspricht sich das: Das Impressum nennt beide Namen über Thomas’ Anschrift (liest sich, als wohnten beide dort), hier steht „Thomas ist Betreiber“, und die Datenschutzerklärung nennt „die im Impressum genannten Personen“ als Verantwortliche – das wären gemeinsam Verantwortliche nach Art. 26 DSGVO, die dafür eine Vereinbarung brauchen. Entweder nur Thomas als Anbieter und Verantwortlicher (Yannic als Teammitglied ohne Anschrift), oder Yannic mit eigener Anschrift und eine kurze Vereinbarung nach Art. 26
+- [ ] Datenschutzerklärung präzisieren (`features/legal/privacy-policy/privacy-policy.ts`) – A:
+  - Firebase Authentication läuft laut Google nur in Rechenzentren in den USA und hebt IP-Adressen einige Wochen auf (<https://firebase.google.com/support/privacy>); heute steht dort nur „Eine Übermittlung in die USA ist nicht ausgeschlossen“
+  - Fehlt: Firebase verschickt an die E-Mail-Adresse die Bestätigungs- und die Passwort-Mail
+  - Fehlt: Für Anmeldung und Daten spricht der Browser direkt mit Servern von Google, dabei geht die IP-Adresse an Google
+  - JSDoc nennt den Text noch „Draft … the team checks it before submission“ (gelesen am 25.10.2026)
+- [ ] Auftragsverarbeitung mit Google: Die Erklärung sagt, Google verarbeite „in unserem Auftrag“. Google nennt sich in der Firebase-Doku Auftragsverarbeiter; ob dafür in der Firebase-Konsole Bedingungen zu bestätigen sind, ließ sich in der Doku nicht belegen. In den Projekteinstellungen nachsehen – Thomas
+- [ ] Optional, Entscheidung A, B: Impressum und Datenschutz sind wie in Figma nur auf den Konto-Seiten verlinkt; im Workspace erreicht man sie nur über die Adresse `/#/impressum`. Ein Link im Profilmenü stünde nicht in Figma
 
 ### Vor der Abgabe
 
