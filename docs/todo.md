@@ -35,7 +35,7 @@ Alles, was noch zu tun ist, an einer Stelle. Live ist `c17eb55` (24.10.2026), de
 
 ### README und Doku aufräumen (Durchsicht 10.11.2026)
 
-- [ ] README als Sachstand der App umschreiben, nicht als Projektgeschichte (gemeinsame Datei, Yannic vorher informieren) – A. Raus oder neutral formulieren:
+- [x] README als Sachstand der App umschreiben, nicht als Projektgeschichte (gemeinsame Datei, Thomas informiert Yannic; 10.11.2026, 84f4dd6) – A. Raus oder neutral formuliert:
   - Hinweis „Stand 24.10.2026“ mit Bereich A/B und Live-Commit
   - Funktionstabellen: Aufteilung nach Bereich A/B, Spalten „Checkliste“ (Konto US1 …) und „Stand“ (überall „fertig“), Verweis auf `docs/DA_Checkliste/` (Link auf GitHub tot), „Impressum: Daten von Yannic fehlen noch“ (veraltet); stattdessen eine Funktionsliste nach Themen
   - Architektur- und Routen-Diagramm: Gruppen „Bereich A – Thomas“ und „Bereich B – Yannic“, Kennzeichen „(A)“ und „(B)“; stattdessen nach Funktion gruppieren
@@ -47,7 +47,7 @@ Alles, was noch zu tun ist, an einer Stelle. Live ist `c17eb55` (24.10.2026), de
   - CI und Deploy: Teamregeln („behebt, wer gepusht hat“, „nach Absprache“) gehören in `CLAUDE.md`, nicht in die README
   - „Team und Zusammenarbeit“ auf das Team mit Namen und GitHub-Konto kürzen, Arbeitsregeln raus
   - Dokumentationstabelle: nur, was Leser brauchen (Figma-Spec, `firestore.rules`); `arbeitsteilung.md`, `einstieg.md` („für Yannic“), `todo.md`, `abnahme.md` und `CLAUDE.md` nicht mehr verlinken
-- [ ] Verweise auf die entfernten Ordner `docs/DA_Checkliste/` und `.claude/skills/` anpassen: `CLAUDE.md` (Quellen, „Skills im Repo“), `docs/einstieg.md`, `docs/arbeitsteilung.md` (gemeinsame Dateien) – A
+- [x] Verweise auf die entfernten Ordner `docs/DA_Checkliste/` und `.claude/skills/` anpassen: `CLAUDE.md` (Quellen, „Skills im Repo“), `docs/einstieg.md`, `docs/arbeitsteilung.md`, `docs/abnahme.md`; jetzt „nur lokal“ (7ded1f4, 09d9042, 63010d9) – A
 
 ### Impressum und Datenschutz (Prüfung 10.11.2026, keine Rechtsberatung)
 
