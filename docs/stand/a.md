@@ -24,7 +24,7 @@ Aktualisiert: 11.11.2026
 
 ## Als Nächstes
 
-- Auftragsverarbeitung mit Google in der Firebase-Konsole nachsehen.
+- Auftragsverarbeitung mit Google: zurückgestellt, für die Bewertung nicht relevant (11.11.2026).
 - Forken und Abgabe bei der DA mit Repo- und Live-Link.
 
 ## Brauche von B
