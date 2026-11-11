@@ -55,7 +55,6 @@ Alles, was noch zu tun ist, an einer Stelle. Live ist `c4a23bf` (11.11.2026, mit
 - [x] Anschrift von Yannic im Impressum eingetragen (`features/legal/imprint/imprint.html`, 11.11.2026) – B
 - [x] Vereinbarung `docs/vereinbarung-gemeinsame-verantwortung.md` lesen und unten mit Datum bestätigen (Yannic und Thomas bestätigt 11.11.2026) – A, B
 - [x] Datenschutzerklärung präzisiert (`features/legal/privacy-policy/privacy-policy.ts`): Firebase Authentication läuft nur in den USA und hebt IP-Adressen einige Wochen auf (<https://firebase.google.com/support/privacy>), Firestore in Frankfurt; Bestätigungs- und Passwort-Mail; IP-Adresse an Google während der Nutzung; JSDoc nicht mehr „Draft“ – A
-- [ ] Auftragsverarbeitung mit Google: Die Erklärung sagt, Google verarbeite „in unserem Auftrag“. Google nennt sich in der Firebase-Doku Auftragsverarbeiter; ob dafür in der Firebase-Konsole Bedingungen zu bestätigen sind, ließ sich in der Doku nicht belegen. In den Projekteinstellungen nachsehen – Thomas
 - [ ] Optional, Entscheidung A, B: Impressum und Datenschutz sind wie in Figma nur auf den Konto-Seiten verlinkt; im Workspace erreicht man sie nur über die Adresse `/#/impressum`. Ein Link im Profilmenü stünde nicht in Figma. Yannic 11.11.2026: kein Link, Figma-treu
 
 ### Vor der Abgabe
@@ -71,6 +70,7 @@ Alles, was noch zu tun ist, an einer Stelle. Live ist `c4a23bf` (11.11.2026, mit
 
 ### Blockiert oder bewusst zurückgestellt
 
+- [ ] Auftragsverarbeitung mit Google: Die Erklärung sagt, Google verarbeite „in unserem Auftrag“. Google nennt sich in der Firebase-Doku Auftragsverarbeiter; ob dafür in der Firebase-Konsole Bedingungen zu bestätigen sind, ließ sich in der Doku nicht belegen. In den Projekteinstellungen nachsehen – Thomas Zurückgestellt (Entscheidung Thomas 11.11.2026): für die Bewertung des Lernprojekts nicht relevant; erst wichtig, falls DABubble nach der Abgabe mit echten Nutzern weiterläuft
 - [ ] Reset-Mail: Aktions-URL auf `/passwort-zuruecksetzen` und Vorlage nach Figma `1898:19353` (Absender „DABubble“, Betreff „Dein Passwort zurücksetzen“, Text aus dem Mock-up; Firebase-Links gelten 1 Stunde, nicht 24). Firebase sperrt Vorlagen-Änderungen für dieses Projekt („derzeit nicht verfügbar“, 22.10.2026); bis dahin kommt die deutsche Standardmail und die Firebase-Seite setzt das Passwort. Später erneut versuchen oder Firebase-Support – A
 - [ ] „reuter“ in Absender und Link der Reset-Mail (`noreply@reuter-8ac51.firebaseapp.com`, `reuter-8ac51.firebaseapp.com/__/auth/action`) und im Google-Anmeldefenster: Die Projekt-ID ist fest. Weg nur über ein neues Firebase-Projekt mit neutraler ID (Projektlimit: gelöschte Projekte zählen 30 Tage mit) oder über eine eigene Domain mit DNS-Zugriff (Absender-Domain, Aktions-URL; dafür müssen Vorlagen-Änderungen wieder gehen). Stand 22.10.2026: bleibt vorerst; Thomas hat ein weiteres Projekt gelöscht, der Platz ist frühestens ab ca. 21.11.2026 frei (vorzeitig nicht möglich) – A
 
