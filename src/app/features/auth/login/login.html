@@ -30,7 +30,12 @@
     </div>
     <a class="login__forgot" routerLink="/passwort-vergessen">Passwort vergessen?</a>
     <div class="login__divider"><span class="login__divider-text">ODER</span></div>
-    <button class="login__google" type="button" [disabled]="busy()" (click)="logInWithGoogle()">
+    <button
+      class="login__google"
+      type="button"
+      [disabled]="busy() || loginForm().submitting()"
+      (click)="logInWithGoogle()"
+    >
       <img ngSrc="img/logos/google-g.svg" alt="" width="38" height="38" />
       Anmelden mit Google
     </button>
@@ -38,7 +43,11 @@
       <app-button type="submit" [disabled]="loginForm().submitting() || busy()">
         Anmelden
       </app-button>
-      <app-button variant="secondary" [disabled]="busy()" (click)="logInAsGuest()">
+      <app-button
+        variant="secondary"
+        [disabled]="busy() || loginForm().submitting()"
+        (click)="logInAsGuest()"
+      >
         Gäste-Login
       </app-button>
     </div>
