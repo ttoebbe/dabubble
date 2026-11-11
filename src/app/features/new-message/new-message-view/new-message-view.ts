@@ -20,6 +20,7 @@ import { MentionOption, filterOptions, optionId } from '../../chat/mention-trigg
 import { MessageComposer } from '../../chat/message-composer/message-composer';
 import { channelLink, directMessageLink } from '../../workspace/chat-links';
 import { watchMobile } from '../../workspace/mobile-viewport';
+import { isListed } from '../../workspace/workspace-menu/menu-entries';
 import { Recipient, matchPeople, readAddress } from '../recipients';
 
 /** Placeholder of the address field (Figma `723:10986`; mobile `754:12776` without e-mail). */
@@ -54,7 +55,7 @@ export class NewMessageView {
   readonly mobile = watchMobile();
   readonly placeholder = computed(() => (this.mobile() ? ADDRESS_HINT_MOBILE : ADDRESS_HINT));
   private readonly people = computed(() =>
-    this.users.users().filter((user) => !user.isGuest || user.uid === this.auth.uid()),
+    this.users.users().filter((user) => isListed(user, this.auth.uid())),
   );
   readonly menu = computed(() => {
     const query = readAddress(this.address());

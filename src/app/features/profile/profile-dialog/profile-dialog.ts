@@ -5,11 +5,6 @@ import { Dialog } from '../../../shared/components/dialog/dialog';
 import { ProfileDetails } from '../profile-details';
 import { ProfileChanges, ProfileEditForm } from '../profile-edit-form/profile-edit-form';
 
-/** Default for profiles that cannot be edited. */
-async function storeNothing(): Promise<void> {
-  return undefined;
-}
-
 /**
  * Profile view (Figma `Profile view main` 163:188 for the own profile,
  * `65. Profile view other users` 463:7263 for others). Other people get the
@@ -28,7 +23,7 @@ export class ProfileDialog {
   readonly isOwn = input(false);
   readonly closed = output<void>();
   readonly messageRequested = output<void>();
-  readonly store = input<(changes: ProfileChanges) => Promise<void>>(storeNothing);
+  readonly store = input.required<(changes: ProfileChanges) => Promise<void>>();
   readonly editing = signal(false);
   readonly heading = computed(() => (this.editing() ? 'Dein Profil bearbeiten' : 'Profil'));
   readonly statusLabel = computed(() =>

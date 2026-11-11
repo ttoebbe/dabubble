@@ -5,7 +5,7 @@ import { Firestore, getFirestore } from 'firebase/firestore';
 import { environment } from '../../../environments/environment';
 
 /** The Firebase app of DABubble, created on first use from the config in `environment.ts`. */
-export const FIREBASE_APP = new InjectionToken<FirebaseApp>('FIREBASE_APP', {
+const FIREBASE_APP = new InjectionToken<FirebaseApp>('FIREBASE_APP', {
   providedIn: 'root',
   factory: () => initializeApp(environment.firebase),
 });

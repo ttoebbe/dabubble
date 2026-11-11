@@ -9,7 +9,7 @@ const STALE_GUEST_MS = 24 * 60 * 60 * 1000;
  * Whether a profile belongs to a guest who left without logging out: no sign of life
  * (`lastActiveAt`) for a day, or none at all on profiles from before 24.10.2026.
  */
-export function isStaleGuest(user: AppUser, now: number): boolean {
+function isStaleGuest(user: AppUser, now: number): boolean {
   return user.isGuest && (user.lastActiveAt ?? 0) < now - STALE_GUEST_MS;
 }
 

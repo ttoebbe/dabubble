@@ -22,7 +22,7 @@ export interface MenuContact {
 }
 
 /** Menu entry of a stored person; the signed-in person is marked as "(Du)". */
-export function toMenuContact(user: AppUser, selfUid: string | null): MenuContact {
+function toMenuContact(user: AppUser, selfUid: string | null): MenuContact {
   return {
     id: user.uid,
     name: user.name,
@@ -32,6 +32,11 @@ export function toMenuContact(user: AppUser, selfUid: string | null): MenuContac
   };
 }
 
+/** Whether a person is listed: other guests stay hidden, a guest still sees themselves. */
+export function isListed(user: AppUser, selfUid: string | null): boolean {
+  return !user.isGuest || user.uid === selfUid;
+}
+
 /**
  * People for menus, pickers and member lists: the signed-in person first, then everybody else
  * by name. Other guests stay hidden, so guests who only closed the tab do not pile up
@@ -39,7 +44,7 @@ export function toMenuContact(user: AppUser, selfUid: string | null): MenuContac
  */
 export function toMenuContacts(users: readonly AppUser[], selfUid: string | null): MenuContact[] {
   return users
-    .filter((user) => !user.isGuest || user.uid === selfUid)
+    .filter((user) => isListed(user, selfUid))
     .map((user) => toMenuContact(user, selfUid))
     .sort(
       (first, second) =>

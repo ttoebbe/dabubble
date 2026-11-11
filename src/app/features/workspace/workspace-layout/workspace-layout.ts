@@ -13,6 +13,7 @@ import {
 } from '../../channels/create-channel-dialog/create-channel-dialog';
 import { PersonProfile } from '../../profile/person-profile/person-profile';
 import { activeEntryOf, channelLink, directMessageLink, newMessageLink } from '../chat-links';
+import { closeThreadCommands } from '../../thread/thread-route';
 import { watchMobile } from '../mobile-viewport';
 import { MenuToggle } from '../menu-toggle/menu-toggle';
 import { WorkspaceHeader } from '../workspace-header/workspace-header';
@@ -60,9 +61,7 @@ export class WorkspaceLayout {
   readonly threadOpen = signal(false);
   private readonly mobile = watchMobile();
   readonly menuRole = computed(() => (this.mobile() && !this.chatOpen() ? 'main' : 'navigation'));
-  readonly channels = computed(() =>
-    this.channelService.channels().map(({ id, name }) => ({ id, name })),
-  );
+  readonly channels = this.channelService.channels;
   readonly channelNames = computed(() => this.channelService.allChannels().map((c) => c.name));
   readonly contacts = computed(() => toMenuContacts(this.users.users(), this.auth.uid()));
   readonly people = computed(() => this.contacts().filter((contact) => !contact.isSelf));
@@ -122,7 +121,7 @@ export class WorkspaceLayout {
   /** One step back in the mobile view order: thread → chat → menu. */
   goBack(): void {
     if (this.threadOpen()) {
-      this.router.navigate([{ outlets: { thread: null } }], { relativeTo: this.route });
+      this.router.navigate(closeThreadCommands(), { relativeTo: this.route });
     } else {
       this.router.navigate(['/workspace']);
     }

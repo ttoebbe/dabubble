@@ -16,7 +16,7 @@ import { Channel } from '../models/channel';
  * Document id of the channel every new account joins. The Firestore rules let a person add
  * only themselves, and only to this channel (docs/arbeitsteilung.md).
  */
-export const START_CHANNEL_ID = 'entwicklerteam';
+const START_CHANNEL_ID = 'entwicklerteam';
 
 /**
  * Name and description of the start channel: Figma shows "Entwicklerteam" (`364:2317`); its

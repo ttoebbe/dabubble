@@ -29,7 +29,6 @@ const DOT_SIZE_LARGE = 17;
 })
 export class Avatar {
   readonly src = input.required<string>();
-  readonly alt = input('');
   readonly size = input(50);
   readonly status = input<AvatarStatus | null>(null);
   readonly priority = input(false);

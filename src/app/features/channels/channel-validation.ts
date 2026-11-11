@@ -1,7 +1,7 @@
 import { Schema, ValidationError, required, schema, validate } from '@angular/forms/signals';
 
 /** Error texts for channel names; Figma defines none (spec 8.9). */
-export const CHANNEL_NAME_ERRORS = {
+const CHANNEL_NAME_ERRORS = {
   missing: '*Bitte gib einen Channel-Namen ein.',
   taken: '*Diesen Channel-Namen gibt es schon.',
 } as const;

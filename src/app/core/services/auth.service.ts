@@ -28,13 +28,6 @@ export const AVATAR_PLACEHOLDER = 'img/avatars/avatar-placeholder.svg';
 /** Name of a guest account; Figma shows none. */
 const GUEST_NAME = 'Gast';
 
-/**
- * Where Firebase's own pages lead after the e-mail link was used (new password, confirmed
- * address): the start page, which opens the login after the intro. It is the one address
- * that needs no route, so it stays valid however the router builds its URLs.
- */
-const AFTER_EMAIL_LINK_PATH = '/';
-
 /** What the sign-up collects before the account is created. */
 export interface SignUpData {
   readonly name: string;
@@ -176,9 +169,14 @@ export class AuthService {
     }
   }
 
-  /** Absolute address of the start page, for the "continue" button on Firebase's pages. */
+  /**
+   * Absolute address of the start page, for the "continue" button on Firebase's pages after the
+   * e-mail link was used (new password, confirmed address). The start page opens the login after
+   * the intro; it is the one address that needs no route, so it stays valid however the router
+   * builds its URLs.
+   */
   private continueUrl(): string {
-    return `${window.location.origin}${AFTER_EMAIL_LINK_PATH}`;
+    return `${window.location.origin}/`;
   }
 
   /**

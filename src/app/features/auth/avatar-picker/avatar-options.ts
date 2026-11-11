@@ -7,6 +7,3 @@ export const AVATAR_OPTIONS: readonly string[] = [
   'img/avatars/sofia-mueller.svg',
   'img/avatars/noah-braun.svg',
 ];
-
-/** Picture shown until an avatar is chosen (Figma `81. Profile`). */
-export const AVATAR_PLACEHOLDER = 'img/avatars/avatar-placeholder.svg';

@@ -1,9 +1,9 @@
 import { NgOptimizedImage } from '@angular/common';
 import { Component, computed, input, output, signal } from '@angular/core';
 import { FormField, FormRoot, form, required } from '@angular/forms/signals';
+import { AVATAR_PLACEHOLDER } from '../../../core/services/auth.service';
 import { Button } from '../../../shared/components/button/button';
 import { AuthCard } from '../auth-card/auth-card';
-import { AVATAR_PLACEHOLDER } from '../avatar-picker/avatar-options';
 import { AvatarPicker } from '../avatar-picker/avatar-picker';
 
 /** Value of the avatar form. */
