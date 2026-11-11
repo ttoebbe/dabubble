@@ -4,7 +4,7 @@ Offene Aufgaben außerhalb der Arbeitspakete. Erledigtes abhaken, nicht löschen
 
 ## Offen bis zur Abgabe (Stand 10.11.2026)
 
-Alles, was noch zu tun ist, an einer Stelle. Live ist `2d69587` (10.11.2026, noch mit Yannics Musteranschrift im Impressum). Der Layout-Check ist grün auf `7c26079` (10.11.2026, 108 Kombinationen; Fehlalarm am mobil nur visuell ausgeblendeten Menükopf im Checker behoben, `2d94d17` in `dabubble-layout-check`).
+Alles, was noch zu tun ist, an einer Stelle. Live ist `c4a23bf` (11.11.2026, mit beiden Anschriften im Impressum und Yannics Aufräum-Durchgang). Der Layout-Check ist grün auf `7c26079` (10.11.2026, 108 Kombinationen; Fehlalarm am mobil nur visuell ausgeblendeten Menükopf im Checker behoben, `2d94d17` in `dabubble-layout-check`).
 
 ### Thomas: Konsole und Daten
 
@@ -66,7 +66,7 @@ Alles, was noch zu tun ist, an einer Stelle. Live ist `2d69587` (10.11.2026, noc
 - [x] `.claude/skills/` aus dem Repo entfernen und in `.gitignore` eintragen (25.10.2026, lokal behalten) – A
 - [x] Deploy `2d69587` (10.11.2026, auf Ansage Thomas, noch mit Yannics Musteranschrift). Live in frischem Browser ohne Anmeldung geprüft: Startseite, Impressum, Datenschutz, Login, Registrierung und Passwort vergessen bei 320 px ohne Scrollleiste, Konsole ohne Fehler und Warnungen, keine fehlgeschlagenen Anfragen. Den Workspace hat der Layout-Check mit Gäste-Login auf demselben App-Code geprüft – A
 - [x] Aufräum-Durchgang über den ganzen Code mit Thomas' Freigabe (11.11.2026): verhaltensgleich `498b067`, `c7da600` (tote Exporte, doppelte Konstanten, ungenutzte Inputs); Fixes `0ba28d4` (Gast/Google während Login gesperrt), `bcbf8f1` (gleichzeitig angelegte DM), `f9e5877` (Liste springt bei Reaktionen nicht mehr nach unten). Lint, Build, Format grün, lokal mit Gast geprüft – B
-- [ ] Letzter Deploy, sobald Yannics Anschrift im Impressum steht (seit `5e965bb`) und der Aufräum-Durchgang gepusht ist (`f9e5877`); danach Impressum und Konsole live erneut prüfen – A
+- [x] Letzter Deploy `c4a23bf` (11.11.2026, auf Ansage Thomas, nach Yannics Anschrift `5e965bb` und dem Aufräum-Durchgang bis `f9e5877`). Drei Läufe scheiterten vorher, weil der GitHub-Runner `security.ubuntu.com` nicht auflösen konnte; `deploy.yml` installiert `lftp` seitdem ersatzweise über Homebrew (`c4a23bf`). Live in frischem Browser ohne Anmeldung geprüft: Impressum mit beiden Anschriften, Startseite, Datenschutz, Login, Registrierung und Passwort vergessen bei 320 px ohne Scrollleiste, Konsole ohne Fehler und Warnungen, keine fehlgeschlagenen Anfragen. Angemeldete Ansichten live nicht geprüft – A
 - [ ] Beide Teammitglieder forken das Repo (DA-Checkliste) – A, B
 
 ### Blockiert oder bewusst zurückgestellt
