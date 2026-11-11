@@ -37,4 +37,4 @@ Solange DABubble online ist. Wird die App abgeschaltet, löscht Thomas die Daten
 ## Bestätigung
 
 - [ ] Thomas Többe-Hömke, Datum:
-- [ ] Yannic Jundt, Datum:
+- [x] Yannic Jundt, Datum: 11.11.2026
