@@ -59,13 +59,21 @@ export class DirectChatService {
     );
   }
 
-  /** Creates the chat if it is missing. The members are the two uids in the id. */
+  /**
+   * Creates the chat if it is missing. The members are the two uids in the id. If the other
+   * person created it in the meantime, the write is refused as an update (the rules allow only
+   * create); the chat exists then and that is all that is needed.
+   */
   async ensure(chatId: string): Promise<void> {
     const ref = doc(this.firestore, 'directChats', chatId);
     if ((await getDoc(ref)).exists()) {
       return;
     }
     const chat: Omit<DirectChat, 'id'> = { memberIds: chatId.split('_'), createdAt: Date.now() };
-    await setDoc(ref, chat);
+    await setDoc(ref, chat).catch(async (error) => {
+      if (!(await getDoc(ref)).exists()) {
+        throw error;
+      }
+    });
   }
 }
