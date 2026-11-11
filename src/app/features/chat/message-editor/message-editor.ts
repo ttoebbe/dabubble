@@ -15,7 +15,7 @@ import { AUTH_ERRORS } from '../../auth/auth-validation';
 import { EmojiPicker } from '../emoji-picker/emoji-picker';
 
 /** Longest message the Firestore rules accept (ttoebbe/dabubble#1). */
-const MAX_LENGTH = 4000;
+export const MAX_LENGTH = 4000;
 
 /** Gives every editor its own error id, so a chat and its thread can edit at the same time. */
 let nextEditorId = 0;

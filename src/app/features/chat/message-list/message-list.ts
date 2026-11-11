@@ -9,7 +9,6 @@ import {
   viewChild,
 } from '@angular/core';
 import { ChatMessage } from '../../../core/models/message';
-import { AuthService } from '../../../core/services/auth.service';
 import { UserService } from '../../../core/services/user.service';
 import { MessageItem } from '../message-item/message-item';
 import { buildRows } from '../message-rows';
@@ -31,7 +30,6 @@ import { buildRows } from '../message-rows';
   styleUrl: './message-list.scss',
 })
 export class MessageList {
-  private readonly auth = inject(AuthService);
   private readonly users = inject(UserService);
   private readonly scroller = viewChild<ElementRef<HTMLElement>>('scroller');
   readonly messages = input.required<readonly ChatMessage[]>();
@@ -40,7 +38,6 @@ export class MessageList {
   readonly react = input.required<(messageId: string, emojiId: string) => Promise<void>>();
   readonly edit = input<((messageId: string, text: string) => Promise<void>) | null>(null);
   readonly threadOpened = output<string>();
-  readonly selfUid = this.auth.uid;
   readonly rows = computed(() =>
     buildRows(this.messages(), Date.now()).filter(
       (row) => !this.thread() || row.kind === 'message',

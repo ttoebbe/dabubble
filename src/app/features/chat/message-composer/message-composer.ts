@@ -15,11 +15,9 @@ import { UserService } from '../../../core/services/user.service';
 import { AUTH_ERRORS } from '../../auth/auth-validation';
 import { toMenuContacts } from '../../workspace/workspace-menu/menu-entries';
 import { EmojiPicker } from '../emoji-picker/emoji-picker';
+import { MAX_LENGTH } from '../message-editor/message-editor';
 import { MentionMenu } from '../mention-menu/mention-menu';
 import { MentionOption, filterOptions, findTrigger, optionId } from '../mention-trigger';
-
-/** Longest message the Firestore rules accept (ttoebbe/dabubble#1). */
-const MAX_LENGTH = 4000;
 
 /** Gives every message box its own list id, so two boxes on one page do not clash. */
 let nextListId = 0;

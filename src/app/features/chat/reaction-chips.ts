@@ -1,10 +1,8 @@
 import { ChatEmoji, CHAT_EMOJIS } from './chat-emojis';
+import { UNKNOWN_PERSON_NAME } from './direct-chat/direct-chat';
 
 /** Most different reactions per message; `firestore.rules` refuses a 21st. */
 export const MAX_REACTIONS = 20;
-
-/** Name shown for a reaction of a person without profile, e.g. a guest who has logged out. */
-const UNKNOWN_NAME = 'Gast';
 
 /** Name shown for the signed-in person. */
 const SELF_NAME = 'Du';
@@ -35,7 +33,9 @@ function reactorNames(
   selfUid: string | null,
   nameOf: (uid: string) => string | undefined,
 ): string[] {
-  const names = uids.filter((uid) => uid !== selfUid).map((uid) => nameOf(uid) ?? UNKNOWN_NAME);
+  const names = uids
+    .filter((uid) => uid !== selfUid)
+    .map((uid) => nameOf(uid) ?? UNKNOWN_PERSON_NAME);
   return uids.includes(selfUid ?? '') ? [...names, SELF_NAME] : names;
 }
 

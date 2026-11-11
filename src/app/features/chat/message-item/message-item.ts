@@ -16,6 +16,7 @@ import { Avatar } from '../../../shared/components/avatar/avatar';
 import { toAvatarStatus } from '../../profile/profile-details';
 import { ProfileViewer } from '../../profile/profile-viewer';
 import { AUTH_ERRORS } from '../../auth/auth-validation';
+import { UNKNOWN_PERSON_NAME } from '../direct-chat/direct-chat';
 import { formatClock, formatReplies, formatTime } from '../chat-time';
 import { MessageEditor } from '../message-editor/message-editor';
 import { MessageText } from '../message-text/message-text';
@@ -23,9 +24,6 @@ import { MessageReactions } from '../message-reactions/message-reactions';
 import { ReactionBar } from '../reaction-bar/reaction-bar';
 import { MAX_REACTIONS, buildChips } from '../reaction-chips';
 import { RecentEmojis } from '../recent-emojis';
-
-/** Name shown for an author without profile, e.g. a guest who has logged out. */
-const UNKNOWN_AUTHOR_NAME = 'Gast';
 
 /**
  * One message of a chat (Figma `48. Messages main chat`): avatar, name, time and bubble. Own
@@ -52,9 +50,9 @@ export class MessageItem {
   private readonly injector = inject(Injector);
   private readonly selfUid = inject(AuthService).uid;
   readonly message = input.required<ChatMessage>();
-  readonly author = input<AppUser | null>(null);
   readonly people = input<ReadonlyMap<string, AppUser>>(new Map());
-  readonly own = input(false);
+  readonly author = computed(() => this.people().get(this.message().authorId) ?? null);
+  readonly own = computed(() => this.message().authorId === this.selfUid());
   readonly inThread = input(false);
   readonly react = input.required<(messageId: string, emojiId: string) => Promise<void>>();
   readonly edit = input<((messageId: string, text: string) => Promise<void>) | null>(null);
@@ -68,7 +66,7 @@ export class MessageItem {
   readonly chips = computed(() =>
     buildChips(this.message().reactions, this.selfUid(), (uid) => this.people().get(uid)?.name),
   );
-  readonly name = computed(() => this.author()?.name ?? UNKNOWN_AUTHOR_NAME);
+  readonly name = computed(() => this.author()?.name ?? UNKNOWN_PERSON_NAME);
   readonly avatarUrl = computed(() => this.author()?.avatarUrl || AVATAR_PLACEHOLDER);
   readonly status = computed(() => {
     const author = this.author();

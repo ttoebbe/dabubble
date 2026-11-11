@@ -1,5 +1,6 @@
 import { AppUser } from '../../core/models/app-user';
 import { Channel } from '../../core/models/channel';
+import { otherMember } from '../../core/services/direct-chat.service';
 import { PlacedMessage } from '../../core/services/message-search.service';
 import { formatDay, formatTime } from '../chat/chat-time';
 import { UNKNOWN_PERSON_NAME } from '../chat/direct-chat/direct-chat';
@@ -8,10 +9,10 @@ import { MenuContact } from '../workspace/workspace-menu/menu-entries';
 import { SearchQuery, Snippet, contains, toSnippet } from './search-query';
 
 /** Most messages the search lists, newest first. */
-export const MAX_MESSAGE_HITS = 20;
+const MAX_MESSAGE_HITS = 20;
 
 /** A channel of the signed-in person whose name matches. */
-export interface ChannelHit {
+interface ChannelHit {
   readonly type: 'channel';
   readonly key: string;
   readonly id: string;
@@ -19,14 +20,14 @@ export interface ChannelHit {
 }
 
 /** A person whose name matches; a click shows the profile. */
-export interface PersonHit {
+interface PersonHit {
   readonly type: 'person';
   readonly key: string;
   readonly contact: MenuContact;
 }
 
 /** A message or thread reply that contains the text, with where, by whom and when it was written. */
-export interface MessageHit {
+interface MessageHit {
   readonly type: 'message';
   readonly key: string;
   /** "#Entwicklerteam" or the other person of a direct chat; replies add "· Thread". */
@@ -135,7 +136,7 @@ function placeOf({ kind, conversationId }: PlacedMessage, sources: SearchSources
     const channel = sources.channels.find(({ id }) => id === conversationId);
     return channel ? { label: `#${channel.name}`, chat: channel.id } : null;
   }
-  const other = conversationId.split('_').find((uid) => uid !== sources.selfUid);
+  const other = otherMember(conversationId, sources.selfUid);
   const name = sources.users.get(other ?? sources.selfUid)?.name ?? UNKNOWN_PERSON_NAME;
   return { label: other ? name : `${name} (Du)`, chat: other ?? sources.selfUid };
 }

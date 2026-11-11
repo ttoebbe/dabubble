@@ -36,15 +36,6 @@ function sameIds(first: readonly string[], second: readonly string[]): boolean {
   return first.length === second.length && first.every((id, index) => id === second[index]);
 }
 
-/** A message of the chat itself, not a reply. */
-function placeMessage(
-  kind: ConversationKind,
-  conversationId: string,
-  message: Message,
-): PlacedMessage {
-  return { kind, conversationId, message, parentId: null };
-}
-
 /** All lists of several live sources in one list; an empty list without sources. */
 function combineLists<T>(sources: readonly Observable<T[]>[]): Observable<T[]> {
   return sources.length ? combineLatest(sources).pipe(map((lists) => lists.flat())) : of([]);
@@ -78,15 +69,10 @@ export class MessageSearchService {
         ...channels.map((id) => ({ kind: 'channel' as const, id })),
         ...chats.map((id) => ({ kind: 'dm' as const, id })),
       ]),
-      switchMap((conversations) => this.watchConversations(conversations)),
+      switchMap((conversations) =>
+        combineLists(conversations.map((conversation) => this.watchOne(conversation))),
+      ),
     );
-  }
-
-  /** Messages and replies of several conversations in one list. */
-  private watchConversations(
-    conversations: readonly OwnConversation[],
-  ): Observable<PlacedMessage[]> {
-    return combineLists(conversations.map((conversation) => this.watchOne(conversation)));
   }
 
   /** Messages and replies of one conversation; none when it cannot be read. */
@@ -95,7 +81,7 @@ export class MessageSearchService {
       .watch(kind, id)
       .pipe(shareReplay({ bufferSize: 1, refCount: true }));
     const placed = messages.pipe(
-      map((list) => list.map((message) => placeMessage(kind, id, message))),
+      map((list) => list.map((message) => ({ kind, conversationId: id, message, parentId: null }))),
     );
     return combineLatest([placed, this.watchThreads(kind, id, messages)]).pipe(
       map(([own, replies]) => [...own, ...replies]),

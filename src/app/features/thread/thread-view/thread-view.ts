@@ -5,6 +5,7 @@ import { catchError, filter, of, switchMap } from 'rxjs';
 import { Message } from '../../../core/models/message';
 import { AuthService } from '../../../core/services/auth.service';
 import { ChannelService } from '../../../core/services/channel.service';
+import { otherMember } from '../../../core/services/direct-chat.service';
 import { ConversationKind, MessageService } from '../../../core/services/message.service';
 import { UserService } from '../../../core/services/user.service';
 import { AUTH_ERRORS } from '../../auth/auth-validation';
@@ -65,7 +66,6 @@ export class ThreadView {
     { initialValue: LOADING_FEED },
   );
   readonly people = computed(() => new Map(this.users.users().map((user) => [user.uid, user])));
-  readonly own = computed(() => this.origin()?.authorId === this.auth.uid());
   readonly repliesLabel = computed(() => formatReplies(this.feed().messages.length));
   readonly errorText = AUTH_ERRORS.generic;
   readonly focusKey = computed(() => `${this.kind()}/${this.conversationId()}/${this.messageId()}`);
@@ -136,9 +136,7 @@ export class ThreadView {
   /** Name of the other person of the direct chat as in its header ("(Du)" in the chat with oneself). */
   private personName(): string {
     const self = this.auth.uid();
-    const other = this.conversationId()
-      .split('_')
-      .find((entry) => entry !== self);
+    const other = otherMember(this.conversationId(), self);
     return chatPersonName(this.people().get(other ?? self ?? '')?.name, other === undefined);
   }
 }

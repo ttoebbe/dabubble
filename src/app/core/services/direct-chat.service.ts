@@ -12,6 +12,11 @@ export function directChatId(first: string, second: string): string {
   return [first, second].sort().join('_');
 }
 
+/** The other uid of a direct chat id; undefined in the chat with oneself (`a_a`). */
+export function otherMember(chatId: string, self: string | null): string | undefined {
+  return chatId.split('_').find((uid) => uid !== self);
+}
+
 /**
  * Direct chats in `directChats/{chatId}` (area B). A chat is created with its first message,
  * not when somebody opens it.
