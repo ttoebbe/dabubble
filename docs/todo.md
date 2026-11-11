@@ -65,7 +65,8 @@ Alles, was noch zu tun ist, an einer Stelle. Live ist `2d69587` (10.11.2026, noc
 - [x] `docs/DA_Checkliste/` aus dem Repo entfernen und in `.gitignore` eintragen (Material der DA) (25.10.2026, lokal behalten) – A
 - [x] `.claude/skills/` aus dem Repo entfernen und in `.gitignore` eintragen (25.10.2026, lokal behalten) – A
 - [x] Deploy `2d69587` (10.11.2026, auf Ansage Thomas, noch mit Yannics Musteranschrift). Live in frischem Browser ohne Anmeldung geprüft: Startseite, Impressum, Datenschutz, Login, Registrierung und Passwort vergessen bei 320 px ohne Scrollleiste, Konsole ohne Fehler und Warnungen, keine fehlgeschlagenen Anfragen. Den Workspace hat der Layout-Check mit Gäste-Login auf demselben App-Code geprüft – A
-- [ ] Letzter Deploy, sobald Yannics Anschrift im Impressum steht; danach Impressum und Konsole live erneut prüfen – A
+- [x] Aufräum-Durchgang über den ganzen Code mit Thomas' Freigabe (11.11.2026): verhaltensgleich `498b067`, `c7da600` (tote Exporte, doppelte Konstanten, ungenutzte Inputs); Fixes `0ba28d4` (Gast/Google während Login gesperrt), `bcbf8f1` (gleichzeitig angelegte DM), `f9e5877` (Liste springt bei Reaktionen nicht mehr nach unten). Lint, Build, Format grün, lokal mit Gast geprüft – B
+- [ ] Letzter Deploy, sobald Yannics Anschrift im Impressum steht (seit `5e965bb`) und der Aufräum-Durchgang gepusht ist (`f9e5877`); danach Impressum und Konsole live erneut prüfen – A
 - [ ] Beide Teammitglieder forken das Repo (DA-Checkliste) – A, B
 
 ### Blockiert oder bewusst zurückgestellt

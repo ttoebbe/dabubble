@@ -1,8 +1,10 @@
 # Stand Bereich B (Yannic)
 
-Aktualisiert: 24.10.2026 (abends)
+Aktualisiert: 11.11.2026
 
 ## Erledigt
+
+- 11.11.: Anschrift im Impressum, Vereinbarung und Figma-Zuordnung bestätigt; Aufräum-Durchgang über den ganzen Code plus drei Fixes (Details `docs/todo.md`, „Vor der Abgabe“). Offen nur noch Thomas' Deploy und der Fork.
 
 - Alle User Storys von B sind umgesetzt (Channels US1 Teil, Schreiben US1–US6) und dazu die Figma-Punkte
   Kopf-Avatare, Bearbeiten und Datumstrenner. Details zu Modell, Regeln, Services und Ansichten: Git-Historie bis
