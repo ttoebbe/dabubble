@@ -53,7 +53,7 @@ Alles, was noch zu tun ist, an einer Stelle. Live ist `c4a23bf` (11.11.2026, mit
 
 - [x] Verantwortlichen festlegen: Das Impressum nannte beide Namen über Thomas’ Anschrift, die Datenschutzerklärung „die im Impressum genannten Personen“. Entscheidung Thomas 10.11.2026: beide mit eigener Anschrift, gemeinsam verantwortlich nach Art. 26 DSGVO. Impressum mit zwei Anschriften, Datenschutz-Abschnitte „Verantwortlich“ und „Gemeinsame Verantwortung“, Spec 8.3, Entwurf `docs/vereinbarung-gemeinsame-verantwortung.md` (c8eced9) – A
 - [x] Anschrift von Yannic im Impressum eingetragen (`features/legal/imprint/imprint.html`, 11.11.2026) – B
-- [ ] Vereinbarung `docs/vereinbarung-gemeinsame-verantwortung.md` lesen und unten mit Datum bestätigen (Yannic bestätigt 11.11.2026, Thomas offen) – A, B
+- [x] Vereinbarung `docs/vereinbarung-gemeinsame-verantwortung.md` lesen und unten mit Datum bestätigen (Yannic und Thomas bestätigt 11.11.2026) – A, B
 - [x] Datenschutzerklärung präzisiert (`features/legal/privacy-policy/privacy-policy.ts`): Firebase Authentication läuft nur in den USA und hebt IP-Adressen einige Wochen auf (<https://firebase.google.com/support/privacy>), Firestore in Frankfurt; Bestätigungs- und Passwort-Mail; IP-Adresse an Google während der Nutzung; JSDoc nicht mehr „Draft“ – A
 - [ ] Auftragsverarbeitung mit Google: Die Erklärung sagt, Google verarbeite „in unserem Auftrag“. Google nennt sich in der Firebase-Doku Auftragsverarbeiter; ob dafür in der Firebase-Konsole Bedingungen zu bestätigen sind, ließ sich in der Doku nicht belegen. In den Projekteinstellungen nachsehen – Thomas
 - [ ] Optional, Entscheidung A, B: Impressum und Datenschutz sind wie in Figma nur auf den Konto-Seiten verlinkt; im Workspace erreicht man sie nur über die Adresse `/#/impressum`. Ein Link im Profilmenü stünde nicht in Figma. Yannic 11.11.2026: kein Link, Figma-treu
@@ -61,7 +61,7 @@ Alles, was noch zu tun ist, an einer Stelle. Live ist `c4a23bf` (11.11.2026, mit
 ### Vor der Abgabe
 
 - [x] Skill `final-check` und der Qualitäts-Check aus `CLAUDE.md` ein letztes Mal (25.10.2026: lint, build, format grün; Browser-Checks 320–1920 px ohne Scrollleiste, Konsole lokal und live leer; Touch-Targets der Auth-Links in 086e592) – A, B
-- [ ] Zuordnung „Nur in Figma, nicht in der Checkliste“ in `docs/arbeitsteilung.md` bestätigen; alle Punkte sind umgesetzt (Yannic bestätigt 11.11.2026, Thomas offen) – A, B
+- [x] Zuordnung „Nur in Figma, nicht in der Checkliste“ in `docs/arbeitsteilung.md` bestätigen; alle Punkte sind umgesetzt (Yannic und Thomas bestätigt 11.11.2026) – A, B
 - [x] `docs/DA_Checkliste/` aus dem Repo entfernen und in `.gitignore` eintragen (Material der DA) (25.10.2026, lokal behalten) – A
 - [x] `.claude/skills/` aus dem Repo entfernen und in `.gitignore` eintragen (25.10.2026, lokal behalten) – A
 - [x] Deploy `2d69587` (10.11.2026, auf Ansage Thomas, noch mit Yannics Musteranschrift). Live in frischem Browser ohne Anmeldung geprüft: Startseite, Impressum, Datenschutz, Login, Registrierung und Passwort vergessen bei 320 px ohne Scrollleiste, Konsole ohne Fehler und Warnungen, keine fehlgeschlagenen Anfragen. Den Workspace hat der Layout-Check mit Gäste-Login auf demselben App-Code geprüft – A

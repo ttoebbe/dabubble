@@ -1,6 +1,6 @@
 # Vereinbarung über die gemeinsame Verantwortung (Art. 26 DSGVO)
 
-Entwurf vom 10.11.2026. Gilt, sobald beide unten bestätigt haben. Keine Rechtsberatung.
+Fassung vom 10.11.2026, von beiden bestätigt am 11.11.2026 (unten). Keine Rechtsberatung.
 
 ## Parteien
 
@@ -36,5 +36,5 @@ Solange DABubble online ist. Wird die App abgeschaltet, löscht Thomas die Daten
 
 ## Bestätigung
 
-- [ ] Thomas Többe-Hömke, Datum:
+- [x] Thomas Többe-Hömke, Datum: 11.11.2026
 - [x] Yannic Jundt, Datum: 11.11.2026
