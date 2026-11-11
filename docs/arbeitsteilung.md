@@ -48,7 +48,7 @@ Die Spec wird einmal aus Thomas' Figma-Kopie erzeugt. Danach arbeiten beide nur 
 
 ### Nur in Figma, nicht in der Checkliste
 
-Quelle: `docs/Figma/spec.md`, Abschnitt 6.3. Zuordnung als Vorschlag, im Team bestätigen.
+Quelle: `docs/Figma/spec.md`, Abschnitt 6.3. Zuordnung im Team bestätigt (Yannic und Thomas, 11.11.2026).
 
 | Inhalt                                                            | Bereich |
 | ----------------------------------------------------------------- | ------- |
