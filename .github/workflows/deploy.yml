@@ -128,10 +128,18 @@ jobs:
           done
           echo "Built $(find "$DIST_DIR" -type f | wc -l) files." >> "$GITHUB_STEP_SUMMARY"
 
+      # When the runner cannot reach the Ubuntu archive, lftp comes from the
+      # preinstalled Homebrew, which downloads from GitHub. That is enough for
+      # FTPS; SFTP would still need sshpass from apt.
       - name: Install lftp and sshpass
         run: |
-          sudo apt-get update -qq
-          sudo apt-get install -y -qq lftp sshpass
+          if sudo apt-get update -qq && sudo apt-get install -y -qq lftp sshpass; then
+            exit 0
+          fi
+          echo "::warning::apt-get failed, installing lftp with Homebrew instead (FTPS only)."
+          BREW=/home/linuxbrew/.linuxbrew/bin/brew
+          "$BREW" install lftp
+          echo "$("$BREW" --prefix)/bin" >> "$GITHUB_PATH"
 
       - name: Upload the build
         env:
