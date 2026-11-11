@@ -16,6 +16,7 @@ Aktualisiert: 11.11.2026
 - README als Überblick über die App neu geschrieben; Verweise auf `docs/DA_Checkliste/` und `.claude/skills/`
   sagen „nur lokal“.
 - Issues ttoebbe/dabubble#1, #4, #5 und #6 geschlossen.
+- Vereinbarung nach Art. 26 und „Nur in Figma“ von uns beiden bestätigt (11.11.2026).
 
 ## In Arbeit
 
@@ -23,8 +24,6 @@ Aktualisiert: 11.11.2026
 
 ## Als Nächstes
 
-- Vereinbarung `docs/vereinbarung-gemeinsame-verantwortung.md` und „Nur in Figma“ (`docs/arbeitsteilung.md`)
-  von Thomas bestätigen; du hast beides am 11.11. bestätigt.
 - Auftragsverarbeitung mit Google in der Firebase-Konsole nachsehen.
 - Forken und Abgabe bei der DA mit Repo- und Live-Link.
 
