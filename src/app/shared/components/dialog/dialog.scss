@@ -1,3 +1,5 @@
+@use 'breakpoints' as bp;
+
 .dialog {
   max-width: calc(100vw - 2 * var(--shell-gutter));
   max-height: calc(100dvh - 2 * var(--shell-gutter));
@@ -55,4 +57,12 @@
 
 .dialog__close:hover .dialog__close-icon {
   background-color: var(--color-accent);
+}
+
+@include bp.tablet-up {
+  .dialog--corner {
+    margin: calc(var(--shell-header-top) + var(--shell-header-height))
+      calc(var(--shell-gutter) + 14px) auto auto;
+    border-top-right-radius: 0;
+  }
 }

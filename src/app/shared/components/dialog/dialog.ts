@@ -15,6 +15,8 @@ let nextDialogId = 0;
 export class Dialog {
   readonly open = input(false);
   readonly heading = input.required<string>();
+  /** From 768 px: top right below the header, square top-right corner (Figma `Profile view main`). */
+  readonly corner = input(false);
   readonly closed = output<void>();
   readonly headingId = `dialog-heading-${++nextDialogId}`;
   private readonly dialog = viewChild.required<ElementRef<HTMLDialogElement>>('dialog');
