@@ -4,7 +4,13 @@ import { RouterLink } from '@angular/router';
 import { Button } from '../../../shared/components/button/button';
 import { InputField } from '../../../shared/components/input-field/input-field';
 import { AuthCard } from '../auth-card/auth-card';
-import { AUTH_ERRORS, EMAIL_RULES, NEW_PASSWORD_RULES } from '../auth-validation';
+import {
+  AUTH_ERRORS,
+  EMAIL_RULES,
+  FULL_NAME_RULES,
+  NEW_PASSWORD_RULES,
+  normalizeName,
+} from '../auth-validation';
 import { visibleError } from '../visible-error';
 
 /** What the user has entered on the first sign-up step. */
@@ -47,6 +53,7 @@ export class SignUpForm implements OnInit {
       validate(path.name, ({ value }) =>
         value().trim() ? null : { kind: 'blank', message: AUTH_ERRORS.nameMissing },
       );
+      apply(path.name, FULL_NAME_RULES);
       apply(path.email, EMAIL_RULES);
       validate(path.email, ({ value }) =>
         value() === this.takenEmail() ? { kind: 'taken', message: AUTH_ERRORS.emailTaken } : null,
@@ -70,7 +77,7 @@ export class SignUpForm implements OnInit {
 
   /** Hands the entries to the next step. */
   private async complete(): Promise<undefined> {
-    this.completed.emit({ ...this.model(), name: this.model().name.trim() });
+    this.completed.emit({ ...this.model(), name: normalizeName(this.model().name) });
     return undefined;
   }
 }

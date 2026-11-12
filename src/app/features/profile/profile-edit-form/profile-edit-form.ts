@@ -3,13 +3,14 @@ import {
   FormField,
   FormRoot,
   TreeValidationResult,
+  apply,
   form,
   required,
   validate,
 } from '@angular/forms/signals';
 import { Avatar } from '../../../shared/components/avatar/avatar';
 import { Button } from '../../../shared/components/button/button';
-import { AUTH_ERRORS } from '../../auth/auth-validation';
+import { AUTH_ERRORS, FULL_NAME_RULES, normalizeName } from '../../auth/auth-validation';
 import { AvatarPicker } from '../../auth/avatar-picker/avatar-picker';
 import { visibleError } from '../../auth/visible-error';
 
@@ -53,6 +54,7 @@ export class ProfileEditForm implements OnInit {
       validate(path.name, ({ value }) =>
         value().trim() ? null : { kind: 'blank', message: NAME_MISSING },
       );
+      apply(path.name, FULL_NAME_RULES);
     },
     { submission: { action: () => this.save() } },
   );
@@ -63,9 +65,9 @@ export class ProfileEditForm implements OnInit {
     this.model.set({ name: this.name(), avatarUrl: this.avatarUrl() });
   }
 
-  /** Stores the trimmed name and the chosen picture. */
+  /** Stores the normalized name and the chosen picture. */
   private async save(): Promise<TreeValidationResult> {
-    const changes = { name: this.model().name.trim(), avatarUrl: this.model().avatarUrl };
+    const changes = { name: normalizeName(this.model().name), avatarUrl: this.model().avatarUrl };
     try {
       await this.store()(changes);
     } catch {
