@@ -4,7 +4,7 @@ Offene Aufgaben außerhalb der Arbeitspakete. Erledigtes abhaken, nicht löschen
 
 ## Offen bis zur Abgabe (Stand 10.11.2026)
 
-Alles, was noch zu tun ist, an einer Stelle. Live ist `cf17c6d` (12.11.2026, mit Yannics Änderungen bis `93078b6`). Der Layout-Check ist grün auf `7c26079` (10.11.2026, 108 Kombinationen; Fehlalarm am mobil nur visuell ausgeblendeten Menükopf im Checker behoben, `2d94d17` in `dabubble-layout-check`).
+Alles, was noch zu tun ist, an einer Stelle. Live ist `b61e461` (12.11.2026, mit Yannics Änderungen bis `93078b6` und der Impressum-Überschrift `6cef5bf`). Der Layout-Check ist grün auf `7c26079` (10.11.2026, 108 Kombinationen; Fehlalarm am mobil nur visuell ausgeblendeten Menükopf im Checker behoben, `2d94d17` in `dabubble-layout-check`).
 
 ### Thomas: Konsole und Daten
 
@@ -67,7 +67,7 @@ Alles, was noch zu tun ist, an einer Stelle. Live ist `cf17c6d` (12.11.2026, mit
 - [x] Aufräum-Durchgang über den ganzen Code mit Thomas' Freigabe (11.11.2026): verhaltensgleich `498b067`, `c7da600` (tote Exporte, doppelte Konstanten, ungenutzte Inputs); Fixes `0ba28d4` (Gast/Google während Login gesperrt), `bcbf8f1` (gleichzeitig angelegte DM), `f9e5877` (Liste springt bei Reaktionen nicht mehr nach unten). Lint, Build, Format grün, lokal mit Gast geprüft – B
 - [x] Deploy `c4a23bf` (11.11.2026, auf Ansage Thomas, nach Yannics Anschrift `5e965bb` und dem Aufräum-Durchgang bis `f9e5877`). Drei Läufe scheiterten vorher, weil der GitHub-Runner `security.ubuntu.com` nicht auflösen konnte; `deploy.yml` installiert `lftp` seitdem ersatzweise über Homebrew (`c4a23bf`). Live in frischem Browser ohne Anmeldung geprüft: Impressum mit beiden Anschriften, Startseite, Datenschutz, Login, Registrierung und Passwort vergessen bei 320 px ohne Scrollleiste, Konsole ohne Fehler und Warnungen, keine fehlgeschlagenen Anfragen. Angemeldete Ansichten live nicht geprüft – A
 - [x] Deploy `cf17c6d` (12.11.2026, auf Ansage Thomas, nach Yannics Änderungen bis `93078b6`: Spinner, Vor- und Nachname, Profil speichert nur Änderungen, zuletzt geöffneter Chat). Dazu `cf17c6d`: Die Datenschutzerklärung nennt den zuletzt geöffneten Chat im Browser-Speicher. Live in frischem Browser ohne Anmeldung geprüft: Datenschutz mit dem neuen Satz, Login, Registrierung und Passwort vergessen bei 320 px ohne Scrollleiste, Konsole ohne Fehler, keine fehlgeschlagenen Anfragen. Angemeldete Ansichten live nicht geprüft – A
-- [ ] Deploy `6cef5bf`: Die Überschrift „Impressum“ ragte bei 320 px über die Karte (seit dem ersten Impressum, Figma gibt 46 px nur für 430 px vor); unter 400 px jetzt 32 px – A
+- [x] Deploy `b61e461` (12.11.2026, auf Ansage Thomas) mit `6cef5bf`: Die Überschrift „Impressum“ ragte bei 320 px über die Karte (seit dem ersten Impressum, Figma gibt 46 px nur für 430 px vor); unter 400 px jetzt 32 px. Live geprüft: Impressum bei 320 px ohne Scrollleiste, Konsole ohne Fehler, keine fehlgeschlagenen Anfragen – A
 - [ ] Beide Teammitglieder forken das Repo (DA-Checkliste; Yannic: `TheYan3/dabubble`, 11.11.2026, Thomas offen) – A, B
 
 ### Blockiert oder bewusst zurückgestellt
