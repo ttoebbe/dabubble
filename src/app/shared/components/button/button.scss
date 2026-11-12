@@ -3,6 +3,7 @@
 }
 
 .button {
+  position: relative;
   display: inline-flex;
   align-items: center;
   justify-content: center;
@@ -57,4 +58,8 @@
     background-color: transparent;
     border-color: var(--color-disabled);
   }
+}
+
+.button--loading .button__label {
+  opacity: 0;
 }
