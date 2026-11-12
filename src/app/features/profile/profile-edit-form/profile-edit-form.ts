@@ -3,14 +3,13 @@ import {
   FormField,
   FormRoot,
   TreeValidationResult,
-  apply,
   form,
   required,
   validate,
 } from '@angular/forms/signals';
 import { Avatar } from '../../../shared/components/avatar/avatar';
 import { Button } from '../../../shared/components/button/button';
-import { AUTH_ERRORS, FULL_NAME_RULES, normalizeName } from '../../auth/auth-validation';
+import { AUTH_ERRORS, normalizeName } from '../../auth/auth-validation';
 import { AvatarPicker } from '../../auth/avatar-picker/avatar-picker';
 import { visibleError } from '../../auth/visible-error';
 
@@ -54,7 +53,6 @@ export class ProfileEditForm implements OnInit {
       validate(path.name, ({ value }) =>
         value().trim() ? null : { kind: 'blank', message: NAME_MISSING },
       );
-      apply(path.name, FULL_NAME_RULES);
     },
     { submission: { action: () => this.save() } },
   );
