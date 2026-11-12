@@ -1,5 +1,7 @@
 $tablet: 768px;
 $wide: 1440px;
+$narrow: 400px;
+$short: 740px;
 
 @mixin mobile {
   @media (max-width: #{$tablet - 1px}) {
@@ -21,6 +23,18 @@ $wide: 1440px;
 
 @mixin wide {
   @media (min-width: $wide) {
+    @content;
+  }
+}
+
+@mixin narrow {
+  @media (max-width: #{$narrow - 1px}) {
+    @content;
+  }
+}
+
+@mixin short {
+  @media (max-width: #{$tablet - 1px}) and (max-height: #{$short - 1px}) {
     @content;
   }
 }

@@ -9,7 +9,7 @@
   justify-content: center;
   gap: 10px;
   min-height: var(--touch-target-min);
-  padding: 11px 24px;
+  padding: 11px var(--button-padding-inline, 24px);
   border: 1px solid transparent;
   border-radius: var(--radius-button);
   font-size: var(--font-size-body);
