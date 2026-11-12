@@ -74,3 +74,24 @@
     font-size: var(--font-size-display-mobile);
   }
 }
+
+@include bp.narrow {
+  .auth-card {
+    padding-inline: 10px;
+  }
+
+  .auth-card__back {
+    left: 12px;
+  }
+}
+
+@include bp.short {
+  .auth-card {
+    gap: 12px;
+    padding-block: 16px;
+  }
+
+  .auth-card__back {
+    top: 14px;
+  }
+}

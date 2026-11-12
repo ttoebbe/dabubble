@@ -127,6 +127,7 @@
 }
 
 .login__google {
+  position: relative;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -151,6 +152,14 @@
   &:active {
     border-color: var(--color-text-gray);
     font-weight: var(--font-weight-medium);
+  }
+}
+
+.login__google--loading {
+  font-size: 0;
+
+  img {
+    opacity: 0;
   }
 }
 
@@ -227,5 +236,50 @@
       background-color: var(--color-accent);
       color: var(--color-white);
     }
+  }
+}
+
+@include bp.narrow {
+  .login {
+    padding-inline: 10px;
+  }
+
+  .login__actions {
+    --button-padding-inline: 16px;
+
+    flex-wrap: nowrap;
+  }
+}
+
+@include bp.short {
+  .login {
+    gap: 10px;
+    padding-block: 12px;
+  }
+
+  .login__intro {
+    gap: 8px;
+  }
+
+  .login__text {
+    font-size: var(--font-size-label);
+  }
+
+  .login__divider,
+  .login__google,
+  .login__actions {
+    margin-top: 6px;
+  }
+
+  .login__google {
+    min-height: var(--touch-target-min);
+    padding-block: 0;
+  }
+
+  .login__sign-up {
+    flex-flow: row wrap;
+    justify-content: center;
+    gap: 0 8px;
+    margin-top: 8px;
   }
 }

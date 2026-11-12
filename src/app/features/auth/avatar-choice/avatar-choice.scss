@@ -56,3 +56,18 @@
     margin-top: 24px;
   }
 }
+
+@include bp.short {
+  .avatar {
+    padding-top: 0;
+  }
+
+  .avatar__name,
+  .avatar__submit {
+    margin-top: 8px;
+  }
+
+  .avatar__picker {
+    margin-top: 0;
+  }
+}
