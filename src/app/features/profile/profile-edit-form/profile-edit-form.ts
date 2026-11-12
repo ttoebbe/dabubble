@@ -28,6 +28,9 @@ interface ProfileEditModel {
 /** Error text for an empty name; Figma defines none. */
 const NAME_MISSING = '*Bitte gib deinen Namen ein.';
 
+/** Hint when the dialog would close with unsaved changes; Figma defines none. */
+const UNSAVED = 'Änderungen noch nicht gespeichert.';
+
 /**
  * Edit mode of the own profile (Figma `65. Profile view other users` variant "Dein Profil
  * bearbeiten" 1808:16192, DA checklist Konto US4): avatar from the given choice (not in
@@ -57,10 +60,21 @@ export class ProfileEditForm implements OnInit {
     { submission: { action: () => this.save() } },
   );
   readonly nameError = computed(() => visibleError(this.profileForm.name));
+  readonly unsavedHint = signal('');
+  readonly changed = computed(
+    () =>
+      normalizeName(this.model().name) !== this.name() ||
+      this.model().avatarUrl !== this.avatarUrl(),
+  );
 
   /** Starts with the current name and picture. */
   ngOnInit(): void {
     this.model.set({ name: this.name(), avatarUrl: this.avatarUrl() });
+  }
+
+  /** Shows the hint that the changes are not saved yet. */
+  warnUnsaved(): void {
+    this.unsavedHint.set(UNSAVED);
   }
 
   /** Stores the normalized name and the chosen picture. */

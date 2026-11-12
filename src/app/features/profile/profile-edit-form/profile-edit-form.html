@@ -17,6 +17,13 @@
   </div>
   <div class="edit__actions">
     <app-button variant="secondary" (click)="cancelled.emit()">Abbrechen</app-button>
-    <app-button type="submit">Speichern</app-button>
+    <app-button
+      type="submit"
+      [disabled]="!changed() || profileForm().submitting()"
+      [loading]="profileForm().submitting()"
+    >
+      Speichern
+    </app-button>
   </div>
+  <p class="edit__error edit__unsaved" aria-live="assertive">{{ unsavedHint() }}</p>
 </form>

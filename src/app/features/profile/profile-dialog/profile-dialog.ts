@@ -1,4 +1,4 @@
-import { Component, computed, input, output, signal } from '@angular/core';
+import { Component, computed, input, output, signal, viewChild } from '@angular/core';
 import { Avatar } from '../../../shared/components/avatar/avatar';
 import { Button } from '../../../shared/components/button/button';
 import { Dialog } from '../../../shared/components/dialog/dialog';
@@ -25,6 +25,8 @@ export class ProfileDialog {
   readonly messageRequested = output<void>();
   readonly store = input.required<(changes: ProfileChanges) => Promise<void>>();
   readonly editing = signal(false);
+  private readonly editForm = viewChild(ProfileEditForm);
+  readonly unsaved = computed(() => this.editForm()?.changed() ?? false);
   readonly heading = computed(() => (this.editing() ? 'Dein Profil bearbeiten' : 'Profil'));
   readonly statusLabel = computed(() =>
     this.profile().status === 'online' ? 'Aktiv' : 'Abwesend',
@@ -34,6 +36,11 @@ export class ProfileDialog {
   close(): void {
     this.editing.set(false);
     this.closed.emit();
+  }
+
+  /** A press beside the dialog with unsaved changes keeps it open and shows a hint. */
+  warnUnsaved(): void {
+    this.editForm()?.warnUnsaved();
   }
 
   /** Stores the new name and picture, then returns to the view mode; errors stay in the form. */
