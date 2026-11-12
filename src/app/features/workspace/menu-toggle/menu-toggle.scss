@@ -41,3 +41,33 @@
 :host(.menu-toggle--collapsed) .menu-toggle__button:hover .menu-toggle__icon {
   background-image: url('/img/icons/show-navigation-hover.svg');
 }
+
+// Reserves the length of the bold hover label so hovering does not resize the tab.
+.menu-toggle__label::after {
+  content: attr(data-label);
+  display: block;
+  block-size: 0;
+  overflow: hidden;
+  visibility: hidden;
+  font-weight: var(--font-weight-bold);
+}
+
+// Pointer devices: the tab rests mostly off-screen and slides in at the left edge.
+// Deviation from Figma (static tab), agreed by A and B: the tab no longer covers the menu head.
+@media (hover: hover) and (pointer: fine) {
+  .menu-toggle__button {
+    transform: translateX(calc(-100% + var(--shell-gutter)));
+    transition: transform var(--duration-hover) var(--easing-hover);
+  }
+
+  .menu-toggle__button:hover,
+  .menu-toggle__button:focus-visible {
+    transform: none;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .menu-toggle__button {
+    transition: none;
+  }
+}

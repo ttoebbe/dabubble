@@ -11,6 +11,14 @@
   display: none;
 }
 
+// Touch devices from tablet width: the menu toggle (60 px wide, from the screen edge)
+// stays visible, so the content moves right past it instead of sitting underneath.
+@media (min-width: 768px) and (hover: none), (min-width: 768px) and (pointer: coarse) {
+  :host {
+    padding-left: 70px;
+  }
+}
+
 .menu__head {
   display: flex;
   align-items: center;

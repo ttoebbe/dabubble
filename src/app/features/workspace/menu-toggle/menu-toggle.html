@@ -6,7 +6,5 @@
   (click)="toggled.emit()"
 >
   <span class="menu-toggle__icon" aria-hidden="true"></span>
-  <span class="menu-toggle__label">
-    {{ collapsed() ? 'Workspace-Menü öffnen' : 'Workspace-Menü schließen' }}
-  </span>
+  <span class="menu-toggle__label" [attr.data-label]="label()">{{ label() }}</span>
 </button>
