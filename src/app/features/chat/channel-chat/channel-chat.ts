@@ -9,6 +9,7 @@ import { ChannelDialogs } from '../../channels/channel-dialogs';
 import { ChatHeader } from '../chat-header/chat-header';
 import { describeCreation } from '../channel-intro';
 import { Conversation } from '../conversation/conversation';
+import { rememberChat } from '../last-chat';
 import { UNKNOWN_PERSON_NAME } from '../direct-chat/direct-chat';
 
 /** How many member avatars the header shows (Figma `46. Members Miniatures Chat info`). */
@@ -59,4 +60,9 @@ export class ChannelChat {
     );
     return `${created} Das ist der Anfang des Channels`;
   });
+
+  /** Remembers this channel as the last opened chat. */
+  constructor() {
+    rememberChat(() => `channel/${this.channelId()}`);
+  }
 }

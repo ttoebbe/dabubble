@@ -9,6 +9,7 @@ import { toAvatarStatus } from '../../profile/profile-details';
 import { ProfileViewer } from '../../profile/profile-viewer';
 import { ChatHeader } from '../chat-header/chat-header';
 import { Conversation } from '../conversation/conversation';
+import { rememberChat } from '../last-chat';
 
 /** Name shown for a person without profile, e.g. a guest who has logged out. */
 export const UNKNOWN_PERSON_NAME = 'Gast';
@@ -49,4 +50,9 @@ export class DirectChat {
     const person = this.person();
     return person ? toAvatarStatus(person.presence) : null;
   });
+
+  /** Remembers this chat as the last opened one. */
+  constructor() {
+    rememberChat(() => `dm/${this.uid()}`);
+  }
 }

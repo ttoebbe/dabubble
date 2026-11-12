@@ -1,4 +1,5 @@
 import { Routes } from '@angular/router';
+import { openStartChat } from './last-chat';
 
 /** Lazy-loads the channel view. */
 const loadChannel = () =>
@@ -23,9 +24,11 @@ const loadThread = () =>
  * (`:uid` is the other person) and new-message views in the primary outlet, the thread
  * of a message in the outlet `thread`. `kind` is `channel` or `dm`, `conversationId` the
  * channel id or the id of the direct chat (ttoebbe/dabubble#1), e.g.
- * `/workspace/(channel/x//thread:thread/channel/x/messageId)`.
+ * `/workspace/(channel/x//thread:thread/channel/x/messageId)`. The empty path opens the last
+ * chat (`openStartChat`).
  */
 export const CHAT_ROUTES: Routes = [
+  { path: '', pathMatch: 'full', canActivate: [openStartChat], children: [] },
   { path: 'channel/:channelId', loadComponent: loadChannel },
   { path: 'dm/:uid', loadComponent: loadDirectChat },
   { path: 'new-message', loadComponent: loadNewMessage },
