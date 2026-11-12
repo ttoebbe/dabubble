@@ -102,8 +102,9 @@ const PRIVACY_SECTIONS: readonly PrivacySection[] = [
     title: 'Speicherung im Browser',
     text:
       'Damit du angemeldet bleibst, speichert Firebase deinen Anmeldestatus im Speicher deines ' +
-      'Browsers. Außerdem merkt sich die App dort die Emojis, die du zuletzt benutzt hast. ' +
-      'Beides ist für die von dir gewünschten Funktionen nötig (§ 25 Abs. 2 Nr. 2 TDDDG). Wir ' +
+      'Browsers. Außerdem merkt sich die App dort die Emojis, die du zuletzt benutzt hast, und ' +
+      'den Chat, den du zuletzt geöffnet hast, damit er beim nächsten Besuch wieder erscheint. ' +
+      'Das ist für die von dir gewünschten Funktionen nötig (§ 25 Abs. 2 Nr. 2 TDDDG). Wir ' +
       'setzen keine Cookies zu Werbe- oder Analysezwecken. Du kannst den Speicher jederzeit in ' +
       'deinem Browser löschen; danach musst du dich neu anmelden.',
   },
