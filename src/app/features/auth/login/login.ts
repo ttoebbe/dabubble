@@ -22,6 +22,9 @@ interface LoginModel {
   password: string;
 }
 
+/** Sign-in actions outside the form; the one that waits shows the spinner. */
+type SignInAction = 'guest' | 'google';
+
 /** Page after a successful sign-in. */
 const WORKSPACE_URL = '/workspace';
 
@@ -52,16 +55,17 @@ export class Login {
   readonly emailError = computed(() => visibleError(this.loginForm.email));
   readonly passwordError = computed(() => visibleError(this.loginForm.password));
   readonly actionError = signal<string | null>(null);
-  readonly busy = signal(false);
+  readonly pending = signal<SignInAction | null>(null);
+  readonly busy = computed(() => this.pending() !== null);
 
   /** Signs in as guest. */
   logInAsGuest(): Promise<void> {
-    return this.runSignIn(() => this.auth.logInAsGuest());
+    return this.runSignIn('guest', () => this.auth.logInAsGuest());
   }
 
   /** Signs in with a Google account. */
   logInWithGoogle(): Promise<void> {
-    return this.runSignIn(() => this.auth.logInWithGoogle());
+    return this.runSignIn('google', () => this.auth.logInWithGoogle());
   }
 
   /** Signs in with the form values; a failure becomes an error under the password. */
@@ -80,16 +84,16 @@ export class Login {
   }
 
   /** Runs a sign-in without the form and opens the workspace, or shows why it failed. */
-  private async runSignIn(signIn: () => Promise<void>): Promise<void> {
+  private async runSignIn(action: SignInAction, signIn: () => Promise<void>): Promise<void> {
     this.actionError.set(null);
-    this.busy.set(true);
+    this.pending.set(action);
     try {
       await signIn();
       await this.router.navigateByUrl(WORKSPACE_URL);
     } catch (error) {
       this.actionError.set(isCancelledPopup(error) ? null : describeAuthError(error));
     } finally {
-      this.busy.set(false);
+      this.pending.set(null);
     }
   }
 }

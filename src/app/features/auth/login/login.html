@@ -33,18 +33,24 @@
     <button
       class="login__google"
       type="button"
+      [class.login__google--loading]="pending() === 'google'"
+      [attr.aria-busy]="pending() === 'google' || null"
       [disabled]="busy() || loginForm().submitting()"
       (click)="logInWithGoogle()"
     >
       <img ngSrc="img/logos/google-g.svg" alt="" width="38" height="38" />
       Anmelden mit Google
+      @if (pending() === 'google') {
+        <span class="spinner" aria-hidden="true"></span>
+      }
     </button>
     <div class="login__actions">
-      <app-button type="submit" [disabled]="loginForm().submitting() || busy()">
+      <app-button type="submit" [loading]="loginForm().submitting()" [disabled]="busy()">
         Anmelden
       </app-button>
       <app-button
         variant="secondary"
+        [loading]="pending() === 'guest'"
         [disabled]="busy() || loginForm().submitting()"
         (click)="logInAsGuest()"
       >

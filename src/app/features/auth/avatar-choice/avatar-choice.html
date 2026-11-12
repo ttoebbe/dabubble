@@ -4,7 +4,12 @@
     <p class="avatar__name">{{ name() }}</p>
     <app-avatar-picker class="avatar__picker" [formField]="avatarForm.avatarUrl" />
     <p class="avatar__error" aria-live="polite">{{ error() }}</p>
-    <app-button class="avatar__submit" type="submit" [disabled]="avatarForm().invalid() || busy()">
+    <app-button
+      class="avatar__submit"
+      type="submit"
+      [loading]="busy()"
+      [disabled]="avatarForm().invalid()"
+    >
       Weiter
     </app-button>
   </form>
