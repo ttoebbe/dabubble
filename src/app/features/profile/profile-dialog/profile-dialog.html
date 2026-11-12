@@ -1,4 +1,4 @@
-<app-dialog [heading]="heading()" [open]="open()" (closed)="close()">
+<app-dialog [heading]="heading()" [open]="open()" [corner]="isOwn()" (closed)="close()">
   <div class="profile">
     @if (editing()) {
       <app-profile-edit-form
